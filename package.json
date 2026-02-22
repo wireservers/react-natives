@@ -1,0 +1,8 @@
+{
+  "name": "wireservers-ui",
+  "private": true,
+  "workspaces": [
+    "demo",
+    "packages/*"
+  ]
+}
