@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { Button, ButtonText } from '@/components/ui/button';
+import { Button, ButtonText } from '@wireservers-ui/components';
 import { Card, FAB } from 'react-native-paper';
 import { useState } from 'react';
 
@@ -25,10 +25,10 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Gluestack UI Section */}
+        {/* Button Section */}
         <View className="gap-3">
           <Text className="text-2xl font-bold text-typography-900">
-            Gluestack UI
+            Button
           </Text>
           <View className="gap-3">
             <Button action="primary" size="lg" onPress={() => setCount((c) => c + 1)}>

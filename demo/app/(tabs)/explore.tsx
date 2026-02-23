@@ -26,8 +26,8 @@ export default function ExploreScreen() {
           />
           <Divider />
           <List.Item
-            title="Gluestack UI"
-            description="Accessible components styled with Tailwind variants"
+            title="Tailwind Variants"
+            description="Component styling with variant-based composition"
             left={(props) => <List.Icon {...props} icon="puzzle" />}
           />
           <Divider />
