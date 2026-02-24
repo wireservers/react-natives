@@ -2,7 +2,7 @@
   "name": "wireservers-ui",
   "private": true,
   "workspaces": [
-    "demo",
+    "website",
     "packages/*"
   ]
 }
