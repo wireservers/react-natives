@@ -3,3 +3,6 @@
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 /node_modules
+pnpm-lock.yaml
+pnpm-workspace.yaml
+packages/react-native-ui/node_modules
