@@ -4,5 +4,9 @@
   "workspaces": [
     "website",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "build": "cd website && npx expo export --platform web",
+    "start": "node server.js"
+  }
 }
