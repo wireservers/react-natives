@@ -1,8 +1,30 @@
+# Dependencies
+node_modules/
 
-
-#Ignore vscode AI rules
-.github/instructions/codacy.instructions.md
-/node_modules
+# Lock files
 pnpm-lock.yaml
-pnpm-workspace.yaml
-packages/react-native-ui/node_modules
+package-lock.json
+
+# Expo
+.expo/
+dist/
+expo-env.d.ts
+
+# Build
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# AI rules
+.github/instructions/codacy.instructions.md
