@@ -44,6 +44,10 @@ const exampleMap: Record<string, React.ComponentType> = {
   calendar: require('@/components/docs/examples/calendar-examples').default,
 };
 
+export function generateStaticParams(): { slug: string }[] {
+  return componentRegistry.map((c) => ({ slug: c.slug }));
+}
+
 export default function ComponentDetailScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const navigation = useNavigation();
