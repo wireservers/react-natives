@@ -15,15 +15,7 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
 ];
 
-// 3. Resolve workspace package directly to source
-config.resolver.extraNodeModules = {
-  '@wireservers-ui/react-native-ui': path.resolve(
-    workspaceRoot,
-    'packages/react-native-ui',
-  ),
-};
-
-// 4. Follow symlinks (pnpm compatibility)
+// 3. Follow symlinks (pnpm compatibility)
 config.resolver.unstable_enableSymlinks = true;
 
 module.exports = withNativeWind(config, { input: './global.css' });
