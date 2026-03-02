@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 8080;
-const DIST = path.join(__dirname, 'website', 'dist');
+const DIST = path.join(__dirname, 'demos', 'expo', 'dist');
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -69,5 +69,5 @@ http
     });
   })
   .listen(PORT, () => {
-    console.log(`Serving website/dist on port ${PORT}`);
+    console.log(`Serving demos/expo/dist on port ${PORT}`);
   });
