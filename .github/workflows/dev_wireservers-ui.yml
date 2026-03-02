@@ -8,7 +8,7 @@ on:
     branches:
       - dev
     paths:
-      - 'wireservers-ui/packages/react-natives/**'
+      - 'packages/react-natives/**'
   workflow_dispatch:
 
 jobs:

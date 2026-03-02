@@ -18,9 +18,7 @@ export const CircularProgress = React.forwardRef<
   const clampedValue = Math.min(100, Math.max(0, value));
   const dim = sizeMap[size];
   const stroke = strokeMap[size];
-  const radius = (dim - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const progress = circumference - (clampedValue / 100) * circumference;
+
 
   return (
     <CircularProgressProvider value={{ value: clampedValue, size }}>
