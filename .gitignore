@@ -26,3 +26,6 @@ Thumbs.db
 
 # AI rules
 .github/instructions/codacy.instructions.md
+/packages/flutter
+/packages/ionic
+

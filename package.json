@@ -2,11 +2,11 @@
   "name": "wireservers-ui",
   "private": true,
   "workspaces": [
-    "website",
+    "demos/expo",
     "packages/*"
   ],
   "scripts": {
-    "build": "cd website && npx expo export --platform web",
+    "build": "pnpm --filter @wireservers-ui/website build",
     "start": "node server.js"
   }
 }
