@@ -1,0 +1,42 @@
+<svg width="1024" height="1024" viewBox="100 100 560 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">React-Natives icon</title>
+  <desc id="desc">High-resolution React-Natives icon with plus signs and tilted mobile-device symbol.</desc>
+  <defs>
+    <linearGradient id="orb" x1="120" y1="120" x2="590" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#61DBFB"/>
+      <stop offset="1" stop-color="#2BA8CC"/>
+    </linearGradient>
+    <linearGradient id="phoneBody" x1="226" y1="208" x2="500" y2="564" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#D9E8F5"/>
+    </linearGradient>
+    <linearGradient id="phoneScreen" x1="254" y1="254" x2="430" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FCFF"/>
+      <stop offset="1" stop-color="#E4EDF6"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(50 0)">
+  <circle cx="330" cy="378" r="268" fill="url(#orb)"/>
+  <circle cx="330" cy="378" r="268" stroke="#2BA8CC" stroke-width="12"/>
+  <circle cx="330" cy="378" r="194" fill="none" stroke="#E8F9FE" stroke-width="10"/>
+
+  <path d="M208 154H248" stroke="#E8F9FE" stroke-width="12" stroke-linecap="round"/>
+  <path d="M228 134V174" stroke="#E8F9FE" stroke-width="12" stroke-linecap="round"/>
+  <path d="M262 124H292" stroke="#E8F9FE" stroke-width="10" stroke-linecap="round"/>
+  <path d="M277 109V139" stroke="#E8F9FE" stroke-width="10" stroke-linecap="round"/>
+  <path d="M170 186H194" stroke="#61DBFB" stroke-width="8" stroke-linecap="round"/>
+  <path d="M182 174V198" stroke="#61DBFB" stroke-width="8" stroke-linecap="round"/>
+
+  <g transform="rotate(-17 332 412)">
+    <rect x="222" y="216" width="232" height="360" rx="42" fill="url(#phoneBody)" stroke="#8FA7BA" stroke-width="12"/>
+    <rect x="250" y="252" width="176" height="262" rx="26" fill="url(#phoneScreen)"/>
+    <rect x="272" y="286" width="132" height="10" rx="5" fill="#C8D4E0"/>
+    <rect x="272" y="320" width="118" height="10" rx="5" fill="#C8D4E0"/>
+    <rect x="272" y="354" width="126" height="10" rx="5" fill="#C8D4E0"/>
+    <rect x="306" y="232" width="64" height="8" rx="4" fill="#C0D2E1"/>
+    <circle cx="338" cy="542" r="10" fill="#C0D2E1"/>
+    <path d="M266 302L410 464" stroke="#ECF3FA" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  </g>
+</svg>
