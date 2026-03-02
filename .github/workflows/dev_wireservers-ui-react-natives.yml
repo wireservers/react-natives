@@ -57,7 +57,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
+
+      - name: Prepare deployment package.json
+        run: echo '{"name":"wireservers-ui","version":"1.0.0","scripts":{"start":"node server.js"}}' > package.json
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
