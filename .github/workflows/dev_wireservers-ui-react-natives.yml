@@ -44,7 +44,7 @@ jobs:
           path: |
             server.js
             package.json
-            website/dist/
+            demos/expo/dist/
 
   deploy:
     runs-on: ubuntu-latest
