@@ -2,8 +2,8 @@
 
 ## WireServers UI
 
-- `website/assets/images/wireservers-ui-logo.svg` — full lockup logo
-- `website/assets/images/wireservers-ui-mark.svg` — square app/icon mark
+- `demos/expo/assets/images/wireservers-ui-logo.svg` — full lockup logo
+- `demos/expo/assets/images/wireservers-ui-mark.svg` — square app/icon mark
 
 ## react-natives package
 
