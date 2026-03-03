@@ -3,6 +3,7 @@ import type { View, Pressable, Animated } from 'react-native';
 export interface CarouselContextValue {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
+  activeIndexRef: React.MutableRefObject<number>;
   itemCount: number;
   setItemCount: (count: number) => void;
   itemCountRef: React.MutableRefObject<number>;
@@ -24,7 +25,7 @@ export interface CarouselProps extends React.ComponentPropsWithoutRef<typeof Vie
   onIndexChange?: (index: number) => void;
 }
 export interface CarouselContentProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; }
-export interface CarouselItemProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; }
+export interface CarouselItemProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; onPress?: () => void; }
 export interface CarouselPreviousProps extends React.ComponentPropsWithoutRef<typeof Pressable> { className?: string; }
 export interface CarouselNextProps extends React.ComponentPropsWithoutRef<typeof Pressable> { className?: string; }
 export interface CarouselDotsProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; }
