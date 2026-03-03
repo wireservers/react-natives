@@ -1,13 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - wireservers-ui
+name: Build and deploy Node.js app to Azure Web App - reactnatives
 
 on:
   push:
     branches:
-      - dev
-
+      - prod
   workflow_dispatch:
 
 jobs:
@@ -19,23 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Set up Node.js version
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '24.x'
-          cache: 'pnpm'
 
-      - name: Install dependencies and build
+      - name: npm install, build, and test
         run: |
-          pnpm install
-          pnpm add -w lightningcss-linux-x64-gnu@1.27.0
-          pnpm run build --if-present
-          pnpm run test --if-present
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -62,15 +54,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9C9C34B390224C628FD50E434C3D13B7 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_455074CDF0F14EFAAD41D6773C9B8B9F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_919BD99B9B51427BA51BA2C9DE674284 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AFC0F8E848174D5FA3F0BDC87D409ABF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B7167CDA5ADB47B4A1D4310175CC80EA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7FC94A80301242DCB253C13DDD8C881F }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'wireservers-ui'
+          app-name: 'reactnatives'
           slot-name: 'Production'
           package: .
           
