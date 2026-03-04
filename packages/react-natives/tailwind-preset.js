@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   darkMode: 'class',
   content: [
-    path.join(path.dirname(require.resolve('react-natives/package.json')), 'src/**/*.{ts,tsx}'),
+    path.join(__dirname, 'src/**/*.{ts,tsx}'),
   ],
   presets: [require('nativewind/preset')],
   safelist: [
