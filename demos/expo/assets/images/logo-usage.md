@@ -1,9 +1,9 @@
 # Generated Logo Assets
 
-## WireServers UI
+## WireServers UI (legacy assets)
 
-- `demos/expo/assets/images/wireservers-ui-logo.svg` — full lockup logo
-- `demos/expo/assets/images/wireservers-ui-mark.svg` — square app/icon mark
+- `demos/expo/assets/images/wireservers-ui-logo.svg` — full lockup logo (legacy)
+- `demos/expo/assets/images/wireservers-ui-mark.svg` — square app/icon mark (legacy)
 
 ## react-natives package
 
@@ -17,7 +17,7 @@
 
 ## PNG exports
 
-### WireServers UI (`website/assets/images`)
+### WireServers UI — legacy (`website/assets/images`)
 
 - `wireservers-ui-mark-1024.png`
 - `wireservers-ui-mark-512.png`
