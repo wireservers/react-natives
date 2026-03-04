@@ -64,13 +64,13 @@ export default function Example() {
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 <AccordionTitleText>
-                  What is wireservers-ui?
+                  What is React-Natives?
                 </AccordionTitleText>
                 <AccordionIcon />
               </AccordionTrigger>
               <AccordionContent>
                 <RNText style={{ fontSize: 14, color: '#525252' }}>
-                  Wireservers UI is a cross-platform component library built
+                  React-Natives is a cross-platform component library built
                   with React Native, NativeWind, and Gluestack UI primitives.
                 </RNText>
               </AccordionContent>
@@ -101,7 +101,7 @@ export default function Example() {
               </AccordionTrigger>
               <AccordionContent>
                 <RNText style={{ fontSize: 14, color: '#525252' }}>
-                  Yes, wireservers-ui is fully compatible with Expo SDK 54 and
+                  Yes, React-Natives is fully compatible with Expo SDK 54 and
                   uses Expo Router for file-based navigation in the demo app.
                 </RNText>
               </AccordionContent>

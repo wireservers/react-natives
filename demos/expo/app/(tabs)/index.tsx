@@ -131,7 +131,7 @@ export default function App() {
       <View style={{ backgroundColor: '#fff' }}>
       <Container style={{ paddingHorizontal: isWide ? 48 : 24, paddingTop: isXWide ? 80 : 48, paddingBottom: 12, alignItems: 'center' }}>
         <Text style={{ fontSize: isXWide ? 48 : isWide ? 32 : 24, fontWeight: '800', color: '#111827', textAlign: 'center', marginBottom: 8 }}>
-          Why Choose Wireservers UI?
+          Why Choose React-Natives?
         </Text>
         <Text style={{ fontSize: isXWide ? 20 : 15, color: '#6B7280', textAlign: 'center' }}>
           Everything you need to build modern mobile applications
@@ -363,7 +363,7 @@ export default function App() {
           <Text
             style={{ fontSize: isXWide ? 22 : 15, color: 'rgba(255,255,255,0.75)', textAlign: 'center', marginBottom: 28, maxWidth: isXWide ? '50%' : 400 }}
           >
-            Join thousands of developers building amazing mobile apps with Wireservers UI
+            Join thousands of developers building amazing mobile apps with React-Natives
           </Text>
           <View style={{ flexDirection: 'row', gap: 12 }}>
             <Pressable

@@ -168,7 +168,7 @@ export default function Example() {
           </CardHeader>
           <CardBody>
             <Text>
-              Wireservers UI provides a comprehensive set of components for
+              React-Natives provides a comprehensive set of components for
               building polished cross-platform apps. Cards are a great way to
               group related content together.
             </Text>
@@ -211,7 +211,7 @@ export default function Example() {
                     <Heading size="sm">Welcome!</Heading>
                   </PopoverHeader>
                   <PopoverBody>
-                    <Text size="sm">You&apos;re all set to start building with Wireservers UI.</Text>
+                    <Text size="sm">You&apos;re all set to start building with React-Natives.</Text>
                   </PopoverBody>
                 </PopoverContent>
               </Popover>
