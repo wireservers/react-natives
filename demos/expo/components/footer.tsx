@@ -75,10 +75,10 @@ export function Footer() {
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
           <View style={{ flex: 1, minWidth: 160 }}>
             <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700', marginBottom: 10 }}>
-              Wireservers UI
+              React-Natives
             </Text>
             <Text style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, lineHeight: 20 }}>
-              A comprehensive React Native component library for building high-performance mobile apps.
+              A comprehensive React Native component library. Created by WireServers-UI.
             </Text>
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
@@ -110,7 +110,7 @@ export function Footer() {
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 20, alignItems: 'center' }}>
           <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>
-            © 2026 Wireservers UI. All rights reserved.
+            © 2026 React-Natives. Powered by WireServers-UI.
           </Text>
         </View>
       </View>

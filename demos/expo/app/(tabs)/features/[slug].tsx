@@ -33,7 +33,7 @@ const FEATURES: Record<string, FeatureContent> = {
     problemTitle: 'The Problem with Untyped Code',
     problem: `As your React Native codebase grows, JavaScript's dynamic typing becomes a liability. Wrong prop types slip through code review, misspelled prop names cause silent bugs at runtime, and refactoring becomes a risky guessing game. You spend hours debugging issues that should have been caught at compile time.`,
     solutionTitle: 'Built for TypeScript from Day One',
-    solution: `Every component in Wireservers UI is authored in TypeScript with strict mode enabled. We export all prop types, variant unions, and context values — so your IDE and compiler work as a first-class safety net, not an obstacle.`,
+    solution: `Every component in React-Natives is authored in TypeScript with strict mode enabled. We export all prop types, variant unions, and context values — so your IDE and compiler work as a first-class safety net, not an obstacle.`,
     highlights: [
       { icon: '⌨️', title: 'Full IntelliSense', desc: 'Autocomplete for every prop, variant, and size across all 70+ components. No more guessing.', link: 'button' },
       { icon: '🔒', title: 'Strict Type Contracts', desc: 'No any escapes. Props, events, refs, and forwarded types are all strictly defined.', link: 'input' },
@@ -68,7 +68,7 @@ function MyButton({ action }: { action: ButtonAction }) {
     problemTitle: 'The Trap of Rigid UI Libraries',
     problem: `Most component libraries ship with opinionated styles that fight your design system. You end up overriding styles in dozens of places, battling specificity wars, and shipping unnecessary CSS just to make a button match your brand color. Dark mode is often bolted on as an afterthought.`,
     solutionTitle: 'A Theming System Built to Flex',
-    solution: `Wireservers UI uses CSS custom properties for every color token and NativeWind utility classes for layout and spacing. Change your brand color in one config file and it propagates across every component automatically — in both light and dark modes.`,
+    solution: `React-Natives uses CSS custom properties for every color token and NativeWind utility classes for layout and spacing. Change your brand color in one config file and it propagates across every component automatically — in both light and dark modes.`,
     highlights: [
       { icon: '🌙', title: 'Dark Mode Built-in', desc: 'Every component adapts to the system color scheme automatically. Zero extra configuration.', link: 'switch' },
       { icon: '🎯', title: 'Single Source of Truth', desc: 'One config file. Change your brand color once — buttons, badges, switches, inputs all update.', link: 'badge' },
@@ -141,7 +141,7 @@ const buttonStyle = tv({
     problemTitle: 'Accessibility as an Afterthought',
     problem: `Most apps pass visual QA but fail assistive technology entirely. Screen reader users encounter unlabeled buttons, missing focus management, and broken navigation patterns. Color contrast ratios violate WCAG. Retrofitting accessibility after launch is expensive, risky, and often incomplete.`,
     solutionTitle: 'WCAG Compliance Baked In',
-    solution: `Every Wireservers UI component ships with correct accessibilityRole, sensible default accessibilityLabel fallbacks, proper focus management, and color contrast that meets WCAG 2.1 AA. You build inclusive apps without becoming an accessibility specialist.`,
+    solution: `Every React-Natives component ships with correct accessibilityRole, sensible default accessibilityLabel fallbacks, proper focus management, and color contrast that meets WCAG 2.1 AA. You build inclusive apps without becoming an accessibility specialist.`,
     highlights: [
       { icon: '🔊', title: 'Screen Reader Ready', desc: 'Correct accessibilityRole and live region announcements on every interactive element.', link: 'button' },
       { icon: '🎯', title: 'Focus Management', desc: 'Modals, drawers, and dialogs trap focus on open and restore it correctly on close.', link: 'modal' },
@@ -179,7 +179,7 @@ const buttonStyle = tv({
     problemTitle: 'Library Sprawl Slows Teams Down',
     problem: `Using five different packages for buttons, modals, date pickers, tables, and carousels means five incompatible APIs, five divergent update cycles, five sets of style conflicts, and five sources of production bugs. The integration glue code alone can take days to write and maintain.`,
     solutionTitle: 'A Complete UI System in One Package',
-    solution: `From a simple Text label to a full Calendar with day/week/month views, Wireservers UI covers every common UI pattern in a single, consistent API. One install. One theming config. One mental model your whole team can learn once and apply everywhere.`,
+    solution: `From a simple Text label to a full Calendar with day/week/month views, React-Natives covers every common UI pattern in a single, consistent API. One install. One theming config. One mental model your whole team can learn once and apply everywhere.`,
     highlights: [
       { icon: '🏗️', title: 'Core Primitives', desc: 'Text, Heading, Button, Icon, Image, Divider, Badge, Spinner — the building blocks you use daily.', link: 'button' },
       { icon: '📝', title: 'Form Controls', desc: 'Input, Textarea, Select, Checkbox, Radio, Switch, Slider, ColorPicker, DatePicker, and more.', link: 'input' },
@@ -214,7 +214,7 @@ import {
     problemTitle: 'Platform Fragmentation Kills Velocity',
     problem: `Teams maintaining separate iOS and Android UIs spend half their time syncing behavior rather than shipping features. Adding web support creates a third surface to maintain. Component libraries that work on one platform but subtly break on another force constant workarounds that accumulate into technical debt.`,
     solutionTitle: 'Truly Universal Components',
-    solution: `Wireservers UI components are tested across iOS, Android, and Web (via React Native Web + Expo). NativeWind handles platform style differences automatically. Platform-specific behaviors like haptic feedback and ripple effects are abstracted so your component code stays platform-agnostic and clean.`,
+    solution: `React-Natives components are tested across iOS, Android, and Web (via React Native Web + Expo). NativeWind handles platform style differences automatically. Platform-specific behaviors like haptic feedback and ripple effects are abstracted so your component code stays platform-agnostic and clean.`,
     highlights: [
       { icon: '🍎', title: 'iOS Native Feel', desc: 'SF Symbols support, haptic feedback integration, and proper safe area handling.', link: 'button' },
       { icon: '🤖', title: 'Android Material', desc: 'Ripple press effects, adaptive navigation patterns, and Material-compatible interactions.', link: 'pressable' },

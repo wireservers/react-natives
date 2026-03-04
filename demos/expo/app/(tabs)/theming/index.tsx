@@ -10,7 +10,7 @@ const SECTIONS = [
     tag: 'Getting Started',
     tagColor: '#6366F1',
     title: 'One Config File, Every Component',
-    body: `Wireservers UI uses CSS custom properties for every color token. Change your brand color in a single config file and it propagates automatically across all 70+ components — in both light and dark mode, with no component-level overrides needed.`,
+    body: `React-Natives uses CSS custom properties for every color token. Change your brand color in a single config file and it propagates automatically across all 70+ components — in both light and dark mode, with no component-level overrides needed.`,
     code: `// gluestack-ui-provider/config.ts
 export const config = {
   tokens: {

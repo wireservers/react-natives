@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rnp-web-app",
-    "slug": "rnp-web-app",
+    "name": "react-natives",
+    "slug": "react-natives",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rnpwebapp",
+    "scheme": "reactnatives",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

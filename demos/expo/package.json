@@ -1,5 +1,5 @@
 {
-  "name": "@wireservers-ui/website",
+  "name": "@react-natives/website",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
