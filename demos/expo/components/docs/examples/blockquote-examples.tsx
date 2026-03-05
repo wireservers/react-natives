@@ -5,13 +5,27 @@ import { Blockquote, Text } from '@wireservers-ui/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function BlockquoteExamples() {
-  useExampleCode(`import { Blockquote } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { View } from 'react-native';
+import { Blockquote, Text } from '@wireservers-ui/react-natives';
 
-export default function Example() {
+// Basic Blockquote
+export function BasicExample() {
   return (
     <Blockquote>
       The best way to predict the future is to invent it.
     </Blockquote>
+  );
+}
+
+// With Attribution
+export function AttributionExample() {
+  return (
+    <View style={{ gap: 4 }}>
+      <Blockquote>
+        Design is not just what it looks like and feels like. Design is how it works.
+      </Blockquote>
+      <Text className="text-sm text-typography-500 ml-4">-- Steve Jobs</Text>
+    </View>
   );
 }`, []);
 
