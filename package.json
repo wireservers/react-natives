@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "pnpm --filter ./demos/expo build",
+    "build": "npm run build --workspace=demos/expo",
     "start": "node server.js"
   }
 }

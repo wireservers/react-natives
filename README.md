@@ -32,7 +32,7 @@ React-Natives is a collection of 70+ production-ready, accessible React Native c
 | Styling | NativeWind v4, Tailwind CSS 3, Tailwind Variants |
 | Types | TypeScript 5.9 |
 | Dev Platform | Expo SDK 54 |
-| Monorepo | pnpm workspaces |
+| Monorepo | npm workspaces |
 
 ---
 
@@ -169,7 +169,7 @@ wireservers-ui/
 │       ├── tailwind.config.js
 │       └── metro.config.js
 ├── server.js                 # Static file server for deployment
-└── package.json              # pnpm workspace root
+└── package.json              # npm workspace root
 ```
 
 ## Development
@@ -177,7 +177,6 @@ wireservers-ui/
 ### Prerequisites
 
 - Node.js 24+
-- pnpm 9+
 
 ### Setup
 
@@ -187,7 +186,7 @@ git clone https://github.com/wireservers/wireservers-ui.git
 cd wireservers-ui
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start the demo app
 cd demos/expo
@@ -198,8 +197,8 @@ npx expo start
 
 | Command | Description |
 | --- | --- |
-| `pnpm build` | Build the demo/docs site for production |
-| `pnpm start` | Start the production server |
+| `npm run build` | Build the demo/docs site for production |
+| `npm start` | Start the production server |
 | `cd demos/expo && npx expo start` | Start the Expo dev server |
 | `cd demos/expo && npx expo start --web` | Start the web dev server |
 

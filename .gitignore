@@ -30,3 +30,4 @@ Thumbs.db
 /packages/ionic
 
 /scripts
+package-lock.json
