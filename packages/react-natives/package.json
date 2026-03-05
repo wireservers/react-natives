@@ -1,5 +1,5 @@
 {
-  "name": "react-natives",
+  "name": "@wireservers-ui/react-natives",
   "version": "0.1.0",
   "description": "70+ production-ready React Native components — TypeScript-first, themeable, accessible. Created by WireServers-UI.",
   "main": "src/index.ts",
@@ -35,7 +35,6 @@
   },
   "files": [
     "src",
-    "assets",
     "tailwind-preset.js",
     "README.md"
   ],

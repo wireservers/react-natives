@@ -8,6 +8,6 @@ module.exports = {
     "./*.{html,js,jsx,ts,tsx,mdx}",
     "./src/**/*.{html,js,jsx,ts,tsx,mdx}",
   ],
-  presets: [require("react-natives/tailwind-preset")],
+  presets: [require("@wireservers-ui/react-natives/tailwind-preset")],
   important: "html",
 };

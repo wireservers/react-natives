@@ -1516,7 +1516,7 @@ export default function CheckboxExample() {
     category: 'Form Controls',
     importCode:
       "import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Radio, RadioGroup } from 'react-natives';
+    exampleCode: `import { Radio, RadioGroup } from '@wireservers-ui/react-natives';
 import { useState } from 'react';
 
 export default function RadioExample() {
