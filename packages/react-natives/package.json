@@ -48,6 +48,12 @@
     "react-native-svg": ">=13"
   },
   "peerDependenciesMeta": {
+    "nativewind": {
+      "optional": true
+    },
+    "tailwind-variants": {
+      "optional": true
+    },
     "react-native-reanimated": {
       "optional": true
     },
