@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
+import Head from 'expo-router/head';
 import { DocPage } from '@/components/docs/doc-page';
 import { getComponentBySlug, componentRegistry } from '@/lib/component-registry';
 
@@ -127,20 +128,30 @@ export default function ComponentDetailScreen() {
     .filter(Boolean) as { slug: string; name: string; description: string }[];
 
   return (
-    <DocPage
-      name={meta.name}
-      description={meta.description}
-      whenToUse={meta.whenToUse}
-      category={meta.category}
-      importCode={meta.importCode}
-      exampleCode={meta.exampleCode}
-      props={meta.props}
-      subComponents={meta.subComponents}
-      bestPractices={meta.bestPractices}
-      accessibility={meta.accessibility}
-      relatedComponents={relatedComponents}
-    >
-      {ExampleComponent ? <ExampleComponent /> : null}
-    </DocPage>
+    <>
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>{meta.name} - React-Natives Component Documentation</title>
+          <meta name="description" content={`${meta.description} Learn how to use the ${meta.name} component with examples, props API, and best practices.`} />
+          <meta property="og:title" content={`${meta.name} | React-Natives`} />
+          <meta property="og:description" content={meta.description} />
+        </Head>
+      )}
+      <DocPage
+        name={meta.name}
+        description={meta.description}
+        whenToUse={meta.whenToUse}
+        category={meta.category}
+        importCode={meta.importCode}
+        exampleCode={meta.exampleCode}
+        props={meta.props}
+        subComponents={meta.subComponents}
+        bestPractices={meta.bestPractices}
+        accessibility={meta.accessibility}
+        relatedComponents={relatedComponents}
+      >
+        {ExampleComponent ? <ExampleComponent /> : null}
+      </DocPage>
+    </>
   );
 }

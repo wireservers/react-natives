@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import Head from 'expo-router/head';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
 
@@ -266,6 +267,14 @@ export default function FeaturePage() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ paddingBottom: 80 }}>
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>{feature.title} - React-Natives Features</title>
+          <meta name="description" content={feature.tagline.replace(/\n/g, ' ')} />
+          <meta property="og:title" content={`${feature.title} | React-Natives`} />
+          <meta property="og:description" content={feature.tagline.replace(/\n/g, ' ')} />
+        </Head>
+      )}
       {/* Hero gradient */}
       <LinearGradient
         colors={feature.gradientColors}
