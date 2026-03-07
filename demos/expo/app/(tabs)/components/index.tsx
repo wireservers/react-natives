@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, ScrollView, TextInput, Pressable } from 'react-native';
+import { View, Text, ScrollView, TextInput, Pressable, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
+import Head from 'expo-router/head';
 import { Footer } from '@/components/footer';
 import {
   componentRegistry,
@@ -38,6 +39,12 @@ export default function CatalogScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: DOC_BG }}>
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>Components | React-Natives UI Library</title>
+          <meta name="description" content={`Browse ${componentRegistry.length}+ responsive React Native components organized by category. Buttons, forms, navigation, data display, and more.`} />
+        </Head>
+      )}
       <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: 24, paddingTop: 32, paddingBottom: 40 }}>
         {/* Header */}
         <View style={{ marginBottom: 20 }}>
