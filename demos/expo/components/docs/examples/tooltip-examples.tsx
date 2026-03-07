@@ -69,6 +69,24 @@ export default function Example() {
       <ExampleSection
         title="Placements"
         description="Tooltips can be placed on top, bottom, left, or right of the trigger element."
+        code={`import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Tooltip
+      placement="top"
+      trigger={(triggerProps) => (
+        <Button variant="outline" {...triggerProps}>
+          <ButtonText>top</ButtonText>
+        </Button>
+      )}
+    >
+      <TooltipContent>
+        <TooltipText>Tooltip on top</TooltipText>
+      </TooltipContent>
+    </Tooltip>
+  );
+}`}
       >
         <View style={{ gap: 16, alignItems: 'center', paddingVertical: 16 }}>
           {placements.map((p) => (

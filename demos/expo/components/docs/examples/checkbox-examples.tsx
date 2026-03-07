@@ -88,6 +88,21 @@ export default function Example() {
       <ExampleSection
         title="Individual Checkbox"
         description="A standalone checkbox for a single boolean option."
+        code={`import { Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Checkbox value="terms" isChecked={checked} onChange={setChecked}>
+      <CheckboxIndicator>
+        <CheckboxIcon />
+      </CheckboxIndicator>
+      <CheckboxLabel>I agree to the terms and conditions</CheckboxLabel>
+    </Checkbox>
+  );
+}`}
       >
         <Checkbox
           value="terms"
@@ -105,6 +120,29 @@ export default function Example() {
       <ExampleSection
         title="Multi-Select Group"
         description="Checkbox group for selecting pizza toppings."
+        code={`import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [toppings, setToppings] = useState([]);
+
+  return (
+    <CheckboxGroup value={toppings} onChange={setToppings}>
+      <Checkbox value="pepperoni">
+        <CheckboxIndicator><CheckboxIcon /></CheckboxIndicator>
+        <CheckboxLabel>Pepperoni</CheckboxLabel>
+      </Checkbox>
+      <Checkbox value="mushrooms">
+        <CheckboxIndicator><CheckboxIcon /></CheckboxIndicator>
+        <CheckboxLabel>Mushrooms</CheckboxLabel>
+      </Checkbox>
+      <Checkbox value="olives">
+        <CheckboxIndicator><CheckboxIcon /></CheckboxIndicator>
+        <CheckboxLabel>Olives</CheckboxLabel>
+      </Checkbox>
+    </CheckboxGroup>
+  );
+}`}
       >
         <View style={{ gap: 8 }}>
           <RNText style={{ fontSize: 14, fontWeight: '500', color: '#374151', marginBottom: 4 }}>

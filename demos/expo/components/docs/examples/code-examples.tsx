@@ -25,7 +25,17 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="Code Block" description="Multi-line code display.">
+      <ExampleSection title="Code Block" description="Multi-line code display."
+        code={`import { CodeBlock } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <CodeBlock>{\`function greet(name: string) {
+  return \\\`Hello, \\\${name}!\\\`;
+}\`}</CodeBlock>
+  );
+}`}
+      >
         <CodeBlock>{`function greet(name: string) {\n  return \`Hello, \${name}!\`;\n}`}</CodeBlock>
       </ExampleSection>
     </View>

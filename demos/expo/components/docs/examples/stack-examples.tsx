@@ -33,7 +33,17 @@ export default function Example() {
         </VStack>
       </ExampleSection>
 
-      <ExampleSection title="VStack (Vertical)" description="Stack children vertically.">
+      <ExampleSection title="VStack (Vertical)" description="Stack children vertically." code={`import { VStack, Box, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <VStack space="sm">
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Top</Text></Box>
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Middle</Text></Box>
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Bottom</Text></Box>
+    </VStack>
+  );
+}`}>
         <VStack space="sm">
           <Box className="p-3 bg-primary-100 rounded-md"><Text>Top</Text></Box>
           <Box className="p-3 bg-primary-100 rounded-md"><Text>Middle</Text></Box>
@@ -41,7 +51,17 @@ export default function Example() {
         </VStack>
       </ExampleSection>
 
-      <ExampleSection title="HStack (Horizontal)" description="Stack children horizontally.">
+      <ExampleSection title="HStack (Horizontal)" description="Stack children horizontally." code={`import { HStack, Box, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <HStack space="sm">
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Left</Text></Box>
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Center</Text></Box>
+      <Box className="p-3 bg-primary-100 rounded-md"><Text>Right</Text></Box>
+    </HStack>
+  );
+}`}>
         <HStack space="sm">
           <Box className="p-3 bg-primary-100 rounded-md"><Text>Left</Text></Box>
           <Box className="p-3 bg-primary-100 rounded-md"><Text>Center</Text></Box>

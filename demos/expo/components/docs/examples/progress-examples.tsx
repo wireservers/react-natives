@@ -54,6 +54,15 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Progress bars are available in xs, sm, md, and lg sizes."
+        code={`import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Progress value={60} size="md">
+      <ProgressFilledTrack />
+    </Progress>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {sizes.map((s) => (
@@ -71,6 +80,15 @@ export default function Example() {
       <ExampleSection
         title="Values"
         description="Progress displays a filled track proportional to its value (0-100)."
+        code={`import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Progress value={60} size="md">
+      <ProgressFilledTrack />
+    </Progress>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {[10, 30, 60, 90].map((v) => (

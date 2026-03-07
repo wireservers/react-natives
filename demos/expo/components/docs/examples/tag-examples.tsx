@@ -39,7 +39,15 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="All Actions" description="Tags in each action color.">
+      <ExampleSection title="All Actions" description="Tags in each action color." code={`import { Tag, TagText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Tag action="info">
+      <TagText>info</TagText>
+    </Tag>
+  );
+}`}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {actions.map(a => (
             <Tag key={a} action={a}>

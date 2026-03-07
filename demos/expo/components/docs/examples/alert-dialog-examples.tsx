@@ -42,7 +42,42 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Confirmation Dialog" description="A modal dialog requiring explicit user action.">
+      <ExampleSection title="Confirmation Dialog" description="A modal dialog requiring explicit user action."
+        code={`import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onPress={() => setIsOpen(true)}>
+        <ButtonText>Delete Item</ButtonText>
+      </Button>
+      <AlertDialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <Heading size="md">Confirm Delete</Heading>
+            <AlertDialogCloseButton />
+          </AlertDialogHeader>
+          <AlertDialogBody>
+            <Text>Are you sure you want to delete this item? This action cannot be undone.</Text>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button variant="outline" onPress={() => setIsOpen(false)}>
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button action="negative" onPress={() => setIsOpen(false)}>
+              <ButtonText>Delete</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+}`}
+      >
         <Button onPress={() => setIsOpen(true)}>
           <ButtonText>Delete Item</ButtonText>
         </Button>

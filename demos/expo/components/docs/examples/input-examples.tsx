@@ -60,6 +60,22 @@ export default function Example() {
       <ExampleSection
         title="Input with Slots"
         description="Input with leading and trailing slot content."
+        code={`import { Input, InputField, InputSlot } from '@wireservers-ui/react-natives';
+import { Text } from 'react-native';
+
+export default function Example() {
+  return (
+    <Input>
+      <InputSlot style={{ paddingLeft: 12 }}>
+        <Text>$</Text>
+      </InputSlot>
+      <InputField placeholder="0.00" keyboardType="decimal-pad" />
+      <InputSlot style={{ paddingRight: 12 }}>
+        <Text>USD</Text>
+      </InputSlot>
+    </Input>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <Input variant={variant} size={size}>
@@ -77,6 +93,19 @@ export default function Example() {
       <ExampleSection
         title="Input with Leading Slot"
         description="Input with a search prefix in the leading slot."
+        code={`import { Input, InputField, InputSlot } from '@wireservers-ui/react-natives';
+import { Text } from 'react-native';
+
+export default function Example() {
+  return (
+    <Input>
+      <InputSlot style={{ paddingLeft: 12 }}>
+        <Text>@</Text>
+      </InputSlot>
+      <InputField placeholder="Search users..." />
+    </Input>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <Input variant={variant} size={size}>
@@ -91,6 +120,15 @@ export default function Example() {
       <ExampleSection
         title="Disabled Input"
         description="Input with isDisabled set to true prevents user interaction."
+        code={`import { Input, InputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Input isDisabled>
+      <InputField placeholder="Disabled input" value="Cannot edit this" />
+    </Input>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <Input variant={variant} size={size} isDisabled>
@@ -102,6 +140,15 @@ export default function Example() {
       <ExampleSection
         title="Invalid Input"
         description="Input with isInvalid set to true indicates an error state."
+        code={`import { Input, InputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Input isInvalid>
+      <InputField placeholder="Invalid input" value="bad-email" />
+    </Input>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <Input variant={variant} size={size} isInvalid>

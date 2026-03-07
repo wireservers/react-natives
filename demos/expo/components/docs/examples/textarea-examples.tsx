@@ -26,6 +26,17 @@ export default function Example() {
       <ExampleSection
         title="Basic Textarea"
         description="A multi-line text input with configurable variant and size."
+        code={`import { Textarea } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Textarea
+      variant="outline"
+      size="md"
+      placeholder="Type your message here..."
+    />
+  );
+}`}
       >
         <VariantPicker
           label="Variant"
@@ -51,6 +62,18 @@ export default function Example() {
       <ExampleSection
         title="Textarea with Default Value"
         description="Textarea pre-filled with content."
+        code={`import { Textarea } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Textarea
+      placeholder="Write a bio..."
+      value="I am a software developer with a passion for building great user experiences."
+      multiline
+      numberOfLines={4}
+    />
+  );
+}`}
       >
         <Textarea
           variant={variant}
@@ -65,6 +88,17 @@ export default function Example() {
       <ExampleSection
         title="Disabled Textarea"
         description="Textarea with isDisabled prevents user interaction."
+        code={`import { Textarea } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Textarea
+      isDisabled
+      placeholder="Disabled textarea"
+      value="This content cannot be edited."
+    />
+  );
+}`}
       >
         <Textarea
           variant={variant}
@@ -78,6 +112,16 @@ export default function Example() {
       <ExampleSection
         title="Invalid Textarea"
         description="Textarea with isInvalid indicates a validation error."
+        code={`import { Textarea } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Textarea
+      isInvalid
+      placeholder="Required field"
+    />
+  );
+}`}
       >
         <Textarea
           variant={variant}

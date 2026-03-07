@@ -108,6 +108,16 @@ export default function ToastExamples() {
       <ExampleSection
         title="Statuses"
         description="Toast supports info, success, warning, and error statuses."
+        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Toast status="success" variant="subtle">
+      <ToastTitle>Success</ToastTitle>
+      <ToastDescription>Your profile has been updated successfully.</ToastDescription>
+    </Toast>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {statuses.map((s) => (
@@ -122,6 +132,16 @@ export default function ToastExamples() {
       <ExampleSection
         title="Variants"
         description="Toasts come in solid, subtle, and outline variants."
+        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Toast status="success" variant="solid">
+      <ToastTitle>Success</ToastTitle>
+      <ToastDescription>This toast uses the solid variant.</ToastDescription>
+    </Toast>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {variants.map((v) => (

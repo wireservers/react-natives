@@ -70,6 +70,11 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Text renders at various predefined sizes from 2xs through 2xl."
+        code={`import { Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return <Text size="lg">The quick brown fox</Text>;
+}`}
       >
         <View style={{ gap: 12 }}>
           {sizes.map((s) => (
@@ -87,6 +92,11 @@ export default function Example() {
       <ExampleSection
         title="Weights"
         description="Font weight can be set via the weight prop."
+        code={`import { Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return <Text weight="semibold">The quick brown fox</Text>;
+}`}
       >
         <View style={{ gap: 12 }}>
           {weights.map((w) => (
@@ -104,6 +114,19 @@ export default function Example() {
       <ExampleSection
         title="Modifiers"
         description="Boolean props control bold, italic, underline, strikethrough, and highlight."
+        code={`import { Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <>
+      <Text bold>Bold text</Text>
+      <Text italic>Italic text</Text>
+      <Text underline>Underlined text</Text>
+      <Text strikeThrough>Strikethrough text</Text>
+      <Text highlight>Highlighted text</Text>
+    </>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           <Text bold>Bold text</Text>
@@ -118,6 +141,16 @@ export default function Example() {
       <ExampleSection
         title="Truncation"
         description="Use isTruncated to clip overflowing text with an ellipsis."
+        code={`import { Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Text isTruncated>
+      This is a really long piece of text that should be truncated
+      when it overflows the container width.
+    </Text>
+  );
+}`}
       >
         <View style={{ width: 192 }}>
           <Text isTruncated>

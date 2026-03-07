@@ -71,6 +71,18 @@ export default function Example() {
       <ExampleSection
         title="Statuses"
         description="Alert supports four status types to convey different levels of feedback."
+        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Alert status="success" variant="subtle">
+      <AlertIcon />
+      <AlertBody>
+        <AlertText>Your changes have been saved successfully.</AlertText>
+      </AlertBody>
+    </Alert>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {statuses.map((s) => (
@@ -88,6 +100,18 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Alerts come in solid, subtle, and outline variants."
+        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Alert status="info" variant="outline">
+      <AlertIcon />
+      <AlertBody>
+        <AlertText>This is an info alert using the outline variant.</AlertText>
+      </AlertBody>
+    </Alert>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {variants.map((v) => (

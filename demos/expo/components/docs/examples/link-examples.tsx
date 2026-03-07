@@ -21,6 +21,15 @@ export default function Example() {
       <ExampleSection
         title="Default Link"
         description="A basic link with styled text."
+        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Link>
+      <LinkText>Learn more</LinkText>
+    </Link>
+  );
+}`}
       >
         <Link>
           <LinkText>Learn more</LinkText>
@@ -31,6 +40,15 @@ export default function Example() {
       <ExampleSection
         title="External Link"
         description="A link with an href that navigates to an external URL. The isExternal prop indicates external navigation."
+        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Link href="https://example.com" isExternal>
+      <LinkText>Visit Example.com</LinkText>
+    </Link>
+  );
+}`}
       >
         <Link href="https://example.com" isExternal>
           <LinkText>Visit Example.com</LinkText>
@@ -41,6 +59,19 @@ export default function Example() {
       <ExampleSection
         title="Inline Usage"
         description="Links can be placed inline with other text content."
+        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+import { Text } from 'react-native';
+
+export default function Example() {
+  return (
+    <Text>
+      By continuing, you agree to our{' '}
+      <Link href="https://example.com/terms">
+        <LinkText>Terms of Service</LinkText>
+      </Link>
+    </Text>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 4 }}>
           <RNText style={{ fontSize: 14, color: '#525252' }}>
