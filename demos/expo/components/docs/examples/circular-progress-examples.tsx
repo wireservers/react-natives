@@ -31,7 +31,17 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="Various Values" description="Circular progress at different completion levels.">
+      <ExampleSection title="Various Values" description="Circular progress at different completion levels."
+        code={`import { CircularProgress, CircularProgressLabel } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <CircularProgress value={75} size="md">
+      <CircularProgressLabel>75%</CircularProgressLabel>
+    </CircularProgress>
+  );
+}`}
+      >
         <View style={{ flexDirection: 'row', gap: 16, alignItems: 'flex-end' }}>
           {[25, 50, 75, 100].map(v => (
             <CircularProgress key={v} value={v} size="md">

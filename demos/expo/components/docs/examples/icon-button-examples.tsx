@@ -44,7 +44,18 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="All Actions" description="Icon buttons in each action color.">
+      <ExampleSection
+        title="All Actions"
+        description="Icon buttons in each action color."
+        code={`import { IconButton } from '@wireservers-ui/react-natives';
+import { Trash } from 'lucide-react-native';
+
+export default function Example() {
+  return (
+    <IconButton as={Trash} action="primary" onPress={() => {}} />
+  );
+}`}
+      >
         <View style={{ flexDirection: 'row', gap: 12 }}>
           {actions.map(a => (
             <IconButton key={a} as={PlaceholderIcon} action={a} onPress={() => {}} />

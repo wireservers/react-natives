@@ -33,7 +33,22 @@ export default function Example() {
         </List>
       </ExampleSection>
 
-      <ExampleSection title="With Descriptions" description="List items with secondary text.">
+      <ExampleSection title="With Descriptions" description="List items with secondary text." code={`import { List, ListItem, ListItemText, ListItemDescription } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <List>
+      <ListItem>
+        <ListItemText>Dashboard</ListItemText>
+        <ListItemDescription>Overview of your account</ListItemDescription>
+      </ListItem>
+      <ListItem>
+        <ListItemText>Settings</ListItemText>
+        <ListItemDescription>Manage preferences</ListItemDescription>
+      </ListItem>
+    </List>
+  );
+}`}>
         <List>
           <ListItem>
             <ListItemText>Dashboard</ListItemText>

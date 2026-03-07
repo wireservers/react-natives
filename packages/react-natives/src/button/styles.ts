@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants';
 
 export const buttonStyle = tv({
-  base: 'group/button rounded bg-primary-500 self-start flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
+  base: 'group/button overflow-visible rounded bg-primary-500 self-start flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
   variants: {
     action: {
       primary:

@@ -70,6 +70,15 @@ export default function Example() {
       <ExampleSection
         title="Actions"
         description="Semantic actions with the solid variant."
+        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="primary" variant="solid" size="md">
+      <ButtonText>primary</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
           {actions.map((a) => (
@@ -84,6 +93,15 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Solid, outline, and link styles with the primary action."
+        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="primary" variant="outline" size="md">
+      <ButtonText>outline</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
           {variants.map((v) => (
@@ -98,6 +116,15 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Buttons scale from xs through xl."
+        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="primary" variant="solid" size="lg">
+      <ButtonText>Large Button</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
           {sizes.map((s) => (
@@ -112,6 +139,15 @@ export default function Example() {
       <ExampleSection
         title="Disabled"
         description="Use isDisabled to visually and functionally disable a button."
+        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="primary" variant="solid" size="md" isDisabled>
+      <ButtonText>Disabled Solid</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
           <Button action="primary" variant="solid" size="md" isDisabled>
@@ -130,6 +166,16 @@ export default function Example() {
       <ExampleSection
         title="Loading State"
         description="Use ButtonSpinner to indicate a loading state. Tap the button to toggle."
+        code={`import { Button, ButtonText, ButtonSpinner } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="primary" variant="solid" size="md" isDisabled>
+      <ButtonSpinner />
+      <ButtonText>Loading...</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
           <Button
@@ -158,6 +204,15 @@ export default function Example() {
       <ExampleSection
         title="Variant + Action Matrix"
         description="All combinations of variant and action."
+        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Button action="secondary" variant="outline" size="sm">
+      <ButtonText>secondary</ButtonText>
+    </Button>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {variants.map((v) => (

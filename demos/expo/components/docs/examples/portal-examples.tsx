@@ -24,6 +24,19 @@ export default function Example() {
       <ExampleSection
         title="Portal"
         description="Renders children outside the parent component tree. Commonly used internally by Modal, Popover, and Menu components."
+        code={`import { Portal, Text } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  return (
+    <View>
+      <Text>Content inside the component tree</Text>
+      <Portal>
+        <Text>This renders outside the parent tree</Text>
+      </Portal>
+    </View>
+  );
+}`}
       >
         <Box className="p-4 bg-background-100 rounded-lg border border-outline-200">
           <Text>Portal is primarily used internally by overlay components like Modal, Popover, and Menu to render content above the rest of the UI.</Text>

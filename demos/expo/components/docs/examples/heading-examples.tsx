@@ -41,6 +41,11 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Headings render from xs through 5xl, defaulting to lg."
+        code={`import { Heading } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return <Heading size="xl">The quick brown fox</Heading>;
+}`}
       >
         <View style={{ gap: 16 }}>
           {sizes.map((s) => (
@@ -58,6 +63,15 @@ export default function Example() {
       <ExampleSection
         title="Truncation"
         description="Use isTruncated to clip overflowing heading text."
+        code={`import { Heading } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Heading size="lg" isTruncated>
+      This is a very long heading that should be truncated
+    </Heading>
+  );
+}`}
       >
         <View style={{ width: 192 }}>
           <Heading size="lg" isTruncated>

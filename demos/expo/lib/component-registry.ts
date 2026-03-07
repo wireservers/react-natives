@@ -1516,7 +1516,7 @@ export default function CheckboxExample() {
     category: 'Form Controls',
     importCode:
       "import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Radio, RadioGroup } from 'react-natives';
+    exampleCode: `import { Radio, RadioGroup } from '@wireservers-ui/react-natives';
 import { useState } from 'react';
 
 export default function RadioExample() {
@@ -4413,6 +4413,40 @@ export default function CalendarExample() {
         type: 'number',
         default: '0',
         description: 'The initial slide index to display.',
+      },
+      {
+        name: 'loop',
+        type: 'boolean',
+        default: 'false',
+        description: 'Enable infinite looping. Seamlessly wraps from last to first and vice versa.',
+      },
+      {
+        name: 'itemWidth',
+        type: 'number',
+        description: 'Fixed width for each item. When set, multiple items are visible at once.',
+      },
+      {
+        name: 'gap',
+        type: 'number',
+        default: '0',
+        description: 'Gap in pixels between carousel items.',
+      },
+      {
+        name: 'autoPlay',
+        type: 'boolean',
+        default: 'false',
+        description: 'Automatically advance slides on an interval.',
+      },
+      {
+        name: 'autoPlayInterval',
+        type: 'number',
+        default: '3000',
+        description: 'Interval in milliseconds between auto-advances.',
+      },
+      {
+        name: 'onIndexChange',
+        type: '(index: number) => void',
+        description: 'Callback fired when the active slide changes.',
       },
     ],
     subComponents: [

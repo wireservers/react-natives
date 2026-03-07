@@ -29,3 +29,5 @@ Thumbs.db
 /packages/flutter
 /packages/ionic
 
+/scripts
+package-lock.json

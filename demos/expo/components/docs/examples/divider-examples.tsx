@@ -61,6 +61,18 @@ export default function Example() {
       <ExampleSection
         title="Horizontal Divider"
         description="The default orientation. Renders a full-width 1px line."
+        code={`import { Divider, Text } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ gap: 12 }}>
+      <Text>First section</Text>
+      <Divider />
+      <Text>Second section</Text>
+    </View>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           <Text>First section</Text>
@@ -75,6 +87,18 @@ export default function Example() {
       <ExampleSection
         title="Vertical Divider"
         description="Use orientation='vertical' to separate inline items. The parent must have a defined height."
+        code={`import { Divider, Text } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
+      <Text style={{ paddingHorizontal: 12 }}>Home</Text>
+      <Divider orientation="vertical" />
+      <Text style={{ paddingHorizontal: 12 }}>About</Text>
+    </View>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', height: 40 }}>
           <Text style={{ paddingHorizontal: 12 }}>Home</Text>

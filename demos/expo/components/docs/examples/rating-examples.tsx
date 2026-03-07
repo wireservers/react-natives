@@ -38,7 +38,17 @@ export default function Example() {
         <Text className="text-sm text-typography-500 mt-1">Rating: {value} / 5</Text>
       </ExampleSection>
 
-      <ExampleSection title="Read Only" description="Display a rating without interaction.">
+      <ExampleSection title="Read Only" description="Display a rating without interaction." code={`import { Rating, RatingIcon } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Rating value={4} max={5} isReadOnly>
+      {[0, 1, 2, 3, 4].map(i => (
+        <RatingIcon key={i} index={i} />
+      ))}
+    </Rating>
+  );
+}`}>
         <Rating value={4} max={5} isReadOnly>
           {[0, 1, 2, 3, 4].map(i => (
             <RatingIcon key={i} index={i} />

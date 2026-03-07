@@ -87,6 +87,29 @@ export default function Example() {
       <ExampleSection
         title="Shipping Options"
         description="Radio group for selecting a shipping method."
+        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [value, setValue] = useState('standard');
+
+  return (
+    <RadioGroup value={value} onChange={setValue}>
+      <Radio value="standard">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>Standard (5-7 days)</RadioLabel>
+      </Radio>
+      <Radio value="express">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>Express (2-3 days)</RadioLabel>
+      </Radio>
+      <Radio value="overnight">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>Overnight (1 day)</RadioLabel>
+      </Radio>
+    </RadioGroup>
+  );
+}`}
       >
         <View style={{ gap: 8 }}>
           <RNText style={{ fontSize: 14, fontWeight: '500', color: '#404040', marginBottom: 4 }}>
@@ -127,6 +150,29 @@ export default function Example() {
       <ExampleSection
         title="Theme Selection"
         description="Radio group for selecting a UI theme preference."
+        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [value, setValue] = useState('system');
+
+  return (
+    <RadioGroup value={value} onChange={setValue}>
+      <Radio value="light">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>Light</RadioLabel>
+      </Radio>
+      <Radio value="dark">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>Dark</RadioLabel>
+      </Radio>
+      <Radio value="system">
+        <RadioIndicator><RadioIcon /></RadioIndicator>
+        <RadioLabel>System Default</RadioLabel>
+      </Radio>
+    </RadioGroup>
+  );
+}`}
       >
         <RadioGroup
           value={theme}

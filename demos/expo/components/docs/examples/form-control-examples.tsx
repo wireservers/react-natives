@@ -83,6 +83,23 @@ export default function Example() {
       <ExampleSection
         title="Error State"
         description="FormControl with isInvalid set to true shows the error message."
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlErrorMessage, Input, InputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <FormControl isInvalid>
+      <FormControlLabel>
+        <FormControlLabelText>Password</FormControlLabelText>
+      </FormControlLabel>
+      <Input>
+        <InputField placeholder="Enter password" secureTextEntry />
+      </Input>
+      <FormControlErrorMessage>
+        Password must be at least 8 characters.
+      </FormControlErrorMessage>
+    </FormControl>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <FormControl isInvalid={password.length > 0 && password.length < 8}>
@@ -108,6 +125,23 @@ export default function Example() {
       <ExampleSection
         title="Disabled State"
         description="FormControl with isDisabled prevents user interaction."
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <FormControl isDisabled>
+      <FormControlLabel>
+        <FormControlLabelText>Username</FormControlLabelText>
+      </FormControlLabel>
+      <Input>
+        <InputField placeholder="Cannot edit" value="johndoe" />
+      </Input>
+      <FormControlHelperText>
+        Contact support to change your username.
+      </FormControlHelperText>
+    </FormControl>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <FormControl isDisabled>
@@ -128,6 +162,23 @@ export default function Example() {
       <ExampleSection
         title="With Helper Text"
         description="FormControl with helper text to guide the user."
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <FormControl isRequired>
+      <FormControlLabel>
+        <FormControlLabelText>Display Name</FormControlLabelText>
+      </FormControlLabel>
+      <Input>
+        <InputField placeholder="Choose a display name" />
+      </Input>
+      <FormControlHelperText>
+        This name will be visible to other users.
+      </FormControlHelperText>
+    </FormControl>
+  );
+}`}
       >
         <View style={{ maxWidth: 400 }}>
           <FormControl isRequired>
