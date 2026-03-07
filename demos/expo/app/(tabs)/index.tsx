@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions, Linking } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions, Linking, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import Head from 'expo-router/head';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
 
@@ -25,6 +26,12 @@ export default function HomeScreen() {
       className="flex-1 bg-background-0"
       contentContainerStyle={{ paddingBottom: 0 }}
     >
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>React-Natives | Build Production-Ready Mobile Apps Faster</title>
+          <meta name="description" content="A comprehensive collection of 70+ production-ready React Native components. Customizable, accessible, and performant. TypeScript-first with NativeWind styling." />
+        </Head>
+      )}
       {/* Hero Section — Purple-to-Pink gradient */}
       <LinearGradient
         colors={[...BRAND_GRADIENT]}

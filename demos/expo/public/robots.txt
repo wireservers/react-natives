@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_sitemap
+Disallow: /+not-found
+
+Sitemap: https://reactnatives.dev/sitemap.xml
