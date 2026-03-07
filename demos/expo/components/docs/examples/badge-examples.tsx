@@ -73,6 +73,15 @@ export default function Example() {
       <ExampleSection
         title="Actions"
         description="Seven semantic action colours available in each variant."
+        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Badge action="success" variant="solid">
+      <BadgeText>success</BadgeText>
+    </Badge>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {actions.map((a) => (
@@ -87,6 +96,15 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Solid, outline, and subtle variants with the primary action."
+        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Badge action="primary" variant="outline">
+      <BadgeText>outline</BadgeText>
+    </Badge>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
           {variants.map((v) => (
@@ -101,6 +119,15 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Small, medium, and large badges."
+        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Badge action="primary" variant="subtle" size="lg">
+      <BadgeText>lg</BadgeText>
+    </Badge>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           {sizes.map((s) => (
@@ -115,6 +142,15 @@ export default function Example() {
       <ExampleSection
         title="Variant + Action Matrix"
         description="All combinations of variant and action displayed together."
+        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Badge action="info" variant="subtle">
+      <BadgeText>info</BadgeText>
+    </Badge>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           {variants.map((v) => (

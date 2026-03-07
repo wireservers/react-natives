@@ -39,6 +39,27 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Spinners render at small (16px), medium (32px), and large (48px)."
+        code={`import { Spinner } from '@wireservers-ui/react-natives';
+import { View, Text } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 24 }}>
+      <View style={{ alignItems: 'center', gap: 8 }}>
+        <Spinner size="sm" />
+        <Text>sm</Text>
+      </View>
+      <View style={{ alignItems: 'center', gap: 8 }}>
+        <Spinner size="md" />
+        <Text>md</Text>
+      </View>
+      <View style={{ alignItems: 'center', gap: 8 }}>
+        <Spinner size="lg" />
+        <Text>lg</Text>
+      </View>
+    </View>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 24 }}>
           {sizes.map((s) => (
@@ -54,6 +75,18 @@ export default function Example() {
       <ExampleSection
         title="Custom Color"
         description="Pass a color prop to tint the spinner."
+        code={`import { Spinner } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 24 }}>
+      <Spinner size="md" color="#6366f1" />
+      <Spinner size="md" color="#ef4444" />
+      <Spinner size="md" color="#22c55e" />
+    </View>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 24 }}>
           <Spinner size="md" color="#6366f1" />

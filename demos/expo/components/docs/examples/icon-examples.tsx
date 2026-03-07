@@ -53,6 +53,12 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Icons scale from xs (16px) through 2xl (48px)."
+        code={`import { Icon } from '@wireservers-ui/react-natives';
+import { Star } from 'lucide-react-native';
+
+export default function Example() {
+  return <Icon as={Star} size="lg" />;
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 16 }}>
           {sizes.map((s) => (
@@ -68,6 +74,12 @@ export default function Example() {
       <ExampleSection
         title="Custom Numeric Size"
         description="Pass a number to the size prop for pixel-exact sizing."
+        code={`import { Icon } from '@wireservers-ui/react-natives';
+import { Star } from 'lucide-react-native';
+
+export default function Example() {
+  return <Icon as={Star} size={32} />;
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 16 }}>
           {[16, 24, 32, 48].map((n) => (

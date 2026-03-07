@@ -114,6 +114,20 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Elevated, outline, ghost, and filled card styles."
+        code={`import { Card, CardHeader, CardBody, Heading, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="elevated" size="md">
+      <CardHeader>
+        <Heading size="sm">Card Title</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text size="sm">This card uses the "elevated" variant.</Text>
+      </CardBody>
+    </Card>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {variants.map((v) => (
@@ -135,6 +149,23 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Small, medium, and large control the internal padding."
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="outline" size="lg">
+      <CardHeader>
+        <Heading size="sm">Size: lg</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text size="sm">This card has size="lg" which adjusts the padding.</Text>
+      </CardBody>
+      <CardFooter>
+        <Text size="xs">Footer content</Text>
+      </CardFooter>
+    </Card>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {sizes.map((s) => (
@@ -161,6 +192,28 @@ export default function Example() {
       <ExampleSection
         title="Rich Content"
         description="Cards compose well with Heading, Text, and Button components."
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="elevated" size="lg">
+      <CardHeader>
+        <Heading size="lg">Getting Started</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Cards are a great way to group related content together.</Text>
+      </CardBody>
+      <CardFooter>
+        <Button size="sm" variant="outline" action="default">
+          <ButtonText>Cancel</ButtonText>
+        </Button>
+        <Button size="sm" variant="solid" action="primary">
+          <ButtonText>Get Started</ButtonText>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
       >
         <Card variant="elevated" size="lg">
           <CardHeader>

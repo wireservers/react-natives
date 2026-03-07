@@ -114,6 +114,32 @@ export default function Example() {
       <ExampleSection
         title="Multiple Expansion"
         description="With type='multiple', several accordion items can be expanded simultaneously."
+        code={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Accordion type="multiple" isCollapsible defaultValue={['a', 'b']}>
+      <AccordionItem value="a">
+        <AccordionTrigger>
+          <AccordionTitleText>Section A</AccordionTitleText>
+          <AccordionIcon />
+        </AccordionTrigger>
+        <AccordionContent>
+          Content for section A.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="b">
+        <AccordionTrigger>
+          <AccordionTitleText>Section B</AccordionTitleText>
+          <AccordionIcon />
+        </AccordionTrigger>
+        <AccordionContent>
+          Content for section B.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
       >
         <Accordion type="multiple" isCollapsible defaultValue={['a', 'b']}>
           <AccordionItem value="a">

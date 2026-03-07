@@ -105,6 +105,37 @@ export default function Example() {
       <ExampleSection
         title="Available Sizes"
         description="Modals support xs, sm, md, lg, and full sizes. Use the interactive example above to preview each size."
+        code={`import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onPress={() => setIsOpen(true)}>
+        <ButtonText>Open Large Modal</ButtonText>
+      </Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size="lg">
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Heading>Title</Heading>
+            <ModalCloseButton />
+          </ModalHeader>
+          <ModalBody>
+            <Text>Modal content goes here.</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onPress={() => setIsOpen(false)}>
+              <ButtonText>Close</ButtonText>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}`}
       >
         <View style={{ gap: 8 }}>
           {sizes.map((s) => (

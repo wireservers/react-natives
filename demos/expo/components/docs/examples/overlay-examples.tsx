@@ -16,6 +16,11 @@ export default function Example() {
       <ExampleSection
         title="Overlay"
         description="A full-screen semi-transparent backdrop. Used internally by Modal, Drawer, ActionSheet, and other overlay components."
+        code={`import { Overlay } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return <Overlay isVisible />;
+}`}
       >
         <Box className="p-4 bg-background-100 rounded-lg border border-outline-200">
           <Text>Overlay provides the dimmed background behind modals, drawers, and popovers. It is typically not used directly.</Text>

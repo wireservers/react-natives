@@ -172,9 +172,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
+        heading: ['System', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['System', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
         jakarta: ['var(--font-plus-jakarta-sans)'],
         roboto: ['var(--font-roboto)'],
         code: ['var(--font-source-code-pro)'],

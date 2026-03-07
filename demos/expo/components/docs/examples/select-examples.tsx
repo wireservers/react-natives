@@ -92,6 +92,27 @@ export default function Example() {
       <ExampleSection
         title="Language Select"
         description="Select with a pre-defined set of language options."
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Select>
+      <SelectTrigger>
+        <SelectInput placeholder="Choose a language" />
+        <SelectIcon />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectItem label="English" value="en" />
+          <SelectItem label="Spanish" value="es" />
+          <SelectItem label="French" value="fr" />
+          <SelectItem label="German" value="de" />
+        </SelectContent>
+      </SelectPortal>
+    </Select>
+  );
+}`}
       >
         <Select
           selectedValue={language}
@@ -119,6 +140,27 @@ export default function Example() {
       <ExampleSection
         title="Select with Disabled Items"
         description="Some options in the select are disabled."
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Select>
+      <SelectTrigger>
+        <SelectInput placeholder="Set priority" />
+        <SelectIcon />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectItem label="Low" value="low" />
+          <SelectItem label="Medium" value="medium" />
+          <SelectItem label="High" value="high" />
+          <SelectItem label="Critical" value="critical" isDisabled />
+        </SelectContent>
+      </SelectPortal>
+    </Select>
+  );
+}`}
       >
         <Select
           selectedValue={priority}
@@ -144,6 +186,24 @@ export default function Example() {
       <ExampleSection
         title="Disabled Select"
         description="Select with isDisabled prevents the dropdown from opening."
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Select selectedValue="us" isDisabled>
+      <SelectTrigger>
+        <SelectInput placeholder="Cannot change" />
+        <SelectIcon />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectItem label="United States" value="us" />
+        </SelectContent>
+      </SelectPortal>
+    </Select>
+  );
+}`}
       >
         <Select
           selectedValue="us"

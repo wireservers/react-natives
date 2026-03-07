@@ -16,6 +16,8 @@ export interface CarouselContextValue {
   goTo: (index: number, animate?: boolean) => void;
   next: () => void;
   previous: () => void;
+  itemWidth: number;
+  gap: number;
 }
 
 export interface CarouselProps extends React.ComponentPropsWithoutRef<typeof View> {
@@ -23,6 +25,14 @@ export interface CarouselProps extends React.ComponentPropsWithoutRef<typeof Vie
   defaultIndex?: number;
   loop?: boolean;
   onIndexChange?: (index: number) => void;
+  /** Fixed width for each item. When set, multiple items are visible. */
+  itemWidth?: number;
+  /** Gap between items in pixels. */
+  gap?: number;
+  /** Automatically advance slides. */
+  autoPlay?: boolean;
+  /** Interval in ms between auto-advances (default 3000). */
+  autoPlayInterval?: number;
 }
 export interface CarouselContentProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; }
 export interface CarouselItemProps extends React.ComponentPropsWithoutRef<typeof View> { className?: string; onPress?: () => void; }

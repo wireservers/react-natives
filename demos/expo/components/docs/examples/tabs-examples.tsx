@@ -105,6 +105,24 @@ export default function Example() {
       <ExampleSection
         title="All Variants"
         description="Side-by-side comparison of the underlined, outline, and rounded tab styles."
+        code={`import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Tabs defaultIndex={0} variant="underlined">
+      <TabList>
+        <Tab><TabText>Tab 1</TabText></Tab>
+        <Tab><TabText>Tab 2</TabText></Tab>
+        <Tab><TabText>Tab 3</TabText></Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel index={0}>Content for tab 1</TabPanel>
+        <TabPanel index={1}>Content for tab 2</TabPanel>
+        <TabPanel index={2}>Content for tab 3</TabPanel>
+      </TabPanels>
+    </Tabs>
+  );
+}`}
       >
         <View style={{ gap: 24 }}>
           {variants.map((v) => (
