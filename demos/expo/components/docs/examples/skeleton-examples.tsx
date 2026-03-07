@@ -28,7 +28,25 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="Loading Card" description="Multiple skeletons composing a loading state.">
+      <ExampleSection title="Loading Card" description="Multiple skeletons composing a loading state." code={`import { Skeleton } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ gap: 12, padding: 16 }}>
+      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+        <Skeleton variant="circular" className="h-10 w-10" />
+        <View style={{ flex: 1, gap: 8 }}>
+          <Skeleton variant="text" className="h-4 w-3/4" />
+          <Skeleton variant="text" className="h-3 w-1/2" />
+        </View>
+      </View>
+      <Skeleton variant="rectangular" className="h-32 w-full rounded-md" />
+      <Skeleton variant="text" className="h-4 w-full" />
+      <Skeleton variant="text" className="h-4 w-2/3" />
+    </View>
+  );
+}`}>
         <View style={{ gap: 12, padding: 16, backgroundColor: '#f9fafb', borderRadius: 8 }}>
           <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
             <Skeleton variant="circular" className="h-10 w-10" />

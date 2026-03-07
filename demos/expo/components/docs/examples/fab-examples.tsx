@@ -75,6 +75,15 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Fab is available in sm, md, and lg sizes."
+        code={`import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Fab placement="bottom-right" size="md">
+      <FabLabel>+</FabLabel>
+    </Fab>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
           {sizes.map((s) => (
@@ -94,6 +103,15 @@ export default function Example() {
       <ExampleSection
         title="Extended Fab"
         description="When isExtended is true, the Fab expands to show its label text alongside the icon."
+        code={`import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Fab placement="bottom-right" size="md" isExtended>
+      <FabLabel>New Item</FabLabel>
+    </Fab>
+  );
+}`}
       >
         <View style={{ height: 128, backgroundColor: '#FAFAFA', borderRadius: 8, borderWidth: 1, borderColor: '#E5E7EB', position: 'relative', overflow: 'hidden' }}>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

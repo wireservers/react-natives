@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import Head from 'expo-router/head';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
 
@@ -10,7 +11,7 @@ const SECTIONS = [
     tag: 'Getting Started',
     tagColor: '#6366F1',
     title: 'One Config File, Every Component',
-    body: `Wireservers UI uses CSS custom properties for every color token. Change your brand color in a single config file and it propagates automatically across all 70+ components — in both light and dark mode, with no component-level overrides needed.`,
+    body: `React-Natives uses CSS custom properties for every color token. Change your brand color in a single config file and it propagates automatically across all 70+ components — in both light and dark mode, with no component-level overrides needed.`,
     code: `// gluestack-ui-provider/config.ts
 export const config = {
   tokens: {
@@ -106,6 +107,12 @@ export default function ThemingScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ paddingBottom: 0 }}>
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>Theming | React-Natives - Customizable Design System</title>
+          <meta name="description" content="Customize your React Native app with a powerful theming system. CSS variables, light and dark mode, and brand-level control across 70+ components." />
+        </Head>
+      )}
 
       {/* Hero */}
       <LinearGradient

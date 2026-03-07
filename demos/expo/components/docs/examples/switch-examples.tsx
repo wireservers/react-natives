@@ -67,6 +67,32 @@ export default function Example() {
       <ExampleSection
         title="Multiple Switches"
         description="A group of switches for different settings."
+        code={`import { Switch } from '@wireservers-ui/react-natives';
+import { View, Text } from 'react-native';
+import { useState } from 'react';
+
+export default function Example() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [notifications, setNotifications] = useState(true);
+  const [autoSave, setAutoSave] = useState(true);
+
+  return (
+    <View style={{ gap: 16 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text>Dark Mode</Text>
+        <Switch value={darkMode} onToggle={setDarkMode} />
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text>Notifications</Text>
+        <Switch value={notifications} onToggle={setNotifications} />
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text>Auto-Save</Text>
+        <Switch value={autoSave} onToggle={setAutoSave} />
+      </View>
+    </View>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -104,6 +130,23 @@ export default function Example() {
       <ExampleSection
         title="Disabled Switch"
         description="Switch with isDisabled prevents user interaction."
+        code={`import { Switch } from '@wireservers-ui/react-natives';
+import { View, Text } from 'react-native';
+
+export default function Example() {
+  return (
+    <View style={{ gap: 16 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+        <Switch isDisabled value={true} />
+        <Text>Disabled (On)</Text>
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+        <Switch isDisabled value={false} />
+        <Text>Disabled (Off)</Text>
+      </View>
+    </View>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>

@@ -58,6 +58,15 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Avatars scale from xs (24px) through 2xl (64px)."
+        code={`import { Avatar, AvatarFallbackText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Avatar size="lg">
+      <AvatarFallbackText>AB</AvatarFallbackText>
+    </Avatar>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 12 }}>
           {sizes.map((s) => (
@@ -75,6 +84,16 @@ export default function Example() {
       <ExampleSection
         title="With Image"
         description="Display a photo using AvatarImage. Falls back to AvatarFallbackText on error."
+        code={`import { Avatar, AvatarFallbackText, AvatarImage } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Avatar size="lg">
+      <AvatarFallbackText>Jane Doe</AvatarFallbackText>
+      <AvatarImage source={{ uri: 'https://picsum.photos/100' }} alt="Jane Doe" />
+    </Avatar>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', gap: 12 }}>
           <Avatar size="lg">
@@ -105,6 +124,16 @@ export default function Example() {
       <ExampleSection
         title="With Badge"
         description="Add an AvatarBadge to indicate online status."
+        code={`import { Avatar, AvatarFallbackText, AvatarBadge } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Avatar size="md">
+      <AvatarFallbackText>AB</AvatarFallbackText>
+      <AvatarBadge />
+    </Avatar>
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', gap: 16 }}>
           {(['sm', 'md', 'lg', 'xl'] as const).map((s) => (
@@ -120,6 +149,29 @@ export default function Example() {
       <ExampleSection
         title="Avatar Group"
         description="AvatarGroup stacks avatars with an overflow indicator via the max prop."
+        code={`import { Avatar, AvatarFallbackText, AvatarGroup } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <AvatarGroup max={3}>
+      <Avatar size="md">
+        <AvatarFallbackText>Alice</AvatarFallbackText>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>Bob</AvatarFallbackText>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>Carol</AvatarFallbackText>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>Dave</AvatarFallbackText>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>Eve</AvatarFallbackText>
+      </Avatar>
+    </AvatarGroup>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           <RNText style={{ fontSize: 14, color: '#6B7280' }}>

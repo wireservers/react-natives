@@ -38,7 +38,34 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Color Picker" description="Select a color from swatches or enter a hex value.">
+      <ExampleSection title="Color Picker" description="Select a color from swatches or enter a hex value."
+        code={`import { useState } from 'react';
+import { View } from 'react-native';
+import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  const [color, setColor] = useState('#3B82F6');
+  const presets = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6'];
+
+  return (
+    <ColorPicker value={color} onChange={setColor}>
+      <ColorPickerTrigger />
+      <ColorPickerContent>
+        <View style={{ flexDirection: 'row', gap: 12 }}>
+          <ColorPickerBox size={180} />
+          <ColorPickerSlider height={180} />
+        </View>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+          {presets.map(c => (
+            <ColorPickerSwatch key={c} color={c} />
+          ))}
+        </View>
+        <ColorPickerInput />
+      </ColorPickerContent>
+    </ColorPicker>
+  );
+}`}
+      >
         <ColorPicker value={color} onChange={setColor}>
           <ColorPickerTrigger />
           <ColorPickerContent>

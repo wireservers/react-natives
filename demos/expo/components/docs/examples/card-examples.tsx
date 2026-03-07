@@ -114,6 +114,20 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Elevated, outline, ghost, and filled card styles."
+        code={`import { Card, CardHeader, CardBody, Heading, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="elevated" size="md">
+      <CardHeader>
+        <Heading size="sm">Card Title</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text size="sm">This card uses the "elevated" variant.</Text>
+      </CardBody>
+    </Card>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {variants.map((v) => (
@@ -135,6 +149,23 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Small, medium, and large control the internal padding."
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="outline" size="lg">
+      <CardHeader>
+        <Heading size="sm">Size: lg</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text size="sm">This card has size="lg" which adjusts the padding.</Text>
+      </CardBody>
+      <CardFooter>
+        <Text size="xs">Footer content</Text>
+      </CardFooter>
+    </Card>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           {sizes.map((s) => (
@@ -161,6 +192,28 @@ export default function Example() {
       <ExampleSection
         title="Rich Content"
         description="Cards compose well with Heading, Text, and Button components."
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, ButtonText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Card variant="elevated" size="lg">
+      <CardHeader>
+        <Heading size="lg">Getting Started</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Cards are a great way to group related content together.</Text>
+      </CardBody>
+      <CardFooter>
+        <Button size="sm" variant="outline" action="default">
+          <ButtonText>Cancel</ButtonText>
+        </Button>
+        <Button size="sm" variant="solid" action="primary">
+          <ButtonText>Get Started</ButtonText>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
       >
         <Card variant="elevated" size="lg">
           <CardHeader>
@@ -168,7 +221,7 @@ export default function Example() {
           </CardHeader>
           <CardBody>
             <Text>
-              Wireservers UI provides a comprehensive set of components for
+              React-Natives provides a comprehensive set of components for
               building polished cross-platform apps. Cards are a great way to
               group related content together.
             </Text>
@@ -211,7 +264,7 @@ export default function Example() {
                     <Heading size="sm">Welcome!</Heading>
                   </PopoverHeader>
                   <PopoverBody>
-                    <Text size="sm">You&apos;re all set to start building with Wireservers UI.</Text>
+                    <Text size="sm">You&apos;re all set to start building with React-Natives.</Text>
                   </PopoverBody>
                 </PopoverContent>
               </Popover>

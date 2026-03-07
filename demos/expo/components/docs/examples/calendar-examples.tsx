@@ -141,6 +141,16 @@ export default function Example() {
       <ExampleSection
         title="Minimal Calendar"
         description="A simpler setup with just the header and a single layout view, no legend or view switchers."
+        code={`import { Calendar, CalendarHeader, CalendarHorizontalView } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Calendar events={events} members={members}>
+      <CalendarHeader />
+      <CalendarHorizontalView />
+    </Calendar>
+  );
+}`}
       >
         <View style={{ minHeight: 400 }}>
           <Calendar

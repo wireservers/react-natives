@@ -64,13 +64,13 @@ export default function Example() {
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 <AccordionTitleText>
-                  What is wireservers-ui?
+                  What is React-Natives?
                 </AccordionTitleText>
                 <AccordionIcon />
               </AccordionTrigger>
               <AccordionContent>
                 <RNText style={{ fontSize: 14, color: '#525252' }}>
-                  Wireservers UI is a cross-platform component library built
+                  React-Natives is a cross-platform component library built
                   with React Native, NativeWind, and Gluestack UI primitives.
                 </RNText>
               </AccordionContent>
@@ -101,7 +101,7 @@ export default function Example() {
               </AccordionTrigger>
               <AccordionContent>
                 <RNText style={{ fontSize: 14, color: '#525252' }}>
-                  Yes, wireservers-ui is fully compatible with Expo SDK 54 and
+                  Yes, React-Natives is fully compatible with Expo SDK 54 and
                   uses Expo Router for file-based navigation in the demo app.
                 </RNText>
               </AccordionContent>
@@ -114,6 +114,32 @@ export default function Example() {
       <ExampleSection
         title="Multiple Expansion"
         description="With type='multiple', several accordion items can be expanded simultaneously."
+        code={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Accordion type="multiple" isCollapsible defaultValue={['a', 'b']}>
+      <AccordionItem value="a">
+        <AccordionTrigger>
+          <AccordionTitleText>Section A</AccordionTitleText>
+          <AccordionIcon />
+        </AccordionTrigger>
+        <AccordionContent>
+          Content for section A.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="b">
+        <AccordionTrigger>
+          <AccordionTitleText>Section B</AccordionTitleText>
+          <AccordionIcon />
+        </AccordionTrigger>
+        <AccordionContent>
+          Content for section B.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
       >
         <Accordion type="multiple" isCollapsible defaultValue={['a', 'b']}>
           <AccordionItem value="a">

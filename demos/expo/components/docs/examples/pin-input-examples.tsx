@@ -39,7 +39,20 @@ export default function Example() {
         {value.length === 4 && <Text className="text-sm text-success-500 mt-1">PIN entered: {value}</Text>}
       </ExampleSection>
 
-      <ExampleSection title="6-Digit Code" description="A longer PIN input for verification codes.">
+      <ExampleSection title="6-Digit Code" description="A longer PIN input for verification codes." code={`import { PinInput, PinInputField } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <PinInput length={6}>
+      <PinInputField index={0} />
+      <PinInputField index={1} />
+      <PinInputField index={2} />
+      <PinInputField index={3} />
+      <PinInputField index={4} />
+      <PinInputField index={5} />
+    </PinInput>
+  );
+}`}>
         <PinInput length={6} size="md">
           {[0, 1, 2, 3, 4, 5].map(i => (
             <PinInputField key={i} index={i} />

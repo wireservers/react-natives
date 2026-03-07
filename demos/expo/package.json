@@ -1,5 +1,5 @@
 {
-  "name": "@wireservers-ui/website",
+  "name": "@react-natives/website",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -8,8 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "expo export --platform web",
-    "build:clean": "expo export --platform web --clear",
+    "build": "expo export --platform web && node scripts/generate-sitemap.js",
+    "build:clean": "expo export --platform web --clear && node scripts/generate-sitemap.js",
     "clean": "rm -rf .expo node_modules/.cache dist",
     "lint": "expo lint"
   },
@@ -20,7 +20,7 @@
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
-    "@wireservers-ui/react-natives": "workspace:*",
+    "@wireservers-ui/react-natives": "*",
     "expo": "~54.0.33",
     "expo-clipboard": "^8.0.8",
     "expo-constants": "~18.0.13",

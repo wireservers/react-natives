@@ -35,6 +35,29 @@ export default function Example() {
       <ExampleSection
         title="Basic Breadcrumb"
         description="A standard 3-level breadcrumb path. The last item uses isCurrent to indicate the active page."
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink>
+          <BreadcrumbText>Home</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink>
+          <BreadcrumbText>Components</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrent>
+        <BreadcrumbLink>
+          <BreadcrumbText>Breadcrumb</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  );
+}`}
       >
         <Breadcrumb>
           <BreadcrumbItem>
@@ -59,6 +82,29 @@ export default function Example() {
       <ExampleSection
         title="With Navigation"
         description="Breadcrumb items can include href for navigation. The current page link is typically non-interactive."
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/home">
+          <BreadcrumbText>Home</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/settings">
+          <BreadcrumbText>Settings</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrent>
+        <BreadcrumbLink>
+          <BreadcrumbText>Profile</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  );
+}`}
       >
         <Breadcrumb>
           <BreadcrumbItem>
@@ -83,6 +129,29 @@ export default function Example() {
       <ExampleSection
         title="Custom Separator"
         description="Pass a custom separator string or element to change the divider between breadcrumb items."
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Breadcrumb separator=">">
+      <BreadcrumbItem>
+        <BreadcrumbLink>
+          <BreadcrumbText>Dashboard</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink>
+          <BreadcrumbText>Analytics</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrent>
+        <BreadcrumbLink>
+          <BreadcrumbText>Reports</BreadcrumbText>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  );
+}`}
       >
         <View style={{ gap: 16 }}>
           <View style={{ gap: 4 }}>
