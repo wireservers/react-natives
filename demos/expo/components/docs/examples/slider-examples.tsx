@@ -70,6 +70,21 @@ export default function Example() {
       <ExampleSection
         title="Slider with Steps"
         description="Slider with step increments of 5."
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [value, setValue] = useState(75);
+
+  return (
+    <Slider value={value} onValueChange={setValue} min={0} max={100} step={5}>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
+    </Slider>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -97,6 +112,21 @@ export default function Example() {
       <ExampleSection
         title="Custom Range"
         description="Slider with a custom min/max range for price filtering."
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [price, setPrice] = useState(25);
+
+  return (
+    <Slider value={price} onValueChange={setPrice} min={5} max={200} step={5}>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
+    </Slider>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -130,6 +160,18 @@ export default function Example() {
       <ExampleSection
         title="Disabled Slider"
         description="Slider with isDisabled prevents user interaction."
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Slider value={60} min={0} max={100} isDisabled>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
+    </Slider>
+  );
+}`}
       >
         <View style={{ gap: 12 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>

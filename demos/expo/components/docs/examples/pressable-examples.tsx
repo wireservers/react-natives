@@ -22,7 +22,18 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Pressable" description="A styled pressable with press states.">
+      <ExampleSection title="Basic Pressable" description="A styled pressable with press states." code={`import { Pressable, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Pressable
+      className="p-4 bg-primary-500 rounded-lg active:bg-primary-600"
+      onPress={() => console.log('pressed')}
+    >
+      <Text className="text-white text-center">Press me</Text>
+    </Pressable>
+  );
+}`}>
         <Pressable
           className="p-4 bg-primary-500 rounded-lg active:bg-primary-600"
           onPress={() => setCount(c => c + 1)}
@@ -31,7 +42,15 @@ export default function Example() {
         </Pressable>
       </ExampleSection>
 
-      <ExampleSection title="Disabled" description="Pressable with disabled state.">
+      <ExampleSection title="Disabled" description="Pressable with disabled state." code={`import { Pressable, Text } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Pressable className="p-4 bg-background-300 rounded-lg" disabled>
+      <Text className="text-typography-400 text-center">Disabled</Text>
+    </Pressable>
+  );
+}`}>
         <Pressable className="p-4 bg-background-300 rounded-lg" disabled>
           <Text className="text-typography-400 text-center">Disabled</Text>
         </Pressable>

@@ -41,7 +41,20 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Stat" description="Display key metrics with trend indicators.">
+      <ExampleSection title="Basic Stat" description="Display key metrics with trend indicators." code={`import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Stat>
+      <StatLabel>Revenue</StatLabel>
+      <StatNumber>$45,670</StatNumber>
+      <StatHelpText>
+        <StatArrow type="increase" />
+        12.5%
+      </StatHelpText>
+    </Stat>
+  );
+}`}>
         <View style={{ flexDirection: 'row', gap: 24 }}>
           <Stat>
             <StatLabel>Revenue</StatLabel>

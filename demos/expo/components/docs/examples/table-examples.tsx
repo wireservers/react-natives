@@ -41,7 +41,29 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Table" description="A structured data table with header and body rows.">
+      <ExampleSection title="Basic Table" description="A structured data table with header and body rows." code={`import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Role</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Alice</TableCell>
+          <TableCell>Engineer</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+      </TableBody>
+      <TableCaption>Team members</TableCaption>
+    </Table>
+  );
+}`}>
         <Table>
           <TableHead>
             <TableRow>

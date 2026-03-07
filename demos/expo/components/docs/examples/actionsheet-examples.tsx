@@ -95,6 +95,33 @@ export default function Example() {
       <ExampleSection
         title="Non-Modal (isModal={false})"
         description="The action sheet renders inline — no RNModal — so content outside the panel stays interactive."
+        code={`import { ActionSheet, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText, Button, ButtonText } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onPress={() => setIsOpen(true)}>
+        <ButtonText>Open Inline Sheet</ButtonText>
+      </Button>
+      <ActionSheet isOpen={isOpen} onClose={() => setIsOpen(false)} isModal={false}>
+        <ActionSheetContent>
+          <ActionSheetDragIndicatorWrapper>
+            <ActionSheetDragIndicator />
+          </ActionSheetDragIndicatorWrapper>
+          <ActionSheetItem onPress={() => setIsOpen(false)}>
+            <ActionSheetItemText>Option A</ActionSheetItemText>
+          </ActionSheetItem>
+          <ActionSheetItem onPress={() => setIsOpen(false)}>
+            <ActionSheetItemText>Option B</ActionSheetItemText>
+          </ActionSheetItem>
+        </ActionSheetContent>
+      </ActionSheet>
+    </>
+  );
+}`}
       >
         <View style={{ height: 220, position: 'relative', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, overflow: 'hidden' }}>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
@@ -132,6 +159,26 @@ export default function Example() {
       <ExampleSection
         title="Anatomy"
         description="An ActionSheet is composed of a backdrop, content area with a drag indicator, and action items."
+        code={`import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers-ui/react-natives';
+import { useState } from 'react';
+
+export default function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <ActionSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <ActionSheetBackdrop />
+      <ActionSheetContent>
+        <ActionSheetDragIndicatorWrapper>
+          <ActionSheetDragIndicator />
+        </ActionSheetDragIndicatorWrapper>
+        <ActionSheetItem onPress={() => setIsOpen(false)}>
+          <ActionSheetItemText>Edit</ActionSheetItemText>
+        </ActionSheetItem>
+      </ActionSheetContent>
+    </ActionSheet>
+  );
+}`}
       >
         <View style={{ gap: 8 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>

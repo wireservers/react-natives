@@ -59,6 +59,17 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Image sizes range from xs (24px) through 2xl (128px) and full width."
+        code={`import { Image } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Image
+      source={{ uri: 'https://picsum.photos/200' }}
+      alt="Sample image"
+      size="lg"
+    />
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-end', gap: 16 }}>
           {sizes
@@ -80,6 +91,18 @@ export default function Example() {
       <ExampleSection
         title="Border Radius"
         description="Control the roundedness of images with the borderRadius prop."
+        code={`import { Image } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Image
+      source={{ uri: 'https://picsum.photos/200' }}
+      alt="Rounded image"
+      size="lg"
+      borderRadius="full"
+    />
+  );
+}`}
       >
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-end', gap: 16 }}>
           {borderRadii.map((r) => (
@@ -100,6 +123,18 @@ export default function Example() {
       <ExampleSection
         title="Full Width"
         description="Use size='full' to make the image span its container width."
+        code={`import { Image } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <Image
+      source={{ uri: 'https://picsum.photos/600/200' }}
+      alt="Full width image"
+      size="full"
+      borderRadius="lg"
+    />
+  );
+}`}
       >
         <Image
           source={{ uri: 'https://picsum.photos/600/200' }}

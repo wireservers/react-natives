@@ -130,6 +130,38 @@ export default function Example() {
       <ExampleSection
         title="Non-Modal (isModal={false})"
         description="The drawer renders inline — no RNModal — so content outside the drawer panel stays interactive."
+        code={`import { useState } from 'react';
+import { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+import { View } from 'react-native';
+
+export default function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <View style={{ height: 220, position: 'relative' }}>
+      <Button onPress={() => setIsOpen(true)}>
+        <ButtonText>Open Inline Drawer</ButtonText>
+      </Button>
+
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        placement="right"
+        isModal={false}
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <Heading size="sm">Inline Panel</Heading>
+            <DrawerCloseButton />
+          </DrawerHeader>
+          <DrawerBody>
+            <Text>Background stays interactive — no modal overlay.</Text>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </View>
+  );
+}`}
       >
         <View style={{ height: 220, position: 'relative', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, overflow: 'hidden' }}>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 }}>

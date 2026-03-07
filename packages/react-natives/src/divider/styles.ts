@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants';
 
 export const dividerStyle = tv({
-  base: 'bg-outline-200',
+  base: 'bg-outline-200 shrink-0',
   variants: {
     orientation: {
       horizontal: 'h-px w-full',

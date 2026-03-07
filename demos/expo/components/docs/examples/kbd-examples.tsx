@@ -19,7 +19,21 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Keyboard Shortcuts" description="Display keyboard key combinations.">
+      <ExampleSection
+        title="Keyboard Shortcuts"
+        description="Display keyboard key combinations."
+        code={`import { Kbd, Text, HStack } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return (
+    <HStack space="xs" className="items-center">
+      <Kbd>⌘</Kbd>
+      <Text>+</Text>
+      <Kbd>S</Kbd>
+    </HStack>
+  );
+}`}
+      >
         <View style={{ gap: 12 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <Kbd>⌘</Kbd><Text>+</Text><Kbd>S</Kbd><Text className="ml-2 text-typography-500">Save</Text>
@@ -33,7 +47,15 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="Single Keys" description="Individual key display.">
+      <ExampleSection
+        title="Single Keys"
+        description="Individual key display."
+        code={`import { Kbd } from '@wireservers-ui/react-natives';
+
+export default function Example() {
+  return <Kbd>Enter</Kbd>;
+}`}
+      >
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <Kbd>Esc</Kbd>
           <Kbd>Tab</Kbd>
