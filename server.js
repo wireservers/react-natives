@@ -20,6 +20,9 @@ const MIME_TYPES = {
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.map': 'application/json',
+  '.xml': 'application/xml',
+  '.webmanifest': 'application/manifest+json',
+  '.txt': 'text/plain',
 };
 
 function tryFile(filePath) {
