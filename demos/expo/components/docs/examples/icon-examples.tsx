@@ -4,21 +4,49 @@ import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
 import { Icon } from '@wireservers-ui/react-natives';
 import { useExampleCode } from '../example-code-context';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 
-/** Placeholder box component used as an icon stand-in via the `as` prop. */
-function PlaceholderIcon({ className, size, ...props }: { className?: string; size?: number }) {
-  return (
-    <View
-      style={[
-        { backgroundColor: '#6366f1', borderRadius: 2 },
-        size ? { width: size, height: size } : undefined,
-      ]}
-      {...props}
-    />
-  );
+/** Map Tailwind h-* classes to pixel sizes so MaterialCommunityIcons renders correctly. */
+const twSizeToPixels: Record<string, number> = {
+  'h-4': 16,
+  'h-5': 20,
+  'h-6': 24,
+  'h-8': 32,
+  'h-10': 40,
+  'h-12': 48,
+};
+
+function sizeFromClassName(className?: string): number | undefined {
+  if (!className) return undefined;
+  for (const token of className.split(' ')) {
+    if (twSizeToPixels[token]) return twSizeToPixels[token];
+  }
+  return undefined;
 }
+
+/** Wraps a MaterialCommunityIcons glyph so it works with the Icon `as` prop. */
+function createIcon(name: React.ComponentProps<typeof MaterialCommunityIcons>['name']) {
+  const IconComponent = React.forwardRef<any, any>(({ className, size, color, ...props }, ref) => {
+    const resolvedSize = typeof size === 'number' ? size : sizeFromClassName(className) ?? 24;
+    return (
+      <MaterialCommunityIcons
+        ref={ref}
+        name={name}
+        size={resolvedSize}
+        color={color ?? '#1f2937'}
+        {...props}
+      />
+    );
+  });
+  IconComponent.displayName = `Icon(${name})`;
+  return IconComponent;
+}
+
+const StarIcon = createIcon('star');
+const HeartIcon = createIcon('heart');
+const CogIcon = createIcon('cog');
 
 export default function IconExamples() {
   const [size, setSize] = useState<string>('md');
@@ -35,7 +63,7 @@ export default function Example() {
       {/* Interactive Example */}
       <ExampleSection
         title="Interactive"
-        description="Select a size to preview the Icon component using a placeholder box."
+        description="Select a size to preview the Icon component."
       >
         <VariantPicker
           label="Size"
@@ -45,7 +73,7 @@ export default function Example() {
         />
 
         <View style={{ marginTop: 8, alignItems: 'flex-start' }}>
-          <Icon as={PlaceholderIcon} size={size as any} />
+          <Icon as={StarIcon} size={size as any} />
         </View>
       </ExampleSection>
 
@@ -63,7 +91,7 @@ export default function Example() {
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 16 }}>
           {sizes.map((s) => (
             <View key={s} style={{ alignItems: 'center', gap: 8 }}>
-              <Icon as={PlaceholderIcon} size={s} />
+              <Icon as={StarIcon} size={s} />
               <RNText style={{ fontSize: 10, color: '#8c8c8c' }}>{s}</RNText>
             </View>
           ))}
@@ -84,7 +112,7 @@ export default function Example() {
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 16 }}>
           {[16, 24, 32, 48].map((n) => (
             <View key={n} style={{ alignItems: 'center', gap: 8 }}>
-              <Icon as={PlaceholderIcon} size={n} />
+              <Icon as={StarIcon} size={n} />
               <RNText style={{ fontSize: 10, color: '#8c8c8c' }}>{n}px</RNText>
             </View>
           ))}
