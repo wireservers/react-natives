@@ -4,6 +4,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter, usePathname } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
+import { useTheme } from '@/context/theme-context';
+import { useCustomTheme } from '@/context/custom-theme-context';
 
 const NAV_LINKS = [
   { label: 'Home', path: '/' },
@@ -15,11 +17,18 @@ export function Header() {
   const pathname = usePathname();
   const { width } = useWindowDimensions();
   const isWide = width >= 768;
+  const { colorScheme, toggleColorScheme } = useTheme();
+  const { toggleSettings } = useCustomTheme();
+  const isDark = colorScheme === 'dark';
+
+  const bgColor = isDark ? '#1a1a1a' : '#fff';
+  const borderColor = isDark ? '#333' : '#E5E7EB';
+  const textColor = isDark ? '#D1D5DB' : '#4B5563';
 
   return (
     <View>
       {/* Main header bar */}
-      <View style={{ backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#E5E7EB' }}>
+      <View style={{ backgroundColor: bgColor, borderBottomWidth: 1, borderBottomColor: borderColor }}>
       <View
         style={{
           width: '100%',
@@ -46,7 +55,7 @@ export function Header() {
               style={{
                 fontSize: 18,
                 fontWeight: '800',
-                color: BRAND_COLOR_DARK,
+                color: isDark ? BRAND_COLOR : BRAND_COLOR_DARK,
                 letterSpacing: 1.2,
                 fontStyle: 'italic',
               }}
@@ -85,7 +94,7 @@ export function Header() {
                     style={{
                       fontSize: 14,
                       fontWeight: '500',
-                      color: isActive ? BRAND_COLOR : '#4B5563',
+                      color: isActive ? BRAND_COLOR : textColor,
                     }}
                   >
                     {link.label}
@@ -96,13 +105,27 @@ export function Header() {
           </View>
         )}
 
-        {/* Right side — GitHub icon + Get Started button */}
+        {/* Right side — theme toggle + GitHub icon + Get Started button */}
         <View style={{ marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+          {/* Theme settings */}
+          <Pressable onPress={toggleSettings}>
+            <MaterialCommunityIcons name="palette-outline" size={22} color={textColor} />
+          </Pressable>
+
+          {/* Light/Dark toggle */}
+          <Pressable onPress={toggleColorScheme}>
+            <MaterialCommunityIcons
+              name={isDark ? 'weather-sunny' : 'weather-night'}
+              size={22}
+              color={textColor}
+            />
+          </Pressable>
+
           {/* GitHub icon */}
           <Pressable
             onPress={() => Linking.openURL('https://github.com/wireservers/wireservers-ui')}
           >
-            <MaterialCommunityIcons name="github" size={24} color="#4B5563" />
+            <MaterialCommunityIcons name="github" size={24} color={textColor} />
           </Pressable>
 
           {/* Get Started button */}
@@ -133,4 +156,3 @@ export function Header() {
     </View>
   );
 }
-

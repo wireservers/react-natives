@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 import { CodeBlock } from './code-block';
 
 interface ExampleSectionProps {
@@ -16,6 +16,7 @@ export function ExampleSection({
   code,
   children,
 }: ExampleSectionProps) {
+  const { theme } = useCustomTheme();
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
 
   return (
@@ -41,14 +42,14 @@ export function ExampleSection({
                 paddingHorizontal: 20,
                 paddingVertical: 10,
                 borderBottomWidth: 2,
-                borderBottomColor: activeTab === 'preview' ? BRAND_COLOR : 'transparent',
+                borderBottomColor: activeTab === 'preview' ? theme.primary : 'transparent',
               }}
             >
               <Text
                 style={{
                   fontSize: 13,
                   fontWeight: activeTab === 'preview' ? '600' : '400',
-                  color: activeTab === 'preview' ? BRAND_COLOR : '#6B7280',
+                  color: activeTab === 'preview' ? theme.primary : '#6B7280',
                 }}
               >
                 Preview
@@ -60,14 +61,14 @@ export function ExampleSection({
                 paddingHorizontal: 20,
                 paddingVertical: 10,
                 borderBottomWidth: 2,
-                borderBottomColor: activeTab === 'code' ? BRAND_COLOR : 'transparent',
+                borderBottomColor: activeTab === 'code' ? theme.primary : 'transparent',
               }}
             >
               <Text
                 style={{
                   fontSize: 13,
                   fontWeight: activeTab === 'code' ? '600' : '400',
-                  color: activeTab === 'code' ? BRAND_COLOR : '#6B7280',
+                  color: activeTab === 'code' ? theme.primary : '#6B7280',
                 }}
               >
                 Code

@@ -7,8 +7,7 @@ import {
   componentRegistry,
   categories,
 } from '@/lib/component-registry';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
-import { DOC_BG } from '@/constants/theme';
+import { usePageColors, useCustomTheme } from '@/context/custom-theme-context';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const ALL_CATEGORIES = ['All', ...categories];
@@ -17,6 +16,8 @@ export default function CatalogScreen() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const router = useRouter();
+  const c = usePageColors();
+  const { theme } = useCustomTheme();
 
   const filtered = useMemo(() => {
     let items = componentRegistry;
@@ -38,7 +39,7 @@ export default function CatalogScreen() {
   }, [search, selectedCategory]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: DOC_BG }}>
+    <ScrollView style={{ flex: 1, backgroundColor: c.docBg }} contentContainerStyle={{ flexGrow: 1 }}>
       {Platform.OS === 'web' && (
         <Head>
           <title>Components | React-Natives UI Library</title>
@@ -48,28 +49,28 @@ export default function CatalogScreen() {
       <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: 24, paddingTop: 32, paddingBottom: 40 }}>
         {/* Header */}
         <View style={{ marginBottom: 20 }}>
-          <Text style={{ fontSize: 28, fontWeight: '800', color: '#111827', marginBottom: 6 }}>
+          <Text style={{ fontSize: 28, fontWeight: '800', color: c.heading, marginBottom: 6 }}>
             All Components
           </Text>
-          <Text style={{ fontSize: 15, color: '#6B7280', lineHeight: 22 }}>
+          <Text style={{ fontSize: 15, color: c.text, lineHeight: 22 }}>
             {componentRegistry.length}+ responsive components built for React Native with NativeWind.
           </Text>
         </View>
         {/* Search */}
         <View
-          style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, paddingHorizontal: 16, marginBottom: 16 }}
+          style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: c.inputBg, borderWidth: 1, borderColor: c.border, borderRadius: 12, paddingHorizontal: 16, marginBottom: 16 }}
         >
-          <MaterialIcons name="search" size={20} color="#9CA3AF" style={{ marginRight: 8 }} />
+          <MaterialIcons name="search" size={20} color={c.iconText} style={{ marginRight: 8 }} />
           <TextInput
             value={search}
             onChangeText={setSearch}
             placeholder="Search components..."
-            placeholderTextColor="#9CA3AF"
-            style={{ flex: 1, paddingVertical: 14, fontSize: 15, color: '#111827' }}
+            placeholderTextColor={c.iconText}
+            style={{ flex: 1, paddingVertical: 14, fontSize: 15, color: c.heading }}
           />
           {search.length > 0 && (
             <Pressable onPress={() => setSearch('')}>
-              <MaterialIcons name="close" size={18} color="#9CA3AF" />
+              <MaterialIcons name="close" size={18} color={c.iconText} />
             </Pressable>
           )}
         </View>
@@ -87,9 +88,9 @@ export default function CatalogScreen() {
                 key={cat}
                 onPress={() => setSelectedCategory(cat)}
                 style={{
-                  backgroundColor: isSelected ? BRAND_COLOR : '#fff',
+                  backgroundColor: isSelected ? theme.primary : c.cardBg,
                   borderWidth: 1,
-                  borderColor: isSelected ? BRAND_COLOR : '#E5E7EB',
+                  borderColor: isSelected ? theme.primary : c.border,
                   paddingHorizontal: 16,
                   paddingVertical: 8,
                   borderRadius: 20,
@@ -99,7 +100,7 @@ export default function CatalogScreen() {
                   style={{
                     fontSize: 14,
                     fontWeight: isSelected ? '600' : '400',
-                    color: isSelected ? '#fff' : '#374151',
+                    color: isSelected ? '#fff' : c.textSecondary,
                   }}
                 >
                   {cat}
@@ -118,9 +119,9 @@ export default function CatalogScreen() {
               style={{
                 flex: 1,
                 minWidth: '45%',
-                backgroundColor: '#fff',
+                backgroundColor: c.cardBg,
                 borderWidth: 1,
-                borderColor: '#E5E7EB',
+                borderColor: c.border,
                 borderRadius: 12,
                 padding: 16,
               }}
@@ -131,7 +132,7 @@ export default function CatalogScreen() {
                     width: 36,
                     height: 36,
                     borderRadius: 8,
-                    backgroundColor: '#F3F4F6',
+                    backgroundColor: c.iconSubtle,
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginRight: 12,
@@ -140,14 +141,14 @@ export default function CatalogScreen() {
                   <MaterialIcons
                     name={getComponentIcon(comp.slug)}
                     size={20}
-                    color="#6B7280"
+                    color={c.iconText}
                   />
                 </View>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: '#111827' }}>
+                <Text style={{ fontSize: 15, fontWeight: '700', color: c.heading }}>
                   {comp.name}
                 </Text>
               </View>
-              <Text style={{ fontSize: 13, color: '#6B7280', lineHeight: 18 }} numberOfLines={2}>
+              <Text style={{ fontSize: 13, color: c.text, lineHeight: 18 }} numberOfLines={2}>
                 {comp.description}
               </Text>
             </Pressable>

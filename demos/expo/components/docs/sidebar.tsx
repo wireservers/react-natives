@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 import {
   componentRegistry,
   categories,
@@ -19,6 +19,7 @@ const grouped = categories.map((cat) => ({
 export function Sidebar({ onClose }: { onClose?: () => void } = {}) {
   const router = useRouter();
   const pathname = usePathname();
+  const { theme } = useCustomTheme();
 
   // Determine the active slug from the current path
   const activeSlug = pathname.replace('/components/docs/', '').replace('/components', '');
@@ -56,7 +57,7 @@ export function Sidebar({ onClose }: { onClose?: () => void } = {}) {
               borderRadius: 6,
               backgroundColor: isIndex ? '#1E293B' : 'transparent',
               borderLeftWidth: isIndex ? 3 : 0,
-              borderLeftColor: BRAND_COLOR,
+              borderLeftColor: theme.primary,
             }}
           >
             <Text
@@ -99,7 +100,7 @@ export function Sidebar({ onClose }: { onClose?: () => void } = {}) {
                     borderRadius: 6,
                     backgroundColor: isActive ? '#1E293B' : 'transparent',
                     borderLeftWidth: isActive ? 3 : 0,
-                    borderLeftColor: BRAND_COLOR,
+                    borderLeftColor: theme.primary,
                   }}
                 >
                   <Text

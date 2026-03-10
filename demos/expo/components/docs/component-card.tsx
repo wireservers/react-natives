@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BRAND_COLOR, BRAND_COLOR_LIGHT } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR_LIGHT } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 
 interface ComponentCardProps {
   slug: string;
@@ -10,13 +11,6 @@ interface ComponentCardProps {
   category: string;
 }
 
-const categoryColors: Record<string, { bg: string; text: string }> = {
-  'Core Primitives': { bg: BRAND_COLOR_LIGHT, text: BRAND_COLOR },
-  'Form Controls': { bg: '#ECFDF5', text: '#059669' },
-  'Feedback & Overlay': { bg: '#FFF7ED', text: '#EA580C' },
-  Navigation: { bg: '#F0F9FF', text: '#0284C7' },
-};
-
 export function ComponentCard({
   slug,
   name,
@@ -24,6 +18,13 @@ export function ComponentCard({
   category,
 }: ComponentCardProps) {
   const router = useRouter();
+  const { theme } = useCustomTheme();
+  const categoryColors: Record<string, { bg: string; text: string }> = {
+    'Core Primitives': { bg: BRAND_COLOR_LIGHT, text: theme.primary },
+    'Form Controls': { bg: '#ECFDF5', text: '#059669' },
+    'Feedback & Overlay': { bg: '#FFF7ED', text: '#EA580C' },
+    Navigation: { bg: '#F0F9FF', text: '#0284C7' },
+  };
   const colors = categoryColors[category] ?? { bg: '#F5F5F5', text: '#666' };
 
   return (

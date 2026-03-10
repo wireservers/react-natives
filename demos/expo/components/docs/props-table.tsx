@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 
 export interface PropDefinition {
   name: string;
@@ -16,6 +16,7 @@ interface PropsTableProps {
 }
 
 export function PropsTable({ title, props }: PropsTableProps) {
+  const { theme } = useCustomTheme();
   if (props.length === 0) return null;
 
   return (
@@ -74,7 +75,7 @@ export function PropsTable({ title, props }: PropsTableProps) {
             >
               {/* Prop name */}
               <View style={{ width: 140 }}>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: BRAND_COLOR, fontFamily: 'monospace' }}>
+                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.primary, fontFamily: 'monospace' }}>
                   {prop.name}
                   {prop.required && (
                     <Text style={{ color: '#EF4444' }}> *</Text>
