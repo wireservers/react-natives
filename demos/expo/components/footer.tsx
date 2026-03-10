@@ -78,7 +78,7 @@ export function Footer() {
               React-Natives
             </Text>
             <Text style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, lineHeight: 20 }}>
-              A comprehensive React Native component library. Created by WireServers-UI.
+              A comprehensive React Native component library.
             </Text>
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
@@ -110,7 +110,7 @@ export function Footer() {
         </View>
         <View style={{ borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 20, alignItems: 'center' }}>
           <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>
-            © 2026 React-Natives. Powered by WireServers-UI.
+            © 2026 React-Natives. Wired by WireServers-UI.
           </Text>
         </View>
       </View>

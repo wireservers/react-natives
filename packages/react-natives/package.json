@@ -1,7 +1,7 @@
 {
   "name": "@wireservers-ui/react-natives",
   "version": "1.0.0-rc.3",
-  "description": "70+ production-ready React Native components — TypeScript-first, themeable, accessible. Created by WireServers-UI.",
+  "description": "70+ production-ready React Native components — TypeScript-first, themeable, accessible. Wired by WireServers-UI.",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {

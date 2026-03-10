@@ -76,14 +76,12 @@ function MyButton({ action }: { action: ButtonAction }) {
       { icon: '🧱', title: 'NativeWind Overrides', desc: 'Apply Tailwind utility classes directly on any component for one-off style overrides.', link: 'button' },
       { icon: '⚙️', title: 'Semantic Color Tokens', desc: 'Tokens like background-0, typography-900, and primary-500 adapt across themes by design.', link: 'color-picker' },
     ],
-    code: `// gluestack-ui-provider/config.ts — one file rules them all
+    code: `// theme-provider/config.ts — one file rules them all
 export const config = {
-  tokens: {
-    colors: {
-      primary500: '#6366F1',  // ← change your brand color here
-      primary600: '#4F46E5',
-    },
-  },
+  light: vars({
+    '--color-primary-500': '99 102 241',  // ← change your brand color here
+    '--color-primary-600': '79 70 229',
+  }),
 };
 
 // Components pick it up automatically — no overrides needed
