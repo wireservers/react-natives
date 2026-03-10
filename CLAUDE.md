@@ -57,7 +57,7 @@ No test framework is currently configured.
 
 ### App Layout
 
-Root layout (`app/_layout.tsx`) nests providers: `ThemeContextProvider` → `CustomThemeProvider` → `AppThemeProvider` → `PaperProvider` → `ThemeProvider` → `ToastProvider` → `Stack`
+Root layout (`app/_layout.tsx`) nests providers: `ThemeContextProvider` → `CustomThemeProvider` → `AppThemeProvider` → `ThemeProvider` → `ToastProvider` → `Stack`
 
 Tabs layout (`app/(tabs)/_layout.tsx`) defines screens: `index`, `components`, `features`, `theming`
 

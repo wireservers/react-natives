@@ -34,17 +34,17 @@ export default function Root({ children }: PropsWithChildren) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="React-Natives | Production-Ready React Native UI Components" />
         <meta property="og:description" content="70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant." />
-        <meta property="og:url" content="https://reactnatives.dev" />
-        <meta property="og:image" content="https://reactnatives.dev/og-image.png" />
+        <meta property="og:url" content="https://www.reactnatives.dev" />
+        <meta property="og:image" content="https://www.reactnatives.dev/og-image.png" />
         <meta property="og:site_name" content="React-Natives" />
         <meta property="og:locale" content="en_US" />
-        <link rel="canonical" href="https://reactnatives.dev" />
+        <link rel="canonical" href="https://www.reactnatives.dev" />
 
         {/* SEO: Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="React-Natives | Production-Ready React Native UI Components" />
         <meta name="twitter:description" content="70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant." />
-        <meta name="twitter:image" content="https://reactnatives.dev/og-image.png" />
+        <meta name="twitter:image" content="https://www.reactnatives.dev/og-image.png" />
 
         {/* SEO: Structured Data (JSON-LD) */}
         <script
@@ -63,7 +63,7 @@ export default function Root({ children }: PropsWithChildren) {
               author: {
                 '@type': 'Organization',
                 name: 'Wireservers',
-                url: 'https://reactnatives.dev',
+                url: 'https://www.reactnatives.dev',
               },
               offers: {
                 '@type': 'Offer',

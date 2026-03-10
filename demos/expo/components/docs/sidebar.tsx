@@ -24,6 +24,7 @@ export function Sidebar({ onClose }: { onClose?: () => void } = {}) {
   // Determine the active slug from the current path
   const activeSlug = pathname.replace('/components/docs/', '').replace('/components', '');
   const isIndex = pathname === '/components' || pathname === '/components/';
+  const isGettingStarted = pathname === '/components/getting-started';
 
   const navigateTo = (path: string) => {
     router.push(path as any);
@@ -44,11 +45,32 @@ export function Sidebar({ onClose }: { onClose?: () => void } = {}) {
         contentContainerStyle={{ paddingVertical: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        {/* All Components link */}
+        {/* Getting Started + All Components */}
         <View style={{ paddingHorizontal: 16, marginBottom: 24 }}>
           <Text style={{ fontSize: 11, fontWeight: '700', color: '#6B7280', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10, paddingHorizontal: 8 }}>
             Components
           </Text>
+          <Pressable
+            onPress={() => navigateTo('/components/getting-started')}
+            style={{
+              paddingVertical: 8,
+              paddingHorizontal: 12,
+              borderRadius: 6,
+              backgroundColor: isGettingStarted ? '#1E293B' : 'transparent',
+              borderLeftWidth: isGettingStarted ? 3 : 0,
+              borderLeftColor: theme.primary,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: isGettingStarted ? '600' : '400',
+                color: isGettingStarted ? '#fff' : '#9CA3AF',
+              }}
+            >
+              Getting Started
+            </Text>
+          </Pressable>
           <Pressable
             onPress={() => navigateTo('/components')}
             style={{
