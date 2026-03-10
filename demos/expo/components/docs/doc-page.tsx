@@ -82,9 +82,11 @@ export function DocPage({
   const c = usePageColors();
   const { colorScheme } = useTheme();
   const customVars = useThemeVarsOverride();
+  const [footerH, setFooterH] = useState(180);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: c.docBg }} contentContainerStyle={{ flexGrow: 1 }}>
+    <View style={{ flex: 1, backgroundColor: c.docBg }}>
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: footerH }}>
       <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: horizontalPadding, paddingTop: isSmall ? 16 : 24, paddingBottom: 60 }}>
         {/* Header */}
         <View style={{ marginBottom: 24 }}>
@@ -242,8 +244,14 @@ export function DocPage({
           </>
         )}
       </View>
-      <Footer />
     </ScrollView>
+    <View
+      style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}
+      onLayout={(e) => setFooterH(e.nativeEvent.layout.height)}
+    >
+      <Footer />
+    </View>
+    </View>
   );
 }
 

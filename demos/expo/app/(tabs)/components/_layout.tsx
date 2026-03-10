@@ -79,6 +79,7 @@ export default function DocsLayout() {
                 headerShown: false,
                 headerStyle: { backgroundColor: c.cardBg },
                 headerTintColor: BRAND_COLOR,
+                contentStyle: { flex: 1 },
               }}
             >
               <Stack.Screen name="index" options={{ headerShown: false }} />

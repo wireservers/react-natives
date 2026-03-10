@@ -1,11 +1,19 @@
 import React from 'react';
-import { View, Text, Pressable, Image, useWindowDimensions, Linking } from 'react-native';
+import { View, Text, Pressable, Image, useWindowDimensions, Linking, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter, usePathname } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { useTheme } from '@/context/theme-context';
 import { useCustomTheme } from '@/context/custom-theme-context';
+
+/** Wrapper that renders an HTML div with a title attribute on web (for native tooltips) */
+function WithTooltip({ label, children }: { label: string; children: React.ReactNode }) {
+  if (Platform.OS === 'web') {
+    return React.createElement('div', { title: label }, children);
+  }
+  return <>{children}</>;
+}
 
 const NAV_LINKS = [
   { label: 'Home', path: '/' },
@@ -108,25 +116,32 @@ export function Header() {
         {/* Right side — theme toggle + GitHub icon + Get Started button */}
         <View style={{ marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: 16 }}>
           {/* Theme settings */}
-          <Pressable onPress={toggleSettings}>
-            <MaterialCommunityIcons name="palette-outline" size={22} color={textColor} />
-          </Pressable>
+          <WithTooltip label="Theme settings">
+            <Pressable onPress={toggleSettings} accessibilityLabel="Theme settings">
+              <MaterialCommunityIcons name="palette-outline" size={22} color={textColor} />
+            </Pressable>
+          </WithTooltip>
 
           {/* Light/Dark toggle */}
-          <Pressable onPress={toggleColorScheme}>
-            <MaterialCommunityIcons
-              name={isDark ? 'weather-sunny' : 'weather-night'}
-              size={22}
-              color={textColor}
-            />
-          </Pressable>
+          <WithTooltip label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>
+            <Pressable onPress={toggleColorScheme} accessibilityLabel={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>
+              <MaterialCommunityIcons
+                name={isDark ? 'weather-sunny' : 'weather-night'}
+                size={22}
+                color={textColor}
+              />
+            </Pressable>
+          </WithTooltip>
 
           {/* GitHub icon */}
-          <Pressable
-            onPress={() => Linking.openURL('https://github.com/wireservers/wireservers-ui')}
-          >
-            <MaterialCommunityIcons name="github" size={24} color={textColor} />
-          </Pressable>
+          <WithTooltip label="GitHub">
+            <Pressable
+              onPress={() => Linking.openURL('https://github.com/wireservers/wireservers-ui')}
+              accessibilityLabel="GitHub repository"
+            >
+              <MaterialCommunityIcons name="github" size={24} color={textColor} />
+            </Pressable>
+          </WithTooltip>
 
           {/* Get Started button */}
           <Pressable
