@@ -42,7 +42,7 @@ export default function TabLayout() {
           options={{ href: null }}
         />
         <Tabs.Screen
-          name="theming"
+          name="theming/index"
           options={{ href: null }}
         />
       </Tabs>
