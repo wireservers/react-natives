@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { config } from './config';
 import { View, ViewProps } from 'react-native';
 import { useColorScheme } from 'nativewind';
+import { useThemeVarsOverride } from '@/context/custom-theme-context';
 
 export type ModeType = 'light' | 'dark' | 'system';
 
@@ -14,6 +15,7 @@ export function ThemeProvider({
   style?: ViewProps['style'];
 }) {
   const { colorScheme, setColorScheme } = useColorScheme();
+  const customVars = useThemeVarsOverride();
 
   useEffect(() => {
     setColorScheme(mode);
@@ -24,6 +26,7 @@ export function ThemeProvider({
     <View
       style={[
         config[colorScheme!],
+        customVars,
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}

@@ -4,16 +4,18 @@ import { View } from 'react-native';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { Header } from '@/components/header';
+import { ThemeSettingsPanel } from '@/components/theme-settings-panel';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useTheme } from '@/context/theme-context';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useTheme();
 
   return (
     <View style={{ flex: 1 }}>
       <Header />
+      <View style={{ flex: 1, flexDirection: 'row' }}>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
@@ -44,6 +46,8 @@ export default function TabLayout() {
           options={{ href: null }}
         />
       </Tabs>
+      <ThemeSettingsPanel />
+      </View>
     </View>
   );
 }

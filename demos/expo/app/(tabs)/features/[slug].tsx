@@ -266,7 +266,7 @@ export default function FeaturePage() {
   const px = isMobile ? 20 : isWide ? 48 : 32;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ paddingBottom: 80 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
       {Platform.OS === 'web' && (
         <Head>
           <title>{feature.title} - React-Natives Features</title>

@@ -5,6 +5,9 @@ import { useRouter } from 'expo-router';
 import Head from 'expo-router/head';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
+import { useTheme } from '@/context/theme-context';
+import { usePageColors } from '@/context/custom-theme-context';
+import type { PageColorSet } from '@/constants/theme';
 
 function Container({ children, style, maxWidth = 1504 }: { children: React.ReactNode; style?: any; maxWidth?: number }) {
   return (
@@ -20,11 +23,13 @@ export default function HomeScreen() {
   const isMobile = width < 640;
   const isWide = width >= 1024;
   const isXWide = width >= 1920;
+  const { colorScheme } = useTheme();
+  const c = usePageColors();
 
   return (
     <ScrollView
       className="flex-1 bg-background-0"
-      contentContainerStyle={{ paddingBottom: 0 }}
+      contentContainerStyle={{ flexGrow: 1 }}
     >
       {Platform.OS === 'web' && (
         <Head>
@@ -135,12 +140,12 @@ export default function App() {
       </LinearGradient>
 
       {/* Why Choose Section */}
-      <View style={{ backgroundColor: '#fff' }}>
+      <View style={{ backgroundColor: c.pageBg }}>
       <Container style={{ paddingHorizontal: isWide ? 48 : 24, paddingTop: isXWide ? 80 : 48, paddingBottom: 12, alignItems: 'center' }}>
-        <Text style={{ fontSize: isXWide ? 48 : isWide ? 32 : 24, fontWeight: '800', color: '#111827', textAlign: 'center', marginBottom: 8 }}>
+        <Text style={{ fontSize: isXWide ? 48 : isWide ? 32 : 24, fontWeight: '800', color: c.heading, textAlign: 'center', marginBottom: 8 }}>
           Why Choose React-Natives?
         </Text>
-        <Text style={{ fontSize: isXWide ? 20 : 15, color: '#6B7280', textAlign: 'center' }}>
+        <Text style={{ fontSize: isXWide ? 20 : 15, color: c.text, textAlign: 'center' }}>
           Everything you need to build modern mobile applications
         </Text>
       </Container>
@@ -150,114 +155,90 @@ export default function App() {
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
           <FeatureCard
             icon="</>"
-            iconBg={BRAND_COLOR_LIGHT}
+            iconBg={colorScheme === 'dark' ? '#1a3a4a' : BRAND_COLOR_LIGHT}
             iconColor={BRAND_COLOR}
             title="TypeScript First"
             description="Fully typed components with excellent IDE support and autocomplete for better developer experience."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="typescript-first"
+            colors={c}
           />
           <FeatureCard
             icon="🎨"
-            iconBg={BRAND_COLOR_LIGHT}
+            iconBg={colorScheme === 'dark' ? '#1a3a4a' : BRAND_COLOR_LIGHT}
             iconColor={BRAND_COLOR_DARK}
             title="Customizable Theme"
             description="Easy to customize with a powerful theming system. Match your brand identity effortlessly."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="customizable-theme"
+            colors={c}
           />
           <FeatureCard
             icon="⚡"
-            iconBg="#ECFDF5"
+            iconBg={colorScheme === 'dark' ? '#1a2e1a' : '#ECFDF5'}
             iconColor="#059669"
             title="High Performance"
             description="Optimized for performance with lazy loading, virtualization, and minimal re-renders."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="high-performance"
+            colors={c}
           />
           <FeatureCard
             icon="🛡"
-            iconBg="#FFF7ED"
+            iconBg={colorScheme === 'dark' ? '#2e1f1a' : '#FFF7ED'}
             iconColor="#EA580C"
             title="Accessible"
             description="Built with accessibility in mind. WCAG compliant components that work for everyone."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="accessible"
+            colors={c}
           />
           <FeatureCard
             icon="🧩"
-            iconBg="#FDF2F8"
+            iconBg={colorScheme === 'dark' ? '#2e1a2e' : '#FDF2F8'}
             iconColor="#DB2777"
             title="70+ Components"
             description="Comprehensive library covering all your UI needs from buttons to complex data tables."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="seventy-plus-components"
+            colors={c}
           />
           <FeatureCard
             icon="📱"
-            iconBg="#F0F9FF"
+            iconBg={colorScheme === 'dark' ? '#1a2a3e' : '#F0F9FF'}
             iconColor="#0284C7"
             title="Cross Platform"
             description="Works seamlessly on iOS and Android with consistent look and feel across platforms."
             cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
             slug="cross-platform"
+            colors={c}
           />
         </View>
       </Container>
 
       {/* Thin separator line */}
       <Container>
-        <View style={{ height: 1, backgroundColor: '#E5E7EB', marginHorizontal: 20 }} />
+        <View style={{ height: 1, backgroundColor: c.separator, marginHorizontal: 20 }} />
       </Container>
 
       {/* Featured Components */}
       <Container style={{ paddingHorizontal: isWide ? 48 : 24, paddingTop: isXWide ? 80 : 48, paddingBottom: 12, alignItems: 'center' }}>
-        <Text style={{ fontSize: isXWide ? 48 : isWide ? 32 : 24, fontWeight: '800', color: '#111827', textAlign: 'center', marginBottom: 8 }}>
+        <Text style={{ fontSize: isXWide ? 48 : isWide ? 32 : 24, fontWeight: '800', color: c.heading, textAlign: 'center', marginBottom: 8 }}>
           Featured Components
         </Text>
-        <Text style={{ fontSize: isXWide ? 20 : 15, color: '#6B7280', textAlign: 'center' }}>
+        <Text style={{ fontSize: isXWide ? 20 : 15, color: c.text, textAlign: 'center' }}>
           Start with these essential components
         </Text>
       </Container>
 
       <Container style={{ paddingHorizontal: isWide ? 48 : 20, paddingTop: 20, paddingBottom: 16 }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
-          <FeaturedComponentCard
-            slug="date-picker"
-            title="Date Picker"
-            description="Full-featured date and time picker with calendar, month, and year selection"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
-          <FeaturedComponentCard
-            slug="modal"
-            title="Modal"
-            description="Accessible overlay dialog with backdrop, animations, and focus trapping"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
-          <FeaturedComponentCard
-            slug="select"
-            title="Select"
-            description="Dropdown select with searchable options, groups, and custom rendering"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
-          <FeaturedComponentCard
-            slug="table"
-            title="Table"
-            description="Data table with sorting, pagination, and flexible column configuration"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
-          <FeaturedComponentCard
-            slug="toast"
-            title="Toast"
-            description="Non-intrusive notification toasts with positioning and auto-dismiss"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
-          <FeaturedComponentCard
-            slug="skeleton"
-            title="Skeleton"
-            description="Loading placeholder that mimics content shape during data fetching"
-            cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'}
-          />
+          <FeaturedComponentCard slug="date-picker" title="Date Picker" description="Full-featured date and time picker with calendar, month, and year selection" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
+          <FeaturedComponentCard slug="modal" title="Modal" description="Accessible overlay dialog with backdrop, animations, and focus trapping" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
+          <FeaturedComponentCard slug="select" title="Select" description="Dropdown select with searchable options, groups, and custom rendering" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
+          <FeaturedComponentCard slug="table" title="Table" description="Data table with sorting, pagination, and flexible column configuration" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
+          <FeaturedComponentCard slug="toast" title="Toast" description="Non-intrusive notification toasts with positioning and auto-dismiss" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
+          <FeaturedComponentCard slug="skeleton" title="Skeleton" description="Loading placeholder that mimics content shape during data fetching" cardMinWidth={isMobile ? '100%' : isXWide ? '14%' : isWide ? '30%' : '45%'} colors={c} />
         </View>
       </Container>
 
@@ -274,7 +255,7 @@ export default function App() {
         </Pressable>
       </View>
 
-      </View>{/* end white section */}
+      </View>{/* end themed section */}
 
       {/* Code Showcase — Dark section */}
       <View style={{ backgroundColor: '#111827' }}>
@@ -399,6 +380,8 @@ export default function App() {
   );
 }
 
+type ThemeColors = PageColorSet;
+
 function FeatureCard({
   icon,
   iconBg,
@@ -407,6 +390,7 @@ function FeatureCard({
   description,
   cardMinWidth,
   slug,
+  colors: c,
 }: {
   icon: string;
   iconBg: string;
@@ -415,20 +399,21 @@ function FeatureCard({
   description: string;
   cardMinWidth: string;
   slug: string;
+  colors: ThemeColors;
 }) {
   const router = useRouter();
   return (
     <Pressable
       onPress={() => router.navigate(`/features/${slug}` as any)}
-      style={{ flex: 1, minWidth: cardMinWidth as any, borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 16, padding: 20, backgroundColor: '#fff' }}
+      style={{ flex: 1, minWidth: cardMinWidth as any, borderWidth: 1, borderColor: c.border, borderRadius: 16, padding: 20, backgroundColor: c.cardBg }}
     >
       <View
         style={{ backgroundColor: iconBg, width: 40, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}
       >
         <Text style={{ fontSize: 16, color: iconColor }}>{icon}</Text>
       </View>
-      <Text style={{ fontSize: 16, fontWeight: '700', color: '#111827', marginBottom: 6 }}>{title}</Text>
-      <Text style={{ fontSize: 14, color: '#6B7280', lineHeight: 20 }}>{description}</Text>
+      <Text style={{ fontSize: 16, fontWeight: '700', color: c.heading, marginBottom: 6 }}>{title}</Text>
+      <Text style={{ fontSize: 14, color: c.text, lineHeight: 20 }}>{description}</Text>
     </Pressable>
   );
 }
@@ -438,26 +423,28 @@ function FeaturedComponentCard({
   title,
   description,
   cardMinWidth,
+  colors: c,
 }: {
   slug: string;
   title: string;
   description: string;
   cardMinWidth: string;
+  colors: ThemeColors;
 }) {
   const router = useRouter();
 
   return (
     <Pressable
       onPress={() => router.navigate(`/components/docs/${slug}` as any)}
-      style={{ flex: 1, minWidth: cardMinWidth as any, borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 16, padding: 20, backgroundColor: '#fff' }}
+      style={{ flex: 1, minWidth: cardMinWidth as any, borderWidth: 1, borderColor: c.border, borderRadius: 16, padding: 20, backgroundColor: c.cardBg }}
     >
       <View
-        style={{ backgroundColor: '#F3F4F6', width: 40, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}
+        style={{ backgroundColor: c.iconSubtle, width: 40, height: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}
       >
         <Text style={{ fontSize: 18 }}>📦</Text>
       </View>
-      <Text style={{ fontSize: 16, fontWeight: '700', color: '#111827', marginBottom: 6 }}>{title}</Text>
-      <Text style={{ fontSize: 14, color: '#6B7280', lineHeight: 20, marginBottom: 12 }}>{description}</Text>
+      <Text style={{ fontSize: 16, fontWeight: '700', color: c.heading, marginBottom: 6 }}>{title}</Text>
+      <Text style={{ fontSize: 14, color: c.text, lineHeight: 20, marginBottom: 12 }}>{description}</Text>
       <Text style={{ color: BRAND_COLOR_DARK, fontSize: 14, fontWeight: '600' }}>
         View Component →
       </Text>

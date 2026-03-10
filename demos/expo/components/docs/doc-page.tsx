@@ -6,8 +6,10 @@ import { CodeBlock } from './code-block';
 import { PropsTable } from './props-table';
 import type { PropDefinition } from './props-table';
 import { ExampleCodeContext } from './example-code-context';
-import { BRAND_COLOR, BRAND_COLOR_LIGHT, BRAND_COLOR_DARK } from '@wireservers-ui/react-natives';
-import { DOC_BG } from '@/constants/theme';
+import { BRAND_COLOR_LIGHT, BRAND_COLOR_DARK } from '@wireservers-ui/react-natives';
+import { usePageColors, useThemeVarsOverride, useCustomTheme } from '@/context/custom-theme-context';
+import type { PageColorSet } from '@/constants/theme';
+import { useTheme } from '@/context/theme-context';
 import { config } from '../ui/theme-provider/config';
 
 interface SubComponentDoc {
@@ -39,16 +41,18 @@ interface DocPageProps {
 const BREAKPOINT_SM = 640;
 const BREAKPOINT_MD = 768;
 
-const categoryColors: Record<string, { bg: string; text: string }> = {
-  'Core Primitives': { bg: BRAND_COLOR_LIGHT, text: BRAND_COLOR },
-  Layout: { bg: BRAND_COLOR_LIGHT, text: BRAND_COLOR_DARK },
-  'Form Controls': { bg: '#ECFDF5', text: '#059669' },
-  'Feedback & Overlay': { bg: '#FFF7ED', text: '#EA580C' },
-  Navigation: { bg: '#F0F9FF', text: '#0284C7' },
-  'Data Display': { bg: '#FEF9C3', text: '#CA8A04' },
-  Disclosure: { bg: '#FCE7F3', text: '#DB2777' },
-  Utility: { bg: '#F1F5F9', text: '#475569' },
-};
+function getCategoryColors(primary: string): Record<string, { bg: string; text: string }> {
+  return {
+    'Core Primitives': { bg: BRAND_COLOR_LIGHT, text: primary },
+    Layout: { bg: BRAND_COLOR_LIGHT, text: BRAND_COLOR_DARK },
+    'Form Controls': { bg: '#ECFDF5', text: '#059669' },
+    'Feedback & Overlay': { bg: '#FFF7ED', text: '#EA580C' },
+    Navigation: { bg: '#F0F9FF', text: '#0284C7' },
+    'Data Display': { bg: '#FEF9C3', text: '#CA8A04' },
+    Disclosure: { bg: '#FCE7F3', text: '#DB2777' },
+    Utility: { bg: '#F1F5F9', text: '#475569' },
+  };
+}
 
 export function DocPage({
   name,
@@ -64,6 +68,8 @@ export function DocPage({
   relatedComponents,
   children,
 }: DocPageProps) {
+  const { theme } = useCustomTheme();
+  const categoryColors = getCategoryColors(theme.primary);
   const colors = categoryColors[category] ?? { bg: '#F5F5F5', text: '#666' };
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
@@ -73,9 +79,12 @@ export function DocPage({
   const isSmall = screenWidth < BREAKPOINT_SM;
   const isMedium = screenWidth < BREAKPOINT_MD;
   const horizontalPadding = isSmall ? 12 : isMedium ? 16 : 24;
+  const c = usePageColors();
+  const { colorScheme } = useTheme();
+  const customVars = useThemeVarsOverride();
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: DOC_BG }}>
+    <ScrollView style={{ flex: 1, backgroundColor: c.docBg }} contentContainerStyle={{ flexGrow: 1 }}>
       <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: horizontalPadding, paddingTop: isSmall ? 16 : 24, paddingBottom: 60 }}>
         {/* Header */}
         <View style={{ marginBottom: 24 }}>
@@ -84,29 +93,29 @@ export function DocPage({
               <Text style={{ fontSize: 12, fontWeight: '600', color: colors.text }}>{category}</Text>
             </View>
           </View>
-          <Text style={{ fontSize: isSmall ? 22 : 28, fontWeight: '800', color: '#111827', marginBottom: 6 }}>{name}</Text>
-          <Text style={{ fontSize: 15, color: '#6B7280', lineHeight: 22 }}>{description}</Text>
+          <Text style={{ fontSize: isSmall ? 22 : 28, fontWeight: '800', color: c.heading, marginBottom: 6 }}>{name}</Text>
+          <Text style={{ fontSize: 15, color: c.text, lineHeight: 22 }}>{description}</Text>
         </View>
 
         {/* Example */}
-        <SectionHeader title="Example" />
-        <View style={{ borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, overflow: 'hidden', marginBottom: 32 }}>
+        <SectionHeader title="Example" colors={c} />
+        <View style={{ borderWidth: 1, borderColor: c.border, borderRadius: 12, overflow: 'hidden', marginBottom: 32 }}>
           {/* Tab Bar */}
-          <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E5E7EB', backgroundColor: '#F9FAFB' }}>
+          <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: c.border, backgroundColor: c.docBg }}>
             <Pressable
               onPress={() => setActiveTab('preview')}
               style={{
                 paddingHorizontal: 20,
                 paddingVertical: 10,
                 borderBottomWidth: 2,
-                borderBottomColor: activeTab === 'preview' ? BRAND_COLOR : 'transparent',
+                borderBottomColor: activeTab === 'preview' ? theme.primary : 'transparent',
               }}
             >
               <Text
                 style={{
                   fontSize: 13,
                   fontWeight: activeTab === 'preview' ? '600' : '400',
-                  color: activeTab === 'preview' ? BRAND_COLOR : '#6B7280',
+                  color: activeTab === 'preview' ? theme.primary : c.text,
                 }}
               >
                 Preview
@@ -118,14 +127,14 @@ export function DocPage({
                 paddingHorizontal: 20,
                 paddingVertical: 10,
                 borderBottomWidth: 2,
-                borderBottomColor: activeTab === 'code' ? BRAND_COLOR : 'transparent',
+                borderBottomColor: activeTab === 'code' ? theme.primary : 'transparent',
               }}
             >
               <Text
                 style={{
                   fontSize: 13,
                   fontWeight: activeTab === 'code' ? '600' : '400',
-                  color: activeTab === 'code' ? BRAND_COLOR : '#6B7280',
+                  color: activeTab === 'code' ? theme.primary : c.text,
                 }}
               >
                 Code
@@ -135,7 +144,7 @@ export function DocPage({
 
           {/* Content */}
           {activeTab === 'preview' ? (
-            <View style={{ padding: isSmall ? 12 : isMedium ? 16 : 24, backgroundColor: '#fff', ...config.light }}>
+            <View style={[{ padding: isSmall ? 12 : isMedium ? 16 : 24, backgroundColor: c.cardBg }, config[colorScheme], customVars]}>
               <ExampleCodeContext.Provider value={{ setCode: setDynamicCode }}>
                 {children}
               </ExampleCodeContext.Provider>
@@ -146,7 +155,7 @@ export function DocPage({
         </View>
 
         {/* Props */}
-        <SectionHeader title="Props" />
+        <SectionHeader title="Props" colors={c} />
         <View style={{ marginBottom: 32 }}>
           <PropsTable title={`${name} Props`} props={props} />
           {subComponents?.map((sub) => (
@@ -157,15 +166,15 @@ export function DocPage({
         {/* Usage Guidelines */}
         {(whenToUse || bestPractices || accessibility) && (
           <>
-            <SectionHeader title="Usage Guidelines" />
-            <View style={{ backgroundColor: '#fff', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 12, padding: isSmall ? 16 : 24, marginBottom: 32 }}>
+            <SectionHeader title="Usage Guidelines" colors={c} />
+            <View style={{ backgroundColor: c.cardBg, borderWidth: 1, borderColor: c.border, borderRadius: 12, padding: isSmall ? 16 : 24, marginBottom: 32 }}>
               {/* When to use */}
               {whenToUse && (
                 <View style={{ marginBottom: bestPractices || accessibility ? 24 : 0 }}>
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 8 }}>
+                  <Text style={{ fontSize: 15, fontWeight: '600', color: c.heading, marginBottom: 8 }}>
                     When to use
                   </Text>
-                  <Text style={{ fontSize: 14, color: '#6B7280', lineHeight: 22 }}>
+                  <Text style={{ fontSize: 14, color: c.text, lineHeight: 22 }}>
                     {whenToUse}
                   </Text>
                 </View>
@@ -174,13 +183,13 @@ export function DocPage({
               {/* Best practices */}
               {bestPractices && bestPractices.length > 0 && (
                 <View style={{ marginBottom: accessibility ? 24 : 0 }}>
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 8 }}>
+                  <Text style={{ fontSize: 15, fontWeight: '600', color: c.heading, marginBottom: 8 }}>
                     Best practices
                   </Text>
                   {bestPractices.map((practice, index) => (
                     <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 6 }}>
-                      <Text style={{ fontSize: 14, color: BRAND_COLOR, marginRight: 10, marginTop: 1 }}>•</Text>
-                      <Text style={{ fontSize: 14, color: '#6B7280', lineHeight: 22, flex: 1 }}>
+                      <Text style={{ fontSize: 14, color: theme.primary, marginRight: 10, marginTop: 1 }}>•</Text>
+                      <Text style={{ fontSize: 14, color: c.text, lineHeight: 22, flex: 1 }}>
                         {practice}
                       </Text>
                     </View>
@@ -191,10 +200,10 @@ export function DocPage({
               {/* Accessibility */}
               {accessibility && (
                 <View>
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 8 }}>
+                  <Text style={{ fontSize: 15, fontWeight: '600', color: c.heading, marginBottom: 8 }}>
                     Accessibility
                   </Text>
-                  <Text style={{ fontSize: 14, color: '#6B7280', lineHeight: 22 }}>
+                  <Text style={{ fontSize: 14, color: c.text, lineHeight: 22 }}>
                     {accessibility}
                   </Text>
                 </View>
@@ -206,7 +215,7 @@ export function DocPage({
         {/* Related Components */}
         {relatedComponents && relatedComponents.length > 0 && (
           <>
-            <SectionHeader title="Related Components" />
+            <SectionHeader title="Related Components" colors={c} />
             <View style={{ flexDirection: isMedium ? 'column' : 'row', gap: 12 }}>
               {relatedComponents.map((comp) => (
                 <Pressable
@@ -214,17 +223,17 @@ export function DocPage({
                   onPress={() => router.push(`/components/docs/${comp.slug}` as any)}
                   style={{
                     flex: isMedium ? undefined : 1,
-                    backgroundColor: '#fff',
+                    backgroundColor: c.cardBg,
                     borderWidth: 1,
-                    borderColor: '#E5E7EB',
+                    borderColor: c.border,
                     borderRadius: 12,
                     padding: 16,
                   }}
                 >
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: BRAND_COLOR, marginBottom: 4 }}>
+                  <Text style={{ fontSize: 15, fontWeight: '600', color: theme.primary, marginBottom: 4 }}>
                     {comp.name}
                   </Text>
-                  <Text style={{ fontSize: 13, color: '#6B7280', lineHeight: 18 }} numberOfLines={2}>
+                  <Text style={{ fontSize: 13, color: c.text, lineHeight: 18 }} numberOfLines={2}>
                     {comp.description}
                   </Text>
                 </Pressable>
@@ -238,9 +247,9 @@ export function DocPage({
   );
 }
 
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({ title, colors: c }: { title: string; colors: PageColorSet }) {
   return (
-    <Text style={{ fontSize: 20, fontWeight: '700', color: '#111827', marginBottom: 16 }}>
+    <Text style={{ fontSize: 20, fontWeight: '700', color: c.heading, marginBottom: 16 }}>
       {title}
     </Text>
   );

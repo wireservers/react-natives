@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 
 interface VariantPickerProps {
   label: string;
@@ -15,6 +15,7 @@ export function VariantPicker({
   value,
   onChange,
 }: VariantPickerProps) {
+  const { theme } = useCustomTheme();
   return (
     <View style={{ gap: 6, marginBottom: 12 }}>
       <Text style={{ fontSize: 13, fontWeight: '700', color: '#6B7280', textTransform: 'capitalize' }}>
@@ -28,7 +29,7 @@ export function VariantPicker({
               key={option}
               onPress={() => onChange(option)}
               style={{
-                backgroundColor: isSelected ? BRAND_COLOR : '#fff',
+                backgroundColor: isSelected ? theme.primary : '#fff',
                 borderColor: isSelected ? 'transparent' : '#D1D5DB',
                 borderWidth: 1,
                 paddingHorizontal: 12,
@@ -64,6 +65,7 @@ export function BooleanPicker({
   value,
   onChange,
 }: BooleanPickerProps) {
+  const { theme } = useCustomTheme();
   return (
     <Pressable
       onPress={() => onChange(!value)}
@@ -71,8 +73,8 @@ export function BooleanPicker({
     >
       <View
         style={{
-          backgroundColor: value ? BRAND_COLOR : '#fff',
-          borderColor: value ? BRAND_COLOR : '#D1D5DB',
+          backgroundColor: value ? theme.primary : '#fff',
+          borderColor: value ? theme.primary : '#D1D5DB',
           borderWidth: 1,
           width: 20,
           height: 20,

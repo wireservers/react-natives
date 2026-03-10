@@ -70,7 +70,7 @@ export function Footer() {
   const isWide = width >= 640;
 
   return (
-    <View style={{ backgroundColor: '#1F2937' }}>
+    <View style={{ backgroundColor: '#1F2937', marginTop: 'auto' }}>
       <View style={{ width: '100%', maxWidth: 1680, alignSelf: 'center', paddingHorizontal: isWide ? 48 : 24, paddingTop: 40, paddingBottom: 20 }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
           <View style={{ flex: 1, minWidth: 160 }}>
