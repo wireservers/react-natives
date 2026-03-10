@@ -20,7 +20,7 @@ function FooterLink({ label, url, route }: { label: string; url?: string; route?
       };
 
   return (
-    <View style={{ position: 'relative', marginBottom: 8 }}>
+    <View style={{ position: 'relative', marginBottom: 4 }}>
       {tipVisible && (
         <View
           style={{
@@ -71,26 +71,26 @@ export function Footer() {
 
   return (
     <View style={{ backgroundColor: '#1F2937', marginTop: 'auto' }}>
-      <View style={{ width: '100%', maxWidth: 1680, alignSelf: 'center', paddingHorizontal: isWide ? 48 : 24, paddingTop: 40, paddingBottom: 20 }}>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
+      <View style={{ width: '100%', maxWidth: 1680, alignSelf: 'center', paddingHorizontal: isWide ? 48 : 24, paddingTop: 20, paddingBottom: 12 }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: isWide ? 24 : 16, marginBottom: 16 }}>
           <View style={{ flex: 1, minWidth: 160 }}>
-            <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700', marginBottom: 10 }}>
+            <Text style={{ color: '#fff', fontSize: 15, fontWeight: '700', marginBottom: 4 }}>
               React-Natives
             </Text>
-            <Text style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, lineHeight: 20 }}>
+            <Text style={{ color: 'rgba(255,255,255,0.45)', fontSize: 13, lineHeight: 18 }}>
               A comprehensive React Native component library.
             </Text>
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
-            <Text style={{ color: '#fff', fontSize: 14, fontWeight: '700', marginBottom: 12 }}>
+            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700', marginBottom: 6 }}>
               Documentation
             </Text>
-            <FooterLink label="Getting Started" route="/components" />
+            <FooterLink label="Getting Started" route="/components/getting-started" />
             <FooterLink label="Components" route="/components" />
             <FooterLink label="Theming" route="/theming" />
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
-            <Text style={{ color: '#fff', fontSize: 14, fontWeight: '700', marginBottom: 12 }}>
+            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700', marginBottom: 6 }}>
               Community
             </Text>
             <FooterLink label="GitHub" url="https://github.com/wireservers/wireservers-ui" />
@@ -99,17 +99,17 @@ export function Footer() {
             <FooterLink label="Blog" />
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
-            <Text style={{ color: '#fff', fontSize: 14, fontWeight: '700', marginBottom: 12 }}>
+            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700', marginBottom: 6 }}>
               Support
             </Text>
             <FooterLink label="FAQ" />
             <FooterLink label="Contact" />
-            <FooterLink label="Contributing" url="https://github.com/wireservers/wireservers-ui/blob/main/CONTRIBUTING.md" />
-            <FooterLink label="License" url="https://github.com/wireservers/wireservers-ui/blob/main/LICENSE" />
+            <FooterLink label="Contributing" url="https://github.com/wireservers/wireservers-ui/blob/sot/CONTRIBUTING.md" />
+            <FooterLink label="License" url="https://github.com/wireservers/wireservers-ui/blob/sot/LICENSE" />
           </View>
         </View>
-        <View style={{ borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 20, alignItems: 'center' }}>
-          <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>
+        <View style={{ borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.1)', paddingTop: 12, alignItems: 'center' }}>
+          <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>
             © 2026 React-Natives. Wired by WireServers-UI.
           </Text>
         </View>

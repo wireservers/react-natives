@@ -5,7 +5,7 @@ A production-ready Expo + React Native boilerplate for building cross-platform a
 This template combines:
 
 - **Expo Router** for file-based navigation
-- **React Native Paper** and **React-Natives** for component ecosystems
+- **React-Natives** for design-token driven components
 - **NativeWind + Tailwind CSS tokens** for utility-first styling and theming
 - **TypeScript** for safer app development
 
@@ -24,7 +24,6 @@ This template combines:
 - `expo-router`
 - `nativewind` + `tailwindcss`
 - `@wireservers-ui/react-natives`
-- `react-native-paper`
 - `typescript`
 
 ## Project structure
@@ -113,7 +112,6 @@ app.json                   # Expo app configuration
 ### UI libraries
 
 - **React-Natives** handles design-token driven primitives.
-- **React Native Paper** is enabled globally for additional component usage.
 - **NativeWind** enables utility class styling in React Native and Web.
 
 ## Customization guide

@@ -83,6 +83,7 @@ export default function DocsLayout() {
               }}
             >
               <Stack.Screen name="index" options={{ headerShown: false }} />
+              <Stack.Screen name="getting-started" options={{ headerShown: false }} />
               <Stack.Screen name="[slug]" options={{ title: '' }} />
             </Stack>
           </View>
