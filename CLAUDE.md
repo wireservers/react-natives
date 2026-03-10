@@ -44,7 +44,7 @@ No test framework is currently configured.
 ### Styling System
 
 - **NativeWind v4** + **Tailwind CSS 3** for utility classes
-- **Tailwind Variants (`tva`)** from `@gluestack-ui/utils/nativewind-utils` for component variant styling
+- **Tailwind Variants (`tv`)** from `tailwind-variants` for component variant styling
 - CSS variables for theming: light/dark color palettes defined in `demos/expo/components/ui/theme-provider/config.ts` as RGB values
 - The library provides a Tailwind preset (`packages/react-natives/tailwind-preset.js`) extending `nativewind/preset` with semantic color tokens (primary, secondary, tertiary, error, success, warning, info, etc.) in shades 0–950
 - `ThemeProvider` applies CSS variables as inline styles on a root `View`; supports custom theme overrides via `CustomThemeContext`

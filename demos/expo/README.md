@@ -5,7 +5,7 @@ A production-ready Expo + React Native boilerplate for building cross-platform a
 This template combines:
 
 - **Expo Router** for file-based navigation
-- **React Native Paper** and **Gluestack UI** for component ecosystems
+- **React Native Paper** and **React-Natives** for component ecosystems
 - **NativeWind + Tailwind CSS tokens** for utility-first styling and theming
 - **TypeScript** for safer app development
 
@@ -14,7 +14,7 @@ This template combines:
 - Universal app setup with Expo SDK 54 and React 19
 - File-based routing with tab navigation and modal support
 - Light/Dark mode wiring across navigation + UI providers
-- Shared theme primitives in `global.css`, `tailwind.config.js`, and Gluestack config
+- Shared theme primitives in `global.css`, `tailwind.config.js`, and theme provider config
 - Reusable starter components and hooks for common UI patterns
 - Linting support with Expo ESLint config
 
@@ -23,7 +23,7 @@ This template combines:
 - `expo` / `react-native`
 - `expo-router`
 - `nativewind` + `tailwindcss`
-- `@gluestack-ui/core`
+- `@wireservers-ui/react-natives`
 - `react-native-paper`
 - `typescript`
 
@@ -106,13 +106,13 @@ app.json                   # Expo app configuration
 ### Theming
 
 - Color scheme is read via `hooks/use-color-scheme.ts`.
-- `GluestackUIProvider` receives `light` / `dark` mode at the root.
+- `ThemeProvider` receives `light` / `dark` mode at the root.
 - Tailwind token mapping is defined in `tailwind.config.js`.
-- CSS variable token values are defined in `components/ui/gluestack-ui-provider/config.ts`.
+- CSS variable token values are defined in `components/ui/theme-provider/config.ts`.
 
 ### UI libraries
 
-- **Gluestack UI** handles design-token driven primitives.
+- **React-Natives** handles design-token driven primitives.
 - **React Native Paper** is enabled globally for additional component usage.
 - **NativeWind** enables utility class styling in React Native and Web.
 
@@ -131,7 +131,7 @@ Update `app.json` for:
 
 Update:
 
-- `components/ui/gluestack-ui-provider/config.ts` for token values
+- `components/ui/theme-provider/config.ts` for token values
 - `tailwind.config.js` for token-to-class mapping
 - `constants/theme.ts` for app-level color constants
 
@@ -166,7 +166,7 @@ npm run lint
 - [Expo Router docs](https://docs.expo.dev/router/introduction/)
 - [React Native docs](https://reactnative.dev/)
 - [NativeWind docs](https://www.nativewind.dev/)
-- [Gluestack UI docs](https://gluestack.io/ui/docs/home/overview/introduction)
+- [React-Natives docs](https://reactnatives.com)
 
 ---
 
