@@ -18,6 +18,7 @@ export default function CatalogScreen() {
   const router = useRouter();
   const c = usePageColors();
   const { theme } = useCustomTheme();
+  const [footerH, setFooterH] = useState(180);
 
   const filtered = useMemo(() => {
     let items = componentRegistry;
@@ -39,7 +40,8 @@ export default function CatalogScreen() {
   }, [search, selectedCategory]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: c.docBg }} contentContainerStyle={{ flexGrow: 1 }}>
+    <View style={{ flex: 1, backgroundColor: c.docBg }}>
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: footerH }}>
       {Platform.OS === 'web' && (
         <Head>
           <title>Components | React-Natives UI Library</title>
@@ -155,8 +157,14 @@ export default function CatalogScreen() {
           ))}
         </View>
       </View>
-      <Footer />
     </ScrollView>
+    <View
+      style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}
+      onLayout={(e) => setFooterH(e.nativeEvent.layout.height)}
+    >
+      <Footer />
+    </View>
+    </View>
   );
 }
 

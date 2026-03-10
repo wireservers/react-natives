@@ -49,12 +49,12 @@ export interface PageColorSet {
 export const PageColors: Record<'light' | 'dark', PageColorSet> = {
   light: {
     pageBg: '#fff',
-    docBg: '#F9FAFB',
+    docBg: '#EAECF0',
     cardBg: '#fff',
     heading: '#111827',
     text: '#6B7280',
     textSecondary: '#4B5563',
-    border: '#E5E7EB',
+    border: '#D1D5DB',
     inputBg: '#fff',
     separator: '#E5E7EB',
     iconSubtle: '#F3F4F6',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useCustomTheme } from '@/context/custom-theme-context';
+import { useCustomTheme, usePageColors } from '@/context/custom-theme-context';
 
 interface VariantPickerProps {
   label: string;
@@ -16,9 +16,10 @@ export function VariantPicker({
   onChange,
 }: VariantPickerProps) {
   const { theme } = useCustomTheme();
+  const c = usePageColors();
   return (
     <View style={{ gap: 6, marginBottom: 12 }}>
-      <Text style={{ fontSize: 13, fontWeight: '700', color: '#6B7280', textTransform: 'capitalize' }}>
+      <Text style={{ fontSize: 13, fontWeight: '700', color: c.text, textTransform: 'capitalize' }}>
         {label}
       </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
@@ -29,8 +30,8 @@ export function VariantPicker({
               key={option}
               onPress={() => onChange(option)}
               style={{
-                backgroundColor: isSelected ? theme.primary : '#fff',
-                borderColor: isSelected ? 'transparent' : '#D1D5DB',
+                backgroundColor: isSelected ? theme.primary : c.cardBg,
+                borderColor: isSelected ? 'transparent' : c.border,
                 borderWidth: 1,
                 paddingHorizontal: 12,
                 paddingVertical: 6,
@@ -39,7 +40,7 @@ export function VariantPicker({
             >
               <Text
                 style={{
-                  color: isSelected ? '#fff' : '#6B7280',
+                  color: isSelected ? '#fff' : c.text,
                   fontWeight: isSelected ? '600' : '400',
                   fontSize: 13,
                 }}
@@ -66,6 +67,7 @@ export function BooleanPicker({
   onChange,
 }: BooleanPickerProps) {
   const { theme } = useCustomTheme();
+  const c = usePageColors();
   return (
     <Pressable
       onPress={() => onChange(!value)}
@@ -73,8 +75,8 @@ export function BooleanPicker({
     >
       <View
         style={{
-          backgroundColor: value ? theme.primary : '#fff',
-          borderColor: value ? theme.primary : '#D1D5DB',
+          backgroundColor: value ? theme.primary : c.cardBg,
+          borderColor: value ? theme.primary : c.border,
           borderWidth: 1,
           width: 20,
           height: 20,
@@ -85,7 +87,7 @@ export function BooleanPicker({
       >
         {value && <Text style={{ color: '#fff', fontSize: 12 }}>✓</Text>}
       </View>
-      <Text style={{ fontSize: 14, color: '#374151' }}>{label}</Text>
+      <Text style={{ fontSize: 14, color: c.textSecondary }}>{label}</Text>
     </Pressable>
   );
 }

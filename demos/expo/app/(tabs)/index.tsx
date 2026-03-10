@@ -29,7 +29,7 @@ export default function HomeScreen() {
   return (
     <ScrollView
       className="flex-1 bg-background-0"
-      contentContainerStyle={{ flexGrow: 1 }}
+      contentContainerStyle={{ paddingBottom: 0 }}
     >
       {Platform.OS === 'web' && (
         <Head>
