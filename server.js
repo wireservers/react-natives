@@ -61,9 +61,21 @@ http
     const ext = path.extname(filePath);
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
+    // Cache hashed assets for 1 year; HTML gets no-cache so deploys are instant
+    const isHashed = /\.[a-f0-9]{8,}\.\w+$/.test(filePath);
+    const cacheControl =
+      ext === '.html' || filePath.endsWith('index.html')
+        ? 'public, max-age=0, must-revalidate'
+        : isHashed
+          ? 'public, max-age=31536000, immutable'
+          : 'public, max-age=86400';
+
     const stream = fs.createReadStream(filePath);
     stream.on('open', () => {
-      res.writeHead(200, { 'Content-Type': contentType });
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Cache-Control': cacheControl,
+      });
       stream.pipe(res);
     });
     stream.on('error', () => {
