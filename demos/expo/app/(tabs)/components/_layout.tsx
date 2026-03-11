@@ -4,7 +4,7 @@ import { View, Pressable, Text, Platform, useWindowDimensions } from 'react-nati
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Sidebar } from '@/components/docs/sidebar';
 import { BRAND_COLOR } from '@wireservers-ui/react-natives';
-import { DOC_BG } from '@/constants/theme';
+import { usePageColors } from '@/context/custom-theme-context';
 
 const WIDE_BREAKPOINT = 768;
 const HEADER_HEIGHT = 75; // 72px header + 3px gradient bar
@@ -13,6 +13,7 @@ export default function DocsLayout() {
   const { width, height: windowHeight } = useWindowDimensions();
   const isWide = width >= WIDE_BREAKPOINT;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const c = usePageColors();
 
   // Close drawer when resizing to wide
   useEffect(() => {
@@ -20,23 +21,17 @@ export default function DocsLayout() {
   }, [isWide]);
 
   const hamburgerHeight = isWide ? 0 : 44;
-  // On web, explicitly constrain the stack height to prevent ScrollView from
-  // expanding to content size (which breaks scrolling). This bypasses any
-  // intermediate flex containers that don't properly constrain height.
   const stackHeight =
     Platform.OS === 'web' && windowHeight > 0
       ? windowHeight - HEADER_HEIGHT - hamburgerHeight
       : undefined;
 
   return (
-    <View style={{ flex: 1, backgroundColor: DOC_BG }}>
+    <View style={{ flex: 1, backgroundColor: c.docBg }}>
       <View style={{ flex: 1, width: '100%', maxWidth: 1504, alignSelf: 'center', flexDirection: 'row' }}>
-        {/* Sidebar — always visible on wide screens */}
         {isWide && <Sidebar />}
 
-        {/* Main content */}
         <View style={{ flex: 1 }}>
-          {/* Hamburger bar — narrow screens only */}
           {!isWide && (
             <View
               style={{
@@ -45,8 +40,8 @@ export default function DocsLayout() {
                 alignItems: 'center',
                 paddingHorizontal: 16,
                 borderBottomWidth: 1,
-                borderBottomColor: '#E5E7EB',
-                backgroundColor: '#fff',
+                borderBottomColor: c.border,
+                backgroundColor: c.cardBg,
               }}
             >
               <Pressable
@@ -56,14 +51,14 @@ export default function DocsLayout() {
                 <MaterialCommunityIcons
                   name={sidebarOpen ? 'close' : 'menu'}
                   size={22}
-                  color="#374151"
+                  color={c.textSecondary}
                 />
               </Pressable>
               <Text
                 style={{
                   fontSize: 14,
                   fontWeight: '600',
-                  color: '#374151',
+                  color: c.textSecondary,
                   marginLeft: 12,
                 }}
               >
@@ -82,18 +77,20 @@ export default function DocsLayout() {
             <Stack
               screenOptions={{
                 headerShown: false,
-                headerStyle: { backgroundColor: '#fff' },
+                headerStyle: { backgroundColor: c.cardBg },
                 headerTintColor: BRAND_COLOR,
+                contentStyle: { flex: 1 },
               }}
             >
               <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="[slug]" options={{ title: '' }} />
+              <Stack.Screen name="getting-started" options={{ headerShown: false }} />
+              <Stack.Screen name="docs/[slug]" options={{ title: '' }} />
+              <Stack.Screen name="docs/index" options={{ headerShown: false }} />
             </Stack>
           </View>
         </View>
       </View>
 
-      {/* Overlay sidebar drawer — narrow screens only */}
       {!isWide && sidebarOpen && (
         <View
           style={{

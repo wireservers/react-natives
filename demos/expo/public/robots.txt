@@ -3,4 +3,4 @@ Allow: /
 Disallow: /_sitemap
 Disallow: /+not-found
 
-Sitemap: https://reactnatives.dev/sitemap.xml
+Sitemap: https://www.reactnatives.dev/sitemap.xml

@@ -1,13 +1,13 @@
 import { tv } from 'tailwind-variants';
 
 export const cardStyle = tv({
-  base: 'rounded-xl overflow-hidden',
+  base: 'rounded-xl',
   variants: {
     variant: {
-      elevated: 'bg-background-0 shadow-hard-2',
+      elevated: 'bg-background-0 shadow-hard-2 overflow-hidden',
       outline: 'bg-background-0 border border-outline-200',
-      ghost: 'bg-transparent',
-      filled: 'bg-background-50',
+      ghost: 'border border-outline-200',
+      filled: 'bg-background-50 border border-outline-200',
     },
     size: {
       sm: 'p-3',

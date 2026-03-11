@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme, usePageColors } from '@/context/custom-theme-context';
 
 export interface PropDefinition {
   name: string;
@@ -16,12 +16,14 @@ interface PropsTableProps {
 }
 
 export function PropsTable({ title, props }: PropsTableProps) {
+  const { theme } = useCustomTheme();
+  const c = usePageColors();
   if (props.length === 0) return null;
 
   return (
     <View style={{ marginBottom: 24 }}>
       {title && (
-        <Text style={{ fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 12 }}>
+        <Text style={{ fontSize: 15, fontWeight: '600', color: c.heading, marginBottom: 12 }}>
           {title}
         </Text>
       )}
@@ -31,25 +33,25 @@ export function PropsTable({ title, props }: PropsTableProps) {
           <View
             style={{
               flexDirection: 'row',
-              backgroundColor: '#F9FAFB',
+              backgroundColor: c.iconSubtle,
               borderTopLeftRadius: 12,
               borderTopRightRadius: 12,
               borderWidth: 1,
-              borderColor: '#E5E7EB',
+              borderColor: c.border,
               paddingVertical: 10,
               paddingHorizontal: 16,
             }}
           >
-            <Text style={{ width: 140, fontSize: 11, fontWeight: '600', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <Text style={{ width: 140, fontSize: 11, fontWeight: '600', color: c.iconText, textTransform: 'uppercase', letterSpacing: 0.5 }}>
               Prop
             </Text>
-            <Text style={{ width: 180, fontSize: 11, fontWeight: '600', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <Text style={{ width: 180, fontSize: 11, fontWeight: '600', color: c.iconText, textTransform: 'uppercase', letterSpacing: 0.5 }}>
               Type
             </Text>
-            <Text style={{ width: 100, fontSize: 11, fontWeight: '600', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <Text style={{ width: 100, fontSize: 11, fontWeight: '600', color: c.iconText, textTransform: 'uppercase', letterSpacing: 0.5 }}>
               Default
             </Text>
-            <Text style={{ flex: 1, minWidth: 200, fontSize: 11, fontWeight: '600', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <Text style={{ flex: 1, minWidth: 200, fontSize: 11, fontWeight: '600', color: c.iconText, textTransform: 'uppercase', letterSpacing: 0.5 }}>
               Description
             </Text>
           </View>
@@ -65,8 +67,8 @@ export function PropsTable({ title, props }: PropsTableProps) {
                 paddingHorizontal: 16,
                 borderWidth: 1,
                 borderTopWidth: 0,
-                borderColor: '#E5E7EB',
-                backgroundColor: index % 2 === 0 ? '#fff' : '#FAFAFA',
+                borderColor: c.border,
+                backgroundColor: index % 2 === 0 ? c.cardBg : c.iconSubtle,
                 ...(index === props.length - 1
                   ? { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }
                   : {}),
@@ -74,7 +76,7 @@ export function PropsTable({ title, props }: PropsTableProps) {
             >
               {/* Prop name */}
               <View style={{ width: 140 }}>
-                <Text style={{ fontSize: 13, fontWeight: '600', color: BRAND_COLOR, fontFamily: 'monospace' }}>
+                <Text style={{ fontSize: 13, fontWeight: '600', color: theme.primary, fontFamily: 'monospace' }}>
                   {prop.name}
                   {prop.required && (
                     <Text style={{ color: '#EF4444' }}> *</Text>
@@ -88,8 +90,8 @@ export function PropsTable({ title, props }: PropsTableProps) {
                   style={{
                     fontSize: 12,
                     fontFamily: 'monospace',
-                    color: '#6B7280',
-                    backgroundColor: '#F3F4F6',
+                    color: c.text,
+                    backgroundColor: c.iconSubtle,
                     paddingHorizontal: 6,
                     paddingVertical: 2,
                     borderRadius: 4,
@@ -104,14 +106,14 @@ export function PropsTable({ title, props }: PropsTableProps) {
 
               {/* Default */}
               <View style={{ width: 100 }}>
-                <Text style={{ fontSize: 13, color: '#6B7280', fontFamily: 'monospace' }}>
+                <Text style={{ fontSize: 13, color: c.text, fontFamily: 'monospace' }}>
                   {prop.default ?? '—'}
                 </Text>
               </View>
 
               {/* Description */}
               <View style={{ flex: 1, minWidth: 200 }}>
-                <Text style={{ fontSize: 13, color: '#6B7280', lineHeight: 18 }}>
+                <Text style={{ fontSize: 13, color: c.text, lineHeight: 18 }}>
                   {prop.description}
                 </Text>
               </View>
