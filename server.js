@@ -62,7 +62,7 @@ http
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
     // Cache hashed assets for 1 year; HTML gets no-cache so deploys are instant
-    const isHashed = /\.[a-f0-9]{8,}\.\w+$/.test(filePath);
+    const isHashed = /[-\.][a-f0-9]{8,}\.\w+$/.test(filePath);
     const cacheControl =
       ext === '.html' || filePath.endsWith('index.html')
         ? 'public, max-age=0, must-revalidate'
