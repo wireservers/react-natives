@@ -16,7 +16,7 @@ const OUTPUT = path.join(DIST_DIR, 'sitemap.xml');
 // Parse --base-url flag (default to empty for relative URLs)
 const args = process.argv.slice(2);
 const baseUrlIndex = args.indexOf('--base-url');
-const BASE_URL = baseUrlIndex !== -1 ? args[baseUrlIndex + 1] || '' : 'https://reactnatives.dev';
+const BASE_URL = baseUrlIndex !== -1 ? args[baseUrlIndex + 1] || '' : 'https://www.reactnatives.dev';
 
 // Directories/files to exclude from sitemap
 const EXCLUDE = new Set(['_sitemap.html', '+not-found.html']);

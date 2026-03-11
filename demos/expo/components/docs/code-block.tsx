@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+
 
 interface CodeBlockProps {
   code: string;

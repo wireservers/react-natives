@@ -12,25 +12,23 @@ const SECTIONS = [
     tagColor: '#6366F1',
     title: 'One Config File, Every Component',
     body: `React-Natives uses CSS custom properties for every color token. Change your brand color in a single config file and it propagates automatically across all 70+ components — in both light and dark mode, with no component-level overrides needed.`,
-    code: `// gluestack-ui-provider/config.ts
+    code: `// theme-provider/config.ts
 export const config = {
-  tokens: {
-    colors: {
-      // Change these two lines to re-theme your entire app
-      primary500: '#6366F1',
-      primary600: '#4F46E5',
+  light: vars({
+    // Change these to re-theme your entire app
+    '--color-primary-500': '99 102 241',
+    '--color-primary-600': '79 70 229',
 
-      // Semantic surface tokens — light mode
-      background0:   '#FFFFFF',
-      background50:  '#F9FAFB',
-      background100: '#F3F4F6',
+    // Semantic surface tokens — light mode
+    '--color-background-0':   '255 255 255',
+    '--color-background-50':  '249 250 251',
+    '--color-background-100': '243 244 246',
 
-      // Typography
-      typography900: '#111827',
-      typography700: '#374151',
-      typography500: '#6B7280',
-    },
-  },
+    // Typography
+    '--color-typography-900': '17 24 39',
+    '--color-typography-700': '55 65 81',
+    '--color-typography-500': '107 114 128',
+  }),
 };`,
   },
   {
@@ -106,7 +104,7 @@ export default function ThemingScreen() {
   const px = isMobile ? 20 : isWide ? 48 : 32;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ paddingBottom: 0 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
       {Platform.OS === 'web' && (
         <Head>
           <title>Theming | React-Natives - Customizable Design System</title>

@@ -28,6 +28,52 @@ export const Colors = {
 };
 
 export const DOC_BG = '#F9FAFB';
+export const DOC_BG_DARK = '#121212';
+
+/** Shape of a page color set */
+export interface PageColorSet {
+  pageBg: string;
+  docBg: string;
+  cardBg: string;
+  heading: string;
+  text: string;
+  textSecondary: string;
+  border: string;
+  inputBg: string;
+  separator: string;
+  iconSubtle: string;
+  iconText: string;
+}
+
+/** Semantic page colors keyed by color scheme */
+export const PageColors: Record<'light' | 'dark', PageColorSet> = {
+  light: {
+    pageBg: '#fff',
+    docBg: '#EAECF0',
+    cardBg: '#fff',
+    heading: '#111827',
+    text: '#6B7280',
+    textSecondary: '#4B5563',
+    border: '#D1D5DB',
+    inputBg: '#fff',
+    separator: '#E5E7EB',
+    iconSubtle: '#F3F4F6',
+    iconText: '#6B7280',
+  },
+  dark: {
+    pageBg: '#121212',
+    docBg: '#121212',
+    cardBg: '#1E1E1E',
+    heading: '#F3F4F6',
+    text: '#9CA3AF',
+    textSecondary: '#D1D5DB',
+    border: '#333',
+    inputBg: '#1E1E1E',
+    separator: '#333',
+    iconSubtle: '#2A2A2A',
+    iconText: '#9CA3AF',
+  },
+};
 
 export const Fonts = Platform.select({
   ios: {

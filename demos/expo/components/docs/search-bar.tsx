@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, Text, Pressable, ScrollView } from 'react-native';
-import { BRAND_COLOR } from '@wireservers-ui/react-natives';
+import { useCustomTheme } from '@/context/custom-theme-context';
 
 interface SearchBarProps {
   value: string;
@@ -17,6 +17,7 @@ export function SearchBar({
   selectedCategory,
   onCategoryChange,
 }: SearchBarProps) {
+  const { theme } = useCustomTheme();
   return (
     <View className="gap-3">
       <View className="border border-outline-200 rounded-xl bg-background-50 flex-row items-center px-4">
@@ -46,7 +47,7 @@ export function SearchBar({
             <Pressable
               key={cat}
               onPress={() => onCategoryChange(cat)}
-              style={isSelected ? { backgroundColor: BRAND_COLOR } : undefined}
+              style={isSelected ? { backgroundColor: theme.primary } : undefined}
               className={`px-4 py-2 rounded-full border ${
                 isSelected
                   ? 'border-transparent'
