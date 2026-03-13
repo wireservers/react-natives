@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions, Platform } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import Head from 'expo-router/head';
-import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
+import { SeoHead } from '@/components/seo/seo-head';
+import { SITE_URL } from '@/lib/seo';
 
 interface FeatureContent {
   icon: string;
@@ -238,6 +239,10 @@ export function SaveButton({ onPress }: { onPress: () => void }) {
   },
 };
 
+export function generateStaticParams(): { slug: string }[] {
+  return Object.keys(FEATURES).map((featureSlug) => ({ slug: featureSlug }));
+}
+
 export default function FeaturePage() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const router = useRouter();
@@ -262,17 +267,53 @@ export default function FeaturePage() {
   const wideMaxWidth = 1680;
   const bodyMaxWidth = 1504;
   const px = isMobile ? 20 : isWide ? 48 : 32;
+  const pagePath = `/features/${slug}`;
+  const pageDescription = `${feature.tagline.replace(/\n/g, ' ')} ${feature.solutionTitle}.`;
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
-      {Platform.OS === 'web' && (
-        <Head>
-          <title>{feature.title} - React-Natives Features</title>
-          <meta name="description" content={feature.tagline.replace(/\n/g, ' ')} />
-          <meta property="og:title" content={`${feature.title} | React-Natives`} />
-          <meta property="og:description" content={feature.tagline.replace(/\n/g, ' ')} />
-        </Head>
-      )}
+      <SeoHead
+        title={`${feature.title} - React-Natives Features`}
+        description={pageDescription}
+        path={pagePath}
+        type="article"
+        keywords={`${feature.title}, react native ui library features, react natives`}
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            '@id': `${SITE_URL}${pagePath}#article`,
+            headline: `${feature.title} Feature`,
+            description: pageDescription,
+            url: `${SITE_URL}${pagePath}`,
+            author: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            publisher: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            mainEntityOfPage: `${SITE_URL}${pagePath}`,
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: SITE_URL,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: feature.title,
+                item: `${SITE_URL}${pagePath}`,
+              },
+            ],
+          },
+        ]}
+      />
       {/* Hero gradient */}
       <LinearGradient
         colors={feature.gradientColors}
