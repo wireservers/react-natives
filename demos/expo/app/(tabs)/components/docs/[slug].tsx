@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
-import Head from 'expo-router/head';
 import { DocPage } from '@/components/docs/doc-page';
+import { SeoHead } from '@/components/seo/seo-head';
 import { getComponentBySlug, componentRegistry } from '@/lib/component-registry';
+import { SITE_URL } from '@/lib/seo';
 
 // Example component map — lazy require for each component
 const exampleMap: Record<string, React.ComponentType> = {
@@ -113,7 +114,7 @@ export default function ComponentDetailScreen() {
     return (
       <View style={{ flex: 1, backgroundColor: '#F9FAFB', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
         <Text style={{ fontSize: 18, color: '#6B7280' }}>
-          Component "{slug}" not found.
+          {`Component "${slug}" not found.`}
         </Text>
       </View>
     );
@@ -126,17 +127,60 @@ export default function ComponentDetailScreen() {
       return rel ? { slug: rel.slug, name: rel.name, description: rel.description } : null;
     })
     .filter(Boolean) as { slug: string; name: string; description: string }[];
+  const pagePath = `/components/docs/${meta.slug}`;
+  const pageDescription = `${meta.description} Learn how to use the ${meta.name} component with examples, props API, and best practices.`;
 
   return (
     <>
-      {Platform.OS === 'web' && (
-        <Head>
-          <title>{meta.name} - React-Natives Component Documentation</title>
-          <meta name="description" content={`${meta.description} Learn how to use the ${meta.name} component with examples, props API, and best practices.`} />
-          <meta property="og:title" content={`${meta.name} | React-Natives`} />
-          <meta property="og:description" content={meta.description} />
-        </Head>
-      )}
+      <SeoHead
+        title={`${meta.name} - React-Natives Component Documentation`}
+        description={pageDescription}
+        path={pagePath}
+        type="article"
+        keywords={`${meta.name} component, react native ${meta.slug}, react natives ${meta.name}, ${meta.category.toLowerCase()} components`}
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            '@id': `${SITE_URL}${pagePath}#article`,
+            headline: `${meta.name} Component Documentation`,
+            description: pageDescription,
+            url: `${SITE_URL}${pagePath}`,
+            articleSection: meta.category,
+            author: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            publisher: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            mainEntityOfPage: `${SITE_URL}${pagePath}`,
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: SITE_URL,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Components',
+                item: `${SITE_URL}/components`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: meta.name,
+                item: `${SITE_URL}${pagePath}`,
+              },
+            ],
+          },
+        ]}
+      />
       <DocPage
         name={meta.name}
         description={meta.description}

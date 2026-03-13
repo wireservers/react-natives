@@ -1,7 +1,11 @@
 import { ScrollViewStyleReset } from 'expo-router/html';
 import type { PropsWithChildren } from 'react';
 
+import { SITE_NAME, SITE_URL } from '@/lib/seo';
+
 const GTM_ID = 'GTM-PTXVFC3R';
+const SITE_DESCRIPTION =
+  'A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.';
 
 export default function Root({ children }: PropsWithChildren) {
   return (
@@ -27,17 +31,7 @@ export default function Root({ children }: PropsWithChildren) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
-        {/* SEO: Primary Meta Tags */}
-        <title>React-Natives | Production-Ready React Native UI Components</title>
-        <meta
-          name="description"
-          content="A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant. Build mobile apps faster with React-Natives."
-        />
-        <meta name="keywords" content="React Native, UI components, mobile development, TypeScript, NativeWind, Tailwind CSS, cross-platform, iOS, Android, component library, react-natives" />
-        <meta name="author" content="Wireservers" />
-        <meta name="robots" content="index, follow" />
-
-        {/* SEO: Theme & App */}
+        {/* Theme & App */}
         <meta name="theme-color" content="#7C3AED" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#1F2937" media="(prefers-color-scheme: dark)" />
         <meta name="color-scheme" content="light dark" />
@@ -45,46 +39,53 @@ export default function Root({ children }: PropsWithChildren) {
         <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
 
-        {/* SEO: Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="React-Natives | Production-Ready React Native UI Components" />
-        <meta property="og:description" content="70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant." />
-        <meta property="og:url" content="https://www.reactnatives.dev" />
-        <meta property="og:image" content="https://www.reactnatives.dev/og-image.png" />
-        <meta property="og:site_name" content="React-Natives" />
-        <meta property="og:locale" content="en_US" />
-        <link rel="canonical" href="https://www.reactnatives.dev" />
-
-        {/* SEO: Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="React-Natives | Production-Ready React Native UI Components" />
-        <meta name="twitter:description" content="70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant." />
-        <meta name="twitter:image" content="https://www.reactnatives.dev/og-image.png" />
-
         {/* SEO: Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'SoftwareSourceCode',
-              name: 'React-Natives',
-              description:
-                'A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.',
-              programmingLanguage: ['TypeScript', 'React Native'],
-              runtimePlatform: 'React Native',
-              codeRepository: 'https://github.com/wireservers/wireservers-ui',
-              license: 'https://opensource.org/licenses/MIT',
-              author: {
-                '@type': 'Organization',
-                name: 'Wireservers',
-                url: 'https://www.reactnatives.dev',
-              },
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': `${SITE_URL}/#organization`,
+                  name: 'Wireservers',
+                  url: SITE_URL,
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: `${SITE_URL}/logo-512.png`,
+                  },
+                  sameAs: ['https://github.com/wireservers/wireservers-ui'],
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${SITE_URL}/#website`,
+                  url: SITE_URL,
+                  name: SITE_NAME,
+                  description: SITE_DESCRIPTION,
+                  publisher: {
+                    '@id': `${SITE_URL}/#organization`,
+                  },
+                },
+                {
+                  '@type': 'SoftwareSourceCode',
+                  '@id': `${SITE_URL}/#software`,
+                  name: SITE_NAME,
+                  description: SITE_DESCRIPTION,
+                  programmingLanguage: ['TypeScript', 'React Native'],
+                  runtimePlatform: 'React Native',
+                  codeRepository: 'https://github.com/wireservers/wireservers-ui',
+                  license: 'https://opensource.org/licenses/MIT',
+                  author: {
+                    '@id': `${SITE_URL}/#organization`,
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD',
+                  },
+                },
+              ],
             }),
           }}
         />
@@ -114,19 +115,6 @@ export default function Root({ children }: PropsWithChildren) {
 
         {/* NOTE: Google Analytics (G-J8J88W24VR) should be configured inside GTM container
            rather than loaded as a standalone snippet to avoid double-counting */}
-
-        {/* Clarity tracking code for https://www.reactnatives.dev/ */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "vtvmzxw2aa");
-            `,
-          }}
-        />
 
         {/* Clarity tracking code for https://www.reactnatives.dev/ */}
         <script
