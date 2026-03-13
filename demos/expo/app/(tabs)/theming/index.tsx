@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { BRAND_COLOR, BRAND_COLOR_DARK } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR, BRAND_COLOR_DARK } from '@/constants/brand';
 import { Footer } from '@/components/footer';
 import { SeoHead } from '@/components/seo/seo-head';
 import { SITE_URL } from '@/lib/seo';
