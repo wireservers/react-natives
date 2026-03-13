@@ -1,10 +1,25 @@
 import { ScrollViewStyleReset } from 'expo-router/html';
 import type { PropsWithChildren } from 'react';
 
+const GTM_ID = 'GTM-PTXVFC3R';
+
 export default function Root({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
+        {/* Google Tag Manager — must be first in <head> to avoid missed events */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
@@ -97,18 +112,8 @@ export default function Root({ children }: PropsWithChildren) {
         />
         <ScrollViewStyleReset />
 
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8J88W24VR" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-J8J88W24VR');
-            `,
-          }}
-        />
+        {/* NOTE: Google Analytics (G-J8J88W24VR) should be configured inside GTM container
+           rather than loaded as a standalone snippet to avoid double-counting */}
 
         {/* Clarity tracking code for https://www.reactnatives.dev/ */}
         <script
@@ -123,7 +128,19 @@ export default function Root({ children }: PropsWithChildren) {
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            title="Google Tag Manager"
+            height={0}
+            width={0}
+            style={{ display: 'none' }}
+          />
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
