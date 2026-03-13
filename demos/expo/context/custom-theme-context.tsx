@@ -36,13 +36,13 @@ const CustomThemeContext = createContext<CustomThemeContextValue>({
   theme: defaultTheme,
   setToken: () => {},
   reset: () => {},
-  settingsOpen: true,
+  settingsOpen: false,
   toggleSettings: () => {},
 });
 
 export function CustomThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<CustomTheme>(defaultTheme);
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const setToken = useCallback((key: keyof CustomTheme, value: string) => {
     setTheme((prev) => ({ ...prev, [key]: value }));
