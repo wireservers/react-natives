@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, useWindowDimensions, Platform } from 'react-native';
-import Head from 'expo-router/head';
+import { View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { Footer } from '@/components/footer';
 import { CodeBlock } from '@/components/docs/code-block';
+import { SeoHead } from '@/components/seo/seo-head';
 import { usePageColors } from '@/context/custom-theme-context';
+import { SITE_URL } from '@/lib/seo';
 
 const BREAKPOINT_SM = 640;
 const BREAKPOINT_MD = 768;
@@ -42,12 +43,28 @@ export default function GettingStartedScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: c.docBg }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: footerH }}>
-        {Platform.OS === 'web' && (
-          <Head>
-            <title>Getting Started | React-Natives</title>
-            <meta name="description" content="Get started with React-Natives — install dependencies, run the dev server, and learn the project structure." />
-          </Head>
-        )}
+        <SeoHead
+          title="Getting Started | React-Natives"
+          description="Get started with React-Natives: install dependencies, run the dev server, and integrate the component library into your Expo or React Native app."
+          path="/components/getting-started"
+          keywords="react natives getting started, react native ui setup, expo component library install, nativewind setup"
+          jsonLd={{
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            '@id': `${SITE_URL}/components/getting-started#article`,
+            headline: 'Getting Started with React-Natives',
+            description:
+              'Install dependencies, configure NativeWind, and set up providers to use React-Natives in Expo and React Native.',
+            url: `${SITE_URL}/components/getting-started`,
+            author: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            publisher: {
+              '@id': `${SITE_URL}/#organization`,
+            },
+            mainEntityOfPage: `${SITE_URL}/components/getting-started`,
+          }}
+        />
 
         <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: px, paddingTop: isSmall ? 16 : 24, paddingBottom: 60 }}>
           {/* Header */}
