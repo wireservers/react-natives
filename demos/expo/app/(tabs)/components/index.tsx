@@ -8,7 +8,6 @@ import {
   categories,
 } from '@/lib/component-registry';
 import { usePageColors, useCustomTheme } from '@/context/custom-theme-context';
-import { MaterialIcons } from '@expo/vector-icons';
 import { SITE_URL } from '@/lib/seo';
 
 const ALL_CATEGORIES = ['All', ...categories];
@@ -74,7 +73,7 @@ export default function CatalogScreen() {
         <View
           style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: c.inputBg, borderWidth: 1, borderColor: c.border, borderRadius: 12, paddingHorizontal: 16, marginBottom: 16 }}
         >
-          <MaterialIcons name="search" size={20} color={c.iconText} style={{ marginRight: 8 }} />
+          <Text style={{ color: c.iconText, fontSize: 16, marginRight: 8 }}>S</Text>
           <TextInput
             value={search}
             onChangeText={setSearch}
@@ -84,7 +83,7 @@ export default function CatalogScreen() {
           />
           {search.length > 0 && (
             <Pressable onPress={() => setSearch('')}>
-              <MaterialIcons name="close" size={18} color={c.iconText} />
+              <Text style={{ color: c.iconText, fontSize: 14, fontWeight: '700' }}>x</Text>
             </Pressable>
           )}
         </View>
@@ -152,11 +151,9 @@ export default function CatalogScreen() {
                     marginRight: 12,
                   }}
                 >
-                  <MaterialIcons
-                    name={getComponentIcon(comp.slug)}
-                    size={20}
-                    color={c.iconText}
-                  />
+                  <Text style={{ color: c.iconText, fontSize: 16, fontWeight: '700' }}>
+                    {getComponentIcon(comp.slug)}
+                  </Text>
                 </View>
                 <Text style={{ fontSize: 15, fontWeight: '700', color: c.heading }}>
                   {comp.name}
@@ -180,79 +177,11 @@ export default function CatalogScreen() {
   );
 }
 
-function getComponentIcon(slug: string): keyof typeof MaterialIcons.glyphMap {
-  const icons: Record<string, keyof typeof MaterialIcons.glyphMap> = {
-    button: 'smart-button',
-    text: 'text-fields',
-    heading: 'title',
-    icon: 'stars',
-    divider: 'horizontal-rule',
-    badge: 'verified',
-    spinner: 'refresh',
-    image: 'image',
-    avatar: 'account-circle',
-    card: 'dashboard',
-    kbd: 'keyboard',
-    code: 'code',
-    blockquote: 'format-quote',
-    'form-control': 'assignment',
-    input: 'text-fields',
-    textarea: 'notes',
-    switch: 'toggle-on',
-    checkbox: 'check-box',
-    radio: 'radio-button-checked',
-    slider: 'tune',
-    select: 'arrow-drop-down-circle',
-    alert: 'warning',
-    progress: 'linear-scale',
-    'circular-progress': 'donut-large',
-    link: 'link',
-    modal: 'open-in-new',
-    toast: 'notifications',
-    tooltip: 'info',
-    drawer: 'menu-open',
-    actionsheet: 'view-agenda',
-    'alert-dialog': 'report',
-    popover: 'chat-bubble',
-    snackbar: 'announcement',
-    tabs: 'tab',
-    accordion: 'expand-more',
-    breadcrumb: 'chevron-right',
-    fab: 'add-circle',
-    menu: 'menu',
-    pagination: 'more-horiz',
-    stepper: 'format-list-numbered',
-    'segmented-control': 'view-column',
-    tag: 'label',
-    skeleton: 'rectangle',
-    empty: 'inbox',
-    stat: 'trending-up',
-    table: 'table-chart',
-    list: 'list',
-    timeline: 'timeline',
-    carousel: 'view-carousel',
-    'icon-button': 'touch-app',
-    overlay: 'layers',
-    box: 'crop-square',
-    stack: 'view-stream',
-    center: 'center-focus-strong',
-    'aspect-ratio': 'aspect-ratio',
-    pressable: 'touch-app',
-    container: 'crop-free',
-    portal: 'exit-to-app',
-    'visually-hidden': 'visibility-off',
-    toggle: 'toggle-off',
-    'toggle-group': 'toggle-on',
-    collapsible: 'unfold-less',
-    calendar: 'calendar-today',
-    'number-input': 'pin',
-    'password-input': 'lock',
-    'search-input': 'search',
-    rating: 'star',
-    'tags-input': 'sell',
-    'date-picker': 'date-range',
-    'pin-input': 'dialpad',
-    'color-picker': 'palette',
-  };
-  return icons[slug] ?? 'widgets';
+function getComponentIcon(slug: string): string {
+  const first = slug
+    .replace(/[^a-z0-9]/gi, ' ')
+    .trim()
+    .charAt(0);
+
+  return first ? first.toUpperCase() : 'C';
 }

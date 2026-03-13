@@ -6,7 +6,7 @@ import { CodeBlock } from './code-block';
 import { PropsTable } from './props-table';
 import type { PropDefinition } from './props-table';
 import { ExampleCodeContext } from './example-code-context';
-import { BRAND_COLOR_LIGHT, BRAND_COLOR_DARK } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR_DARK, BRAND_COLOR_LIGHT } from '@/constants/brand';
 import { usePageColors, useThemeVarsOverride, useCustomTheme } from '@/context/custom-theme-context';
 import type { PageColorSet } from '@/constants/theme';
 import { useTheme } from '@/context/theme-context';

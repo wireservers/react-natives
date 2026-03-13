@@ -11,15 +11,29 @@ export default function Root({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager — must be first in <head> to avoid missed events */}
+        {/* Initialize dataLayer immediately, defer GTM script fetch to idle time */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
+              (function(w,d,l,i){
+                w[l]=w[l]||[];
+                w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+                function load(){
+                  if (w.__gtmLoaded) return;
+                  w.__gtmLoaded = true;
+                  var f = d.getElementsByTagName('script')[0];
+                  var j = d.createElement('script');
+                  var dl = l !== 'dataLayer' ? '&l=' + l : '';
+                  j.async = true;
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                }
+                if ('requestIdleCallback' in w) {
+                  w.requestIdleCallback(load, { timeout: 3000 });
+                } else {
+                  w.addEventListener('load', function(){ setTimeout(load, 1200); }, { once: true });
+                }
+              })(window,document,'dataLayer','${GTM_ID}');
             `,
           }}
         />
@@ -116,14 +130,26 @@ export default function Root({ children }: PropsWithChildren) {
         {/* NOTE: Google Analytics (G-J8J88W24VR) should be configured inside GTM container
            rather than loaded as a standalone snippet to avoid double-counting */}
 
-        {/* Clarity tracking code for https://www.reactnatives.dev/ */}
+        {/* Defer Clarity until idle to protect critical rendering path */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function(c,l,a,r,i,t,y){
+              (function(c,l,a,r,i){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                function load(){
+                  if (c.__clarityLoaded) return;
+                  c.__clarityLoaded = true;
+                  var t=l.createElement(r);
+                  var y=l.getElementsByTagName(r)[0];
+                  t.async=1;
+                  t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+                  y.parentNode.insertBefore(t,y);
+                }
+                if ('requestIdleCallback' in c) {
+                  c.requestIdleCallback(load, { timeout: 4000 });
+                } else {
+                  c.addEventListener('load', function(){ setTimeout(load, 1800); }, { once: true });
+                }
               })(window, document, "clarity", "script", "vtvmzxw2aa");
             `,
           }}

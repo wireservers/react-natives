@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useCallback, useMemo } from
 import { vars } from 'nativewind';
 import { PageColors } from '@/constants/theme';
 import { useTheme } from '@/context/theme-context';
-import { hexToRgb, rgbToHex } from '@wireservers-ui/react-natives';
 
 /** User-customizable theme tokens applied to component previews */
 export interface CustomTheme {
@@ -37,13 +36,13 @@ const CustomThemeContext = createContext<CustomThemeContextValue>({
   theme: defaultTheme,
   setToken: () => {},
   reset: () => {},
-  settingsOpen: false,
+  settingsOpen: true,
   toggleSettings: () => {},
 });
 
 export function CustomThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<CustomTheme>(defaultTheme);
-  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(true);
 
   const setToken = useCallback((key: keyof CustomTheme, value: string) => {
     setTheme((prev) => ({ ...prev, [key]: value }));
@@ -71,6 +70,27 @@ export function useCustomTheme() {
 // ---------------------------------------------------------------------------
 // Color utilities
 // ---------------------------------------------------------------------------
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  let h = hex.replace('#', '').trim();
+  if (h.length === 3) {
+    h = `${h[0]}${h[0]}${h[1]}${h[1]}${h[2]}${h[2]}`;
+  }
+  const num = parseInt(h, 16);
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255,
+  };
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+  const toHex = (n: number) =>
+    Math.round(Math.min(255, Math.max(0, n)))
+      .toString(16)
+      .padStart(2, '0');
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+}
 
 /** Shift a hex color's lightness by an amount (-1 to 1) */
 function adjustBrightness(hex: string, amount: number): string {
