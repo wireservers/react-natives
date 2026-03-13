@@ -6,91 +6,93 @@ import { SeoHead } from '@/components/seo/seo-head';
 import { getComponentBySlug, componentRegistry } from '@/lib/component-registry';
 import { SITE_URL } from '@/lib/seo';
 
-// Example component map — lazy require for each component
-const exampleMap: Record<string, React.ComponentType> = {
+type ExampleModule = { default: React.ComponentType };
+
+// Load example modules on demand to keep non-doc routes lighter.
+const exampleLoaders: Record<string, () => Promise<ExampleModule>> = {
   // Core Primitives
-  text: require('@/components/docs/examples/text-examples').default,
-  heading: require('@/components/docs/examples/heading-examples').default,
-  icon: require('@/components/docs/examples/icon-examples').default,
-  divider: require('@/components/docs/examples/divider-examples').default,
-  badge: require('@/components/docs/examples/badge-examples').default,
-  spinner: require('@/components/docs/examples/spinner-examples').default,
-  image: require('@/components/docs/examples/image-examples').default,
-  avatar: require('@/components/docs/examples/avatar-examples').default,
-  card: require('@/components/docs/examples/card-examples').default,
-  button: require('@/components/docs/examples/button-examples').default,
+  text: () => import('@/components/docs/examples/text-examples'),
+  heading: () => import('@/components/docs/examples/heading-examples'),
+  icon: () => import('@/components/docs/examples/icon-examples'),
+  divider: () => import('@/components/docs/examples/divider-examples'),
+  badge: () => import('@/components/docs/examples/badge-examples'),
+  spinner: () => import('@/components/docs/examples/spinner-examples'),
+  image: () => import('@/components/docs/examples/image-examples'),
+  avatar: () => import('@/components/docs/examples/avatar-examples'),
+  card: () => import('@/components/docs/examples/card-examples'),
+  button: () => import('@/components/docs/examples/button-examples'),
   // Form Controls
-  'form-control': require('@/components/docs/examples/form-control-examples').default,
-  input: require('@/components/docs/examples/input-examples').default,
-  textarea: require('@/components/docs/examples/textarea-examples').default,
-  switch: require('@/components/docs/examples/switch-examples').default,
-  checkbox: require('@/components/docs/examples/checkbox-examples').default,
-  radio: require('@/components/docs/examples/radio-examples').default,
-  slider: require('@/components/docs/examples/slider-examples').default,
-  select: require('@/components/docs/examples/select-examples').default,
+  'form-control': () => import('@/components/docs/examples/form-control-examples'),
+  input: () => import('@/components/docs/examples/input-examples'),
+  textarea: () => import('@/components/docs/examples/textarea-examples'),
+  switch: () => import('@/components/docs/examples/switch-examples'),
+  checkbox: () => import('@/components/docs/examples/checkbox-examples'),
+  radio: () => import('@/components/docs/examples/radio-examples'),
+  slider: () => import('@/components/docs/examples/slider-examples'),
+  select: () => import('@/components/docs/examples/select-examples'),
   // Feedback & Overlay
-  alert: require('@/components/docs/examples/alert-examples').default,
-  progress: require('@/components/docs/examples/progress-examples').default,
-  link: require('@/components/docs/examples/link-examples').default,
-  modal: require('@/components/docs/examples/modal-examples').default,
-  toast: require('@/components/docs/examples/toast-examples').default,
-  tooltip: require('@/components/docs/examples/tooltip-examples').default,
-  drawer: require('@/components/docs/examples/drawer-examples').default,
-  actionsheet: require('@/components/docs/examples/actionsheet-examples').default,
+  alert: () => import('@/components/docs/examples/alert-examples'),
+  progress: () => import('@/components/docs/examples/progress-examples'),
+  link: () => import('@/components/docs/examples/link-examples'),
+  modal: () => import('@/components/docs/examples/modal-examples'),
+  toast: () => import('@/components/docs/examples/toast-examples'),
+  tooltip: () => import('@/components/docs/examples/tooltip-examples'),
+  drawer: () => import('@/components/docs/examples/drawer-examples'),
+  actionsheet: () => import('@/components/docs/examples/actionsheet-examples'),
   // Navigation
-  tabs: require('@/components/docs/examples/tabs-examples').default,
-  accordion: require('@/components/docs/examples/accordion-examples').default,
-  breadcrumb: require('@/components/docs/examples/breadcrumb-examples').default,
-  fab: require('@/components/docs/examples/fab-examples').default,
+  tabs: () => import('@/components/docs/examples/tabs-examples'),
+  accordion: () => import('@/components/docs/examples/accordion-examples'),
+  breadcrumb: () => import('@/components/docs/examples/breadcrumb-examples'),
+  fab: () => import('@/components/docs/examples/fab-examples'),
   // Data Display
-  calendar: require('@/components/docs/examples/calendar-examples').default,
-  tag: require('@/components/docs/examples/tag-examples').default,
-  skeleton: require('@/components/docs/examples/skeleton-examples').default,
-  empty: require('@/components/docs/examples/empty-examples').default,
-  stat: require('@/components/docs/examples/stat-examples').default,
-  kbd: require('@/components/docs/examples/kbd-examples').default,
-  code: require('@/components/docs/examples/code-examples').default,
-  blockquote: require('@/components/docs/examples/blockquote-examples').default,
-  'icon-button': require('@/components/docs/examples/icon-button-examples').default,
-  'circular-progress': require('@/components/docs/examples/circular-progress-examples').default,
-  overlay: require('@/components/docs/examples/overlay-examples').default,
-  timeline: require('@/components/docs/examples/timeline-examples').default,
-  table: require('@/components/docs/examples/table-examples').default,
-  list: require('@/components/docs/examples/list-examples').default,
-  carousel: require('@/components/docs/examples/carousel-examples').default,
+  calendar: () => import('@/components/docs/examples/calendar-examples'),
+  tag: () => import('@/components/docs/examples/tag-examples'),
+  skeleton: () => import('@/components/docs/examples/skeleton-examples'),
+  empty: () => import('@/components/docs/examples/empty-examples'),
+  stat: () => import('@/components/docs/examples/stat-examples'),
+  kbd: () => import('@/components/docs/examples/kbd-examples'),
+  code: () => import('@/components/docs/examples/code-examples'),
+  blockquote: () => import('@/components/docs/examples/blockquote-examples'),
+  'icon-button': () => import('@/components/docs/examples/icon-button-examples'),
+  'circular-progress': () => import('@/components/docs/examples/circular-progress-examples'),
+  overlay: () => import('@/components/docs/examples/overlay-examples'),
+  timeline: () => import('@/components/docs/examples/timeline-examples'),
+  table: () => import('@/components/docs/examples/table-examples'),
+  list: () => import('@/components/docs/examples/list-examples'),
+  carousel: () => import('@/components/docs/examples/carousel-examples'),
   // Layout
-  box: require('@/components/docs/examples/box-examples').default,
-  stack: require('@/components/docs/examples/stack-examples').default,
-  center: require('@/components/docs/examples/center-examples').default,
-  'aspect-ratio': require('@/components/docs/examples/aspect-ratio-examples').default,
-  pressable: require('@/components/docs/examples/pressable-examples').default,
-  container: require('@/components/docs/examples/container-examples').default,
+  box: () => import('@/components/docs/examples/box-examples'),
+  stack: () => import('@/components/docs/examples/stack-examples'),
+  center: () => import('@/components/docs/examples/center-examples'),
+  'aspect-ratio': () => import('@/components/docs/examples/aspect-ratio-examples'),
+  pressable: () => import('@/components/docs/examples/pressable-examples'),
+  container: () => import('@/components/docs/examples/container-examples'),
   // Utility
-  portal: require('@/components/docs/examples/portal-examples').default,
-  'visually-hidden': require('@/components/docs/examples/visually-hidden-examples').default,
+  portal: () => import('@/components/docs/examples/portal-examples'),
+  'visually-hidden': () => import('@/components/docs/examples/visually-hidden-examples'),
   // Navigation (extended)
-  menu: require('@/components/docs/examples/menu-examples').default,
-  pagination: require('@/components/docs/examples/pagination-examples').default,
-  stepper: require('@/components/docs/examples/stepper-examples').default,
-  'segmented-control': require('@/components/docs/examples/segmented-control-examples').default,
+  menu: () => import('@/components/docs/examples/menu-examples'),
+  pagination: () => import('@/components/docs/examples/pagination-examples'),
+  stepper: () => import('@/components/docs/examples/stepper-examples'),
+  'segmented-control': () => import('@/components/docs/examples/segmented-control-examples'),
   // Buttons
-  toggle: require('@/components/docs/examples/toggle-examples').default,
-  'toggle-group': require('@/components/docs/examples/toggle-group-examples').default,
+  toggle: () => import('@/components/docs/examples/toggle-examples'),
+  'toggle-group': () => import('@/components/docs/examples/toggle-group-examples'),
   // Disclosure
-  collapsible: require('@/components/docs/examples/collapsible-examples').default,
+  collapsible: () => import('@/components/docs/examples/collapsible-examples'),
   // Dialogs & Overlays
-  'alert-dialog': require('@/components/docs/examples/alert-dialog-examples').default,
-  popover: require('@/components/docs/examples/popover-examples').default,
-  snackbar: require('@/components/docs/examples/snackbar-examples').default,
+  'alert-dialog': () => import('@/components/docs/examples/alert-dialog-examples'),
+  popover: () => import('@/components/docs/examples/popover-examples'),
+  snackbar: () => import('@/components/docs/examples/snackbar-examples'),
   // Form Controls (extended)
-  'number-input': require('@/components/docs/examples/number-input-examples').default,
-  'password-input': require('@/components/docs/examples/password-input-examples').default,
-  'search-input': require('@/components/docs/examples/search-input-examples').default,
-  rating: require('@/components/docs/examples/rating-examples').default,
-  'tags-input': require('@/components/docs/examples/tags-input-examples').default,
-  'date-picker': require('@/components/docs/examples/date-picker-examples').default,
-  'pin-input': require('@/components/docs/examples/pin-input-examples').default,
-  'color-picker': require('@/components/docs/examples/color-picker-examples').default,
+  'number-input': () => import('@/components/docs/examples/number-input-examples'),
+  'password-input': () => import('@/components/docs/examples/password-input-examples'),
+  'search-input': () => import('@/components/docs/examples/search-input-examples'),
+  rating: () => import('@/components/docs/examples/rating-examples'),
+  'tags-input': () => import('@/components/docs/examples/tags-input-examples'),
+  'date-picker': () => import('@/components/docs/examples/date-picker-examples'),
+  'pin-input': () => import('@/components/docs/examples/pin-input-examples'),
+  'color-picker': () => import('@/components/docs/examples/color-picker-examples'),
 };
 
 export function generateStaticParams(): { slug: string }[] {
@@ -102,7 +104,40 @@ export default function ComponentDetailScreen() {
   const navigation = useNavigation();
 
   const meta = getComponentBySlug(slug ?? '');
-  const ExampleComponent = slug ? exampleMap[slug] : undefined;
+  const [ExampleComponent, setExampleComponent] = React.useState<React.ComponentType | null>(null);
+
+  React.useEffect(() => {
+    let active = true;
+
+    const loadExample = async () => {
+      if (!slug) {
+        setExampleComponent(null);
+        return;
+      }
+
+      const load = exampleLoaders[slug];
+      if (!load) {
+        setExampleComponent(null);
+        return;
+      }
+
+      try {
+        const mod = await load();
+        if (active) {
+          setExampleComponent(() => mod.default);
+        }
+      } catch {
+        if (active) {
+          setExampleComponent(null);
+        }
+      }
+    };
+
+    void loadExample();
+    return () => {
+      active = false;
+    };
+  }, [slug]);
 
   React.useEffect(() => {
     if (meta) {

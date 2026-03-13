@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BRAND_COLOR_LIGHT } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR_LIGHT } from '@/constants/brand';
 import { useCustomTheme } from '@/context/custom-theme-context';
 
 interface ComponentCardProps {

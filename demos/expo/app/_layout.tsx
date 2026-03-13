@@ -6,7 +6,6 @@ import 'react-native-reanimated';
 import { ThemeProvider as AppThemeProvider } from '@/components/ui/theme-provider';
 import { ThemeContextProvider, useTheme } from '@/context/theme-context';
 import { CustomThemeProvider } from '@/context/custom-theme-context';
-import { ToastProvider } from '@wireservers-ui/react-natives';
 import '@/global.css';
 
 export const unstable_settings = {
@@ -19,13 +18,11 @@ function AppLayout() {
   return (
     <AppThemeProvider mode={colorScheme}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <ToastProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-          </Stack>
-          <StatusBar style="auto" />
-        </ToastProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style="auto" />
       </ThemeProvider>
     </AppThemeProvider>
   );

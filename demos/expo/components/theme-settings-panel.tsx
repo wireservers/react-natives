@@ -12,7 +12,6 @@ import {
 import { useCustomTheme, type CustomTheme } from '@/context/custom-theme-context';
 import { useTheme } from '@/context/theme-context';
 import { PageColors } from '@/constants/theme';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const PANEL_WIDTH = 280;
 
@@ -131,7 +130,7 @@ export function ThemeSettingsPanel() {
           Theme Settings
         </Text>
         <Pressable onPress={toggleSettings} style={{ padding: 4 }}>
-          <MaterialCommunityIcons name="close" size={18} color={c.text} />
+          <Text style={{ fontSize: 16, fontWeight: '700', color: c.text }}>x</Text>
         </Pressable>
       </View>
 
