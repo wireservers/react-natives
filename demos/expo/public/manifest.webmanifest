@@ -2,15 +2,28 @@
   "name": "React-Natives",
   "short_name": "React-Natives",
   "description": "A comprehensive library of 70+ production-ready React Native components",
-  "start_url": "https://www.reactnatives.dev/",
-  "id": "https://www.reactnatives.dev/",
+  "start_url": "/",
+  "id": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#7C3AED",
+  "lang": "en-US",
   "icons": [
     {
+      "src": "/logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/favicon.png",
-      "sizes": "192x192",
+      "sizes": "1024x1024",
       "type": "image/png"
     }
   ],

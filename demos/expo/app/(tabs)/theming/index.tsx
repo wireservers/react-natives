@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions, Platform } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import Head from 'expo-router/head';
-import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
+import { BRAND_COLOR, BRAND_COLOR_DARK } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
+import { SeoHead } from '@/components/seo/seo-head';
+import { SITE_URL } from '@/lib/seo';
 
 const SECTIONS = [
   {
@@ -105,12 +106,28 @@ export default function ThemingScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
-      {Platform.OS === 'web' && (
-        <Head>
-          <title>Theming | React-Natives - Customizable Design System</title>
-          <meta name="description" content="Customize your React Native app with a powerful theming system. CSS variables, light and dark mode, and brand-level control across 70+ components." />
-        </Head>
-      )}
+      <SeoHead
+        title="Theming | React-Natives - Customizable Design System"
+        description="Customize your React Native app with a powerful theming system. CSS variables, light and dark mode, and brand-level control across 70+ components."
+        path="/theming"
+        keywords="react native theming, nativewind theme tokens, css variables react native web, dark mode react native"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          '@id': `${SITE_URL}/theming#article`,
+          headline: 'React-Natives Theming Guide',
+          description:
+            'Learn how to customize React-Natives with semantic design tokens, CSS variables, and automatic dark mode.',
+          url: `${SITE_URL}/theming`,
+          author: {
+            '@id': `${SITE_URL}/#organization`,
+          },
+          publisher: {
+            '@id': `${SITE_URL}/#organization`,
+          },
+          mainEntityOfPage: `${SITE_URL}/theming`,
+        }}
+      />
 
       {/* Hero */}
       <LinearGradient
