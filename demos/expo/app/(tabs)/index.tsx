@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions, Linking, Platform } from 'react-native';
+import { View, Text, ScrollView, Pressable, useWindowDimensions, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import Head from 'expo-router/head';
 import { BRAND_COLOR, BRAND_COLOR_DARK, BRAND_COLOR_LIGHT, BRAND_GRADIENT } from '@wireservers-ui/react-natives';
 import { Footer } from '@/components/footer';
+import { SeoHead } from '@/components/seo/seo-head';
 import { useTheme } from '@/context/theme-context';
 import { usePageColors } from '@/context/custom-theme-context';
 import type { PageColorSet } from '@/constants/theme';
+import { SITE_URL } from '@/lib/seo';
 
 function Container({ children, style, maxWidth = 1504 }: { children: React.ReactNode; style?: any; maxWidth?: number }) {
   return (
@@ -31,12 +32,28 @@ export default function HomeScreen() {
       className="flex-1 bg-background-0"
       contentContainerStyle={{ paddingBottom: 0 }}
     >
-      {Platform.OS === 'web' && (
-        <Head>
-          <title>React-Natives | Build Production-Ready Mobile Apps Faster</title>
-          <meta name="description" content="A comprehensive collection of 70+ production-ready React Native components. Customizable, accessible, and performant. TypeScript-first with NativeWind styling." />
-        </Head>
-      )}
+      <SeoHead
+        title="React-Natives | Build Production-Ready Mobile Apps Faster"
+        description="A comprehensive collection of 70+ production-ready React Native components. Customizable, accessible, and performant. TypeScript-first with NativeWind styling."
+        path="/"
+        keywords="react native components, react native ui library, typescript ui components, nativewind components, mobile ui kit"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/#home`,
+          url: SITE_URL,
+          name: 'React-Natives Home',
+          description:
+            'A comprehensive collection of 70+ production-ready React Native components. Customizable, accessible, and performant.',
+          isPartOf: {
+            '@id': `${SITE_URL}/#website`,
+          },
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            url: `${SITE_URL}/og-image.png`,
+          },
+        }}
+      />
       {/* Hero Section — Purple-to-Pink gradient */}
       <LinearGradient
         colors={[...BRAND_GRADIENT]}

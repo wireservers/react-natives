@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /_sitemap
 Disallow: /+not-found
+Disallow: /modal
 
 Sitemap: https://www.reactnatives.dev/sitemap.xml
+Host: https://www.reactnatives.dev

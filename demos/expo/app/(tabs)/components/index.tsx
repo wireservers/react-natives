@@ -1,14 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, ScrollView, TextInput, Pressable, Platform } from 'react-native';
+import { View, Text, ScrollView, TextInput, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import Head from 'expo-router/head';
 import { Footer } from '@/components/footer';
+import { SeoHead } from '@/components/seo/seo-head';
 import {
   componentRegistry,
   categories,
 } from '@/lib/component-registry';
 import { usePageColors, useCustomTheme } from '@/context/custom-theme-context';
 import { MaterialIcons } from '@expo/vector-icons';
+import { SITE_URL } from '@/lib/seo';
 
 const ALL_CATEGORIES = ['All', ...categories];
 
@@ -42,12 +43,23 @@ export default function CatalogScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: c.docBg }}>
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: footerH }}>
-      {Platform.OS === 'web' && (
-        <Head>
-          <title>Components | React-Natives UI Library</title>
-          <meta name="description" content={`Browse ${componentRegistry.length}+ responsive React Native components organized by category. Buttons, forms, navigation, data display, and more.`} />
-        </Head>
-      )}
+      <SeoHead
+        title="Components | React-Natives UI Library"
+        description={`Browse ${componentRegistry.length}+ responsive React Native components organized by category. Buttons, forms, navigation, data display, and more.`}
+        path="/components"
+        keywords="react native components list, react native ui catalog, mobile component docs, react native examples"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}/components#collection`,
+          url: `${SITE_URL}/components`,
+          name: 'React-Natives Components Catalog',
+          description: `Browse ${componentRegistry.length}+ responsive React Native components by category.`,
+          isPartOf: {
+            '@id': `${SITE_URL}/#website`,
+          },
+        }}
+      />
       <View style={{ width: '100%', maxWidth: 1504, alignSelf: 'center', paddingHorizontal: 24, paddingTop: 32, paddingBottom: 40 }}>
         {/* Header */}
         <View style={{ marginBottom: 20 }}>
