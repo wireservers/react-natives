@@ -2,11 +2,10 @@
   "name": "wireservers-ui",
   "private": true,
   "workspaces": [
-    "demos/expo",
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace=demos/expo",
+    "build": "npm run build --workspace=website",
     "start": "node server.js"
   }
 }

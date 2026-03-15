@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rsync -a --exclude='node_modules' --exclude='.expo' --exclude='dist' --exclude='.next' demos/expo/ website/)"
+    ]
+  }
+}
