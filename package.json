@@ -1,11 +1,50 @@
 {
-  "name": "wireservers-ui",
-  "private": true,
-  "workspaces": [
-    "packages/*"
+  "name": "@wireservers-ui/react-natives",
+  "version": "2.0.0",
+  "description": "A comprehensive React Native component library built with NativeWind and Tailwind Variants",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src",
+    "tailwind-preset.js",
+    "bin",
+    "CHANGELOG.md"
   ],
-  "scripts": {
-    "build": "npm run build --workspace=website",
-    "start": "node server.js"
+  "bin": {
+    "react-natives": "./bin/cli.js"
+  },
+  "scripts": {},
+  "keywords": [
+    "react-native",
+    "nativewind",
+    "tailwind",
+    "tailwind-variants",
+    "component-library",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wireservers/wireservers-ui.git",
+    "directory": "packages/react-natives"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "nativewind": ">=4.0.0",
+    "react": ">=18.0.0",
+    "react-native": ">=0.72.0",
+    "react-native-svg": ">=13.0.0",
+    "tailwind-variants": ">=0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-svg": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "nativewind": "^4.2.3",
+    "tailwind-variants": "^0.1.20"
   }
 }

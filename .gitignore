@@ -3,10 +3,6 @@ node_modules/
 
 # Lock files
 package-lock.json
-# Expo
-.expo/
-dist/
-expo-env.d.ts
 
 # Build
 *.tsbuildinfo
@@ -26,8 +22,6 @@ Thumbs.db
 
 # AI rules
 .github/instructions/codacy.instructions.md
-/packages/flutter
-/packages/ionic
 
 /scripts
 package-lock.json
