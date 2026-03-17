@@ -1,39 +1,30 @@
-import { ScrollViewStyleReset } from 'expo-router/html';
-import type { PropsWithChildren } from 'react';
+import { ScrollViewStyleReset } from "expo-router/html";
+import type { PropsWithChildren } from "react";
 
-import { SITE_NAME, SITE_URL } from '@/lib/seo';
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
-const GTM_ID = 'GTM-PTXVFC3R';
+const GTM_ID = "GTM-PTXVFC3R";
 const SITE_DESCRIPTION =
-  'A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.';
+  "A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.";
 
 export default function Root({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        {/* Initialize dataLayer immediately, defer GTM script fetch to idle time */}
+        {/* Google Tag Manager (official snippet: load immediately in <head>) */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,l,i){
+              (function(w,d,s,l,i){
                 w[l]=w[l]||[];
-                w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-                function load(){
-                  if (w.__gtmLoaded) return;
-                  w.__gtmLoaded = true;
-                  var f = d.getElementsByTagName('script')[0];
-                  var j = d.createElement('script');
-                  var dl = l !== 'dataLayer' ? '&l=' + l : '';
-                  j.async = true;
-                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                  f.parentNode.insertBefore(j, f);
-                }
-                if ('requestIdleCallback' in w) {
-                  w.requestIdleCallback(load, { timeout: 3000 });
-                } else {
-                  w.addEventListener('load', function(){ setTimeout(load, 1200); }, { once: true });
-                }
-              })(window,document,'dataLayer','${GTM_ID}');
+                w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),
+                    dl=l!='dataLayer'?'&l='+l:'';
+                j.async=true;
+                j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
             `,
           }}
         />
@@ -46,8 +37,16 @@ export default function Root({ children }: PropsWithChildren) {
         />
 
         {/* Theme & App */}
-        <meta name="theme-color" content="#7C3AED" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1F2937" media="(prefers-color-scheme: dark)" />
+        <meta
+          name="theme-color"
+          content="#7C3AED"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#1F2937"
+          media="(prefers-color-scheme: dark)"
+        />
         <meta name="color-scheme" content="light dark" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
@@ -58,45 +57,46 @@ export default function Root({ children }: PropsWithChildren) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@graph': [
+              "@context": "https://schema.org",
+              "@graph": [
                 {
-                  '@type': 'Organization',
-                  '@id': `${SITE_URL}/#organization`,
-                  name: 'Wireservers',
+                  "@type": "Organization",
+                  "@id": `${SITE_URL}/#organization`,
+                  name: "Wireservers",
                   url: SITE_URL,
                   logo: {
-                    '@type': 'ImageObject',
+                    "@type": "ImageObject",
                     url: `${SITE_URL}/logo-512.png`,
                   },
-                  sameAs: ['https://github.com/wireservers/wireservers-ui'],
+                  sameAs: ["https://github.com/wireservers/wireservers-ui"],
                 },
                 {
-                  '@type': 'WebSite',
-                  '@id': `${SITE_URL}/#website`,
+                  "@type": "WebSite",
+                  "@id": `${SITE_URL}/#website`,
                   url: SITE_URL,
                   name: SITE_NAME,
                   description: SITE_DESCRIPTION,
                   publisher: {
-                    '@id': `${SITE_URL}/#organization`,
+                    "@id": `${SITE_URL}/#organization`,
                   },
                 },
                 {
-                  '@type': 'SoftwareSourceCode',
-                  '@id': `${SITE_URL}/#software`,
+                  "@type": "SoftwareSourceCode",
+                  "@id": `${SITE_URL}/#software`,
                   name: SITE_NAME,
                   description: SITE_DESCRIPTION,
-                  programmingLanguage: ['TypeScript', 'React Native'],
-                  runtimePlatform: 'React Native',
-                  codeRepository: 'https://github.com/wireservers/wireservers-ui',
-                  license: 'https://opensource.org/licenses/MIT',
+                  programmingLanguage: ["TypeScript", "React Native"],
+                  runtimePlatform: "React Native",
+                  codeRepository:
+                    "https://github.com/wireservers/wireservers-ui",
+                  license: "https://opensource.org/licenses/MIT",
                   author: {
-                    '@id': `${SITE_URL}/#organization`,
+                    "@id": `${SITE_URL}/#organization`,
                   },
                   offers: {
-                    '@type': 'Offer',
-                    price: '0',
-                    priceCurrency: 'USD',
+                    "@type": "Offer",
+                    price: "0",
+                    priceCurrency: "USD",
                   },
                 },
               ],
@@ -163,7 +163,7 @@ export default function Root({ children }: PropsWithChildren) {
             title="Google Tag Manager"
             height={0}
             width={0}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </noscript>
         {children}
