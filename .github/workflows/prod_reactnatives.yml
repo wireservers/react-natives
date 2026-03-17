@@ -9,7 +9,6 @@ on:
       - prod
     paths:
       - website/**
-  workflow_dispatch:
 
 jobs:
   build:
