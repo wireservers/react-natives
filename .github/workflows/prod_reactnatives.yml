@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - prod
+    paths:
+      - website/**
   workflow_dispatch:
 
 jobs:
