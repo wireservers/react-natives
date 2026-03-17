@@ -1,67 +1,50 @@
 {
   "name": "@wireservers-ui/react-natives",
-  "version": "1.0.0",
-  "description": "70+ production-ready React Native components — TypeScript-first, themeable, accessible. Wired by WireServers-UI.",
+  "version": "2.0.1",
+  "description": "A comprehensive React Native component library built with NativeWind and Tailwind Variants",
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "exports": {
-    ".": "./src/index.ts",
-    "./tailwind-preset": "./tailwind-preset.js"
+  "files": [
+    "src",
+    "tailwind-preset.js",
+    "bin",
+    "CHANGELOG.md"
+  ],
+  "bin": {
+    "react-natives": "./bin/cli.js"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "scripts": {},
+  "keywords": [
+    "react-native",
+    "nativewind",
+    "tailwind",
+    "tailwind-variants",
+    "component-library",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wireservers/wireservers-ui.git",
     "directory": "packages/react-natives"
   },
-  "keywords": [
-    "react-native",
-    "components",
-    "ui-library",
-    "nativewind",
-    "tailwind",
-    "typescript",
-    "expo",
-    "accessible",
-    "cross-platform"
-  ],
-  "author": "WireServers-UI",
   "license": "MIT",
-  "homepage": "https://github.com/wireservers/wireservers-ui",
-  "bugs": {
-    "url": "https://github.com/wireservers/wireservers-ui/issues"
+  "engines": {
+    "node": ">=18.0.0"
   },
-  "files": [
-    "src",
-    "tailwind-preset.js",
-    "README.md"
-  ],
   "peerDependencies": {
-    "react": ">=18",
-    "react-native": ">=0.74",
-    "nativewind": ">=4",
-    "tailwind-variants": ">=0.1",
-    "react-native-reanimated": ">=3",
-    "react-native-gesture-handler": ">=2",
-    "react-native-svg": ">=13"
+    "nativewind": ">=4.0.0",
+    "react": ">=18.0.0",
+    "react-native": ">=0.72.0",
+    "react-native-svg": ">=13.0.0",
+    "tailwind-variants": ">=0.1.0"
   },
   "peerDependenciesMeta": {
-    "nativewind": {
-      "optional": true
-    },
-    "tailwind-variants": {
-      "optional": true
-    },
-    "react-native-reanimated": {
-      "optional": true
-    },
-    "react-native-gesture-handler": {
-      "optional": true
-    },
     "react-native-svg": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "nativewind": "^4.2.3",
+    "tailwind-variants": "^0.1.20"
   }
 }
