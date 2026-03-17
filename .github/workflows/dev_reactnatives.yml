@@ -9,7 +9,6 @@ on:
       - dev
     paths:
       - website/**
-  workflow_dispatch:
 
 jobs:
   build:
