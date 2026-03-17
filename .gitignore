@@ -1,33 +1,5 @@
-# Dependencies
-node_modules/
 
-# Lock files
-package-lock.json
-# Expo
-.expo/
-dist/
-expo-env.d.ts
 
-# Build
-*.tsbuildinfo
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
-.env
-.env.local
-.env.*.local
-
-# AI rules
-.github/instructions/codacy.instructions.md
-/packages/flutter
-/packages/ionic
-
-/scripts
-package-lock.json
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
+/.expo
