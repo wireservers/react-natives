@@ -72,6 +72,27 @@ jobs:
           name: node-app
           path: site
 
+      - name: Resolve deploy package root
+        run: |
+          set -e
+          echo "Downloaded artifact preview:"
+          find site -maxdepth 4 -type f | head -n 80
+
+          if [ -f site/index.html ]; then
+            package_dir="site"
+          elif [ -f site/dist/index.html ]; then
+            package_dir="site/dist"
+          elif [ -f site/website/dist/index.html ]; then
+            package_dir="site/website/dist"
+          else
+            echo "Could not find index.html in downloaded artifact" >&2
+            find site -maxdepth 6 -type f | head -n 200
+            exit 1
+          fi
+
+          echo "PACKAGE_DIR=$package_dir" >> "$GITHUB_ENV"
+          echo "Using PACKAGE_DIR=$package_dir"
+
       - name: Login to Azure
         uses: azure/login@1384c340ab2dda50fed2bee3041d1d87018aa5e8 # v2
         with:
@@ -85,4 +106,4 @@ jobs:
         with:
           app-name: 'reactnatives'
           slot-name: 'Production'
-          package: ./site
+          package: ${{ env.PACKAGE_DIR }}
