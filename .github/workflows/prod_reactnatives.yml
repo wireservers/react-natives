@@ -14,6 +14,10 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+concurrency:
+  group: prod-reactnatives-deploy
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,6 +26,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Ensure production deployments always build from the prod branch,
+          # even when workflow_dispatch is started from another ref.
+          ref: prod
 
       - name: Set up Node.js version
         uses: actions/setup-node@v4
@@ -46,6 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
+          if-no-files-found: error
           path: |
             website/dist/
 
@@ -64,7 +73,7 @@ jobs:
           path: site
 
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@1384c340ab2dda50fed2bee3041d1d87018aa5e8 # v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AFC0F8E848174D5FA3F0BDC87D409ABF }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B7167CDA5ADB47B4A1D4310175CC80EA }}
@@ -72,7 +81,7 @@ jobs:
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@2e64e04aaaeeec4396edcb982544dbd30f8e9ddf # v3
         with:
           app-name: 'reactnatives'
           slot-name: 'Production'
