@@ -4,19 +4,12 @@
 name: Build and deploy Node.js app to Azure Web App - reactnatives
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - prod
     paths:
       - website/**
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-concurrency:
-  group: prod-reactnatives-deploy
-  cancel-in-progress: true
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,36 +19,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          # Ensure production deployments always build from the prod branch,
-          # even when workflow_dispatch is started from another ref.
-          ref: prod
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '24.x'
-
-      - name: Enable Corepack and activate pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@10 --activate
-          pnpm --version
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: website
+        run: npm ci
 
       - name: Build
-        run: pnpm run build
-        working-directory: website
+        run: npm run build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          if-no-files-found: error
           path: |
+            server.js
+            package.json
             website/dist/
 
   deploy:
@@ -70,31 +53,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-          path: site
-
-      - name: Resolve deploy package root
-        run: |
-          set -e
-          echo "Downloaded artifact preview:"
-          find site -maxdepth 4 -type f | head -n 80
-
-          if [ -f site/index.html ]; then
-            package_dir="site"
-          elif [ -f site/dist/index.html ]; then
-            package_dir="site/dist"
-          elif [ -f site/website/dist/index.html ]; then
-            package_dir="site/website/dist"
-          else
-            echo "Could not find index.html in downloaded artifact" >&2
-            find site -maxdepth 6 -type f | head -n 200
-            exit 1
-          fi
-
-          echo "PACKAGE_DIR=$package_dir" >> "$GITHUB_ENV"
-          echo "Using PACKAGE_DIR=$package_dir"
 
       - name: Login to Azure
-        uses: azure/login@1384c340ab2dda50fed2bee3041d1d87018aa5e8 # v2
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AFC0F8E848174D5FA3F0BDC87D409ABF }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B7167CDA5ADB47B4A1D4310175CC80EA }}
@@ -102,8 +63,8 @@ jobs:
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@2e64e04aaaeeec4396edcb982544dbd30f8e9ddf # v3
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'reactnatives'
           slot-name: 'Production'
-          package: ${{ env.PACKAGE_DIR }}
+          package: ./website/dist
