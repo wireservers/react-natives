@@ -4,6 +4,7 @@ import type { PropsWithChildren } from "react";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const GTM_ID = "GTM-PTXVFC3R";
+const GA_ID = "G-J8J88W24VR";
 const SITE_DESCRIPTION =
   "A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.";
 
@@ -25,6 +26,22 @@ export default function Root({ children }: PropsWithChildren) {
                 j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
                 f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
             `,
           }}
         />
@@ -127,8 +144,8 @@ export default function Root({ children }: PropsWithChildren) {
         />
         <ScrollViewStyleReset />
 
-        {/* NOTE: Google Analytics (G-J8J88W24VR) should be configured inside GTM container
-           rather than loaded as a standalone snippet to avoid double-counting */}
+          {/* NOTE: GA4 is loaded directly as a fallback and may duplicate events
+            if also configured inside GTM for the same Measurement ID. */}
 
         {/* Defer Clarity until idle to protect critical rendering path */}
         <script
