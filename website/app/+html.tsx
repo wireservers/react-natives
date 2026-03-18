@@ -144,7 +144,7 @@ export default function Root({ children }: PropsWithChildren) {
         />
         <ScrollViewStyleReset />
 
-          {/* NOTE: GA4 is loaded directly as a fallback and may duplicate events
+        {/* NOTE: GA4 is loaded directly as a fallback and may duplicate events
             if also configured inside GTM for the same Measurement ID. */}
 
         {/* Defer Clarity until idle to protect critical rendering path */}
