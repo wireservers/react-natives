@@ -42,12 +42,17 @@ jobs:
         run: pnpm run build
         working-directory: website
 
+      - name: Prepare deployment package
+        run: |
+          mkdir -p website/deploy
+          cp -R website/dist/. website/deploy/
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: |
-            website/dist/
+            website/deploy/
 
   deploy:
     runs-on: ubuntu-latest
@@ -77,3 +82,4 @@ jobs:
           app-name: 'dev-reactnatives'
           slot-name: 'Production'
           package: ./site
+          startup-command: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
