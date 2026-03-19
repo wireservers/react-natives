@@ -4,12 +4,15 @@
 name: Build and deploy Node.js app to Azure Web App - reactnatives
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - prod
     paths:
       - website/**
-  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
@@ -80,3 +83,4 @@ jobs:
           slot-name: 'Production'
           package: ./site
           startup-command: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
+          
