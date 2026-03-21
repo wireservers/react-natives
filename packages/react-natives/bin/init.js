@@ -1,45 +1,84 @@
 #!/usr/bin/env node
+/* eslint-env node */
+/* global require, process, console */
 
-'use strict';
+"use strict";
 
-const fs   = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
 
-const cwd   = process.cwd();
-const force = process.argv.includes('--force');
+const cwd = process.cwd();
+const force = process.argv.includes("--force");
 
-const green  = (s) => `\x1b[32m${s}\x1b[0m`;
+const green = (s) => `\x1b[32m${s}\x1b[0m`;
 const yellow = (s) => `\x1b[33m${s}\x1b[0m`;
-const cyan   = (s) => `\x1b[36m${s}\x1b[0m`;
-const bold   = (s) => `\x1b[1m${s}\x1b[0m`;
-const dim    = (s) => `\x1b[2m${s}\x1b[0m`;
+const cyan = (s) => `\x1b[36m${s}\x1b[0m`;
+const bold = (s) => `\x1b[1m${s}\x1b[0m`;
+const dim = (s) => `\x1b[2m${s}\x1b[0m`;
 
 function write(filename, content) {
   const filepath = path.join(cwd, filename);
   if (fs.existsSync(filepath) && !force) {
-    console.log(yellow('  skip  ') + filename + dim(' (already exists — use --force to overwrite)'));
+    console.log(
+      yellow("  skip  ") +
+        filename +
+        dim(" (already exists — use --force to overwrite)"),
+    );
     return;
   }
   fs.mkdirSync(path.dirname(filepath), { recursive: true });
-  fs.writeFileSync(filepath, content, 'utf8');
-  console.log(green('  create') + ' ' + filename);
+  fs.writeFileSync(filepath, content, "utf8");
+  console.log(green("  create") + " " + filename);
+}
+
+function writeStarter(filename, content) {
+  const filepath = path.join(cwd, filename);
+  if (!fs.existsSync(filepath) || force) {
+    fs.mkdirSync(path.dirname(filepath), { recursive: true });
+    fs.writeFileSync(filepath, content, "utf8");
+    console.log(green("  create") + " " + filename);
+    return;
+  }
+
+  const existing = fs.readFileSync(filepath, "utf8");
+  if (looksLikeDefaultExpoStarter(existing)) {
+    fs.writeFileSync(filepath, content, "utf8");
+    console.log(green("  update") + " " + filename);
+    return;
+  }
+
+  console.log(
+    yellow("  skip  ") +
+      filename +
+      dim(" (custom content detected — use --force to overwrite)"),
+  );
+}
+
+function looksLikeDefaultExpoStarter(source) {
+  return (
+    source.includes("Open up App.tsx") ||
+    source.includes("Edit App.tsx") ||
+    source.includes("StatusBar") ||
+    source.includes("ParallaxScrollView") ||
+    source.includes("HelloWave")
+  );
 }
 
 // ─── Detect project type ──────────────────────────────────────────────────────
 
-const hasExpoRouter = fs.existsSync(path.join(cwd, 'app'));
+const hasExpoRouter = fs.existsSync(path.join(cwd, "app"));
 
 const tailwindContent = hasExpoRouter
   ? ['    "./app/**/*.{ts,tsx}"', '    "./components/**/*.{ts,tsx}"']
-  : ['    "./App.{ts,tsx}"',      '    "./components/**/*.{ts,tsx}"'];
+  : ['    "./App.{ts,tsx}"', '    "./components/**/*.{ts,tsx}"'];
 
 // ─── Generated file contents ──────────────────────────────────────────────────
 
 const TAILWIND_CONFIG = `const wirePreset = require("@wireservers-ui/react-natives/tailwind-preset");
 module.exports = {
   content: [
-${tailwindContent.join(',\n')},
+${tailwindContent.join(",\n")},
     "./node_modules/@wireservers-ui/react-natives/src/**/*.{ts,tsx}",
   ],
   presets: [wirePreset],
@@ -191,9 +230,24 @@ const GLOBAL_CSS = `@tailwind base;
 }
 `;
 
-const METRO_CONFIG = `const { getDefaultConfig } = require("expo/metro-config");
+const METRO_CONFIG = `/* eslint-env node */
+const path = require("path");
+const { getDefaultConfig } = require("expo/metro-config");
 const { withNativeWind } = require("nativewind/metro");
 const config = getDefaultConfig(__dirname);
+
+config.resolver.unstable_enableSymlinks = true;
+config.resolver.nodeModulesPaths = [path.resolve(__dirname, "node_modules")];
+
+try {
+  const wsuiPackagePath = path.dirname(
+    require.resolve("@wireservers-ui/react-natives/package.json"),
+  );
+  config.watchFolders = [...new Set([...(config.watchFolders || []), wsuiPackagePath])];
+} catch {
+  // No-op if package is not resolvable yet.
+}
+
 module.exports = withNativeWind(config, { input: "./global.css" });
 `;
 
@@ -209,6 +263,72 @@ const BABEL_CONFIG = `module.exports = function (api) {
 `;
 
 const NATIVEWIND_ENV = `/// <reference types="nativewind/types" />\n`;
+
+const APP_TSX = `import "./global.css";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@wireservers-ui/react-natives";
+
+export default function App() {
+  const [value, setValue] = useState(50);
+
+  return (
+    <View className="flex-1 items-center justify-center bg-background-0 px-8">
+      <Text className="text-2xl font-bold text-typography-900 mb-2">
+        WireServers Slider
+      </Text>
+      <Text className="text-base text-typography-500 mb-8">{value}%</Text>
+
+      <View className="w-full max-w-xs">
+        <Slider value={value} onValueChange={setValue} min={0} max={100} size="lg">
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </View>
+    </View>
+  );
+}
+`;
+
+const ROUTER_INDEX_TSX = `import "../global.css";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@wireservers-ui/react-natives";
+
+export default function HomeScreen() {
+  const [value, setValue] = useState(50);
+
+  return (
+    <View className="flex-1 items-center justify-center bg-background-0 px-8">
+      <Text className="text-2xl font-bold text-typography-900 mb-2">
+        WireServers Slider
+      </Text>
+      <Text className="text-base text-typography-500 mb-8">{value}%</Text>
+
+      <View className="w-full max-w-xs">
+        <Slider value={value} onValueChange={setValue} min={0} max={100} size="lg">
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </View>
+    </View>
+  );
+}
+`;
 
 // ─── Metro Windows ESM patch ──────────────────────────────────────────────────
 //
@@ -242,53 +362,62 @@ console.log('  patched metro-config/src/loadConfig.js (Windows ESM URL fix)');
 // ─── babel.config.js ─────────────────────────────────────────────────────────
 
 function handleBabelConfig() {
-  const filepath = path.join(cwd, 'babel.config.js');
+  const filepath = path.join(cwd, "babel.config.js");
 
   if (!fs.existsSync(filepath)) {
-    fs.writeFileSync(filepath, BABEL_CONFIG, 'utf8');
-    console.log(green('  create') + ' babel.config.js');
+    fs.writeFileSync(filepath, BABEL_CONFIG, "utf8");
+    console.log(green("  create") + " babel.config.js");
     return;
   }
 
-  const existing = fs.readFileSync(filepath, 'utf8');
-  if (existing.includes('jsxImportSource') && existing.includes('nativewind/babel')) {
-    console.log(green('  ok    ') + ' babel.config.js');
+  const existing = fs.readFileSync(filepath, "utf8");
+  if (
+    existing.includes("jsxImportSource") &&
+    existing.includes("nativewind/babel")
+  ) {
+    console.log(green("  ok    ") + " babel.config.js");
     return;
   }
 
   // create-expo-app ships a single-preset babel.config.js — overwrite it
   if (/presets:\s*\[['"]babel-preset-expo['"]\]/.test(existing)) {
-    fs.writeFileSync(filepath, BABEL_CONFIG, 'utf8');
-    console.log(green('  update') + ' babel.config.js');
+    fs.writeFileSync(filepath, BABEL_CONFIG, "utf8");
+    console.log(green("  update") + " babel.config.js");
     return;
   }
 
   // Complex existing config — show manual instructions
-  console.log(yellow('  manual') + ' babel.config.js — add NativeWind manually:');
-  console.log(dim('    presets: [["babel-preset-expo", { jsxImportSource: "nativewind" }], "nativewind/babel"]'));
+  console.log(
+    yellow("  manual") + " babel.config.js — add NativeWind manually:",
+  );
+  console.log(
+    dim(
+      '    presets: [["babel-preset-expo", { jsxImportSource: "nativewind" }], "nativewind/babel"]',
+    ),
+  );
 }
 
 // ─── package.json — add postinstall ──────────────────────────────────────────
 
 function addPostinstall() {
-  const pkgPath = path.join(cwd, 'package.json');
+  const pkgPath = path.join(cwd, "package.json");
   if (!fs.existsSync(pkgPath)) return;
 
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
   pkg.scripts = pkg.scripts || {};
 
-  const existing = pkg.scripts.postinstall || '';
-  if (existing.includes('.metro-patch.js')) {
-    console.log(green('  ok    ') + ' package.json postinstall');
+  const existing = pkg.scripts.postinstall || "";
+  if (existing.includes(".metro-patch.js")) {
+    console.log(green("  ok    ") + " package.json postinstall");
     return;
   }
 
   pkg.scripts.postinstall = existing
     ? `${existing} && node .metro-patch.js`
-    : 'node .metro-patch.js';
+    : "node .metro-patch.js";
 
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf8');
-  console.log(green('  update') + ' package.json postinstall');
+  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf8");
+  console.log(green("  update") + " package.json postinstall");
 }
 
 // ─── Install nativewind + tailwindcss ────────────────────────────────────────
@@ -296,29 +425,46 @@ function addPostinstall() {
 // Runs npm install which also triggers postinstall, applying the Metro patch.
 
 function installDeps() {
-  console.log(cyan('\n  Installing nativewind and tailwindcss...\n'));
+  console.log(cyan("\n  Installing required setup dependencies...\n"));
   try {
-    execSync('npm install nativewind@4 tailwindcss@3', { cwd, stdio: 'inherit' });
+    execSync("npm install nativewind@4 tailwindcss@3 babel-preset-expo", {
+      cwd,
+      stdio: "inherit",
+    });
   } catch {
-    console.log(yellow('\n  warn  ') + ' npm install failed — run it manually to finish setup');
+    console.log(
+      yellow("\n  warn  ") +
+        " npm install failed — run it manually to finish setup",
+    );
   }
 }
 
 // ─── Run ─────────────────────────────────────────────────────────────────────
 
-console.log(bold('\n@wireservers-ui/react-natives init\n'));
+console.log(bold("\n@wireservers-ui/react-natives init\n"));
 
 if (hasExpoRouter) {
-  console.log(cyan('  Detected Expo Router') + '\n');
+  console.log(cyan("  Detected Expo Router") + "\n");
 }
 
-write('tailwind.config.js',  TAILWIND_CONFIG);
-write('global.css',          GLOBAL_CSS);
-write('metro.config.js',     METRO_CONFIG);
+write("tailwind.config.js", TAILWIND_CONFIG);
+write("global.css", GLOBAL_CSS);
+write("metro.config.js", METRO_CONFIG);
 handleBabelConfig();
-write('nativewind-env.d.ts', NATIVEWIND_ENV);
-write('.metro-patch.js',     METRO_PATCH_SCRIPT);
+write("nativewind-env.d.ts", NATIVEWIND_ENV);
+if (hasExpoRouter) {
+  writeStarter("app/index.tsx", ROUTER_INDEX_TSX);
+} else {
+  writeStarter("App.tsx", APP_TSX);
+}
+write(".metro-patch.js", METRO_PATCH_SCRIPT);
 addPostinstall();
 installDeps();
 
-console.log('\n' + bold('Done.') + ' Run ' + cyan('npx expo start --clear') + ' to get started.\n');
+console.log(
+  "\n" +
+    bold("Done.") +
+    " Run " +
+    cyan("npx expo start --clear") +
+    " to get started.\n",
+);

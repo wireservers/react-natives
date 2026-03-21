@@ -2,14 +2,14 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.1). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.0.2). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.1)
+## Release Notes (v2.0.2)
 
 ### What was updated
 
@@ -55,13 +55,47 @@ React-Natives is a collection of 70+ production-ready, accessible React Native c
 
 Use this for the fastest first-time setup in a new Expo app.
 
+1. Create a new Expo app.
+2. Enter the app folder.
+3. Install `@wireservers-ui/react-natives`.
+4. Run `init`.
+5. Start Expo web.
+
 ```bash
-npx create-expo-app@latest wsui-init --template blank-typescript
-cd wsui-init
-npm install @wireservers-ui/react-natives@2.0.0
-npx @wireservers-ui/react-natives@2.0.1 init
-npx expo start --clear --web
+npx create-expo-app@latest wsui --template blank-typescript
+cd wsui
+npm install @wireservers-ui/react-natives
+npx react-natives init
+npm exec expo -- start --clear --web
 ```
+
+This sequence keeps all generated files inside `wsui`.
+No setup files are written outside the generated project folder when run exactly as above.
+
+If `npm exec` prompts to install `expo`, answer `y`.
+
+If you hit npm cache errors like `ENOTEMPTY` or `EACCES` while running the command above, run:
+
+```bash
+sudo chown -R "$(id -u):$(id -g)" ~/.npm
+```
+
+Then retry:
+
+```bash
+npm exec expo -- start --clear --web
+```
+
+### Folder Safety Rule
+
+Always run the init command from inside your generated project folder:
+
+```bash
+cd wsui
+npx react-natives init
+```
+
+Do not run `init` from the repository root.
 
 What `init` does for you:
 
@@ -70,6 +104,12 @@ What `init` does for you:
 - Creates setup files only if missing
 - Never overwrites existing files in your project
 
+To overwrite generated setup files intentionally, use:
+
+```bash
+npx react-natives init --force
+```
+
 ### 2. Manual Setup (Detailed)
 
 Use this path if you want full control over every file.
@@ -77,8 +117,8 @@ Use this path if you want full control over every file.
 #### Step A: Install packages
 
 ```bash
-npm install @wireservers-ui/react-natives@2.0.1
-npm install nativewind tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
+npm install @wireservers-ui/react-natives
+npm install nativewind babel-preset-expo tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
 ```
 
 Important:
