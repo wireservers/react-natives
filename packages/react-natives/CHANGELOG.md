@@ -7,6 +7,13 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.2] - 2026-03-21
+
+### Changed
+- Promoted `2.0.2-rc.0` to stable `2.0.2` with no additional code changes
+
+---
+
 ## [2.0.2-rc.0] - 2026-03-21
 
 ### Added
