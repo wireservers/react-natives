@@ -55,16 +55,21 @@ React-Natives is a collection of 70+ production-ready, accessible React Native c
 
 Use this for the fastest first-time setup in a new Expo app.
 
+1. Create a new Expo app.
+2. Enter the app folder.
+3. Install `@wireservers-ui/react-natives`.
+4. Run `init`.
+5. Start Expo web.
+
 ```bash
-mkdir -p demos/react-natives
-npx create-expo-app@latest demos/react-natives/project --template blank-typescript
-cd demos/react-natives/project
-npm install @wireservers-ui/react-natives@2.0.1
-npx @wireservers-ui/react-natives@2.0.1 init
+npx create-expo-app@latest wsui --template blank-typescript
+cd wsui
+npm install @wireservers-ui/react-natives
+npx react-natives init
 npm exec expo -- start --clear --web
 ```
 
-This sequence keeps all generated files inside `demos/react-natives/project`.
+This sequence keeps all generated files inside `wsui`.
 No setup files are written outside the generated project folder when run exactly as above.
 
 If `npm exec` prompts to install `expo`, answer `y`.
@@ -86,8 +91,8 @@ npm exec expo -- start --clear --web
 Always run the init command from inside your generated project folder:
 
 ```bash
-cd demos/react-natives/project
-npx @wireservers-ui/react-natives@2.0.1 init
+cd wsui
+npx react-natives init
 ```
 
 Do not run `init` from the repository root.
@@ -99,6 +104,12 @@ What `init` does for you:
 - Creates setup files only if missing
 - Never overwrites existing files in your project
 
+To overwrite generated setup files intentionally, use:
+
+```bash
+npx react-natives init --force
+```
+
 ### 2. Manual Setup (Detailed)
 
 Use this path if you want full control over every file.
@@ -106,7 +117,7 @@ Use this path if you want full control over every file.
 #### Step A: Install packages
 
 ```bash
-npm install @wireservers-ui/react-natives@2.0.1
+npm install @wireservers-ui/react-natives
 npm install nativewind babel-preset-expo tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
 ```
 
