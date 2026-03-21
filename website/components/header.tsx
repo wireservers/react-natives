@@ -38,12 +38,11 @@ const NAV_LINKS = [
   { label: "Components", path: "/components" },
 ];
 
-const RAW_REACT_NATIVES_VERSION = require("../package.json").dependencies?.[
-  "@wireservers-ui/react-natives"
-] as string | undefined;
-const REACT_NATIVES_NPM_VERSION = (
-  RAW_REACT_NATIVES_VERSION ?? "unknown"
-).replace(/^[~^]/, "");
+const RAW_REACT_NATIVES_VERSION =
+  require("../../packages/react-natives/package.json").version as
+    | string
+    | undefined;
+const REACT_NATIVES_NPM_VERSION = RAW_REACT_NATIVES_VERSION ?? "unknown";
 
 function SunIcon({ color, size = 18 }: { color: string; size?: number }) {
   return (
