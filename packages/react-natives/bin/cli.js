@@ -44,7 +44,7 @@ if (!isExpoProject(cwd)) {
     "   npx create-expo-app@latest demos/react-natives/project --template blank-typescript",
   );
   console.error("   cd demos/react-natives/project");
-  console.error("   npx @wireservers-ui/react-natives@2.0.1 init\n");
+  console.error("   npx @wireservers-ui/react-natives@2.0.2 init\n");
   process.exit(1);
 }
 
