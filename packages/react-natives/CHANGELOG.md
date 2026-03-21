@@ -7,6 +7,22 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.2-rc.0] - 2026-03-21
+
+### Added
+- `init --force` support in `bin/cli.js` for overwriting generated config files when re-initializing existing starter apps
+
+### Fixed
+- Expo starter overwrite behavior now replaces default template screens with WireServers slider demo while preserving custom app content
+- `init` now ensures `babel-preset-expo` is installed with peer dependencies to avoid runtime Babel preset resolution failures
+- Local file-linked package development now works out of the box via Metro symlink-aware config generation in `init` scripts
+- Tailwind preset now resolves `nativewind/preset` reliably when the package is consumed via local file links
+
+### Changed
+- CLI init guard messaging and setup behavior were hardened for safer project-folder execution
+
+---
+
 ## [2.0.1] - 2026-03-16
 
 ### Added

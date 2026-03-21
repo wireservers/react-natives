@@ -56,12 +56,41 @@ React-Natives is a collection of 70+ production-ready, accessible React Native c
 Use this for the fastest first-time setup in a new Expo app.
 
 ```bash
-npx create-expo-app@latest wsui-init --template blank-typescript
-cd wsui-init
-npm install @wireservers-ui/react-natives@2.0.0
+mkdir -p demos/react-natives
+npx create-expo-app@latest demos/react-natives/project --template blank-typescript
+cd demos/react-natives/project
+npm install @wireservers-ui/react-natives@2.0.1
 npx @wireservers-ui/react-natives@2.0.1 init
-npx expo start --clear --web
+npm exec expo -- start --clear --web
 ```
+
+This sequence keeps all generated files inside `demos/react-natives/project`.
+No setup files are written outside the generated project folder when run exactly as above.
+
+If `npm exec` prompts to install `expo`, answer `y`.
+
+If you hit npm cache errors like `ENOTEMPTY` or `EACCES` while running the command above, run:
+
+```bash
+sudo chown -R "$(id -u):$(id -g)" ~/.npm
+```
+
+Then retry:
+
+```bash
+npm exec expo -- start --clear --web
+```
+
+### Folder Safety Rule
+
+Always run the init command from inside your generated project folder:
+
+```bash
+cd demos/react-natives/project
+npx @wireservers-ui/react-natives@2.0.1 init
+```
+
+Do not run `init` from the repository root.
 
 What `init` does for you:
 
@@ -78,7 +107,7 @@ Use this path if you want full control over every file.
 
 ```bash
 npm install @wireservers-ui/react-natives@2.0.1
-npm install nativewind tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
+npm install nativewind babel-preset-expo tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
 ```
 
 Important:

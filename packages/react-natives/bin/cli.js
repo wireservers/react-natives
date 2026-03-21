@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* eslint-env node */
+/* global require, process, console */
 
 const { execSync } = require("child_process");
 const fs = require("fs");
@@ -6,6 +8,7 @@ const path = require("path");
 
 const args = process.argv.slice(2);
 const command = args[0];
+const force = args.includes("--force");
 
 if (command !== "init") {
   console.error(`Unknown command: ${command}`);
@@ -14,6 +17,36 @@ if (command !== "init") {
 }
 
 const cwd = process.cwd();
+
+function isExpoProject(dir) {
+  const pkgPath = path.join(dir, "package.json");
+  if (!fs.existsSync(pkgPath)) return false;
+
+  try {
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+    const deps = {
+      ...(pkg.dependencies || {}),
+      ...(pkg.devDependencies || {}),
+    };
+    return Boolean(deps.expo || deps["expo-router"] || deps["react-native"]);
+  } catch {
+    return false;
+  }
+}
+
+if (!isExpoProject(cwd)) {
+  console.error(
+    "\n❌ @wireservers-ui/react-natives init must be run inside an Expo project folder.",
+  );
+  console.error("   Example:");
+  console.error("   mkdir -p demos/react-natives");
+  console.error(
+    "   npx create-expo-app@latest demos/react-natives/project --template blank-typescript",
+  );
+  console.error("   cd demos/react-natives/project");
+  console.error("   npx @wireservers-ui/react-natives@2.0.1 init\n");
+  process.exit(1);
+}
 
 // ── Detect package manager ─────────────────────────────────────────────────
 function detectPackageManager() {
@@ -83,6 +116,7 @@ const reactDomPackage = reactVersion
 
 const peers = [
   "nativewind@^4",
+  "babel-preset-expo",
   "tailwindcss@^3",
   "tailwind-variants",
   "tailwind-merge",
@@ -272,10 +306,24 @@ writeIfMissing(
 );
 
 // ── 6. Create/update metro.config.js ───────────────────────────────────────
-const metroConfig = `const { getDefaultConfig } = require("expo/metro-config");
+const metroConfig = `/* eslint-env node */
+const path = require("path");
+const { getDefaultConfig } = require("expo/metro-config");
 const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
+
+config.resolver.unstable_enableSymlinks = true;
+config.resolver.nodeModulesPaths = [path.resolve(__dirname, "node_modules")];
+
+try {
+  const wsuiPackagePath = path.dirname(
+    require.resolve("@wireservers-ui/react-natives/package.json"),
+  );
+  config.watchFolders = [...new Set([...(config.watchFolders || []), wsuiPackagePath])];
+} catch {
+  // No-op if package is not resolvable yet.
+}
 
 module.exports = withNativeWind(config, { input: "./global.css" });
 `;
@@ -340,7 +388,7 @@ export default function App() {
 }
 `;
 
-writeFile("App.tsx", appTsx);
+writeStarterFile("App.tsx", appTsx);
 
 // ── Done ───────────────────────────────────────────────────────────────────
 console.log("\n✅ Setup complete!\n");
@@ -357,12 +405,16 @@ console.log("     npx expo start --clear\n");
 // ── Helpers ────────────────────────────────────────────────────────────────
 function writeFile(name, content) {
   const filePath = path.join(cwd, name);
-  if (fs.existsSync(filePath)) {
-    console.log(`   ⏭️  ${name} already exists, skipping`);
+  if (fs.existsSync(filePath) && !force) {
+    console.log(
+      `   ⏭️  ${name} already exists, skipping (use --force to overwrite)`,
+    );
     return;
   }
+
+  const action = fs.existsSync(filePath) ? "Updated" : "Created";
   fs.writeFileSync(filePath, content, "utf8");
-  console.log(`   ✏️  Created ${name}`);
+  console.log(`   ✏️  ${action} ${name}`);
 }
 
 function writeIfMissing(name, content) {
@@ -373,4 +425,30 @@ function writeIfMissing(name, content) {
   }
   fs.writeFileSync(filePath, content, "utf8");
   console.log(`   ✏️  Created ${name}`);
+}
+
+function writeStarterFile(name, content) {
+  const filePath = path.join(cwd, name);
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, content, "utf8");
+    console.log(`   ✏️  Created ${name}`);
+    return;
+  }
+
+  const existing = fs.readFileSync(filePath, "utf8");
+  if (looksLikeDefaultExpoScreen(existing)) {
+    fs.writeFileSync(filePath, content, "utf8");
+    console.log(`   ✏️  Updated ${name} with WireServers slider demo`);
+    return;
+  }
+
+  console.log(`   ⏭️  ${name} has custom content, keeping existing file`);
+}
+
+function looksLikeDefaultExpoScreen(source) {
+  return (
+    source.includes("Open up App.tsx") ||
+    source.includes("Edit App.tsx") ||
+    source.includes("StatusBar")
+  );
 }
