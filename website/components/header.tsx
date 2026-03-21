@@ -355,7 +355,9 @@ export function Header() {
 
             {/* Get Started button */}
             <Pressable
-              onPress={() => router.navigate("/components" as any)}
+              onPress={() =>
+                router.navigate("/components/getting-started" as any)
+              }
               style={{
                 backgroundColor: BRAND_COLOR,
                 paddingHorizontal: 16,

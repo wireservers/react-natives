@@ -10,6 +10,21 @@ Built with [NativeWind](https://www.nativewind.dev/) and [Tailwind Variants](htt
 npm install @wireservers-ui/react-natives
 ```
 
+## Quick Start (New Expo App)
+
+1. Create a new Expo app.
+2. Enter the app folder.
+3. Install the package.
+4. Run init.
+
+```bash
+npx create-expo-app@latest wsui --template blank-typescript
+cd wsui
+npm install @wireservers-ui/react-natives
+npx react-natives init
+npx expo start --web --clear
+```
+
 ### Peer Dependencies
 
 Make sure you have the following installed in your project:
