@@ -20,8 +20,8 @@ jobs:
 
           echo "Validating branch flow: ${HEAD_REF} -> ${BASE_REF}"
 
-          if [[ "${HEAD_REF}" == feat/* && "${BASE_REF}" == "dev" ]]; then
-            echo "Allowed: feature branches can merge into dev"
+          if [[ "${HEAD_REF}" == feat/* || "${HEAD_REF}" == fix/* || "${HEAD_REF}" == chore/* || "${HEAD_REF}" == docs/* || "${HEAD_REF}" == refactor/* ]] && [[ "${BASE_REF}" == "dev" ]]; then
+            echo "Allowed: ${HEAD_REF} can merge into dev"
             exit 0
           fi
 
@@ -36,5 +36,5 @@ jobs:
           fi
 
           echo "Invalid branch flow: ${HEAD_REF} -> ${BASE_REF}"
-          echo "Expected promotion flow: feat/* -> dev -> prod -> sot"
+          echo "Expected promotion flow: feat/*|fix/*|chore/*|docs/*|refactor/* -> dev -> prod -> sot"
           exit 1
