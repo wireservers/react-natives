@@ -5,7 +5,7 @@ import { SeoHead } from "@/components/seo/seo-head";
 import { usePageColors } from "@/context/custom-theme-context";
 import { SITE_URL } from "@/lib/seo";
 import { MarkdownRenderer } from "@/components/docs/markdown-renderer";
-import readmeContent from "@/packages/react-natives/README.md";
+import readmeContent from "@/lib/readme-content";
 
 export default function GettingStartedScreen() {
   const { width: screenWidth } = useWindowDimensions();
