@@ -1,0 +1,40 @@
+name: Branch Flow Guard
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  enforce-flow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR branch flow
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+
+          echo "Validating branch flow: ${HEAD_REF} -> ${BASE_REF}"
+
+          if [[ "${HEAD_REF}" == feat/* || "${HEAD_REF}" == fix/* || "${HEAD_REF}" == chore/* || "${HEAD_REF}" == docs/* || "${HEAD_REF}" == refactor/* ]] && [[ "${BASE_REF}" == "dev" ]]; then
+            echo "Allowed: ${HEAD_REF} can merge into dev"
+            exit 0
+          fi
+
+          if [[ "${HEAD_REF}" == "dev" && "${BASE_REF}" == "prod" ]]; then
+            echo "Allowed: dev can merge into prod"
+            exit 0
+          fi
+
+          if [[ "${HEAD_REF}" == "prod" && "${BASE_REF}" == "sot" ]]; then
+            echo "Allowed: prod can merge into sot"
+            exit 0
+          fi
+
+          echo "Invalid branch flow: ${HEAD_REF} -> ${BASE_REF}"
+          echo "Expected promotion flow: feat/*|fix/*|chore/*|docs/*|refactor/* -> dev -> prod -> sot"
+          exit 1
