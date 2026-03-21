@@ -5,43 +5,25 @@ on:
     branches: [prod]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout dev
-        uses: actions/checkout@v4
-        with:
-          ref: dev
-          fetch-depth: 0
-
-      - name: Merge prod into dev
-        id: merge
+      - name: Open back-sync PR if not already open
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin prod
-          if git merge --no-edit origin/prod; then
-            echo "merged=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "merged=false" >> "$GITHUB_OUTPUT"
+          existing=$(gh pr list --head prod --base dev --state open --json number --jq '.[0].number')
+          if [[ -n "$existing" ]]; then
+            echo "Back-sync PR #$existing already open, skipping."
+            exit 0
           fi
-
-      - name: Push dev
-        if: steps.merge.outputs.merged == 'true'
-        run: git push origin dev
-
-      - name: Open conflict PR if merge failed
-        if: steps.merge.outputs.merged == 'false'
-        run: |
-          git merge --abort || true
           gh pr create \
-            --title "chore: sync prod → dev (conflicts need resolution)" \
-            --body "Automatic back-merge of \`prod\` into \`dev\` failed due to conflicts. Please resolve manually." \
+            --title "chore: sync prod → dev" \
+            --body "Automatic back-merge of \`prod\` into \`dev\` to keep branches in sync after a promotion." \
             --head prod \
             --base dev
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
