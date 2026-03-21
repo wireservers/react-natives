@@ -35,6 +35,11 @@ jobs:
             exit 0
           fi
 
+          if [[ "${HEAD_REF}" == "prod" && "${BASE_REF}" == "dev" ]]; then
+            echo "Allowed: prod can back-sync into dev"
+            exit 0
+          fi
+
           echo "Invalid branch flow: ${HEAD_REF} -> ${BASE_REF}"
           echo "Expected promotion flow: feat/*|fix/*|chore/*|docs/*|refactor/* -> dev -> prod -> sot"
           exit 1
