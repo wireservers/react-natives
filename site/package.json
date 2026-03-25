@@ -3,13 +3,14 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "sync-readme": "node scripts/sync-readme.js",
+    "start": "node scripts/sync-readme.js && expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
-    "build": "expo export --platform web && node scripts/generate-sitemap.js",
-    "build:clean": "expo export --platform web --clear && node scripts/generate-sitemap.js",
+    "web": "node scripts/sync-readme.js && expo start --web",
+    "build": "node scripts/sync-readme.js && expo export --platform web && node scripts/generate-sitemap.js",
+    "build:clean": "node scripts/sync-readme.js && expo export --platform web --clear && node scripts/generate-sitemap.js",
     "clean": "rm -rf .expo node_modules/.cache dist",
     "lint": "expo lint"
   },

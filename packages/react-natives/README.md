@@ -32,17 +32,8 @@ React-Natives is a collection of 70+ production-ready, accessible React Native c
 
 ### Key Features
 
-- **70+ Components** — Buttons, forms, modals, tables, calendars, color pickers, and more
-- **TypeScript First** — Fully typed with excellent IDE autocomplete
-- **NativeWind + Tailwind Variants** — Utility-first styling with type-safe variant APIs
-- **Themeable** — CSS variable-based color system with light/dark mode support
-- **Accessible** — Built with accessibility in mind
-- **Cross Platform** — iOS, Android, and Web via React Native
 
-### Tech Stack
-
-| Layer | Technology |
-| --- | --- |
+// ...existing code...
 | Components | React Native |
 | Styling | NativeWind v4, Tailwind CSS 3, Tailwind Variants |
 | Types | TypeScript |

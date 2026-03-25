@@ -46,3 +46,6 @@ app-example
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 package-lock.json
+
+# Generated files
+lib/readme-content.ts

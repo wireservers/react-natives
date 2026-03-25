@@ -9,7 +9,7 @@ on:
     branches:
       - dev
     paths:
-      - website/**
+      - site/**
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -36,23 +36,23 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        working-directory: website
+        working-directory: site
 
       - name: Build
         run: pnpm run build
-        working-directory: website
+        working-directory: site
 
       - name: Prepare deployment package
         run: |
-          mkdir -p website/deploy
-          cp -R website/dist/. website/deploy/
+          mkdir -p site/deploy
+          cp -R site/dist/. site/deploy/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: |
-            website/deploy/
+            site/deploy/
 
   deploy:
     runs-on: ubuntu-latest
