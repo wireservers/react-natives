@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - prod
+      - main
     paths:
       - site/**
 
@@ -70,8 +70,8 @@ jobs:
 
       - name: Ensure prod branch context
         run: |
-          if [ "${GITHUB_REF}" != "refs/heads/prod" ]; then
-            echo "This workflow must run from refs/heads/prod. Current ref: ${GITHUB_REF}"
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
+            echo "This workflow must run from refs/heads/main. Current ref: ${GITHUB_REF}"
             exit 1
           fi
 

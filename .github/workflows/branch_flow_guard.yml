@@ -20,26 +20,33 @@ jobs:
 
           echo "Validating branch flow: ${HEAD_REF} -> ${BASE_REF}"
 
-          if [[ "${HEAD_REF}" == feat/* || "${HEAD_REF}" == fix/* || "${HEAD_REF}" == chore/* || "${HEAD_REF}" == docs/* || "${HEAD_REF}" == refactor/* ]] && [[ "${BASE_REF}" == "dev" ]]; then
-            echo "Allowed: ${HEAD_REF} can merge into dev"
+          if [[ "${HEAD_REF}" == feat/* || "${HEAD_REF}" == fix/* || "${HEAD_REF}" == chore/* || "${HEAD_REF}" == docs/* || "${HEAD_REF}" == refactor/* || "${HEAD_REF}" == hotfix/* ]] && [[ "${BASE_REF}" == "develop" ]]; then
+            echo "Allowed: ${HEAD_REF} can merge into develop"
             exit 0
           fi
 
-          if [[ "${HEAD_REF}" == "dev" && "${BASE_REF}" == "prod" ]]; then
-            echo "Allowed: dev can merge into prod"
+          if [[ "${HEAD_REF}" == release/* && ( "${BASE_REF}" == "main" || "${BASE_REF}" == "develop" ) ]]; then
+            echo "Allowed: ${HEAD_REF} can merge into ${BASE_REF}"
             exit 0
           fi
 
-          if [[ "${HEAD_REF}" == "prod" && "${BASE_REF}" == "sot" ]]; then
-            echo "Allowed: prod can merge into sot"
+          if [[ "${HEAD_REF}" == hotfix/* && ( "${BASE_REF}" == "main" || "${BASE_REF}" == "develop" ) ]]; then
+            echo "Allowed: ${HEAD_REF} can merge into ${BASE_REF}"
             exit 0
           fi
 
-          if [[ "${HEAD_REF}" == "prod" && "${BASE_REF}" == "dev" ]]; then
-            echo "Allowed: prod can back-sync into dev"
+          if [[ "${HEAD_REF}" == "develop" && "${BASE_REF}" == "main" ]]; then
+            echo "Allowed: develop can merge into main (release promotion)"
+            exit 0
+          fi
+
+          if [[ "${HEAD_REF}" == "main" && "${BASE_REF}" == "develop" ]]; then
+            echo "Allowed: main can back-sync into develop"
             exit 0
           fi
 
           echo "Invalid branch flow: ${HEAD_REF} -> ${BASE_REF}"
-          echo "Expected promotion flow: feat/*|fix/*|chore/*|docs/*|refactor/* -> dev -> prod -> sot"
+          echo "Expected Gitflow: feature/fix/chore/* -> develop -> main"
+          echo "Hotfixes: hotfix/* -> main + develop"
+          echo "Releases: release/* -> main + develop"
           exit 1
