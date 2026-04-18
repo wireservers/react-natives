@@ -17,7 +17,7 @@
 
 ## PNG exports
 
-### WireServers UI — legacy (`website/assets/images`)
+### WireServers UI — legacy (`wireservers/assets/images`)
 
 - `wireservers-ui-mark-1024.png`
 - `wireservers-ui-mark-512.png`
