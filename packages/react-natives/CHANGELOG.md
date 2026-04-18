@@ -7,6 +7,18 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.3] - 2026-04-18
+
+### Fixed
+- Repository URL updated from `wireservers/wireservers-ui` to `wireservers/react-natives` following GitHub repo rename — resolves 404 on npmjs Release Notes link
+
+### Changed
+- CI workflows migrated from `dev`/`prod`/`sot` branch model to `develop`/`main` gitflow
+- `babel-preset-expo` added as explicit dependency to resolve peer dependency resolution failures in certain environments
+- Docs site Dockerfile and nginx config added for self-hosted deployment
+
+---
+
 ## [2.0.2] - 2026-03-21
 
 ### Changed

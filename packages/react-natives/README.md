@@ -19,7 +19,7 @@
 ### Changelog
 
 - Full changelog is included in the package at `CHANGELOG.md`
-- GitHub: https://github.com/wireservers/wireservers-ui/blob/dev/packages/react-natives/CHANGELOG.md
+- GitHub: https://github.com/wireservers/react-natives/blob/main/packages/react-natives/CHANGELOG.md
 - npm package page: open the `CHANGELOG.md` file from the package contents/files list
 
 ---
@@ -600,7 +600,7 @@ react-natives/
 
 ```bash
 # Clone the repository
-git clone https://github.com/wireservers/wireservers-ui.git
+git clone https://github.com/wireservers/react-natives.git
 cd wireservers-ui/packages/react-natives
 
 # Install dependencies

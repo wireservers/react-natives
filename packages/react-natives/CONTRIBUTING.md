@@ -7,7 +7,7 @@ Thanks for your interest in contributing! Here's how to get started.
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/wireservers/wireservers-ui.git
+   git clone https://github.com/wireservers/react-natives.git
    cd wireservers-ui/packages/react-natives
    ```
 
@@ -36,4 +36,4 @@ Thanks for your interest in contributing! Here's how to get started.
 
 ## Reporting Issues
 
-Open an issue on [GitHub Issues](https://github.com/wireservers/wireservers-ui/issues) with a clear description and reproduction steps.
+Open an issue on [GitHub Issues](https://github.com/wireservers/react-natives/issues) with a clear description and reproduction steps.
