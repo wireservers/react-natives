@@ -1,6 +1,6 @@
 {
   "name": "@wireservers-ui/react-natives",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A comprehensive React Native component library built with NativeWind and Tailwind Variants",
   "main": "src/index.ts",
   "types": "src/index.ts",
