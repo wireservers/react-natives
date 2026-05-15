@@ -18,6 +18,7 @@ import {
 } from "@/constants/brand";
 import { useTheme } from "@/context/theme-context";
 import { useCustomTheme } from "@/context/custom-theme-context";
+import { UserAvatar } from "@/components/user-avatar";
 
 /** Wrapper that renders an HTML div with a title attribute on web (for native tooltips) */
 function WithTooltip({
@@ -369,6 +370,9 @@ export function Header() {
                 Get Started
               </Text>
             </Pressable>
+
+            {/* User avatar / sign-in */}
+            <UserAvatar />
           </View>
         </View>
       </View>

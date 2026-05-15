@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 import { ThemeProvider as AppThemeProvider } from '@/components/ui/theme-provider';
 import { ThemeContextProvider, useTheme } from '@/context/theme-context';
 import { CustomThemeProvider } from '@/context/custom-theme-context';
+import { AuthProvider } from '@/lib/auth-context';
 import '@/global.css';
 
 export const unstable_settings = {
@@ -30,10 +31,12 @@ function AppLayout() {
 
 export default function RootLayout() {
   return (
-    <ThemeContextProvider>
-      <CustomThemeProvider>
-        <AppLayout />
-      </CustomThemeProvider>
-    </ThemeContextProvider>
+    <AuthProvider>
+      <ThemeContextProvider>
+        <CustomThemeProvider>
+          <AppLayout />
+        </CustomThemeProvider>
+      </ThemeContextProvider>
+    </AuthProvider>
   );
 }

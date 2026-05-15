@@ -22,6 +22,8 @@ export default function TabLayout() {
           <Stack.Screen name="components" />
           <Stack.Screen name="features" />
           <Stack.Screen name="theming/index" />
+          <Stack.Screen name="login" />
+          <Stack.Screen name="account" />
         </Stack>
         {settingsOpen ? (
           <React.Suspense fallback={null}>
