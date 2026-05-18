@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
-import { Modal, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { BRAND_COLOR } from '@/constants/brand';
 import { useTheme } from '@/context/theme-context';
 import { useAuth } from '@/lib/auth-context';
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuItemText,
+  MenuSeparator,
+  MenuGroup,
+  MenuGroupTitle,
+} from '@wireservers-ui/react-natives';
 
-const AVATAR_SIZE = 36;
+const AVATAR_SIZE = 40;
 
 export function UserAvatar() {
   const router = useRouter();
@@ -14,11 +24,6 @@ export function UserAvatar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isDark = colorScheme === 'dark';
 
-  const textColor = isDark ? '#D1D5DB' : '#4B5563';
-  const cardBg = isDark ? '#1f1f1f' : '#fff';
-  const cardBorder = isDark ? '#3A3A3A' : '#E2E8F0';
-  const subTextColor = isDark ? '#9CA3AF' : '#6B7280';
-
   if (isLoading) {
     return (
       <View
@@ -26,7 +31,7 @@ export function UserAvatar() {
           width: AVATAR_SIZE,
           height: AVATAR_SIZE,
           borderRadius: AVATAR_SIZE / 2,
-          backgroundColor: isDark ? '#252525' : '#F1F5F9',
+          backgroundColor: isDark ? '#1F2937' : '#E5E7EB',
         }}
       />
     );
@@ -37,15 +42,16 @@ export function UserAvatar() {
       <Pressable
         onPress={() => router.navigate('/login' as any)}
         accessibilityLabel="Sign in"
-        style={{
+        style={({ pressed }) => ({
           paddingHorizontal: 14,
-          paddingVertical: 8,
-          borderRadius: 6,
+          paddingVertical: 10,
+          borderRadius: 999,
           borderWidth: 1,
           borderColor: BRAND_COLOR,
-        }}
+          backgroundColor: pressed ? 'rgba(16,185,129,0.08)' : 'transparent',
+        })}
       >
-        <Text style={{ color: BRAND_COLOR, fontSize: 13, fontWeight: '600' }}>
+        <Text style={{ color: BRAND_COLOR, fontSize: 13, fontWeight: '700' }}>
           Sign in
         </Text>
       </Pressable>
@@ -53,107 +59,110 @@ export function UserAvatar() {
   }
 
   return (
-    <View>
-      <Pressable
-        onPress={() => setMenuOpen(true)}
-        accessibilityLabel={`Account menu for ${user.name}`}
-        style={{
-          width: AVATAR_SIZE,
-          height: AVATAR_SIZE,
-          borderRadius: AVATAR_SIZE / 2,
-          backgroundColor: BRAND_COLOR,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700' }}>
-          {user.initials}
-        </Text>
-      </Pressable>
-
-      <Modal
-        visible={menuOpen}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setMenuOpen(false)}
-      >
+    <Menu isOpen={menuOpen} onOpenChange={setMenuOpen}>
+      <MenuTrigger>
         <Pressable
-          onPress={() => setMenuOpen(false)}
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)' }}
+          accessibilityLabel={`Open account menu for ${user.name}`}
+          style={({ pressed }) => ({
+            width: AVATAR_SIZE,
+            height: AVATAR_SIZE,
+            borderRadius: AVATAR_SIZE / 2,
+            backgroundColor: BRAND_COLOR,
+            alignItems: 'center',
+            justifyContent: 'center',
+            transform: [{ scale: pressed ? 0.96 : 1 }],
+            shadowColor: '#000',
+            shadowOpacity: pressed ? 0.18 : 0.12,
+            shadowOffset: { width: 0, height: 2 },
+            shadowRadius: 8,
+            elevation: pressed ? 4 : 3,
+          })}
         >
-          <View
+          <Text style={{ color: '#fff', fontSize: 14, fontWeight: '800' }}>
+            {user.initials}
+          </Text>
+        </Pressable>
+      </MenuTrigger>
+
+      <MenuContent
+        className={`w-[280px] rounded-[24px] border p-0 shadow-2xl ${isDark ? 'border-slate-800 bg-slate-950' : 'border-slate-200 bg-white'}`}
+      >
+        <View className="p-4">
+          <View className="flex-row items-center gap-3">
+            <View
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: 24,
+                backgroundColor: BRAND_COLOR,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ color: '#fff', fontSize: 15, fontWeight: '800' }}>
+                {user.initials}
+              </Text>
+            </View>
+            <View className="flex-1">
+              <Text
+                style={{
+                  color: isDark ? '#F8FAFC' : '#111827',
+                  fontSize: 15,
+                  fontWeight: '700',
+                }}
+                numberOfLines={1}
+              >
+                {user.name}
+              </Text>
+              <Text
+                style={{
+                  color: isDark ? '#94A3B8' : '#6B7280',
+                  fontSize: 13,
+                }}
+                numberOfLines={1}
+              >
+                {user.email}
+              </Text>
+            </View>
+          </View>
+
+          <Text
+            className="mt-4"
             style={{
-              position: 'absolute',
-              top: 72,
-              right: 20,
-              width: 260,
-              backgroundColor: cardBg,
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: cardBorder,
-              padding: 16,
-              shadowColor: '#000',
-              shadowOpacity: 0.1,
-              shadowRadius: 12,
-              shadowOffset: { width: 0, height: 4 },
-              elevation: 6,
+              color: isDark ? '#94A3B8' : '#6B7280',
+              fontSize: 11,
+              letterSpacing: 0.6,
+              textTransform: 'uppercase',
             }}
           >
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-              <View
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
-                  backgroundColor: BRAND_COLOR,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700' }}>
-                  {user.initials}
-                </Text>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: textColor, fontSize: 14, fontWeight: '600' }} numberOfLines={1}>
-                  {user.name}
-                </Text>
-                <Text style={{ color: subTextColor, fontSize: 12 }} numberOfLines={1}>
-                  {user.email}
-                </Text>
-              </View>
-            </View>
+            Profile
+          </Text>
+        </View>
 
-            <Pressable
-              onPress={() => {
-                setMenuOpen(false);
-                router.navigate('/account' as any);
-              }}
-              style={{
-                paddingVertical: 10,
-                paddingHorizontal: 12,
-                borderRadius: 6,
-              }}
-            >
-              <Text style={{ color: textColor, fontSize: 14 }}>Account</Text>
-            </Pressable>
+        <MenuSeparator className={`${isDark ? 'bg-slate-800' : 'bg-slate-100'} h-px`} />
 
-            <Pressable
-              onPress={async () => {
-                setMenuOpen(false);
-                await signOut();
-              }}
-              style={{
-                paddingVertical: 10,
-                paddingHorizontal: 12,
-                borderRadius: 6,
-              }}
-            >
-              <Text style={{ color: textColor, fontSize: 14 }}>Sign out</Text>
-            </Pressable>
-          </View>
-        </Pressable>
-      </Modal>
-    </View>
+        <MenuItem
+          onPress={() => {
+            router.navigate('/account' as any);
+          }}
+          className={`px-4 py-3 ${isDark ? 'hover:bg-slate-900' : 'hover:bg-slate-50'}`}
+        >
+          <MenuItemText className={`text-sm font-semibold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+            Account settings
+          </MenuItemText>
+        </MenuItem>
+
+        <MenuItem
+          onPress={async () => {
+            await signOut();
+          }}
+          className={`px-4 py-3 ${isDark ? 'hover:bg-slate-900' : 'hover:bg-slate-50'}`}
+        >
+          <MenuItemText className="text-sm font-semibold text-rose-500">
+            Sign out
+          </MenuItemText>
+        </MenuItem>
+      </MenuContent>
+    </Menu>
   );
 }
