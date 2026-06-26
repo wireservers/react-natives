@@ -4,7 +4,7 @@ import type { PropsWithChildren } from "react";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const GTM_ID = "GTM-PTXVFC3R";
-const GA_ID = "G-J8J88W24VR";
+const GA_ID = "G-VWS71RHC7R";
 const SITE_DESCRIPTION =
   "A comprehensive library of 70+ production-ready React Native components. TypeScript-first, accessible, customizable, and performant.";
 
