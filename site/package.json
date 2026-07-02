@@ -15,7 +15,6 @@
     "lint": "expo lint"
   },
   "dependencies": {
-    "@azure/msal-browser": "^3.27.0",
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^15.0.3",
     "@legendapp/motion": "^2.5.3",
