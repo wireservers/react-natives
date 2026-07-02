@@ -1816,40 +1816,66 @@ export default function SliderExample() {
     slug: 'select',
     name: 'Select',
     description:
-      'A compound dropdown select component with trigger, portal-based content, and selectable items for single-value selection.',
+      'A compound dropdown select component with trigger, portal-based content, search filtering, single-select, and multi-select badge support.',
     whenToUse:
-      'Use Select for picking a single option from a list that is too long for radio buttons.',
+      'Use Select for picking one or more options from a list that is too long for radio buttons or checkboxes.',
     category: 'Form Controls',
     importCode:
-      "import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+      "import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem, SelectSearchInput, SelectSelectedBadges } from '@wireservers-ui/react-natives';",
+    exampleCode: `import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectItem,
+  SelectSearchInput,
+  SelectSelectedBadges,
+} from '@wireservers-ui/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { ChevronDown } from 'lucide-react-native';
 
+const valueLabels = {
+  css: 'CSS',
+  ember: 'Ember',
+  html: 'HTML',
+  react: 'React',
+  nativewind: 'NativeWind',
+  typescript: 'TypeScript',
+  expo: 'Expo',
+};
+
 export default function SelectExample() {
-  const [country, setCountry] = useState('');
+  const [technologies, setTechnologies] = useState(['css', 'html']);
 
   return (
     <View style={{ gap: 8 }}>
-      <Text style={{ fontWeight: '600' }}>Country</Text>
+      <Text style={{ fontWeight: '600' }}>Technologies</Text>
       <Select
-        selectedValue={country}
-        onValueChange={setCountry}
-        placeholder="Select a country"
+        isMulti
+        selectedValues={technologies}
+        onValuesChange={setTechnologies}
+        valueLabels={valueLabels}
       >
-        <SelectTrigger variant="outline" size="md">
-          <SelectInput placeholder="Select a country" />
+        <SelectTrigger variant="outline" size="md" className="min-h-12 h-auto py-2">
+          <SelectSelectedBadges maxVisible={3} />
+          <SelectInput placeholder="Choose technologies" />
           <SelectIcon as={ChevronDown} />
         </SelectTrigger>
         <SelectPortal>
           <SelectBackdrop />
           <SelectContent>
-            <SelectItem label="United States" value="us" />
-            <SelectItem label="United Kingdom" value="uk" />
-            <SelectItem label="Canada" value="ca" />
-            <SelectItem label="Australia" value="au" />
-            <SelectItem label="Germany" value="de" />
+            <SelectSearchInput placeholder="Search technologies" />
+            <SelectItem label="CSS" value="css" />
+            <SelectItem label="Ember" value="ember" />
+            <SelectItem label="HTML" value="html" />
+            <SelectItem label="React" value="react" />
+            <SelectItem label="NativeWind" value="nativewind" />
+            <SelectItem label="TypeScript" value="typescript" />
+            <SelectItem label="Expo" value="expo" />
           </SelectContent>
         </SelectPortal>
       </Select>
@@ -1863,19 +1889,75 @@ export default function SelectExample() {
         description: 'NativeWind utility classes for the select container.',
       },
       {
+        name: 'isMulti',
+        type: 'boolean',
+        default: 'false',
+        description: 'Enables multiple selected values and keeps the dropdown open by default after each item press.',
+      },
+      {
         name: 'selectedValue',
         type: 'string',
-        description: 'The controlled selected value.',
+        description: 'The controlled selected value for single-select mode.',
       },
       {
         name: 'defaultValue',
         type: 'string',
-        description: 'The initial selected value when uncontrolled.',
+        description: 'The initial selected value when uncontrolled in single-select mode.',
       },
       {
         name: 'onValueChange',
         type: '(value: string) => void',
-        description: 'Callback invoked when the selected value changes.',
+        description: 'Callback invoked when the selected value changes in single-select mode.',
+      },
+      {
+        name: 'selectedValues',
+        type: 'string[]',
+        description: 'The controlled selected values for multi-select mode.',
+      },
+      {
+        name: 'defaultValues',
+        type: 'string[]',
+        description: 'The initial selected values when uncontrolled in multi-select mode.',
+      },
+      {
+        name: 'onValuesChange',
+        type: '(values: string[]) => void',
+        description: 'Callback invoked when selected values change in multi-select mode.',
+      },
+      {
+        name: 'valueLabels',
+        type: 'Record<string, string>',
+        description: 'Maps selected values to labels before dropdown items have registered themselves.',
+      },
+      {
+        name: 'closeOnSelect',
+        type: 'boolean',
+        description: 'Overrides whether the dropdown closes after pressing an item. Defaults to true for single-select and false for multi-select.',
+      },
+      {
+        name: 'searchValue',
+        type: 'string',
+        description: 'Controlled search text used by SelectSearchInput and item filtering.',
+      },
+      {
+        name: 'defaultSearchValue',
+        type: 'string',
+        description: 'Initial search text when search is uncontrolled.',
+      },
+      {
+        name: 'onSearchChange',
+        type: '(value: string) => void',
+        description: 'Callback invoked when the SelectSearchInput value changes.',
+      },
+      {
+        name: 'filterOption',
+        type: '(searchValue: string, option: SelectOption) => boolean',
+        description: 'Custom filter predicate for matching dropdown items.',
+      },
+      {
+        name: 'formatSelectedLabel',
+        type: '(items: SelectOption[]) => string',
+        description: 'Customizes the summary text shown by SelectInput in multi-select mode.',
       },
       {
         name: 'size',
@@ -1973,6 +2055,58 @@ export default function SelectExample() {
         ],
       },
       {
+        name: 'SelectSearchInput',
+        props: [
+          {
+            name: 'className',
+            type: 'string',
+            description: 'NativeWind utility classes for the search input wrapper.',
+          },
+          {
+            name: 'inputClassName',
+            type: 'string',
+            description: 'NativeWind utility classes for the text input element.',
+          },
+          {
+            name: 'clearButtonClassName',
+            type: 'string',
+            description: 'NativeWind utility classes for the clear button.',
+          },
+          {
+            name: 'isClearable',
+            type: 'boolean',
+            default: 'true',
+            description: 'Shows a clear button when the search input has text.',
+          },
+        ],
+      },
+      {
+        name: 'SelectSelectedBadges',
+        props: [
+          {
+            name: 'className',
+            type: 'string',
+            description: 'NativeWind utility classes for the selected badges container.',
+          },
+          {
+            name: 'maxVisible',
+            type: 'number',
+            description: 'Maximum number of selected badges to render before showing an overflow badge.',
+          },
+          {
+            name: 'showRemoveButton',
+            type: 'boolean',
+            default: 'true',
+            description: 'Controls whether each badge includes a remove button.',
+          },
+          {
+            name: 'renderBadge',
+            type: '(item: SelectOption, helpers: { remove: () => void; isDisabled: boolean }) => React.ReactNode',
+            description: 'Custom render function for selected badges.',
+          },
+        ],
+      },
+      {
         name: 'SelectItem',
         props: [
           {
@@ -2001,9 +2135,9 @@ export default function SelectExample() {
         ],
       },
     ],
-    bestPractices: ['Use placeholder text to describe what should be selected.', 'Keep option lists reasonable in length (under 20 items).', 'Use the same variant as your Input components for consistency.'],
-    accessibility: 'Select trigger and items are fully accessible. Selected value is announced by screen readers.',
-    relatedComponents: ['radio', 'input', 'form-control'],
+    bestPractices: ['Use placeholder text to describe what should be selected.', 'Add SelectSearchInput for long option lists.', 'Use SelectSelectedBadges for multi-select values that users may need to remove quickly.', 'Use the same variant as your Input components for consistency.'],
+    accessibility: 'Select trigger and items are accessible. Selected values are announced by screen readers, and multi-select items expose selected state.',
+    relatedComponents: ['radio', 'input', 'checkbox', 'form-control'],
   },
 
   // ──────────────────────────────────────────────────────────────────────────

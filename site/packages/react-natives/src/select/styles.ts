@@ -56,6 +56,94 @@ export const selectInputStyle = tv({
   },
 });
 
+export const selectSelectedBadgesStyle = tv({
+  base: 'flex-row flex-wrap items-center gap-1.5 flex-1',
+});
+
+export const selectSelectedBadgeStyle = tv({
+  base: 'flex-row items-center rounded-full border border-outline-200 bg-background-0 px-2 py-1 shadow-soft-1',
+  variants: {
+    isDisabled: {
+      true: 'opacity-50',
+    },
+  },
+});
+
+export const selectSelectedBadgeTextStyle = tv({
+  base: 'font-medium text-typography-900',
+  variants: {
+    size: {
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base',
+      xl: 'text-base',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
+export const selectSelectedBadgeCloseButtonStyle = tv({
+  base: 'ml-1.5 rounded-full items-center justify-center',
+  variants: {
+    size: {
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-5 w-5',
+      xl: 'h-6 w-6',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
+export const selectSearchInputStyle = tv({
+  base: 'mx-2 my-2 flex-row items-center rounded-md border border-outline-200 bg-background-0 px-3',
+  variants: {
+    size: {
+      sm: 'h-8',
+      md: 'h-9',
+      lg: 'h-10',
+      xl: 'h-11',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
+export const selectSearchInputFieldStyle = tv({
+  base: 'flex-1 text-typography-900',
+  variants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
+export const selectSearchClearButtonStyle = tv({
+  base: 'ml-2 rounded-full items-center justify-center',
+  variants: {
+    size: {
+      sm: 'h-5 w-5',
+      md: 'h-6 w-6',
+      lg: 'h-6 w-6',
+      xl: 'h-7 w-7',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
 export const selectIconStyle = tv({
   base: 'text-typography-400 ml-2',
   variants: {

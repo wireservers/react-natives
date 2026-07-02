@@ -255,11 +255,14 @@ export {
   SelectItemContext,
   useSelectItemContext,
   SelectItemText,
+  SelectSearchInput,
+  SelectSelectedBadges,
   SelectDragIndicator,
   SelectScrollView,
 } from './select';
 export type {
   SelectProps,
+  SelectOption,
   SelectTriggerProps,
   SelectInputProps,
   SelectIconProps,
@@ -268,6 +271,8 @@ export type {
   SelectContentProps,
   SelectItemProps,
   SelectItemTextProps,
+  SelectSearchInputProps,
+  SelectSelectedBadgesProps,
   SelectDragIndicatorProps,
   SelectScrollViewProps,
   SelectSize,

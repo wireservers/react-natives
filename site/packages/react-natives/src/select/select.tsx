@@ -1,7 +1,19 @@
-import React, { useState, useCallback, createContext, useContext } from 'react';
+import React, {
+  useState,
+  useCallback,
+  createContext,
+  useContext,
+  useMemo,
+} from 'react';
 import { View } from 'react-native';
 import { useFormControlContext } from '../form-control/form-control';
-import type { SelectProps, SelectContextValue, SelectSize, TriggerLayout } from './types';
+import type {
+  SelectProps,
+  SelectContextValue,
+  SelectSize,
+  TriggerLayout,
+  SelectOption,
+} from './types';
 
 export const SelectContext = createContext<SelectContextValue | null>(null);
 
@@ -22,9 +34,20 @@ export const Select = React.forwardRef<
   (
     {
       className,
+      isMulti = false,
       selectedValue: controlledValue,
       defaultValue,
       onValueChange: onValueChangeProp,
+      selectedValues: controlledValues,
+      defaultValues = [],
+      onValuesChange,
+      valueLabels = {},
+      closeOnSelect,
+      searchValue: controlledSearchValue,
+      defaultSearchValue = '',
+      onSearchChange,
+      filterOption,
+      formatSelectedLabel,
       size = 'md',
       variant = 'outline',
       isDisabled: isDisabledProp,
@@ -38,7 +61,12 @@ export const Select = React.forwardRef<
     const [internalValue, setInternalValue] = useState<string | null>(
       defaultValue ?? null,
     );
+    const [internalValues, setInternalValues] = useState<string[]>(defaultValues);
     const [internalLabel, setInternalLabel] = useState('');
+    const [registeredLabels, setRegisteredLabels] =
+      useState<Record<string, string>>({});
+    const [internalSearchValue, setInternalSearchValue] =
+      useState(defaultSearchValue);
     const [triggerLayout, setTriggerLayout] = useState<TriggerLayout | null>(null);
 
     const formControl = useFormControlContext();
@@ -49,8 +77,51 @@ export const Select = React.forwardRef<
 
     const isControlled = controlledValue !== undefined;
     const selectedValue = isControlled ? controlledValue : internalValue;
+    const isMultiControlled = controlledValues !== undefined;
+    const selectedValues = isMulti
+      ? isMultiControlled
+        ? controlledValues
+        : internalValues
+      : selectedValue
+        ? [selectedValue]
+        : [];
+    const isSearchControlled = controlledSearchValue !== undefined;
+    const searchValue = isSearchControlled
+      ? controlledSearchValue
+      : internalSearchValue;
+    const shouldCloseOnSelect = closeOnSelect ?? !isMulti;
 
-    const selectedLabel = selectedValue ? internalLabel || selectedValue : '';
+    const getLabel = useCallback(
+      (value: string) => valueLabels[value] ?? registeredLabels[value] ?? value,
+      [registeredLabels, valueLabels],
+    );
+
+    const selectedItems = useMemo<SelectOption[]>(
+      () => selectedValues.map((value) => ({ value, label: getLabel(value) })),
+      [getLabel, selectedValues],
+    );
+
+    const selectedLabel = useMemo(() => {
+      if (isMulti) {
+        if (formatSelectedLabel) {
+          return formatSelectedLabel(selectedItems);
+        }
+        if (selectedItems.length === 0) return '';
+        if (selectedItems.length === 1) return selectedItems[0]?.label ?? '';
+        return `${selectedItems.length} items selected`;
+      }
+
+      return selectedValue
+        ? internalLabel || getLabel(selectedValue)
+        : '';
+    }, [
+      formatSelectedLabel,
+      getLabel,
+      internalLabel,
+      isMulti,
+      selectedItems,
+      selectedValue,
+    ]);
 
     const onOpen = useCallback(() => {
       if (!isDisabled) {
@@ -64,21 +135,121 @@ export const Select = React.forwardRef<
 
     const onValueChange = useCallback(
       (value: string, label: string) => {
-        if (!isControlled) {
-          setInternalValue(value);
+        setRegisteredLabels((current) =>
+          current[value] === label ? current : { ...current, [value]: label },
+        );
+
+        if (isMulti) {
+          const nextValues = selectedValues.includes(value)
+            ? selectedValues.filter((selected) => selected !== value)
+            : [...selectedValues, value];
+
+          if (!isMultiControlled) {
+            setInternalValues(nextValues);
+          }
+          onValuesChange?.(nextValues);
+        } else {
+          if (!isControlled) {
+            setInternalValue(value);
+          }
+          setInternalLabel(label);
+          onValueChangeProp?.(value);
         }
-        setInternalLabel(label);
-        onValueChangeProp?.(value);
+
+        if (shouldCloseOnSelect) {
+          setIsOpen(false);
+        }
       },
-      [isControlled, onValueChangeProp],
+      [
+        isControlled,
+        isMulti,
+        isMultiControlled,
+        onValueChangeProp,
+        onValuesChange,
+        selectedValues,
+        shouldCloseOnSelect,
+      ],
+    );
+
+    const onValueRemove = useCallback(
+      (value: string) => {
+        if (isMulti) {
+          const nextValues = selectedValues.filter((selected) => selected !== value);
+          if (!isMultiControlled) {
+            setInternalValues(nextValues);
+          }
+          onValuesChange?.(nextValues);
+          return;
+        }
+
+        if (!isControlled) {
+          setInternalValue(null);
+        }
+        setInternalLabel('');
+        onValueChangeProp?.('');
+      },
+      [
+        isControlled,
+        isMulti,
+        isMultiControlled,
+        onValueChangeProp,
+        onValuesChange,
+        selectedValues,
+      ],
+    );
+
+    const handleSearchChange = useCallback(
+      (value: string) => {
+        if (!isSearchControlled) {
+          setInternalSearchValue(value);
+        }
+        onSearchChange?.(value);
+      },
+      [isSearchControlled, onSearchChange],
+    );
+
+    const isValueSelected = useCallback(
+      (value: string) => selectedValues.includes(value),
+      [selectedValues],
+    );
+
+    const shouldShowItem = useCallback(
+      (value: string, label: string) => {
+        const normalizedSearch = searchValue.trim().toLowerCase();
+        if (!normalizedSearch) return true;
+
+        if (filterOption) {
+          return filterOption(searchValue, { value, label });
+        }
+
+        return (
+          label.toLowerCase().includes(normalizedSearch) ||
+          value.toLowerCase().includes(normalizedSearch)
+        );
+      },
+      [filterOption, searchValue],
+    );
+
+    const registerItem = useCallback(
+      (value: string, label: string) => {
+        setRegisteredLabels((current) =>
+          current[value] === label ? current : { ...current, [value]: label },
+        );
+      },
+      [],
     );
 
     return (
       <SelectContext.Provider
         value={{
           isOpen,
+          isMulti,
           selectedValue: selectedValue ?? null,
+          selectedValues,
           selectedLabel,
+          selectedItems,
+          searchValue,
+          placeholder,
           size: resolvedSize,
           variant,
           isDisabled,
@@ -87,6 +258,11 @@ export const Select = React.forwardRef<
           onOpen,
           onClose,
           onValueChange,
+          onValueRemove,
+          onSearchChange: handleSearchChange,
+          isValueSelected,
+          shouldShowItem,
+          registerItem,
           setTriggerLayout,
         }}
       >

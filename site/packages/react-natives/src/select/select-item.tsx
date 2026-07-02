@@ -25,16 +25,31 @@ export const SelectItem = React.forwardRef<
   React.ElementRef<typeof Pressable>,
   SelectItemProps
 >(({ className, label, value, isDisabled = false, children, ...props }, ref) => {
-  const { selectedValue, onValueChange, onClose, size } = useSelectContext();
+  const {
+    isMulti,
+    onValueChange,
+    size,
+    isValueSelected,
+    shouldShowItem,
+    registerItem,
+  } = useSelectContext();
 
-  const isSelected = selectedValue === value;
+  const isSelected = isValueSelected(value);
+  const isVisible = shouldShowItem(value, label);
+
+  React.useEffect(() => {
+    registerItem(value, label);
+  }, [label, registerItem, value]);
 
   const handlePress = () => {
     if (!isDisabled) {
       onValueChange(value, label);
-      onClose();
     }
   };
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <SelectItemContext.Provider value={{ label, value, isSelected, isDisabled }}>
@@ -55,14 +70,27 @@ export const SelectItem = React.forwardRef<
         {...props}
       >
         {children ?? (
-          <Text
-            className={selectItemTextStyle({
-              size,
-              isSelected,
-            })}
-          >
-            {label}
-          </Text>
+          <>
+            {isMulti ? (
+              <Text
+                className={selectItemTextStyle({
+                  size,
+                  isSelected,
+                })}
+                style={{ width: 22 }}
+              >
+                {isSelected ? '\u2713' : ''}
+              </Text>
+            ) : null}
+            <Text
+              className={selectItemTextStyle({
+                size,
+                isSelected,
+              })}
+            >
+              {label}
+            </Text>
+          </>
         )}
       </Pressable>
     </SelectItemContext.Provider>
