@@ -11,7 +11,7 @@
     "CHANGELOG.md"
   ],
   "bin": {
-    "react-natives": "./bin/cli.js"
+    "react-natives": "bin/cli.js"
   },
   "scripts": {},
   "keywords": [
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wireservers/react-natives.git",
+    "url": "git+https://github.com/wireservers/react-natives.git",
     "directory": "packages/react-natives"
   },
   "license": "MIT",
