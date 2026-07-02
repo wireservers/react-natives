@@ -7,6 +7,19 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.4] - 2026-07-02
+
+### Added
+- `Select` now supports multi-select state with `isMulti`, `selectedValues`, `defaultValues`, `onValuesChange`, and configurable close-on-select behavior.
+- `SelectSearchInput` filters dropdown items using built-in text matching or a custom `filterOption` callback.
+- `SelectSelectedBadges` renders selected values as removable badges with class overrides, `maxVisible`, overflow labels, and custom badge rendering.
+
+### Changed
+- `SelectItem` toggles selected values in multi-select mode and preserves single-select behavior by default.
+- `SelectInput` now uses the root `Select` placeholder when no local placeholder override is provided.
+
+---
+
 ## [2.0.3] - 2026-04-18
 
 ### Fixed

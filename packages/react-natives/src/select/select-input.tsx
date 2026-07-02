@@ -8,10 +8,10 @@ export const SelectInput = React.forwardRef<
   React.ElementRef<typeof Text>,
   SelectInputProps
 >(({ className, placeholder, ...props }, ref) => {
-  const { selectedLabel, size } = useSelectContext();
+  const { selectedLabel, size, placeholder: contextPlaceholder } = useSelectContext();
 
   const hasValue = !!selectedLabel;
-  const displayText = hasValue ? selectedLabel : (placeholder ?? 'Select...');
+  const displayText = hasValue ? selectedLabel : (placeholder ?? contextPlaceholder);
 
   return (
     <Text
