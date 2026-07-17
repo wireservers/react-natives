@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.6] - 2026-07-17
+
+### Added
+- Added reusable app helper components extracted from Bring The Budget: `SearchablePicker`, `EmojiPicker`, `SelectionBar`, `DrawerShell`, `FormDrawer`, `DrawerCard`, `DrawerSectionLabel`, `FormWizard`, `useFormWizardState`, `ConfirmDialog`, `useConfirm`, `FieldReconciler`, and `ViewToggle`.
+- Helper components compose existing react-natives primitives for common app workflows including searchable picking, bulk selection actions, form drawers, multi-step forms, confirmations, and candidate-value reconciliation.
+
+---
+
 ## [2.0.4] - 2026-07-02
 
 ### Added

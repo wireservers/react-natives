@@ -993,6 +993,59 @@ export type {
   DatePickerContextValue,
 } from './date-picker';
 
+// SearchablePicker
+export { SearchablePicker } from './searchable-picker';
+export type {
+  SearchablePickerOption,
+  SearchablePickerProps,
+} from './searchable-picker';
+
+// EmojiPicker
+export { EmojiPicker } from './emoji-picker';
+export type { EmojiPickerProps } from './emoji-picker';
+
+// SelectionBar
+export { SelectionBar } from './selection-bar';
+export type { SelectionBarProps } from './selection-bar';
+
+// FormDrawer
+export {
+  DrawerShell,
+  FormDrawer,
+  DrawerCard,
+  DrawerSectionLabel,
+} from './form-drawer';
+export type {
+  DrawerShellProps,
+  FormDrawerProps,
+  DrawerCardProps,
+  DrawerSectionLabelProps,
+} from './form-drawer';
+
+// FormWizard
+export { FormWizard, useFormWizardState } from './form-wizard';
+export type { FormWizardProps, WizardStep } from './form-wizard';
+
+// ConfirmDialog
+export { ConfirmDialog, useConfirm } from './confirm-dialog';
+export type {
+  ConfirmDialogProps,
+  ConfirmOptions,
+  UseConfirmResult,
+} from './confirm-dialog';
+
+// FieldReconciler
+export { FieldReconciler } from './field-reconciler';
+export type {
+  FieldReconcilerProps,
+  ReconcileCandidate,
+  ReconcileField,
+} from './field-reconciler';
+
+// ViewToggle
+export { ViewToggle } from './view-toggle';
+export type { ViewToggleMode, ViewToggleProps } from './view-toggle';
+
 // PinInput
 export {
   PinInput,

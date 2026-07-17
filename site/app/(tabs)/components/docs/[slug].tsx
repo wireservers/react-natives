@@ -93,6 +93,15 @@ const exampleLoaders: Record<string, () => Promise<ExampleModule>> = {
   'date-picker': () => import('@/components/docs/examples/date-picker-examples'),
   'pin-input': () => import('@/components/docs/examples/pin-input-examples'),
   'color-picker': () => import('@/components/docs/examples/color-picker-examples'),
+  // App Helpers
+  'searchable-picker': () => import('@/components/docs/examples/searchable-picker-examples'),
+  'emoji-picker': () => import('@/components/docs/examples/emoji-picker-examples'),
+  'selection-bar': () => import('@/components/docs/examples/selection-bar-examples'),
+  'form-drawer': () => import('@/components/docs/examples/form-drawer-examples'),
+  'form-wizard': () => import('@/components/docs/examples/form-wizard-examples'),
+  'confirm-dialog': () => import('@/components/docs/examples/confirm-dialog-examples'),
+  'field-reconciler': () => import('@/components/docs/examples/field-reconciler-examples'),
+  'view-toggle': () => import('@/components/docs/examples/view-toggle-examples'),
 };
 
 export function generateStaticParams(): { slug: string }[] {

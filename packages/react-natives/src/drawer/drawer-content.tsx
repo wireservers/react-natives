@@ -95,7 +95,7 @@ export const DrawerContent = React.forwardRef<
         style={[
           PLACEMENT_POSITION[placement],
           sizeStyle,
-          { transform: getSlideTransform(slideAnim, effectiveSlideFrom) },
+          { transform: getSlideTransform(slideAnim, effectiveSlideFrom) } as ViewStyle,
         ]}
       >
         <View

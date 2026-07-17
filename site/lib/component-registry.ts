@@ -6317,6 +6317,139 @@ export default function CalendarExample() {
     accessibility: 'ColorPicker swatches announce their color name. The hex input accepts typed values. The trigger displays the current color with an accessible label.',
     relatedComponents: ['input', 'popover'],
   },
+
+  {
+    slug: 'searchable-picker',
+    name: 'SearchablePicker',
+    description:
+      'A compact searchable option picker with grouped rows, free-text creation, and selected-value display.',
+    whenToUse: 'Use SearchablePicker for budget categories, accounts, tags, and other long option lists that need filtering.',
+    category: 'Form Controls',
+    importCode: "import { SearchablePicker } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'value', type: 'string', required: true, description: 'The selected option value.' },
+      { name: 'options', type: 'Array<string | SearchablePickerOption>', required: true, description: 'Options to display and search.' },
+      { name: 'onChange', type: '(value: string) => void', required: true, description: 'Called when the selected value changes.' },
+      { name: 'freeText', type: 'boolean', default: 'false', description: 'Allows creating a value that is not already in the options list.' },
+    ],
+    relatedComponents: ['select', 'input', 'badge'],
+  },
+
+  {
+    slug: 'emoji-picker',
+    name: 'EmojiPicker',
+    description: 'A small selectable emoji grid for visual labels and category icons.',
+    whenToUse: 'Use EmojiPicker when users need to choose a compact visual marker without opening a large icon browser.',
+    category: 'Form Controls',
+    importCode: "import { EmojiPicker } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'value', type: 'string', required: true, description: 'The selected emoji value.' },
+      { name: 'options', type: 'readonly string[]', required: true, description: 'Emoji choices to render.' },
+      { name: 'onChange', type: '(emoji: string) => void', required: true, description: 'Called when an emoji is selected.' },
+      { name: 'clearOnReselect', type: 'boolean', default: 'false', description: 'Clears the value when the selected emoji is pressed again.' },
+    ],
+    relatedComponents: ['button', 'badge'],
+  },
+
+  {
+    slug: 'selection-bar',
+    name: 'SelectionBar',
+    description: 'A bottom action bar for bulk-selection workflows.',
+    whenToUse: 'Use SelectionBar when selected rows or cards need persistent compare, clear, or batch actions.',
+    category: 'Feedback & Overlay',
+    importCode: "import { SelectionBar } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'count', type: 'number', required: true, description: 'The selected item count.' },
+      { name: 'summary', type: 'string', required: true, description: 'Short summary text for the current selection.' },
+      { name: 'onClear', type: '() => void', required: true, description: 'Clears the current selection.' },
+      { name: 'onCompare', type: '() => void', required: true, description: 'Runs the primary selected-item action.' },
+      { name: 'bottomInset', type: 'number', default: '0', description: 'Extra bottom spacing for safe-area aware screens.' },
+    ],
+    relatedComponents: ['button', 'badge'],
+  },
+
+  {
+    slug: 'form-drawer',
+    name: 'FormDrawer',
+    description: 'A right-side drawer shell with header, scroll body, and save/cancel footer actions.',
+    whenToUse: 'Use FormDrawer for edit forms that should keep users in the current list or dashboard context.',
+    category: 'Feedback & Overlay',
+    importCode: "import { FormDrawer, DrawerCard, DrawerSectionLabel } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'eyebrow', type: 'string', required: true, description: 'Small label shown above the drawer title.' },
+      { name: 'title', type: 'string', required: true, description: 'Primary drawer title.' },
+      { name: 'onClose', type: '() => void', required: true, description: 'Closes the drawer.' },
+      { name: 'onSave', type: '() => void', required: true, description: 'Runs the drawer save action.' },
+      { name: 'saveDisabled', type: 'boolean', default: 'false', description: 'Disables the save action.' },
+    ],
+    subComponents: [
+      { name: 'DrawerShell', props: [] },
+      { name: 'DrawerCard', props: [] },
+      { name: 'DrawerSectionLabel', props: [] },
+    ],
+    relatedComponents: ['drawer', 'button', 'card'],
+  },
+
+  {
+    slug: 'form-wizard',
+    name: 'FormWizard',
+    description: 'A multi-step form wrapper with progress, navigation, save-exit, and completion actions.',
+    whenToUse: 'Use FormWizard for guided setup or multi-screen forms with a known sequence of steps.',
+    category: 'Navigation',
+    importCode: "import { FormWizard, useFormWizardState } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'steps', type: 'WizardStep[]', required: true, description: 'Wizard steps and render functions.' },
+      { name: 'onSaveExit', type: '() => void | Promise<void>', required: true, description: 'Saves progress and exits.' },
+      { name: 'onComplete', type: '() => void | Promise<void>', required: true, description: 'Runs when the final step completes.' },
+      { name: 'onExit', type: '() => void', required: true, description: 'Closes the wizard without completing it.' },
+    ],
+    relatedComponents: ['stepper', 'button', 'card'],
+  },
+
+  {
+    slug: 'confirm-dialog',
+    name: 'ConfirmDialog',
+    description: 'A confirmation dialog and promise-based hook for destructive or important actions.',
+    whenToUse: 'Use ConfirmDialog when an action should be confirmed before it mutates or removes data.',
+    category: 'Feedback & Overlay',
+    importCode: "import { ConfirmDialog, useConfirm } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'options', type: 'ConfirmOptions | null', required: true, description: 'Dialog copy, labels, and tone.' },
+      { name: 'onCancel', type: '() => void', required: true, description: 'Called when the user cancels.' },
+      { name: 'onConfirm', type: '() => void', required: true, description: 'Called when the user confirms.' },
+    ],
+    relatedComponents: ['alert-dialog', 'button'],
+  },
+
+  {
+    slug: 'field-reconciler',
+    name: 'FieldReconciler',
+    description: 'A field-by-field reconciliation surface for choosing from competing detected values.',
+    whenToUse: 'Use FieldReconciler for review screens where imported or extracted values need human confirmation.',
+    category: 'Form Controls',
+    importCode: "import { FieldReconciler } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'fields', type: 'ReconcileField[]', required: true, description: 'Field definitions and candidate values.' },
+      { name: 'values', type: 'Record<string, string>', required: true, description: 'Current resolved values keyed by field.' },
+      { name: 'onChange', type: '(key: string, value: string) => void', required: true, description: 'Updates one resolved field value.' },
+    ],
+    relatedComponents: ['input', 'badge', 'button'],
+  },
+
+  {
+    slug: 'view-toggle',
+    name: 'ViewToggle',
+    description: 'An icon-friendly segmented control for switching between display modes.',
+    whenToUse: 'Use ViewToggle for list, card, chart, calendar, or compact display-mode switches.',
+    category: 'Navigation',
+    importCode: "import { ViewToggle } from '@wireservers-ui/react-natives';",
+    props: [
+      { name: 'value', type: 'string', required: true, description: 'The active mode.' },
+      { name: 'onChange', type: '(mode: string) => void', required: true, description: 'Called when the active mode changes.' },
+      { name: 'modes', type: 'ViewToggleMode[]', required: true, description: 'Mode labels and optional icons.' },
+    ],
+    relatedComponents: ['button', 'tabs'],
+  },
 ];
 
 // ────────────────────────────────────────────────────────────────────────────
