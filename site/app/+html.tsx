@@ -53,6 +53,13 @@ export default function Root({ children }: PropsWithChildren) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
+        {/* Google and Bing Site Verification */}
+        <meta
+          name="google-site-verification"
+          content="YOUR_GOOGLE_VERIFICATION_CODE_HERE"
+        />
+        <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE_HERE" />
+
         {/* Theme & App */}
         <meta
           name="theme-color"

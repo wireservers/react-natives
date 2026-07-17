@@ -1,7 +1,7 @@
-import Head from 'expo-router/head';
-import { Platform } from 'react-native';
+import Head from "expo-router/head";
+import { Platform } from "react-native";
 
-import { DEFAULT_OG_IMAGE_URL, SITE_NAME, toAbsoluteUrl } from '@/lib/seo';
+import { DEFAULT_OG_IMAGE_URL, SITE_NAME, toAbsoluteUrl } from "@/lib/seo";
 
 type JsonLd = Record<string, unknown>;
 
@@ -9,17 +9,22 @@ interface SeoHeadProps {
   title: string;
   description: string;
   path: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   imageUrl?: string;
   imageAlt?: string;
   robots?: string;
   keywords?: string;
   jsonLd?: JsonLd | JsonLd[];
+  twitterHandle?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  publishedDate?: string;
+  modifiedDate?: string;
 }
 
 function resolveImageUrl(imageUrl?: string): string {
   if (!imageUrl) return DEFAULT_OG_IMAGE_URL;
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) return imageUrl;
+  if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://"))
+    return imageUrl;
   return toAbsoluteUrl(imageUrl);
 }
 
@@ -27,20 +32,39 @@ export function SeoHead({
   title,
   description,
   path,
-  type = 'website',
+  type = "website",
   imageUrl,
   imageAlt = `${SITE_NAME} preview image`,
-  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   keywords,
   jsonLd,
+  twitterHandle,
+  breadcrumbs,
+  publishedDate,
+  modifiedDate,
 }: SeoHeadProps) {
-  if (Platform.OS !== 'web') {
+  if (Platform.OS !== "web") {
     return null;
   }
 
   const canonicalUrl = toAbsoluteUrl(path);
   const resolvedImageUrl = resolveImageUrl(imageUrl);
   const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+
+  // Build breadcrumb schema if breadcrumbs are provided
+  if (breadcrumbs && breadcrumbs.length > 0) {
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: toAbsoluteUrl(crumb.url),
+      })),
+    };
+    jsonLdItems.push(breadcrumbSchema);
+  }
 
   return (
     <Head>
@@ -68,6 +92,17 @@ export function SeoHead({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={resolvedImageUrl} />
       <meta name="twitter:image:alt" content={imageAlt} />
+      {twitterHandle ? (
+        <meta name="twitter:site" content={`@${twitterHandle}`} />
+      ) : null}
+
+      {/* Article metadata (when type is 'article') */}
+      {type === "article" && publishedDate ? (
+        <meta property="article:published_time" content={publishedDate} />
+      ) : null}
+      {type === "article" && modifiedDate ? (
+        <meta property="article:modified_time" content={modifiedDate} />
+      ) : null}
 
       {jsonLdItems.map((item, index) => (
         <script key={`jsonld-${index}`} type="application/ld+json">
