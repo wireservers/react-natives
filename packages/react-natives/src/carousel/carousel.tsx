@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { View, Pressable, Text, Animated, PanResponder, LayoutChangeEvent, Platform } from 'react-native';
+import { View, Pressable, Animated, PanResponder, LayoutChangeEvent, Platform } from 'react-native';
 import { createComponentContext } from '../utils/create-context';
+import { Text } from '../text';
 import type { CarouselProps, CarouselContentProps, CarouselItemProps, CarouselPreviousProps, CarouselNextProps, CarouselDotsProps, CarouselContextValue } from './types';
 import { carouselStyle, carouselContentStyle, carouselItemStyle, carouselPreviousStyle, carouselNextStyle, carouselDotsStyle, carouselDotStyle } from './styles';
 
@@ -405,7 +406,7 @@ export const CarouselPrevious = React.forwardRef<React.ElementRef<typeof Pressab
   const { previous } = useCarouselContext();
   return (
     <Pressable ref={ref} onPress={previous} className={carouselPreviousStyle({ class: className })} accessibilityRole="button" accessibilityLabel="Previous" {...props}>
-      {children ?? <Text style={{ fontSize: 16, color: '#374151' }}>{'\u2039'}</Text>}
+      {children ?? <Text size="lg" weight="bold" className="text-typography-900">{'\u2039'}</Text>}
     </Pressable>
   );
 });
@@ -415,7 +416,7 @@ export const CarouselNext = React.forwardRef<React.ElementRef<typeof Pressable>,
   const { next } = useCarouselContext();
   return (
     <Pressable ref={ref} onPress={next} className={carouselNextStyle({ class: className })} accessibilityRole="button" accessibilityLabel="Next" {...props}>
-      {children ?? <Text style={{ fontSize: 16, color: '#374151' }}>{'\u203A'}</Text>}
+      {children ?? <Text size="lg" weight="bold" className="text-typography-900">{'\u203A'}</Text>}
     </Pressable>
   );
 });
