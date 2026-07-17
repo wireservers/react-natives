@@ -94,7 +94,7 @@ export const SearchablePicker = React.forwardRef<
             {label}
           </Text>
         ) : null}
-        <Input className="rounded-lg border-outline-200 bg-white">
+        <Input className="rounded-lg border-outline-200 bg-background-0">
           <InputField
             value={open ? query : selectedLabel}
             onFocus={() => {
@@ -115,7 +115,7 @@ export const SearchablePicker = React.forwardRef<
           />
         </Input>
         {open ? (
-          <View className="overflow-hidden rounded-lg border border-outline-200 bg-white shadow-sm">
+          <View className="overflow-hidden rounded-lg border border-outline-200 bg-background-0 shadow-sm">
             <ScrollView style={{ maxHeight: 280 }} nestedScrollEnabled>
               {filteredOptions.length > 0 ? (
                 <GroupedOptions
@@ -188,7 +188,7 @@ function GroupedOptions({
             <Pressable
               onPress={() => onSelect(option.value, option.label)}
               className={`flex-row items-center gap-2 border-b border-outline-100 px-3 py-2 ${
-                selected ? 'bg-primary-50' : 'bg-white'
+                selected ? 'bg-primary-500' : 'bg-background-0'
               }`}
             >
               {option.icon ? (
@@ -206,7 +206,7 @@ function GroupedOptions({
               <Text
                 size="sm"
                 weight={selected ? 'bold' : 'normal'}
-                className="flex-1 text-typography-800"
+                className={`flex-1 ${selected ? 'text-white' : 'text-typography-900'}`}
                 style={{ paddingLeft: option.icon ? 0 : Math.min(option.depth ?? 0, 6) * 14 }}
               >
                 {option.depth ? '- ' : ''}

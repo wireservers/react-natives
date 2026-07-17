@@ -7,6 +7,12 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.7] - 2026-07-17
+
+### Fixed
+
+- Improved SearchablePicker contrast in dark themes by using theme-aware option row backgrounds and a high-contrast selected row.
+
 ## [2.0.6] - 2026-07-17
 
 ### Added
