@@ -38,7 +38,7 @@ export const SelectionBar = React.forwardRef<
       >
         <View
           style={styles.bar}
-          className={`flex-row flex-wrap items-center justify-between gap-3 ${className ?? ''}`}
+          className={`flex-row flex-wrap items-center justify-between gap-3 bg-background-0 ${className ?? ''}`}
         >
           <View className="shrink gap-1">
             <View className="flex-row flex-wrap items-center gap-2">
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 1,
     borderColor: '#a7f3d0',
-    backgroundColor: '#ffffff',
     paddingVertical: 12,
     paddingHorizontal: 16,
     shadowColor: '#0f172a',

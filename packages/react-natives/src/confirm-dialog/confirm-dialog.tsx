@@ -46,13 +46,13 @@ export function ConfirmDialog({ options, onCancel, onConfirm }: ConfirmDialogPro
   return (
     <AlertDialog isOpen={Boolean(options)} onClose={onCancel} size="md">
       <AlertDialogBackdrop />
-      <AlertDialogContent className="mx-auto w-full max-w-[440px] rounded-lg border border-outline-200 bg-white p-0 shadow-lg">
-        <AlertDialogHeader className="border-b border-outline-200 px-5 py-4">
+      <AlertDialogContent className="mx-auto w-full max-w-[440px] rounded-lg border border-outline-200 bg-background-0 p-0 shadow-lg">
+        <AlertDialogHeader className="border-b border-outline-200 bg-background-0 px-5 py-4">
           <Heading size="lg" className="text-typography-950">
             {options?.title ?? 'Are you sure?'}
           </Heading>
         </AlertDialogHeader>
-        <AlertDialogBody className="gap-2 px-5 py-4">
+        <AlertDialogBody className="gap-2 bg-background-0 px-5 py-4">
           {options?.message ? (
             <Text className="text-typography-700">{options.message}</Text>
           ) : null}
@@ -62,7 +62,7 @@ export function ConfirmDialog({ options, onCancel, onConfirm }: ConfirmDialogPro
             </Text>
           ) : null}
         </AlertDialogBody>
-        <AlertDialogFooter className="flex-row flex-wrap justify-end gap-2 border-t border-outline-200 px-5 py-4">
+        <AlertDialogFooter className="flex-row flex-wrap justify-end gap-2 border-t border-outline-200 bg-background-0 px-5 py-4">
           <Button variant="outline" action="default" size="sm" onPress={onCancel} className="rounded-xl">
             <ButtonText>{options?.cancelLabel ?? 'Cancel'}</ButtonText>
           </Button>

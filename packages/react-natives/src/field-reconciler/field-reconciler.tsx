@@ -37,7 +37,7 @@ export const FieldReconciler = React.forwardRef<
                       key={`${field.key}-${candidate.value}`}
                       onPress={() => onChange(field.key, candidate.value)}
                       className={`min-w-[160px] flex-1 rounded-lg border px-3 py-2 ${
-                        active ? 'border-primary-500 bg-primary-50' : 'border-outline-200 bg-white'
+                        active ? 'border-primary-500 bg-primary-50' : 'border-outline-200 bg-background-0'
                       }`}
                     >
                       <Text
@@ -60,7 +60,7 @@ export const FieldReconciler = React.forwardRef<
               <Text size="sm" weight="semibold" className="text-typography-700">
                 {hasDiscrepancy ? 'Or enter a custom value' : 'Value'}
               </Text>
-              <Input className="w-full bg-white">
+              <Input className="w-full bg-background-0">
                 <InputField
                   value={current}
                   onChangeText={(value) => onChange(field.key, value)}

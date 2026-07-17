@@ -50,7 +50,7 @@ export const DrawerShell = React.forwardRef<
           <View
             ref={ref}
             style={[styles.drawerPanel, { maxWidth }, style]}
-            className={className}
+            className={`bg-background-0 ${className ?? ''}`}
             {...props}
           >
             <View
@@ -87,7 +87,7 @@ export const DrawerShell = React.forwardRef<
             </ScrollView>
             {footer ? (
               <View
-                className="border-t border-outline-200 bg-white px-5 py-4"
+                className="border-t border-outline-200 bg-background-0 px-5 py-4"
                 style={{ paddingBottom: bottomInset + 16 }}
               >
                 {footer}
@@ -169,7 +169,7 @@ export const DrawerCard = React.forwardRef<React.ElementRef<typeof View>, Drawer
   ({ className, ...props }, ref) => (
     <View
       ref={ref}
-      className={`gap-4 rounded-lg border border-outline-200 bg-white p-4 shadow-sm ${className ?? ''}`}
+      className={`gap-4 rounded-lg border border-outline-200 bg-background-0 p-4 shadow-sm ${className ?? ''}`}
       {...props}
     />
   ),
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
   drawerPanel: {
     height: '100%',
     width: '92%',
-    backgroundColor: '#ffffff',
     borderLeftWidth: 1,
     borderLeftColor: '#e2e8f0',
     shadowColor: '#0f172a',

@@ -27,7 +27,7 @@ export const EmojiPicker = React.forwardRef<
           </Text>
         ) : null}
         <ScrollView
-          className="rounded-lg border border-outline-200 bg-white"
+          className="rounded-lg border border-outline-200 bg-background-0"
           style={{ maxHeight: 196 }}
           contentContainerStyle={{ padding: 10 }}
         >

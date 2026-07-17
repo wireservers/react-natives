@@ -86,7 +86,7 @@ export const FormWizard = React.forwardRef<
           ))}
         </Stepper>
 
-        <Card variant="outline" className="gap-4 rounded-lg border-outline-200 bg-white p-5 shadow-sm">
+      <Card variant="outline" className="gap-4 rounded-lg border-outline-200 bg-background-0 p-5 shadow-sm">
           {current.render()}
         </Card>
 

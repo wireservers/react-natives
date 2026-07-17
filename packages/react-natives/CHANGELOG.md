@@ -7,6 +7,18 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.9] - 2026-07-17
+
+### Fixed
+
+- Improved contrast for newly extracted helper components in dark themes by replacing hardcoded light surfaces with theme-aware backgrounds.
+
+## [2.0.8] - 2026-07-17
+
+### Fixed
+
+- Improved ConfirmDialog contrast in dark themes by removing hardcoded light dialog surfaces.
+
 ## [2.0.7] - 2026-07-17
 
 ### Fixed
