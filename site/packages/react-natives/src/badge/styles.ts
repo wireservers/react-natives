@@ -83,12 +83,12 @@ export const badgeTextStyle = tv({
   },
   compoundVariants: [
     // solid text colors (white on colored bg)
-    { action: 'primary', variant: 'solid', class: 'text-typography-0' },
-    { action: 'secondary', variant: 'solid', class: 'text-typography-0' },
-    { action: 'error', variant: 'solid', class: 'text-typography-0' },
-    { action: 'success', variant: 'solid', class: 'text-typography-0' },
-    { action: 'warning', variant: 'solid', class: 'text-typography-0' },
-    { action: 'info', variant: 'solid', class: 'text-typography-0' },
+    { action: 'primary', variant: 'solid', class: 'text-white' },
+    { action: 'secondary', variant: 'solid', class: 'text-white' },
+    { action: 'error', variant: 'solid', class: 'text-white' },
+    { action: 'success', variant: 'solid', class: 'text-white' },
+    { action: 'warning', variant: 'solid', class: 'text-white' },
+    { action: 'info', variant: 'solid', class: 'text-white' },
     { action: 'muted', variant: 'solid', class: 'text-typography-900' },
 
     // outline text colors
@@ -141,12 +141,12 @@ export const badgeIconStyle = tv({
   },
   compoundVariants: [
     // solid icon colors (white on colored bg)
-    { action: 'primary', variant: 'solid', class: 'text-typography-0' },
-    { action: 'secondary', variant: 'solid', class: 'text-typography-0' },
-    { action: 'error', variant: 'solid', class: 'text-typography-0' },
-    { action: 'success', variant: 'solid', class: 'text-typography-0' },
-    { action: 'warning', variant: 'solid', class: 'text-typography-0' },
-    { action: 'info', variant: 'solid', class: 'text-typography-0' },
+    { action: 'primary', variant: 'solid', class: 'text-white' },
+    { action: 'secondary', variant: 'solid', class: 'text-white' },
+    { action: 'error', variant: 'solid', class: 'text-white' },
+    { action: 'success', variant: 'solid', class: 'text-white' },
+    { action: 'warning', variant: 'solid', class: 'text-white' },
+    { action: 'info', variant: 'solid', class: 'text-white' },
     { action: 'muted', variant: 'solid', class: 'text-typography-900' },
 
     // outline icon colors

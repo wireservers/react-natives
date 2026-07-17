@@ -48,7 +48,7 @@ export const alertIconStyle = tv({
       error: '',
     },
     variant: {
-      solid: 'text-typography-0',
+      solid: 'text-white',
       subtle: '',
       outline: '',
     },
@@ -83,7 +83,7 @@ export const alertTextStyle = tv({
       error: '',
     },
     variant: {
-      solid: 'text-typography-0',
+      solid: 'text-white',
       subtle: '',
       outline: '',
     },

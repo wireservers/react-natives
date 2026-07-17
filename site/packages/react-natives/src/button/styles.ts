@@ -82,7 +82,7 @@ export const buttonStyle = tv({
 });
 
 export const buttonTextStyle = tv({
-  base: 'text-typography-0 font-semibold web:select-none',
+  base: 'font-semibold web:select-none',
   variants: {
     action: {
       primary:
@@ -100,7 +100,7 @@ export const buttonTextStyle = tv({
       link: 'data-[hover=true]:underline data-[active=true]:underline',
       outline: '',
       solid:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     size: {
       xs: 'text-xs',
@@ -115,7 +115,7 @@ export const buttonTextStyle = tv({
       variant: 'solid',
       action: 'primary',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     {
       variant: 'solid',
@@ -127,13 +127,13 @@ export const buttonTextStyle = tv({
       variant: 'solid',
       action: 'positive',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     {
       variant: 'outline',
@@ -175,7 +175,7 @@ export const buttonIconStyle = tv({
       link: 'data-[hover=true]:underline data-[active=true]:underline',
       outline: '',
       solid:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     size: {
       xs: 'h-3.5 w-3.5',
@@ -201,7 +201,7 @@ export const buttonIconStyle = tv({
       variant: 'solid',
       action: 'primary',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     {
       variant: 'solid',
@@ -213,13 +213,13 @@ export const buttonIconStyle = tv({
       variant: 'solid',
       action: 'positive',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+        'text-white data-[hover=true]:text-white data-[active=true]:text-white',
     },
   ],
 });

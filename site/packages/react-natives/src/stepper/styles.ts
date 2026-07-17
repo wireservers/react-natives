@@ -25,8 +25,8 @@ export const stepIndicatorStyle = tv({
 export const stepIndicatorTextStyle = tv({
   base: 'text-sm font-semibold',
   variants: {
-    isActive: { true: 'text-typography-0', false: 'text-typography-500' },
-    isCompleted: { true: 'text-typography-0' },
+    isActive: { true: 'text-white', false: 'text-typography-500' },
+    isCompleted: { true: 'text-white' },
   },
   defaultVariants: { isActive: false },
 });

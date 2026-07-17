@@ -34,7 +34,7 @@ export const checkboxIndicatorStyle = tv({
 });
 
 export const checkboxIconStyle = tv({
-  base: 'text-typography-0',
+  base: 'text-white',
   variants: {
     size: {
       xs: 'h-3 w-3',

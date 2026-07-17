@@ -46,7 +46,7 @@ export const iconButtonIconStyle = tv({
       primary: '', secondary: '', positive: '', negative: '', default: '',
     },
     variant: {
-      solid: 'text-typography-0',
+      solid: '',
       outline: '',
       ghost: '',
     },
@@ -59,6 +59,11 @@ export const iconButtonIconStyle = tv({
     },
   },
   compoundVariants: [
+    { action: 'primary', variant: 'solid', class: 'text-white' },
+    { action: 'secondary', variant: 'solid', class: 'text-white' },
+    { action: 'positive', variant: 'solid', class: 'text-white' },
+    { action: 'negative', variant: 'solid', class: 'text-white' },
+    { action: 'default', variant: 'solid', class: 'text-typography-900' },
     { action: 'primary', variant: 'outline', class: 'text-primary-500' },
     { action: 'primary', variant: 'ghost', class: 'text-primary-500' },
     { action: 'secondary', variant: 'outline', class: 'text-secondary-500' },

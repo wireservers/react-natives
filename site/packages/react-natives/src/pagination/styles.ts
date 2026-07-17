@@ -14,7 +14,7 @@ export const paginationItemTextStyle = tv({
   base: 'font-medium',
   variants: {
     size: { sm: 'text-xs', md: 'text-sm', lg: 'text-base' },
-    isActive: { true: 'text-typography-0', false: 'text-typography-700' },
+    isActive: { true: 'text-white', false: 'text-typography-700' },
   },
   defaultVariants: { size: 'md', isActive: false },
 });

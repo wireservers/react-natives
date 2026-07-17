@@ -29,7 +29,7 @@ export const fabStyle = tv({
 });
 
 export const fabIconStyle = tv({
-  base: 'text-typography-0',
+  base: 'text-white',
   variants: {
     size: {
       sm: 'h-4 w-4',
@@ -43,7 +43,7 @@ export const fabIconStyle = tv({
 });
 
 export const fabLabelStyle = tv({
-  base: 'text-typography-0 font-semibold',
+  base: 'text-white font-semibold',
   variants: {
     size: {
       sm: 'text-sm',

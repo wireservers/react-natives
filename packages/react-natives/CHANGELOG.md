@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.11] - 2026-07-17
+
+### Fixed
+
+- Fixed dark-theme contrast for solid colored action and status controls by using explicit white text on colored fills.
+
+---
+
 ## [2.0.10] - 2026-07-17
 
 ### Fixed

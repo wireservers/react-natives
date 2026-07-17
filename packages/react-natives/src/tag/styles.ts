@@ -55,7 +55,7 @@ export const tagTextStyle = tv({
       primary: '', secondary: '', error: '', success: '', warning: '', info: '', muted: '',
     },
     variant: {
-      solid: 'text-typography-0', outline: '', subtle: '',
+      solid: '', outline: '', subtle: '',
     },
     size: {
       sm: 'text-2xs',
@@ -64,6 +64,13 @@ export const tagTextStyle = tv({
     },
   },
   compoundVariants: [
+    { action: 'primary', variant: 'solid', class: 'text-white' },
+    { action: 'secondary', variant: 'solid', class: 'text-white' },
+    { action: 'error', variant: 'solid', class: 'text-white' },
+    { action: 'success', variant: 'solid', class: 'text-white' },
+    { action: 'warning', variant: 'solid', class: 'text-white' },
+    { action: 'info', variant: 'solid', class: 'text-white' },
+    { action: 'muted', variant: 'solid', class: 'text-typography-900' },
     { action: 'primary', variant: 'outline', class: 'text-primary-600' },
     { action: 'primary', variant: 'subtle', class: 'text-primary-700' },
     { action: 'secondary', variant: 'outline', class: 'text-secondary-600' },

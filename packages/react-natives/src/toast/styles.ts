@@ -65,7 +65,7 @@ export const toastTitleStyle = tv({
       error: '',
     },
     variant: {
-      solid: 'text-typography-0',
+      solid: 'text-white',
       subtle: '',
       outline: '',
     },
@@ -96,7 +96,7 @@ export const toastDescriptionStyle = tv({
       error: '',
     },
     variant: {
-      solid: 'text-typography-0',
+      solid: 'text-white',
       subtle: '',
       outline: '',
     },

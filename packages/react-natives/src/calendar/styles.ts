@@ -83,11 +83,11 @@ export const calendarDayNumberTextStyle = tv({
   base: 'text-sm text-typography-900',
   variants: {
     isToday: {
-      true: 'text-typography-0 font-bold',
+      true: 'text-white font-bold',
       false: '',
     },
     isSelected: {
-      true: 'text-typography-0 font-bold',
+      true: 'text-white font-bold',
       false: '',
     },
     isCurrentMonth: {
@@ -145,7 +145,7 @@ export const calendarEventTextStyle = tv({
     },
     variant: {
       subtle: '',
-      solid: 'text-typography-0 font-semibold',
+      solid: 'text-white font-semibold',
     },
   },
   compoundVariants: [
@@ -205,7 +205,7 @@ export const calendarHorizontalAvatarStyle = tv({
 });
 
 export const calendarHorizontalAvatarTextStyle = tv({
-  base: 'text-xs font-bold text-typography-0',
+  base: 'text-xs font-bold text-white',
 });
 
 export const calendarHorizontalMemberNameStyle = tv({
@@ -251,11 +251,11 @@ export const calendarHorizontalEventStyle = tv({
 });
 
 export const calendarHorizontalEventTitleStyle = tv({
-  base: 'text-xs font-semibold text-typography-0',
+  base: 'text-xs font-semibold text-white',
 });
 
 export const calendarHorizontalEventTimeStyle = tv({
-  base: 'text-2xs text-typography-0 opacity-80',
+  base: 'text-2xs text-white opacity-80',
 });
 
 // --- Vertical view styles ---
@@ -311,11 +311,11 @@ export const calendarVerticalEventStyle = tv({
 });
 
 export const calendarVerticalEventTitleStyle = tv({
-  base: 'text-2xs font-semibold text-typography-0',
+  base: 'text-2xs font-semibold text-white',
 });
 
 export const calendarVerticalEventTimeStyle = tv({
-  base: 'text-2xs text-typography-0 opacity-80',
+  base: 'text-2xs text-white opacity-80',
 });
 
 // --- Compact event styles (used in week/month timeline cells) ---
@@ -335,7 +335,7 @@ export const calendarCompactEventStyle = tv({
 });
 
 export const calendarCompactEventTextStyle = tv({
-  base: 'text-2xs font-medium text-typography-0',
+  base: 'text-2xs font-medium text-white',
 });
 
 // --- Legend styles ---
