@@ -17,6 +17,7 @@ import type {
   DataGridProps,
   DataGridSelection,
   DataGridSelectionScope,
+  DataGridSort,
 } from './types';
 import {
   dataGridBubbleStyle,
@@ -120,6 +121,25 @@ function formatValue(cell: DataGridCell) {
   return String(cell.value);
 }
 
+// Normalize a cell (or a getSortValue override) to something orderable: numbers/booleans sort
+// numerically, everything else sorts as its lowercased display text.
+function toComparable(raw: unknown, cell?: DataGridCell): number | string {
+  if (typeof raw === 'number') return raw;
+  if (typeof raw === 'boolean') return raw ? 1 : 0;
+  if (raw != null) return String(raw).toLowerCase();
+  if (cell) {
+    if (typeof cell.value === 'number') return cell.value;
+    if (typeof cell.value === 'boolean') return cell.value ? 1 : 0;
+    return formatValue(cell).toLowerCase();
+  }
+  return '';
+}
+
+function compareComparable(a: number | string, b: number | string): number {
+  if (typeof a === 'number' && typeof b === 'number') return a - b;
+  return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' });
+}
+
 function MarkdownText({ value, align }: { value: string; align: DataGridColumn['align'] }) {
   const parts = value.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
   return (
@@ -200,10 +220,13 @@ function HeaderCell({
   isSelected,
   canResize,
   canReorder,
+  sortable,
+  sortDirection,
   renderHeaderCell,
   onResize,
   onMove,
   onSelect,
+  onSort,
 }: {
   column: DataGridColumn;
   index: number;
@@ -212,10 +235,13 @@ function HeaderCell({
   isSelected: boolean;
   canResize: boolean;
   canReorder: boolean;
+  sortable: boolean;
+  sortDirection: 'asc' | 'desc' | null;
   renderHeaderCell?: DataGridProps['renderHeaderCell'];
   onResize: (column: DataGridColumn, width: number) => void;
   onMove: (fromIndex: number, toIndex: number) => void;
   onSelect: () => void;
+  onSort: () => void;
 }) {
   const startWidth = React.useRef(width);
   const dragDx = React.useRef(0);
@@ -253,17 +279,26 @@ function HeaderCell({
 
   return (
     <Pressable
-      onPress={onSelect}
+      onPress={sortable ? onSort : onSelect}
       className={dataGridHeaderCellStyle({ isSelected })}
       style={{ width, height }}
       accessibilityRole="button"
-      accessibilityLabel={column.title}
+      accessibilityLabel={
+        sortable
+          ? `${column.title}, sorted ${sortDirection === 'asc' ? 'ascending' : sortDirection === 'desc' ? 'descending' : 'none'}`
+          : column.title
+      }
       {...dragResponder.panHandlers}
     >
       {renderHeaderCell ? (
         renderHeaderCell({ column, index, isSelected })
       ) : (
-        <Text className={dataGridHeaderCellTextStyle({})} numberOfLines={1}>{column.title}</Text>
+        <View className="flex-row items-center gap-1">
+          <Text className={dataGridHeaderCellTextStyle({})} numberOfLines={1}>{column.title}</Text>
+          {sortable && sortDirection ? (
+            <Text className="text-xs font-semibold text-primary-600">{sortDirection === 'asc' ? '▲' : '▼'}</Text>
+          ) : null}
+        </View>
       )}
       {canResize ? <View className={dataGridResizeHandleStyle({})} {...resizeResponder.panHandlers} /> : null}
     </Pressable>
@@ -300,6 +335,15 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       onColumnResize,
       onColumnOrderChange,
       onCellPress,
+      sortable = false,
+      sort,
+      defaultSort = null,
+      onSortChange,
+      filterable = false,
+      filters,
+      defaultFilters,
+      onFiltersChange,
+      getSortValue,
       className,
       ...props
     },
@@ -313,14 +357,93 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     const [scrollOffset, setScrollOffset] = React.useState(0);
     const [viewportHeight, setViewportHeight] = React.useState(0);
     const inputRef = React.useRef<TextInput | null>(null);
+    const [internalSort, setInternalSort] = React.useState<DataGridSort | null>(defaultSort);
+    const [internalFilters, setInternalFilters] = React.useState<Record<string, string>>(defaultFilters ?? {});
     const isControlled = selection != null;
     const currentSelection = React.useMemo(() => normalizeSelection(isControlled ? selection : internalSelection), [internalSelection, isControlled, selection]);
+    const currentSort = sort !== undefined ? sort : internalSort;
+    const currentFilters = filters !== undefined ? filters : internalFilters;
 
     React.useEffect(() => {
       setOrderedColumns(columns);
     }, [columns]);
 
     const groups = React.useMemo(() => orderedColumns.some((column) => column.group), [orderedColumns]);
+    const isColumnSortable = React.useCallback(
+      (column: DataGridColumn) => column.sortable ?? sortable,
+      [sortable],
+    );
+    const isColumnFilterable = React.useCallback(
+      (column: DataGridColumn) => column.filterable ?? filterable,
+      [filterable],
+    );
+    const showFilterRow = React.useMemo(
+      () => orderedColumns.some((column) => isColumnFilterable(column)),
+      [orderedColumns, isColumnFilterable],
+    );
+
+    const applySort = React.useCallback(
+      (columnId: string) => {
+        const next: DataGridSort | null =
+          !currentSort || currentSort.columnId !== columnId
+            ? { columnId, direction: 'asc' }
+            : currentSort.direction === 'asc'
+              ? { columnId, direction: 'desc' }
+              : null;
+        if (sort === undefined) setInternalSort(next);
+        onSortChange?.(next);
+      },
+      [currentSort, onSortChange, sort],
+    );
+
+    const setFilter = React.useCallback(
+      (columnId: string, value: string) => {
+        const next = { ...currentFilters, [columnId]: value };
+        if (filters === undefined) setInternalFilters(next);
+        onFiltersChange?.(next);
+      },
+      [currentFilters, filters, onFiltersChange],
+    );
+
+    // Filtered + sorted permutation of data-row indices. `null` = identity (no sort, no active
+    // filter) so the common case stays a zero-cost fast path and behaves exactly as before.
+    const viewRows = React.useMemo(() => {
+      const filterEntries = Object.entries(currentFilters).filter(([, value]) => value && value.trim());
+      const hasFilter = filterEntries.length > 0;
+      if (!currentSort && !hasFilter) return null;
+
+      let rows: number[] = [];
+      for (let row = 0; row < rowCount; row += 1) rows.push(row);
+
+      if (hasFilter) {
+        rows = rows.filter((row) =>
+          filterEntries.every(([columnId, value]) => {
+            const column = orderedColumns.find((item) => item.id === columnId);
+            if (!column) return true;
+            const text = getSortValue
+              ? String(getSortValue(row, column) ?? '')
+              : formatValue(toCell(getCellContent(row, column), column));
+            return text.toLowerCase().includes(value.trim().toLowerCase());
+          }),
+        );
+      }
+
+      if (currentSort) {
+        const column = orderedColumns.find((item) => item.id === currentSort.columnId);
+        if (column) {
+          const direction = currentSort.direction === 'desc' ? -1 : 1;
+          const valueFor = (row: number) =>
+            getSortValue
+              ? toComparable(getSortValue(row, column))
+              : toComparable(undefined, toCell(getCellContent(row, column), column));
+          rows.sort((a, b) => compareComparable(valueFor(a), valueFor(b)) * direction);
+        }
+      }
+
+      return rows;
+    }, [currentSort, currentFilters, rowCount, orderedColumns, getCellContent, getSortValue]);
+
+    const viewCount = viewRows ? viewRows.length : rowCount;
 
     const setNextSelection = React.useCallback(
       (next: DataGridSelection) => {
@@ -480,14 +603,16 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     const totalWidth = orderedColumns.reduce((total, column) => total + getCellWidth(column, columnWidths), 0);
     const fixedRowHeight = typeof rowHeight === 'number' ? rowHeight : undefined;
     const estimatedHeight = fixedRowHeight ?? estimatedRowHeight;
-    const totalHeight = rowCount * estimatedHeight;
+    const totalHeight = viewCount * estimatedHeight;
     const visibleWindow = Math.max(initialNumToRender, Math.ceil((viewportHeight || estimatedHeight * initialNumToRender) / estimatedHeight));
     const startRow = Math.max(0, Math.floor(scrollOffset / estimatedHeight) - overscanRows);
-    const endRow = Math.min(rowCount - 1, startRow + visibleWindow + overscanRows * 2 + maxToRenderPerBatch);
-    const visibleRows = React.useMemo(() => {
-      const rows: number[] = [];
-      for (let row = startRow; row <= endRow; row += 1) rows.push(row);
-      return rows;
+    const endRow = Math.min(viewCount - 1, startRow + visibleWindow + overscanRows * 2 + maxToRenderPerBatch);
+    // Display positions currently on screen; each maps to a data-row index via `viewRows`
+    // (identity when no sort/filter is active).
+    const visiblePositions = React.useMemo(() => {
+      const positions: number[] = [];
+      for (let position = startRow; position <= endRow; position += 1) positions.push(position);
+      return positions;
     }, [endRow, startRow]);
 
     return (
@@ -504,25 +629,53 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
               </View>
             ) : null}
             <View className={dataGridHeaderStyle({})}>
-              {orderedColumns.map((column, index) => (
-                <HeaderCell
-                  key={column.id}
-                  column={column}
-                  index={index}
-                  width={getCellWidth(column, columnWidths)}
-                  height={headerHeight}
-                  isSelected={Boolean(currentSelection.columns?.includes(column.id))}
-                  canResize={allowColumnResize && column.resizable !== false}
-                  canReorder={allowColumnReorder && column.draggable !== false}
-                  renderHeaderCell={renderHeaderCell}
-                  onResize={resizeColumn}
-                  onMove={moveColumn}
-                  onSelect={() => {
-                    if (selectionScope === 'column' || selectionScope === 'mixed') toggleSelection(0, column.id, 'column');
-                  }}
-                />
-              ))}
+              {orderedColumns.map((column, index) => {
+                const columnSortable = isColumnSortable(column);
+                return (
+                  <HeaderCell
+                    key={column.id}
+                    column={column}
+                    index={index}
+                    width={getCellWidth(column, columnWidths)}
+                    height={headerHeight}
+                    isSelected={Boolean(currentSelection.columns?.includes(column.id))}
+                    canResize={allowColumnResize && column.resizable !== false}
+                    canReorder={allowColumnReorder && column.draggable !== false}
+                    sortable={columnSortable}
+                    sortDirection={currentSort?.columnId === column.id ? currentSort.direction : null}
+                    renderHeaderCell={renderHeaderCell}
+                    onResize={resizeColumn}
+                    onMove={moveColumn}
+                    onSelect={() => {
+                      if (selectionScope === 'column' || selectionScope === 'mixed') toggleSelection(0, column.id, 'column');
+                    }}
+                    onSort={() => applySort(column.id)}
+                  />
+                );
+              })}
             </View>
+            {showFilterRow ? (
+              <View className="flex-row border-b border-outline-200 bg-background-0">
+                {orderedColumns.map((column) => (
+                  <View
+                    key={`filter-${column.id}`}
+                    className="justify-center border-r border-outline-100 px-2 py-1"
+                    style={{ width: getCellWidth(column, columnWidths) }}
+                  >
+                    {isColumnFilterable(column) ? (
+                      <TextInput
+                        value={currentFilters[column.id] ?? ''}
+                        onChangeText={(text) => setFilter(column.id, text)}
+                        placeholder="Filter"
+                        placeholderTextColor="#94a3b8"
+                        className="rounded-md border border-outline-200 bg-background-0 px-2 py-1 text-xs text-typography-900"
+                        accessibilityLabel={`Filter ${column.title}`}
+                      />
+                    ) : null}
+                  </View>
+                ))}
+              </View>
+            ) : null}
             <ScrollView
               onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
               onScroll={(event) => setScrollOffset(event.nativeEvent.contentOffset.y)}
@@ -532,10 +685,12 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
               style={{ flex: 1 }}
             >
               <View style={{ height: totalHeight, position: 'relative' }}>
-                {visibleRows.map((row) => {
+                {visiblePositions.map((position) => {
+                  const row = viewRows ? viewRows[position] : position;
+                  if (row == null) return null;
                   const height = typeof rowHeight === 'function' ? rowHeight(row) : rowHeight;
                   return (
-                    <View key={getRowKey?.(row) ?? String(row)} style={{ position: 'absolute', top: row * estimatedHeight, left: 0, right: 0, height }}>
+                    <View key={getRowKey?.(row) ?? String(row)} style={{ position: 'absolute', top: position * estimatedHeight, left: 0, right: 0, height }}>
                       {renderRow({ item: row })}
                     </View>
                   );

@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.15] - 2026-07-18
+
+### Added
+
+- `DataGrid` now supports built-in **sorting** (click-to-sort column headers via `sortable` / `column.sortable`, with `sort` / `defaultSort` / `onSortChange` and a `getSortValue` override) and **filtering** (a per-column filter row via `filterable` / `column.filterable`, with `filters` / `defaultFilters` / `onFiltersChange`). The grid orders and filters its own rows; numeric cells sort numerically. Exposed `DataGridSort` and `DataGridSortDirection` types.
+
+---
+
 ## [2.0.14] - 2026-07-18
 
 ### Fixed

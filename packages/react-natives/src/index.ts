@@ -736,6 +736,8 @@ export type {
   DataGridSelection,
   DataGridSelectionMode,
   DataGridSelectionScope,
+  DataGridSort,
+  DataGridSortDirection,
 } from './data-grid';
 
 // ── List ──────────────────────────────────────────────────────────────────

@@ -2,20 +2,20 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.14). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.0.15). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.14)
+## Release Notes (v2.0.15)
 
 ### What was updated
 
-- Replaced DataGrid row rendering with explicit viewport windowing so nested scroll containers do not render the full dataset
-- Constrained DataGrid internal scroll regions for embedded docs and app surfaces
-- Kept the docs DataGrid demo network-free and lazy-rendered
+- Added built-in DataGrid **sorting** (click-to-sort headers via `sortable`/`column.sortable`, controllable with `sort`/`onSortChange`)
+- Added built-in DataGrid **filtering** (per-column filter row via `filterable`/`column.filterable`, controllable with `filters`/`onFiltersChange`)
+- The grid orders/filters its own rows using each cell's value (numeric cells sort numerically); `getSortValue` overrides the compared value
 
 ### Changelog
 

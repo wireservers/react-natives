@@ -12,4 +12,6 @@ export type {
   DataGridSelection,
   DataGridSelectionMode,
   DataGridSelectionScope,
+  DataGridSort,
+  DataGridSortDirection,
 } from './types';

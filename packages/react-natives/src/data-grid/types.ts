@@ -15,6 +15,13 @@ export type DataGridCellKind =
 export type DataGridSelectionMode = 'none' | 'single' | 'multiple';
 export type DataGridSelectionScope = 'row' | 'cell' | 'column' | 'mixed';
 
+export type DataGridSortDirection = 'asc' | 'desc';
+
+export interface DataGridSort {
+  columnId: string;
+  direction: DataGridSortDirection;
+}
+
 export interface DataGridColumn<TColumnMeta = unknown> {
   id: string;
   title: string;
@@ -26,6 +33,10 @@ export interface DataGridColumn<TColumnMeta = unknown> {
   editable?: boolean;
   resizable?: boolean;
   draggable?: boolean;
+  /** Allow clicking this column's header to sort by it. Overrides the grid-level `sortable`. */
+  sortable?: boolean;
+  /** Show a filter input for this column in the filter row. Overrides the grid-level `filterable`. */
+  filterable?: boolean;
   align?: 'left' | 'center' | 'right';
   meta?: TColumnMeta;
 }
@@ -111,5 +122,30 @@ export interface DataGridProps extends Omit<React.ComponentPropsWithoutRef<typeo
   onColumnResize?: (columnId: string, width: number) => void;
   onColumnOrderChange?: (columns: DataGridColumn[]) => void;
   onCellPress?: (row: number, column: DataGridColumn, cell: DataGridCell) => void;
+  /**
+   * Enable click-to-sort on every column header (opt a column out with `column.sortable = false`).
+   * The grid sorts the rows itself using each cell's value; numeric cells compare numerically.
+   */
+  sortable?: boolean;
+  /** Controlled active sort. Pass with `onSortChange` to manage sort state yourself. */
+  sort?: DataGridSort | null;
+  /** Initial sort for the uncontrolled case. */
+  defaultSort?: DataGridSort | null;
+  onSortChange?: (sort: DataGridSort | null) => void;
+  /**
+   * Show a per-column filter row under the header (opt a column out with `column.filterable = false`).
+   * The grid hides rows whose cell text doesn't contain the (case-insensitive) filter substring.
+   */
+  filterable?: boolean;
+  /** Controlled filter values keyed by column id. Pass with `onFiltersChange` to manage them yourself. */
+  filters?: Record<string, string>;
+  /** Initial filters for the uncontrolled case. */
+  defaultFilters?: Record<string, string>;
+  onFiltersChange?: (filters: Record<string, string>) => void;
+  /**
+   * Optional override for the value the grid sorts/filters a cell by. Defaults to the cell's
+   * `value` (numeric-aware) / `displayValue`. Useful when the displayed cell is a custom node.
+   */
+  getSortValue?: (row: number, column: DataGridColumn) => string | number | boolean | null | undefined;
   className?: string;
 }
