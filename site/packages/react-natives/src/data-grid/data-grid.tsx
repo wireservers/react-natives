@@ -7,7 +7,6 @@ import {
   ScrollView,
   Text,
   TextInput,
-  VirtualizedList,
   View,
 } from 'react-native';
 import type {
@@ -38,6 +37,7 @@ import {
 const DEFAULT_ROW_HEIGHT = 44;
 const DEFAULT_HEADER_HEIGHT = 40;
 const DEFAULT_COLUMN_WIDTH = 160;
+const DEFAULT_OVERSCAN_ROWS = 6;
 
 function toCell(input: DataGridCell | string | number | boolean | null | undefined, column: DataGridColumn): DataGridCell {
   if (input == null) return { kind: column.kind ?? 'text', value: '' };
@@ -279,6 +279,7 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       getRowKey,
       rowHeight = DEFAULT_ROW_HEIGHT,
       headerHeight = DEFAULT_HEADER_HEIGHT,
+      estimatedRowHeight = DEFAULT_ROW_HEIGHT,
       selectionMode = 'none',
       selectionScope = 'cell',
       selection,
@@ -290,9 +291,10 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       renderCell,
       renderHeaderCell,
       mergedCells,
+      overscanRows = DEFAULT_OVERSCAN_ROWS,
       initialNumToRender = 12,
       maxToRenderPerBatch = 12,
-      windowSize = 5,
+      windowSize: _windowSize = 5,
       allowColumnResize = true,
       allowColumnReorder = true,
       onColumnResize,
@@ -308,6 +310,8 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     const [internalSelection, setInternalSelection] = React.useState(() => normalizeSelection(defaultSelection));
     const [editingCell, setEditingCell] = React.useState<DataGridCellCoordinate | null>(null);
     const [editingValue, setEditingValue] = React.useState<unknown>('');
+    const [scrollOffset, setScrollOffset] = React.useState(0);
+    const [viewportHeight, setViewportHeight] = React.useState(0);
     const inputRef = React.useRef<TextInput | null>(null);
     const isControlled = selection != null;
     const currentSelection = React.useMemo(() => normalizeSelection(isControlled ? selection : internalSelection), [internalSelection, isControlled, selection]);
@@ -474,11 +478,22 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     );
 
     const totalWidth = orderedColumns.reduce((total, column) => total + getCellWidth(column, columnWidths), 0);
+    const fixedRowHeight = typeof rowHeight === 'number' ? rowHeight : undefined;
+    const estimatedHeight = fixedRowHeight ?? estimatedRowHeight;
+    const totalHeight = rowCount * estimatedHeight;
+    const visibleWindow = Math.max(initialNumToRender, Math.ceil((viewportHeight || estimatedHeight * initialNumToRender) / estimatedHeight));
+    const startRow = Math.max(0, Math.floor(scrollOffset / estimatedHeight) - overscanRows);
+    const endRow = Math.min(rowCount - 1, startRow + visibleWindow + overscanRows * 2 + maxToRenderPerBatch);
+    const visibleRows = React.useMemo(() => {
+      const rows: number[] = [];
+      for (let row = startRow; row <= endRow; row += 1) rows.push(row);
+      return rows;
+    }, [endRow, startRow]);
 
     return (
       <View ref={ref} className={dataGridStyle({ class: className })} {...props}>
-        <ScrollView horizontal bounces={false}>
-          <View style={{ width: totalWidth }}>
+        <ScrollView horizontal bounces={false} style={{ flex: 1 }}>
+          <View style={{ width: totalWidth, flex: 1 }}>
             {groups ? (
               <View className={dataGridGroupHeaderStyle({})} style={{ height: Math.max(28, Math.round(headerHeight * 0.72)) }}>
                 {orderedColumns.map((column) => (
@@ -508,18 +523,25 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
                 />
               ))}
             </View>
-            <VirtualizedList
-              data={rowCount}
-              getItem={(_, index) => index}
-              getItemCount={(count) => count}
-              keyExtractor={(row) => getRowKey?.(row) ?? String(row)}
-              renderItem={renderRow}
-              initialNumToRender={initialNumToRender}
-              maxToRenderPerBatch={maxToRenderPerBatch}
-              windowSize={windowSize}
+            <ScrollView
+              onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
+              onScroll={(event) => setScrollOffset(event.nativeEvent.contentOffset.y)}
+              scrollEventThrottle={16}
+              bounces={false}
               removeClippedSubviews
-              getItemLayout={typeof rowHeight === 'number' ? (_, index) => ({ length: rowHeight, offset: rowHeight * index, index }) : undefined}
-            />
+              style={{ flex: 1 }}
+            >
+              <View style={{ height: totalHeight, position: 'relative' }}>
+                {visibleRows.map((row) => {
+                  const height = typeof rowHeight === 'function' ? rowHeight(row) : rowHeight;
+                  return (
+                    <View key={getRowKey?.(row) ?? String(row)} style={{ position: 'absolute', top: row * estimatedHeight, left: 0, right: 0, height }}>
+                      {renderRow({ item: row })}
+                    </View>
+                  );
+                })}
+              </View>
+            </ScrollView>
           </View>
         </ScrollView>
       </View>

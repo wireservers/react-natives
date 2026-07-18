@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants';
 
 export const dataGridStyle = tv({
-  base: 'overflow-hidden rounded-xl border border-outline-200 bg-background-0',
+  base: 'flex-1 overflow-hidden rounded-xl border border-outline-200 bg-background-0',
   variants: {},
 });
 

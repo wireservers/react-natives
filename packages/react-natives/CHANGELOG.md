@@ -7,6 +7,15 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.14] - 2026-07-18
+
+### Fixed
+
+- Replaced `DataGrid`'s internal `VirtualizedList` renderer with explicit viewport row windowing so embedded grids do not render the full dataset inside nested scroll containers.
+- Constrained `DataGrid` internal scroll regions to prevent virtual content height from expanding the surrounding page.
+
+---
+
 ## [2.0.13] - 2026-07-18
 
 ### Fixed
