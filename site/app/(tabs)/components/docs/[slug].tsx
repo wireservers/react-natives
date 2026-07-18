@@ -58,6 +58,7 @@ const exampleLoaders: Record<string, () => Promise<ExampleModule>> = {
   overlay: () => import('@/components/docs/examples/overlay-examples'),
   timeline: () => import('@/components/docs/examples/timeline-examples'),
   table: () => import('@/components/docs/examples/table-examples'),
+  'data-grid': () => import('@/components/docs/examples/data-grid-examples'),
   list: () => import('@/components/docs/examples/list-examples'),
   carousel: () => import('@/components/docs/examples/carousel-examples'),
   // Layout

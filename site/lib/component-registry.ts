@@ -4451,6 +4451,92 @@ export default function CalendarExample() {
   },
 
   {
+    slug: 'data-grid',
+    name: 'DataGrid',
+    description:
+      'A virtualized spreadsheet-style grid for lazy, editable, selectable, and customizable data sets.',
+    whenToUse: 'Use DataGrid for large interactive data sets that need native scrolling, lazy cell rendering, editing, selection, column resizing, column reordering, merged cells, and custom typed cell rendering.',
+    category: 'Data Display',
+    importCode: "import { DataGrid, type DataGridColumn } from '@wireservers-ui/react-natives';",
+    props: [
+      {
+        name: 'columns',
+        type: 'DataGridColumn[]',
+        description: 'Column definitions, including id, title, kind, width, group, editing, resize, and drag configuration.',
+      },
+      {
+        name: 'rowCount',
+        type: 'number',
+        description: 'Total logical row count. Rows are virtualized, so this can be very large.',
+      },
+      {
+        name: 'getCellContent',
+        type: '(row: number, column: DataGridColumn) => DataGridCell | string | number | boolean | null | undefined',
+        description: 'Lazy cell resolver called only for rendered rows and columns.',
+      },
+      {
+        name: 'rowHeight',
+        type: 'number | (row: number) => number',
+        default: '44',
+        description: 'Fixed or per-row height for variable sized rows.',
+      },
+      {
+        name: 'selectionMode',
+        type: "'none' | 'single' | 'multiple'",
+        default: "'none'",
+        description: 'Controls whether users can select one or many rows, cells, and columns.',
+      },
+      {
+        name: 'selectionScope',
+        type: "'row' | 'cell' | 'column' | 'mixed'",
+        default: "'cell'",
+        description: 'Determines what a press selects. Mixed enables cells and column headers.',
+      },
+      {
+        name: 'editable',
+        type: 'boolean',
+        default: 'false',
+        description: 'Enables built-in long-press editing for editable columns and cells.',
+      },
+      {
+        name: 'mergedCells',
+        type: 'DataGridMergedCell[]',
+        description: 'Cells that span multiple rows or columns.',
+      },
+      {
+        name: 'renderCell',
+        type: '(info: DataGridRenderCellInfo) => React.ReactNode',
+        description: 'Custom cell renderer. Return undefined to use the built-in renderer.',
+      },
+      {
+        name: 'renderHeaderCell',
+        type: '(info: DataGridRenderHeaderInfo) => React.ReactNode',
+        description: 'Custom column header renderer.',
+      },
+      {
+        name: 'allowColumnResize',
+        type: 'boolean',
+        default: 'true',
+        description: 'Enables drag resizing through the header resize handle.',
+      },
+      {
+        name: 'allowColumnReorder',
+        type: 'boolean',
+        default: 'true',
+        description: 'Enables horizontal drag reordering from column headers.',
+      },
+    ],
+    bestPractices: [
+      'Use getCellContent instead of pre-building large row arrays for million-row data sets.',
+      'Keep renderCell pure and fast; memoize expensive custom cell renderers.',
+      'Use fixed rowHeight when possible for the fastest getItemLayout path.',
+      'Use column ids that stay stable across sorting, filtering, and reordering.',
+    ],
+    accessibility: 'DataGrid renders cells and headers as accessible pressable controls with row, column, and value labels. Provide accessibilityLabel on image or custom cells when the default value is not descriptive.',
+    relatedComponents: ['table', 'list', 'pagination'],
+  },
+
+  {
     slug: 'list',
     name: 'List',
     description:

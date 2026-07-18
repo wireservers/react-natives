@@ -2,14 +2,14 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.11). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.0.12). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.11)
+## Release Notes (v2.0.12)
 
 ### What was updated
 

@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.12] - 2026-07-18
+
+### Added
+
+- Added `DataGrid`, a virtualized spreadsheet-style grid with lazy cell resolution, typed cells, editing, selection, resizing, reordering, variable row heights, merged cells, and custom render hooks.
+
+---
+
 ## [2.0.11] - 2026-07-17
 
 ### Fixed
