@@ -2,20 +2,20 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.12). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.0.13). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.12)
+## Release Notes (v2.0.13)
 
 ### What was updated
 
-- Added standalone helper components for real app workflows: searchable picking, emoji selection, bulk action bars, form drawers, multi-step forms, confirmation dialogs, field reconciliation, and view toggles
-- New exports include `SearchablePicker`, `EmojiPicker`, `SelectionBar`, `FormDrawer`, `FormWizard`, `useConfirm`, `FieldReconciler`, and `ViewToggle`
-- Components compose existing primitives and keep the package dependency-light
+- Improved DataGrid default virtualization settings for faster initial render and scrolling
+- Updated the docs DataGrid example to avoid per-row remote image requests
+- Kept the DataGrid API lazy with typed cells, editing, selection, resizing, reordering, variable rows, merged cells, and custom render hooks
 
 ### Changelog
 

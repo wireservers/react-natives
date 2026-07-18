@@ -7,6 +7,15 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.13] - 2026-07-18
+
+### Fixed
+
+- Improved `DataGrid` default virtualization settings to reduce render pressure during scrolling.
+- Updated the docs DataGrid demo to avoid thousands of per-row remote image requests.
+
+---
+
 ## [2.0.12] - 2026-07-18
 
 ### Added
