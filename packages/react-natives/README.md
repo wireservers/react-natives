@@ -2,20 +2,23 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.15). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.0.23). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.15)
+## Release Notes (v2.0.23)
 
 ### What was updated
 
-- Added built-in DataGrid **sorting** (click-to-sort headers via `sortable`/`column.sortable`, controllable with `sort`/`onSortChange`)
-- Added built-in DataGrid **filtering** (per-column filter row via `filterable`/`column.filterable`, controllable with `filters`/`onFiltersChange`)
-- The grid orders/filters its own rows using each cell's value (numeric cells sort numerically); `getSortValue` overrides the compared value
+- Reworked `Switch` to render its own pill track and thumb so the off-state ghost track stays visible on web.
+- Updated the published README release notes to match the current package version.
+- The generated starter now renders actual `@wireservers-ui/react-natives` components instead of placeholder content.
+- The starter `DataGrid` demo now showcases typed columns, grouped headers, sorting, filtering, selectable rows, column resizing, column reordering, merged cells, editable cells, variable row heights, URI cells, markdown cells, boolean cells, bubble cells, drilldown cells, and custom-rendered swatches.
+- `init` now installs the package itself and uses Expo-managed installs for web/runtime dependencies so fresh Expo projects receive compatible `react-dom` and `react-native-web` versions.
+- Fixed the React development warning from `MenuTrigger` by correcting its `forwardRef` render signature.
 
 ### Changelog
 

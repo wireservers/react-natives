@@ -7,6 +7,72 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.23] - 2026-07-19
+
+### Fixed
+
+- Reworked `Switch` to render an explicit rounded pill track and thumb so the off-state track remains visible on React Native Web.
+
+---
+
+## [2.0.22] - 2026-07-19
+
+### Fixed
+
+- Updated the README release notes and active-development version references from v2.0.15 to the current starter and `DataGrid` release information.
+
+---
+
+## [2.0.21] - 2026-07-19
+
+### Changed
+
+- Expanded the generated starter `DataGrid` demo to showcase typed columns, grouped headers, sorting, filtering, row selection, column resizing, column reordering, merged cells, editable cells, variable row heights, URI cells, markdown cells, boolean cells, bubble cells, drilldown cells, and custom-rendered theme swatches.
+
+---
+
+## [2.0.20] - 2026-07-19
+
+### Fixed
+
+- Fixed a React development warning from `MenuTrigger` by giving its `forwardRef` render function the required `(props, ref)` signature.
+
+---
+
+## [2.0.19] - 2026-07-19
+
+### Changed
+
+- Removed the logo icon from the generated starter landing page header.
+- Updated the starter `DataGrid` example to support multiple row selection with an initially selected row.
+
+---
+
+## [2.0.18] - 2026-07-19
+
+### Fixed
+
+- Updated the generated starter landing page to render actual `@wireservers-ui/react-natives` components, including buttons, badges, cards, form controls, stats, a slider, and a sortable `DataGrid`.
+- Updated `init` to install `@wireservers-ui/react-natives` into the target project at the running CLI version so `npx`-based fresh installs have the component package saved locally.
+
+---
+
+## [2.0.17] - 2026-07-19
+
+### Added
+
+- Replaced the generated blank/demo starter screen with a clean branded landing page that includes logo branding, links to docs/npm/GitHub, and example cards for key component areas.
+
+---
+
+## [2.0.16] - 2026-07-19
+
+### Fixed
+
+- Updated `init` dependency installation so Expo-managed web/runtime packages are installed through `expo install`, including `react-dom` and `react-native-web`, keeping generated projects aligned with the active Expo SDK.
+
+---
+
 ## [2.0.15] - 2026-07-18
 
 ### Added

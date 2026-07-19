@@ -20,7 +20,7 @@ export const Menu: React.FC<MenuProps> = ({ isOpen: controlledOpen, onOpenChange
 };
 Menu.displayName = 'Menu';
 
-export const MenuTrigger = React.forwardRef<React.ElementRef<typeof Pressable>, MenuTriggerProps>(({ children }) => {
+export const MenuTrigger = React.forwardRef<React.ElementRef<typeof Pressable>, MenuTriggerProps>(({ children }, _ref) => {
   const { onToggle, setTriggerRect } = useMenuContext();
   const triggerRef = useRef<View>(null);
 
