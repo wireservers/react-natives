@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@wireservers-ui/react-natives": "^2.0.2-rc.0",
+    "@wireservers-ui/react-natives": "file:../../../packages/react-natives",
     "babel-preset-expo": "^55.0.12",
     "expo": "~55.0.8",
     "expo-status-bar": "~55.0.4",

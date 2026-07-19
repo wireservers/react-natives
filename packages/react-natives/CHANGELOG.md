@@ -7,6 +7,26 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.1.0] - 2026-07-19
+
+### Added
+
+- `DataGrid` column pinning: set `pinned: 'left' | 'right'` on a column to freeze it to that edge while the remaining columns scroll horizontally. Grids without any pinned column keep the original single-scroller render path unchanged.
+- `DataGrid` server-side data mode: `manualSort` and `manualFilter` stop the grid from reordering/hiding rows itself so a remote data source can own sorting and filtering, while `onSortChange`/`onFiltersChange` keep reporting intent.
+- `DataGrid` infinite scroll: `onEndReached` (with `onEndReachedThreshold`) fires as the viewport nears the last row and re-arms once `rowCount` grows, so a single page isn't requested repeatedly.
+- `DataGrid` `loading` prop renders a footer activity indicator while more rows are being fetched.
+- Exported `computeViewRows`, `toCell`, `formatValue`, `toComparable`, and `compareComparable` so downstream packages can reproduce exactly the rows and cell text the grid is displaying without re-implementing its sort/filter rules.
+
+### Fixed
+
+- `DataGrid` `stickyHeader` now actually does something. The header, group band, and filter row were previously always pinned regardless of the prop; `stickyHeader` (default `true`) now controls it, and `false` lets the header scroll away with the rows.
+
+### Deprecated
+
+- `DataGrid` `windowSize` never had any effect and is now marked deprecated. It is still accepted so existing call sites keep compiling, and will be removed in the next major. Use `overscanRows`, `initialNumToRender`, and `maxToRenderPerBatch` to tune the render window.
+
+---
+
 ## [2.0.23] - 2026-07-19
 
 ### Fixed

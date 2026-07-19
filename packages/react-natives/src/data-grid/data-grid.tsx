@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   Image,
   Linking,
   PanResponder,
@@ -9,6 +10,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import type {
   DataGridCell,
   DataGridCellCoordinate,
@@ -19,6 +21,7 @@ import type {
   DataGridSelectionScope,
   DataGridSort,
 } from './types';
+import { computeViewRows, formatValue, toCell } from './view-rows';
 import {
   dataGridBubbleStyle,
   dataGridCellStyle,
@@ -39,14 +42,6 @@ const DEFAULT_ROW_HEIGHT = 44;
 const DEFAULT_HEADER_HEIGHT = 40;
 const DEFAULT_COLUMN_WIDTH = 160;
 const DEFAULT_OVERSCAN_ROWS = 6;
-
-function toCell(input: DataGridCell | string | number | boolean | null | undefined, column: DataGridColumn): DataGridCell {
-  if (input == null) return { kind: column.kind ?? 'text', value: '' };
-  if (typeof input === 'object' && !Array.isArray(input)) {
-    return { kind: input.kind ?? column.kind ?? 'text', ...input };
-  }
-  return { kind: column.kind ?? (typeof input === 'number' ? 'number' : 'text'), value: input };
-}
 
 function cellKey(cell: DataGridCellCoordinate) {
   return `${cell.row}:${cell.columnId}`;
@@ -112,32 +107,6 @@ function clampWidth(column: DataGridColumn, width: number) {
   const min = column.minWidth ?? 72;
   const max = column.maxWidth ?? 640;
   return Math.max(min, Math.min(max, width));
-}
-
-function formatValue(cell: DataGridCell) {
-  if (cell.displayValue != null) return cell.displayValue;
-  if (cell.value == null) return '';
-  if (typeof cell.value === 'boolean') return cell.value ? 'Yes' : 'No';
-  return String(cell.value);
-}
-
-// Normalize a cell (or a getSortValue override) to something orderable: numbers/booleans sort
-// numerically, everything else sorts as its lowercased display text.
-function toComparable(raw: unknown, cell?: DataGridCell): number | string {
-  if (typeof raw === 'number') return raw;
-  if (typeof raw === 'boolean') return raw ? 1 : 0;
-  if (raw != null) return String(raw).toLowerCase();
-  if (cell) {
-    if (typeof cell.value === 'number') return cell.value;
-    if (typeof cell.value === 'boolean') return cell.value ? 1 : 0;
-    return formatValue(cell).toLowerCase();
-  }
-  return '';
-}
-
-function compareComparable(a: number | string, b: number | string): number {
-  if (typeof a === 'number' && typeof b === 'number') return a - b;
-  return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' });
 }
 
 function MarkdownText({ value, align }: { value: string; align: DataGridColumn['align'] }) {
@@ -329,7 +298,10 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       overscanRows = DEFAULT_OVERSCAN_ROWS,
       initialNumToRender = 12,
       maxToRenderPerBatch = 12,
-      windowSize: _windowSize = 5,
+      // Deprecated no-op. Destructured only so it never reaches the spread below and lands on
+      // the underlying View as an unknown prop.
+      windowSize: _windowSize,
+      stickyHeader = true,
       allowColumnResize = true,
       allowColumnReorder = true,
       onColumnResize,
@@ -344,6 +316,11 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       defaultFilters,
       onFiltersChange,
       getSortValue,
+      manualSort = false,
+      manualFilter = false,
+      loading = false,
+      onEndReached,
+      onEndReachedThreshold = 2,
       className,
       ...props
     },
@@ -357,6 +334,15 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     const [scrollOffset, setScrollOffset] = React.useState(0);
     const [viewportHeight, setViewportHeight] = React.useState(0);
     const inputRef = React.useRef<TextInput | null>(null);
+    // Row count at the moment `onEndReached` last fired; re-arms once more rows arrive so a
+    // single page request isn't issued repeatedly while the user sits at the bottom.
+    const endReachedAtCount = React.useRef<number | null>(null);
+    // In the pinned layout the header and body scroll horizontally as two separate views that
+    // must stay aligned. `syncingFrom` records which one initiated the current sync so the
+    // programmatic scrollTo on the other doesn't echo back and fight the user's gesture.
+    const headerScrollRef = React.useRef<ScrollView | null>(null);
+    const bodyScrollRef = React.useRef<ScrollView | null>(null);
+    const syncingFrom = React.useRef<'header' | 'body' | null>(null);
     const [internalSort, setInternalSort] = React.useState<DataGridSort | null>(defaultSort);
     const [internalFilters, setInternalFilters] = React.useState<Record<string, string>>(defaultFilters ?? {});
     const isControlled = selection != null;
@@ -407,41 +393,22 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
 
     // Filtered + sorted permutation of data-row indices. `null` = identity (no sort, no active
     // filter) so the common case stays a zero-cost fast path and behaves exactly as before.
-    const viewRows = React.useMemo(() => {
-      const filterEntries = Object.entries(currentFilters).filter(([, value]) => value && value.trim());
-      const hasFilter = filterEntries.length > 0;
-      if (!currentSort && !hasFilter) return null;
-
-      let rows: number[] = [];
-      for (let row = 0; row < rowCount; row += 1) rows.push(row);
-
-      if (hasFilter) {
-        rows = rows.filter((row) =>
-          filterEntries.every(([columnId, value]) => {
-            const column = orderedColumns.find((item) => item.id === columnId);
-            if (!column) return true;
-            const text = getSortValue
-              ? String(getSortValue(row, column) ?? '')
-              : formatValue(toCell(getCellContent(row, column), column));
-            return text.toLowerCase().includes(value.trim().toLowerCase());
-          }),
-        );
-      }
-
-      if (currentSort) {
-        const column = orderedColumns.find((item) => item.id === currentSort.columnId);
-        if (column) {
-          const direction = currentSort.direction === 'desc' ? -1 : 1;
-          const valueFor = (row: number) =>
-            getSortValue
-              ? toComparable(getSortValue(row, column))
-              : toComparable(undefined, toCell(getCellContent(row, column), column));
-          rows.sort((a, b) => compareComparable(valueFor(a), valueFor(b)) * direction);
-        }
-      }
-
-      return rows;
-    }, [currentSort, currentFilters, rowCount, orderedColumns, getCellContent, getSortValue]);
+    // In server-side mode (`manualSort`/`manualFilter`) the corresponding step is skipped and
+    // the data source is trusted to have already applied it.
+    const viewRows = React.useMemo(
+      () =>
+        computeViewRows({
+          columns: orderedColumns,
+          rowCount,
+          getCellContent,
+          getSortValue,
+          sort: currentSort,
+          filters: currentFilters,
+          manualSort,
+          manualFilter,
+        }),
+      [currentSort, currentFilters, rowCount, orderedColumns, getCellContent, getSortValue, manualSort, manualFilter],
+    );
 
     const viewCount = viewRows ? viewRows.length : rowCount;
 
@@ -588,16 +555,28 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     );
 
     const renderRow = React.useCallback(
-      ({ item: row }: { item: number }) => {
+      ({ item: row, columns: rowColumns }: { item: number; columns?: DataGridColumn[] }) => {
         const height = typeof rowHeight === 'function' ? rowHeight(row) : rowHeight;
         const isSelected = Boolean(currentSelection.rows?.includes(row));
         return (
           <View className={dataGridRowStyle({ isSelected })} style={{ minHeight: height }}>
-            {orderedColumns.map((column) => renderGridCell({ row, column }))}
+            {(rowColumns ?? orderedColumns).map((column) => renderGridCell({ row, column }))}
           </View>
         );
       },
       [currentSelection.rows, orderedColumns, renderGridCell, rowHeight],
+    );
+
+    // Pinned columns are grouped at their edge; the rest keep their relative order in the
+    // middle. `hasPinned` gates the three-pane layout so grids without pinning keep the
+    // original single-scroller render path untouched.
+    const leftColumns = React.useMemo(() => orderedColumns.filter((column) => column.pinned === 'left'), [orderedColumns]);
+    const rightColumns = React.useMemo(() => orderedColumns.filter((column) => column.pinned === 'right'), [orderedColumns]);
+    const middleColumns = React.useMemo(() => orderedColumns.filter((column) => !column.pinned), [orderedColumns]);
+    const hasPinned = leftColumns.length > 0 || rightColumns.length > 0;
+    const widthOf = React.useCallback(
+      (cols: DataGridColumn[]) => cols.reduce((total, column) => total + getCellWidth(column, columnWidths), 0),
+      [columnWidths],
     );
 
     const totalWidth = orderedColumns.reduce((total, column) => total + getCellWidth(column, columnWidths), 0);
@@ -615,89 +594,201 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
       return positions;
     }, [endRow, startRow]);
 
+    const handleVerticalScroll = React.useCallback(
+      (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+        setScrollOffset(contentOffset.y);
+        if (!onEndReached) return;
+        const distanceFromEnd = contentSize.height - contentOffset.y - layoutMeasurement.height;
+        if (distanceFromEnd > layoutMeasurement.height * onEndReachedThreshold) return;
+        if (endReachedAtCount.current === rowCount) return;
+        endReachedAtCount.current = rowCount;
+        onEndReached();
+      },
+      [onEndReached, onEndReachedThreshold, rowCount],
+    );
+
+    // Header stack (group band + header row + filter row) for a given set of columns. In the
+    // pinned layout this is called once per pane so each edge renders its own header segment.
+    const buildHeaderBlock = (cols: DataGridColumn[]) => (
+      <>
+        {groups ? (
+          <View className={dataGridGroupHeaderStyle({})} style={{ height: Math.max(28, Math.round(headerHeight * 0.72)) }}>
+            {cols.map((column) => (
+              <View key={`group-${column.id}`} className="justify-center border-r border-outline-100 px-3" style={{ width: getCellWidth(column, columnWidths) }}>
+                <Text className={dataGridGroupHeaderTextStyle({})} numberOfLines={1}>{column.group ?? ''}</Text>
+              </View>
+            ))}
+          </View>
+        ) : null}
+        <View className={dataGridHeaderStyle({})}>
+          {cols.map((column) => {
+            const columnSortable = isColumnSortable(column);
+            return (
+              <HeaderCell
+                key={column.id}
+                column={column}
+                // Index into the full column list so drag-reorder still moves the right column.
+                index={orderedColumns.indexOf(column)}
+                width={getCellWidth(column, columnWidths)}
+                height={headerHeight}
+                isSelected={Boolean(currentSelection.columns?.includes(column.id))}
+                canResize={allowColumnResize && column.resizable !== false}
+                canReorder={allowColumnReorder && column.draggable !== false}
+                sortable={columnSortable}
+                sortDirection={currentSort?.columnId === column.id ? currentSort.direction : null}
+                renderHeaderCell={renderHeaderCell}
+                onResize={resizeColumn}
+                onMove={moveColumn}
+                onSelect={() => {
+                  if (selectionScope === 'column' || selectionScope === 'mixed') toggleSelection(0, column.id, 'column');
+                }}
+                onSort={() => applySort(column.id)}
+              />
+            );
+          })}
+        </View>
+        {showFilterRow ? (
+          <View className="flex-row border-b border-outline-200 bg-background-0">
+            {cols.map((column) => (
+              <View
+                key={`filter-${column.id}`}
+                className="justify-center border-r border-outline-100 px-2 py-1"
+                style={{ width: getCellWidth(column, columnWidths) }}
+              >
+                {isColumnFilterable(column) ? (
+                  <TextInput
+                    value={currentFilters[column.id] ?? ''}
+                    onChangeText={(text) => setFilter(column.id, text)}
+                    placeholder="Filter"
+                    placeholderTextColor="#94a3b8"
+                    className="rounded-md border border-outline-200 bg-background-0 px-2 py-1 text-xs text-typography-900"
+                    accessibilityLabel={`Filter ${column.title}`}
+                  />
+                ) : null}
+              </View>
+            ))}
+          </View>
+        ) : null}
+      </>
+    );
+
+    // Absolutely-positioned row stack for a set of columns. Every pane uses the same
+    // `visiblePositions` and the same `top` maths, which is what keeps the panes aligned.
+    const buildRowStack = (cols: DataGridColumn[]) => (
+      <View style={{ height: totalHeight, position: 'relative' }}>
+        {visiblePositions.map((position) => {
+          const row = viewRows ? viewRows[position] : position;
+          if (row == null) return null;
+          const height = typeof rowHeight === 'function' ? rowHeight(row) : rowHeight;
+          return (
+            <View key={getRowKey?.(row) ?? String(row)} style={{ position: 'absolute', top: position * estimatedHeight, left: 0, right: 0, height }}>
+              {renderRow({ item: row, columns: cols })}
+            </View>
+          );
+        })}
+      </View>
+    );
+
+    const loadingFooter = loading ? (
+      <View className="flex-row items-center justify-center gap-2 border-t border-outline-100 py-3">
+        <ActivityIndicator size="small" />
+        <Text className="text-xs text-typography-500">Loading…</Text>
+      </View>
+    ) : null;
+
+    // --- Unpinned layout (the original single-scroller path, unchanged) ---------------------
+    if (!hasPinned) {
+      const headerBlock = buildHeaderBlock(orderedColumns);
+      return (
+        <View ref={ref} className={dataGridStyle({ class: className })} {...props}>
+          <ScrollView horizontal bounces={false} style={{ flex: 1 }}>
+            <View style={{ width: totalWidth, flex: 1 }}>
+              {stickyHeader ? headerBlock : null}
+              <ScrollView
+                onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
+                onScroll={handleVerticalScroll}
+                scrollEventThrottle={16}
+                bounces={false}
+                removeClippedSubviews
+                style={{ flex: 1 }}
+              >
+                {stickyHeader ? null : headerBlock}
+                {buildRowStack(orderedColumns)}
+                {loadingFooter}
+              </ScrollView>
+            </View>
+          </ScrollView>
+        </View>
+      );
+    }
+
+    // --- Pinned layout ----------------------------------------------------------------------
+    // Three panes share one vertical scroller, so vertical alignment is free. Only the middle
+    // pane scrolls horizontally; its header and body are separate ScrollViews kept in step by
+    // `syncHorizontal`.
+    const syncHorizontal = (source: 'header' | 'body') => (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (syncingFrom.current && syncingFrom.current !== source) return;
+      const x = event.nativeEvent.contentOffset.x;
+      syncingFrom.current = source;
+      const target = source === 'header' ? bodyScrollRef.current : headerScrollRef.current;
+      target?.scrollTo({ x, animated: false });
+      // Released on the next tick so the echoed scroll event from `target` is ignored.
+      requestAnimationFrame(() => {
+        syncingFrom.current = null;
+      });
+    };
+
+    const middleWidth = widthOf(middleColumns);
+    const headerRow = (
+      <View className="flex-row">
+        {leftColumns.length ? <View>{buildHeaderBlock(leftColumns)}</View> : null}
+        <ScrollView
+          ref={headerScrollRef}
+          horizontal
+          bounces={false}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+          onScroll={syncHorizontal('header')}
+          style={{ flex: 1 }}
+        >
+          <View style={{ width: middleWidth }}>{buildHeaderBlock(middleColumns)}</View>
+        </ScrollView>
+        {rightColumns.length ? <View>{buildHeaderBlock(rightColumns)}</View> : null}
+      </View>
+    );
+
     return (
       <View ref={ref} className={dataGridStyle({ class: className })} {...props}>
-        <ScrollView horizontal bounces={false} style={{ flex: 1 }}>
-          <View style={{ width: totalWidth, flex: 1 }}>
-            {groups ? (
-              <View className={dataGridGroupHeaderStyle({})} style={{ height: Math.max(28, Math.round(headerHeight * 0.72)) }}>
-                {orderedColumns.map((column) => (
-                  <View key={`group-${column.id}`} className="justify-center border-r border-outline-100 px-3" style={{ width: getCellWidth(column, columnWidths) }}>
-                    <Text className={dataGridGroupHeaderTextStyle({})} numberOfLines={1}>{column.group ?? ''}</Text>
-                  </View>
-                ))}
-              </View>
-            ) : null}
-            <View className={dataGridHeaderStyle({})}>
-              {orderedColumns.map((column, index) => {
-                const columnSortable = isColumnSortable(column);
-                return (
-                  <HeaderCell
-                    key={column.id}
-                    column={column}
-                    index={index}
-                    width={getCellWidth(column, columnWidths)}
-                    height={headerHeight}
-                    isSelected={Boolean(currentSelection.columns?.includes(column.id))}
-                    canResize={allowColumnResize && column.resizable !== false}
-                    canReorder={allowColumnReorder && column.draggable !== false}
-                    sortable={columnSortable}
-                    sortDirection={currentSort?.columnId === column.id ? currentSort.direction : null}
-                    renderHeaderCell={renderHeaderCell}
-                    onResize={resizeColumn}
-                    onMove={moveColumn}
-                    onSelect={() => {
-                      if (selectionScope === 'column' || selectionScope === 'mixed') toggleSelection(0, column.id, 'column');
-                    }}
-                    onSort={() => applySort(column.id)}
-                  />
-                );
-              })}
-            </View>
-            {showFilterRow ? (
-              <View className="flex-row border-b border-outline-200 bg-background-0">
-                {orderedColumns.map((column) => (
-                  <View
-                    key={`filter-${column.id}`}
-                    className="justify-center border-r border-outline-100 px-2 py-1"
-                    style={{ width: getCellWidth(column, columnWidths) }}
-                  >
-                    {isColumnFilterable(column) ? (
-                      <TextInput
-                        value={currentFilters[column.id] ?? ''}
-                        onChangeText={(text) => setFilter(column.id, text)}
-                        placeholder="Filter"
-                        placeholderTextColor="#94a3b8"
-                        className="rounded-md border border-outline-200 bg-background-0 px-2 py-1 text-xs text-typography-900"
-                        accessibilityLabel={`Filter ${column.title}`}
-                      />
-                    ) : null}
-                  </View>
-                ))}
-              </View>
+        {stickyHeader ? headerRow : null}
+        <ScrollView
+          onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
+          onScroll={handleVerticalScroll}
+          scrollEventThrottle={16}
+          bounces={false}
+          removeClippedSubviews
+          style={{ flex: 1 }}
+        >
+          {stickyHeader ? null : headerRow}
+          <View className="flex-row">
+            {leftColumns.length ? (
+              <View style={{ width: widthOf(leftColumns) }}>{buildRowStack(leftColumns)}</View>
             ) : null}
             <ScrollView
-              onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
-              onScroll={(event) => setScrollOffset(event.nativeEvent.contentOffset.y)}
-              scrollEventThrottle={16}
+              ref={bodyScrollRef}
+              horizontal
               bounces={false}
-              removeClippedSubviews
+              scrollEventThrottle={16}
+              onScroll={syncHorizontal('body')}
               style={{ flex: 1 }}
             >
-              <View style={{ height: totalHeight, position: 'relative' }}>
-                {visiblePositions.map((position) => {
-                  const row = viewRows ? viewRows[position] : position;
-                  if (row == null) return null;
-                  const height = typeof rowHeight === 'function' ? rowHeight(row) : rowHeight;
-                  return (
-                    <View key={getRowKey?.(row) ?? String(row)} style={{ position: 'absolute', top: position * estimatedHeight, left: 0, right: 0, height }}>
-                      {renderRow({ item: row })}
-                    </View>
-                  );
-                })}
-              </View>
+              <View style={{ width: middleWidth }}>{buildRowStack(middleColumns)}</View>
             </ScrollView>
+            {rightColumns.length ? (
+              <View style={{ width: widthOf(rightColumns) }}>{buildRowStack(rightColumns)}</View>
+            ) : null}
           </View>
+          {loadingFooter}
         </ScrollView>
       </View>
     );

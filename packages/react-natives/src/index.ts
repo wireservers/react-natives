@@ -723,6 +723,8 @@ export type {
 
 // DataGrid
 export { DataGrid } from './data-grid';
+export { compareComparable, computeViewRows, formatValue, toCell, toComparable } from './data-grid';
+export type { ComputeViewRowsOptions } from './data-grid';
 export type {
   DataGridCell,
   DataGridCellCoordinate,

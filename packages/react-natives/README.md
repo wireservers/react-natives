@@ -2,23 +2,23 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.0.23). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.1.0). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.0.23)
+## Release Notes (v2.1.0)
 
 ### What was updated
 
-- Reworked `Switch` to render its own pill track and thumb so the off-state ghost track stays visible on web.
-- Updated the published README release notes to match the current package version.
-- The generated starter now renders actual `@wireservers-ui/react-natives` components instead of placeholder content.
-- The starter `DataGrid` demo now showcases typed columns, grouped headers, sorting, filtering, selectable rows, column resizing, column reordering, merged cells, editable cells, variable row heights, URI cells, markdown cells, boolean cells, bubble cells, drilldown cells, and custom-rendered swatches.
-- `init` now installs the package itself and uses Expo-managed installs for web/runtime dependencies so fresh Expo projects receive compatible `react-dom` and `react-native-web` versions.
-- Fixed the React development warning from `MenuTrigger` by correcting its `forwardRef` render signature.
+- `DataGrid` gained column pinning — set `pinned: 'left' | 'right'` on a column to freeze it to that edge while the rest scroll horizontally.
+- `DataGrid` gained a server-side data mode: `manualSort` and `manualFilter` hand sorting and filtering to your data source while `onSortChange`/`onFiltersChange` keep reporting intent.
+- `DataGrid` gained infinite scroll via `onEndReached`/`onEndReachedThreshold`, plus a `loading` footer indicator.
+- `DataGrid`'s `stickyHeader` prop now works — the header was previously always pinned regardless of the prop.
+- Exported `computeViewRows` and the cell-formatting helpers so downstream packages can reproduce the grid's displayed rows without re-implementing its sort/filter rules.
+- Deprecated `DataGrid`'s `windowSize` prop, which never had any effect; it still compiles and will be removed in the next major.
 
 ### Changelog
 

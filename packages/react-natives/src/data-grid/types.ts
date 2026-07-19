@@ -33,6 +33,12 @@ export interface DataGridColumn<TColumnMeta = unknown> {
   editable?: boolean;
   resizable?: boolean;
   draggable?: boolean;
+  /**
+   * Freeze this column to one edge so it stays visible while the rest scroll horizontally.
+   * Pinned columns are grouped at their edge in the order they appear in `columns`, regardless
+   * of their position in the array. Omit for a normal scrolling column.
+   */
+  pinned?: 'left' | 'right';
   /** Allow clicking this column's header to sort by it. Overrides the grid-level `sortable`. */
   sortable?: boolean;
   /** Show a filter input for this column in the filter row. Overrides the grid-level `filterable`. */
@@ -115,7 +121,16 @@ export interface DataGridProps extends Omit<React.ComponentPropsWithoutRef<typeo
   overscanRows?: number;
   initialNumToRender?: number;
   maxToRenderPerBatch?: number;
+  /**
+   * @deprecated Never had any effect — the grid sizes its render window from `overscanRows`,
+   * `initialNumToRender` and `maxToRenderPerBatch`. Accepted only so existing call sites keep
+   * compiling; remove it from your props. Will be dropped in the next major.
+   */
   windowSize?: number;
+  /**
+   * Keep the header (and group/filter rows) fixed while the body scrolls vertically.
+   * Defaults to `true`; set `false` to let the header scroll away with the rows.
+   */
   stickyHeader?: boolean;
   allowColumnResize?: boolean;
   allowColumnReorder?: boolean;
@@ -147,5 +162,25 @@ export interface DataGridProps extends Omit<React.ComponentPropsWithoutRef<typeo
    * `value` (numeric-aware) / `displayValue`. Useful when the displayed cell is a custom node.
    */
   getSortValue?: (row: number, column: DataGridColumn) => string | number | boolean | null | undefined;
+  /**
+   * Server-side sorting. The grid stops reordering rows itself and only reports intent via
+   * `onSortChange` — your data source is trusted to return rows already sorted. Header sort
+   * affordances and indicators keep working.
+   */
+  manualSort?: boolean;
+  /**
+   * Server-side filtering. The grid stops hiding rows itself and only reports intent via
+   * `onFiltersChange` — your data source is trusted to return rows already filtered.
+   */
+  manualFilter?: boolean;
+  /** Show a footer activity indicator while more rows are being fetched. */
+  loading?: boolean;
+  /**
+   * Fired once when the viewport comes within `onEndReachedThreshold` screens of the last
+   * row. Re-arms after `rowCount` grows, so it won't fire repeatedly for the same page.
+   */
+  onEndReached?: () => void;
+  /** Screens-worth of rows from the bottom at which `onEndReached` fires. Defaults to 2. */
+  onEndReachedThreshold?: number;
   className?: string;
 }
