@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+test/.compiled/
+
+# Secrets — the signing key belongs in Key Vault, never on disk here.
+.env
+.env.*
+*.key
+signing-key.json
