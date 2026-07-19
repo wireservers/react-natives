@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Lock files
+package-lock.json
+
+# Build
+*.tsbuildinfo
+
+# Signing material — the license private key must NEVER be committed.
+# It belongs in Key Vault, injected as WSUI_LICENSE_PRIVATE_KEY at runtime.
+*.key
+signing-key.json
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store

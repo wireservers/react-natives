@@ -2,10 +2,18 @@ import "./global.css";
 import React, { useCallback, useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import {
-  DataGrid,
   type DataGridColumn,
   type DataGridSort,
 } from "@wireservers-ui/react-natives";
+import {
+  DataGridPro,
+  setLicenseKey,
+  getLicenseStatus,
+} from "@wireservers-ui/react-natives-pro";
+
+// Genuine key minted with the real signing key, for verifying the licensed path.
+const VALID_KEY =
+  "WSUI1.eyJlbWFpbCI6InRvZGRAd2lyZXNlcnZlcnMuY29tIiwicHJvZHVjdCI6InJlYWN0LW5hdGl2ZXMtcHJvIiwiZWRpdGlvbiI6InBybyIsImlzc3VlZEF0IjoxNzg0NDk3NDM1LCJzZWF0cyI6NX0.EiN_i_F9ZIwpKmnvjYS8qedA_NonqaczaeN61jyqkxpwfjhUZuJ6am3vopALhI7Cfte-9Ybq732qWXJOBEjAAw";
 
 const PAGE_SIZE = 25;
 const TOTAL_AVAILABLE = 120;
@@ -50,6 +58,8 @@ export default function App() {
   const [sticky, setSticky] = useState(true);
   const [manual, setManual] = useState(false);
   const [pinned, setPinned] = useState(true);
+  const [licensed, setLicensed] = useState(false);
+  const [lastExport, setLastExport] = useState<string | null>(null);
   const [rows, setRows] = useState<Row[]>(() => makeRows(0, PAGE_SIZE));
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState<DataGridSort | null>(null);
@@ -98,6 +108,11 @@ export default function App() {
         {loading ? "loading" : "idle"} · sort{" "}
         {sort ? `${sort.columnId}/${sort.direction}` : "none"}
       </Text>
+      {lastExport ? (
+        <Text className="mb-2 text-[10px] text-typography-400" numberOfLines={1}>
+          last export: {lastExport}
+        </Text>
+      ) : null}
 
       <View className="mb-3 flex-row gap-2">
         <Pressable
@@ -124,10 +139,26 @@ export default function App() {
             pinned: {pinned ? "ID + OK" : "none"}
           </Text>
         </Pressable>
+        <Pressable
+          onPress={() => {
+            setLicenseKey(licensed ? "" : VALID_KEY);
+            setLicensed((v) => !v);
+          }}
+          className="rounded-md border border-outline-300 px-3 py-2"
+        >
+          <Text className="text-xs text-typography-900">
+            license: {licensed ? "valid" : "none"}
+          </Text>
+        </Pressable>
       </View>
 
       <View className="flex-1 pb-8">
-        <DataGrid
+        <DataGridPro
+          exportFileName="grid-export"
+          onExportCsv={(csv: string) => {
+            // Capture instead of downloading so the export is observable in the harness.
+            setLastExport(csv.split("\r\n").slice(0, 3).join(" | "));
+          }}
           columns={pinned ? columns : unpinnedColumns}
           rowCount={data.length}
           getCellContent={getCellContent}

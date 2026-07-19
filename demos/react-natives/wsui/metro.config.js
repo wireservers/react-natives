@@ -16,13 +16,18 @@ if (!config.resolver.assetExts.includes('md')) {
 }
 config.resolver.sourceExts = (config.resolver.sourceExts || []).filter(ext => ext !== 'md');
 
-try {
-  const wsuiPackagePath = path.dirname(
-    require.resolve("@wireservers-ui/react-natives/package.json"),
-  );
-  config.watchFolders = [...new Set([...(config.watchFolders || []), wsuiPackagePath])];
-} catch {
-  // No-op if package is not resolvable yet.
+// Both libraries are consumed as symlinks to local source, so Metro has to be told to watch
+// their real directories — it will not follow a symlink outside the project root otherwise.
+for (const pkg of [
+  "@wireservers-ui/react-natives",
+  "@wireservers-ui/react-natives-pro",
+]) {
+  try {
+    const packagePath = path.dirname(require.resolve(`${pkg}/package.json`));
+    config.watchFolders = [...new Set([...(config.watchFolders || []), packagePath])];
+  } catch {
+    // No-op if the package is not resolvable yet.
+  }
 }
 
 module.exports = withNativeWind(config, { input: "./global.css" });

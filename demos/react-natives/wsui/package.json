@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@wireservers-ui/react-natives": "file:../../../packages/react-natives",
+    "@wireservers-ui/react-natives-pro": "file:../../../packages/react-natives-pro",
     "babel-preset-expo": "^55.0.12",
     "expo": "~55.0.8",
     "expo-status-bar": "~55.0.4",

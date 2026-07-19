@@ -1,0 +1,49 @@
+WireServers Commercial License
+==============================
+
+Copyright (c) 2026 WireServers. All rights reserved.
+
+This package (`@wireservers-ui/react-natives-pro`) is commercial software. It is NOT
+covered by the MIT license that applies to `@wireservers-ui/react-natives`.
+
+Grant of license
+----------------
+
+Subject to payment of the applicable fee, WireServers grants you a non-exclusive,
+non-transferable license to use this package in your own applications, including
+applications you distribute to end users, for the number of seats and the term stated
+in your license key.
+
+You may:
+
+  - Use the package in unlimited applications, commercial or otherwise, within the
+    seat count you purchased.
+  - Modify the source for use within your own applications.
+  - Distribute the package as part of a compiled or bundled application.
+
+You may not:
+
+  - Redistribute the package's source, in whole or substantial part, as a component
+    library, template, or developer tool.
+  - Share, publish, or resell a license key.
+  - Remove, disable, or circumvent the license verification or the unlicensed
+    watermark.
+
+Evaluation
+----------
+
+The package may be installed and evaluated without a license key. In that state it is
+fully functional but renders a visible "unlicensed" watermark. Use in production
+requires a valid license key.
+
+No warranty
+-----------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Questions: todd@wireservers.com

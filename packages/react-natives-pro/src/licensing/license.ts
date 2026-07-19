@@ -58,7 +58,9 @@ export function verifyLicenseKey(key: string, now: Date = new Date()): LicenseSt
   }
 
   const parts = key.trim().split('.');
-  if (parts.length !== 3 || parts[0] !== KEY_PREFIX) {
+  // Empty payload/signature segments are structurally wrong, so they're rejected here rather
+  // than being handed to the verifier as zero-length buffers.
+  if (parts.length !== 3 || parts[0] !== KEY_PREFIX || !parts[1] || !parts[2]) {
     return { valid: false, reason: 'malformed' };
   }
 
