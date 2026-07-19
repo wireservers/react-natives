@@ -7,8 +7,9 @@ import {
 } from "@wireservers-ui/react-natives";
 import {
   DataGridPro,
+  DateRangePicker,
   setLicenseKey,
-  getLicenseStatus,
+  type DateRange,
 } from "@wireservers-ui/react-natives-pro";
 
 // Genuine key minted with the real signing key, for verifying the licensed path.
@@ -60,6 +61,7 @@ export default function App() {
   const [pinned, setPinned] = useState(true);
   const [licensed, setLicensed] = useState(false);
   const [lastExport, setLastExport] = useState<string | null>(null);
+  const [range, setRange] = useState<DateRange>({ start: null, end: null });
   const [rows, setRows] = useState<Row[]>(() => makeRows(0, PAGE_SIZE));
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState<DataGridSort | null>(null);
@@ -172,6 +174,14 @@ export default function App() {
           loading={loading}
           onEndReached={loadMore}
         />
+      </View>
+
+      <View className="border-t border-outline-100 pt-2">
+        <Text className="mb-1 text-xs font-semibold text-typography-900">
+          DateRangePicker — {range.start ? range.start.toDateString() : "no start"} →{" "}
+          {range.end ? range.end.toDateString() : "no end"}
+        </Text>
+        <DateRangePicker value={range} onChange={setRange} numberOfMonths={2} />
       </View>
     </View>
   );

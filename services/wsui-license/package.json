@@ -1,0 +1,19 @@
+{
+  "name": "wsui-license",
+  "version": "0.1.0",
+  "private": true,
+  "description": "License issuing service for @wireservers-ui/react-natives-pro — Stripe checkout webhook, key signing, order email",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node test/run.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.9.7",
+    "express": "^4.21.2",
+    "stripe": "^17.5.0"
+  }
+}

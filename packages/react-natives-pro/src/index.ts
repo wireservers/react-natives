@@ -25,3 +25,25 @@ export { DataGridPro } from './data-grid-pro/data-grid-pro';
 export type { DataGridProProps } from './data-grid-pro/data-grid-pro';
 export { buildCsv, escapeCsvField } from './data-grid-pro/to-csv';
 export type { BuildCsvOptions } from './data-grid-pro/to-csv';
+
+// Date range picker
+export { DateRangePicker } from './date-range-picker/date-range-picker';
+export type { DateRangePickerProps } from './date-range-picker/date-range-picker';
+export {
+  DEFAULT_PRESETS,
+  addDays,
+  addMonths,
+  buildMonthGrid,
+  daysBetween,
+  endOfDay,
+  endOfMonth,
+  formatMonthLabel,
+  formatRangeLabel,
+  isSameDay,
+  isSelectable,
+  isWithinRange,
+  selectDate,
+  startOfDay,
+  startOfMonth,
+} from './date-range-picker/range-utils';
+export type { DateRange, DateRangePreset } from './date-range-picker/range-utils';
