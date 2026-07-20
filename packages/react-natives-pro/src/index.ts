@@ -101,3 +101,18 @@ export { CommandPalette } from './search/command-palette';
 export type { CommandPaletteProps, Command } from './search/command-palette';
 export { fuzzyMatch, rankItems, highlightSegments, moveActiveIndex } from './search/fuzzy';
 export type { FuzzyMatch, RankableItem, RankedItem } from './search/fuzzy';
+
+// Form builder / wizard
+export { FormBuilder } from './forms/form-builder';
+export type { FormBuilderProps } from './forms/form-builder';
+export {
+  canAdvance, fieldsForStep, formSteps, initialValues, isFieldVisible, isLastStep,
+  nextStep, previousStep, prunedValues, validateField, validateForm, validateStep, visibleFields,
+} from './forms/form-utils';
+export type { FieldSchema, FieldType, FieldRule, FieldOption, FieldCondition, FormValues, FormErrors } from './forms/form-utils';
+
+// Kanban board
+export { Kanban } from './kanban/kanban';
+export type { KanbanProps } from './kanban/kanban';
+export { moveCard, findCard, insertionIndex, columnAtX, isColumnFull, cardCount } from './kanban/kanban-utils';
+export type { KanbanCard, KanbanColumn, DropTarget } from './kanban/kanban-utils';
