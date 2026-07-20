@@ -1,0 +1,14 @@
+{
+  "name": "react-natives-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Headless-browser verification for @wireservers-ui/react-natives and …-pro",
+  "scripts": {
+    "build:demo": "cd ../demos/react-natives/wsui && npx expo export --platform web",
+    "test": "node verify.js && node verify-scheduler.js",
+    "verify": "npm run build:demo && npm test"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
