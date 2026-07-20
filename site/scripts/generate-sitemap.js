@@ -23,7 +23,9 @@ const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 // Directories/files to exclude from sitemap
 const EXCLUDE = new Set(['_sitemap.html', '+not-found.html']);
 // URL patterns to exclude (template routes, redirects)
-const EXCLUDE_PATTERNS = [/\[.*\]/, /\/docs\/?$/, /\/modal\/?$/];
+// Anchored to the components docs index specifically, which is a redirect. A bare /\/docs\/?$/
+// also swallowed /pro/docs — a real page, and the one the order email sends buyers to.
+const EXCLUDE_PATTERNS = [/\[.*\]/, /^\/components\/docs\/?$/, /\/modal\/?$/];
 
 function toUrlPath(relativePath) {
   let urlPath = `/${relativePath}`

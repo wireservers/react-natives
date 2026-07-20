@@ -12,7 +12,8 @@
     "build": "node scripts/sync-readme.js && expo export --platform web && node scripts/generate-sitemap.js",
     "build:clean": "node scripts/sync-readme.js && expo export --platform web --clear && node scripts/generate-sitemap.js",
     "clean": "rm -rf .expo node_modules/.cache dist",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "serve": "node server.js"
   },
   "dependencies": {
     "@expo/html-elements": "^0.10.1",

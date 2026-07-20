@@ -56,7 +56,7 @@ function buildOrderEmail(order) {
     orderId = '—',
     receiptUrl,
     expiresAt,
-    docsUrl = 'https://reactnatives.com/pro',
+    docsUrl = 'https://www.reactnatives.dev/pro-docs',
     supportEmail = 'todd@wireservers.com',
   } = order;
 
@@ -121,8 +121,17 @@ ${activateSnippet.split('\n').map((l) => `   ${l}`).join('\n')}
 ${tailwindSnippet.split('\n').map((l) => `   ${l}`).join('\n')}
 
 WHAT YOU UNLOCKED
-  - DataGridPro    CSV export, column pinning, server-side data
+  - DataGridPro      CSV + Excel export, column pinning, server-side data
+  - Charts           line, area, bar, stacked, donut, sparkline, stat tiles
+  - Scheduler        week/day grid with drag to create, move and resize
   - DateRangePicker  dual-month range selection with presets
+  - RichTextEditor   markdown toolbar with live preview
+  - FormBuilder      schema-driven forms, conditional fields, wizards
+  - Combobox         async autocomplete, multi-select, create-on-the-fly
+  - CommandPalette   Cmd-K fuzzy command search
+  - FileUpload       drag-and-drop dropzone with per-file progress
+  - Kanban           drag-and-drop board with WIP limits
+  - ProductTour      spotlight onboarding coachmarks
   Docs: ${docsUrl}
 
 SUPPORT
@@ -168,8 +177,17 @@ SUPPORT
 
   <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin:28px 0 8px">What you unlocked</h2>
   <ul style="font-size:13px;padding-left:18px;margin:0">
-    <li><strong>DataGridPro</strong> — CSV export, column pinning, server-side data</li>
+    <li><strong>DataGridPro</strong> — CSV + Excel export, column pinning, server-side data</li>
+    <li><strong>Charts</strong> — line, area, bar, stacked, donut, sparkline, stat tiles</li>
+    <li><strong>Scheduler</strong> — week/day grid with drag to create, move and resize</li>
     <li><strong>DateRangePicker</strong> — dual-month range selection with presets</li>
+    <li><strong>RichTextEditor</strong> — markdown toolbar with live preview</li>
+    <li><strong>FormBuilder</strong> — schema-driven forms, conditional fields, wizards</li>
+    <li><strong>Combobox</strong> — async autocomplete, multi-select, create-on-the-fly</li>
+    <li><strong>CommandPalette</strong> — ⌘K fuzzy command search</li>
+    <li><strong>FileUpload</strong> — drag-and-drop dropzone with per-file progress</li>
+    <li><strong>Kanban</strong> — drag-and-drop board with WIP limits</li>
+    <li><strong>ProductTour</strong> — spotlight onboarding coachmarks</li>
   </ul>
   <p style="font-size:13px;margin:12px 0 0"><a href="${escapeHtml(docsUrl)}">Read the docs →</a></p>
 

@@ -150,6 +150,6 @@ export function warnOnce(reason: LicenseInvalidReason): void {
   console.warn(
     `[@wireservers-ui/react-natives-pro] ${REASON_MESSAGE[reason]} ` +
       'Pro components will render with an "unlicensed" watermark. ' +
-      'Purchase or retrieve a key at https://reactnatives.com/pro and pass it to setLicenseKey().',
+      'Purchase or retrieve a key at https://www.reactnatives.dev/pro and pass it to setLicenseKey().',
   );
 }

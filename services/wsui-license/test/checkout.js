@@ -102,7 +102,7 @@ check('unconfigured env selects memory mailer', createAdapters({}).mailerKind, '
     env: {
       STRIPE_PRICE_PRO: 'price_pro_123',
       STRIPE_PRICE_TEAM: 'price_team_456',
-      PUBLIC_SITE_URL: 'https://reactnatives.com',
+      PUBLIC_SITE_URL: 'https://www.reactnatives.dev',
     },
   });
   const server = await new Promise((resolve) => {

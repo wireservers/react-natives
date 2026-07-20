@@ -41,6 +41,9 @@ jobs:
         run: |
           mkdir -p site/deploy
           cp -R site/dist/. site/deploy/
+          # Ships beside the export and becomes the app's entry point. pm2 serve cannot serve
+          # a directory route (/components -> 500 EISDIR), which this handles.
+          cp site/server.js site/deploy/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -77,4 +80,4 @@ jobs:
           app-name: 'dev-reactnatives'
           slot-name: 'Production'
           package: ./site
-          startup-command: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
+          startup-command: 'node /home/site/wwwroot/server.js'

@@ -183,7 +183,10 @@ function InlineText({ text, color, size = 14 }: { text: string; color: string; s
         if (linkMatch) {
           return (
             <Text key={idx} style={{ color: "#43C3E6", textDecorationLine: "underline" }}>
-              {linkMatch[1]}
+              {/* The label is parsed too, so `[`Code`](url)` renders as code rather than
+                  showing literal backticks. The label pattern excludes `]`, so this cannot
+                  recurse into another link. */}
+              <InlineText text={linkMatch[1]} color="#43C3E6" size={size} />
             </Text>
           );
         }

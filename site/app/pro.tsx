@@ -1,5 +1,6 @@
 import React from "react";
 import { ActivityIndicator, Linking, Pressable, ScrollView, Text, View } from "react-native";
+import { router } from "expo-router";
 import { BRAND_COLOR_DARK } from "@/constants/brand";
 import { Footer } from "@/components/footer";
 import { SeoHead } from "@/components/seo/seo-head";
@@ -52,8 +53,16 @@ const PLANS: Plan[] = [
 
 const INCLUDED = [
   "DataGridPro — CSV + Excel export, column pinning, server-side data",
+  "Charts — line, area, bar, stacked, donut, sparkline and stat tiles",
   "Scheduler — week/day grid with drag to create, move and resize",
   "DateRangePicker — dual-month range selection with presets",
+  "RichTextEditor — markdown toolbar with live preview",
+  "FormBuilder — schema-driven forms, conditional fields and wizards",
+  "Combobox — async autocomplete, multi-select and create-on-the-fly",
+  "CommandPalette — ⌘K fuzzy command search",
+  "FileUpload — drag-and-drop dropzone with per-file progress",
+  "Kanban — drag-and-drop board with WIP limits",
+  "ProductTour — spotlight onboarding coachmarks",
   "Works on iOS, Android and web from one codebase",
   "Perpetual license — your build keeps working forever",
   "Removes the unlicensed watermark",
@@ -157,7 +166,7 @@ export default function ProPricingScreen() {
     <>
       <SeoHead
         title="react-natives Pro — premium React Native components"
-        description="Premium React Native components: DataGridPro with Excel export, a drag-and-drop Scheduler, and a date-range picker. One codebase for iOS, Android and web. Perpetual license."
+        description="Ten premium React Native components: DataGridPro with Excel export, charts, a drag-and-drop Scheduler, rich text, form builder, command palette, file upload, kanban and more. One codebase for iOS, Android and web. Perpetual license."
         path="/pro"
       />
       <ScrollView style={{ flex: 1, backgroundColor: "#f8fafc" }}>
@@ -166,9 +175,9 @@ export default function ProPricingScreen() {
             react-natives Pro
           </Text>
           <Text style={{ fontSize: 16, color: "#475569", marginBottom: 4, maxWidth: 640 }}>
-            The premium components — a real data grid, a drag-and-drop scheduler, and a proper
-            range picker — that work natively on iOS and Android as well as the web, from a
-            single codebase.
+            Ten premium components — a real data grid, charts, a drag-and-drop scheduler, rich
+            text, a form builder, a command palette and more — that work natively on iOS and
+            Android as well as the web, from a single codebase.
           </Text>
           <Text style={{ fontSize: 13, color: "#64748b", marginBottom: 24, maxWidth: 640 }}>
             The core library stays free and MIT licensed.
@@ -212,6 +221,27 @@ export default function ProPricingScreen() {
             functional — components simply render an “unlicensed” watermark until you activate a
             license. Nothing is time-limited or disabled.
           </Text>
+
+          <Pressable
+            // Typed routes are generated and do not include this top-level route; the same cast is
+            // used for /pro in app/(tabs)/index.tsx.
+            onPress={() => router.navigate("/pro-docs" as never)}
+            accessibilityRole="link"
+            accessibilityLabel="Read the Pro documentation"
+            style={{
+              marginTop: 20,
+              alignSelf: "flex-start",
+              borderWidth: 1,
+              borderColor: "#cbd5e1",
+              borderRadius: 8,
+              paddingHorizontal: 16,
+              paddingVertical: 10,
+            }}
+          >
+            <Text style={{ fontSize: 14, fontWeight: "600", color: "#0f172a" }}>
+              Read the docs →
+            </Text>
+          </Pressable>
         </View>
         <Footer />
       </ScrollView>

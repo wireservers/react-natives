@@ -49,3 +49,4 @@ package-lock.json
 
 # Generated files
 lib/readme-content.ts
+lib/pro-readme-content.ts

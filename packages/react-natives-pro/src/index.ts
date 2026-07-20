@@ -116,3 +116,34 @@ export { Kanban } from './kanban/kanban';
 export type { KanbanProps } from './kanban/kanban';
 export { moveCard, findCard, insertionIndex, columnAtX, isColumnFull, cardCount } from './kanban/kanban-utils';
 export type { KanbanCard, KanbanColumn, DropTarget } from './kanban/kanban-utils';
+
+// File upload / dropzone
+export { FileUpload } from './file-upload/file-upload';
+export type { FileUploadProps, PickedFile } from './file-upload/file-upload';
+export {
+  addFiles, countByStatus, extensionOf, formatBytes, isImage, nextUploadId,
+  overallProgress, pendingFiles, rejectionReason, removeFile, setProgress, updateFile,
+} from './file-upload/upload-utils';
+export type { UploadFile, UploadStatus, AcceptRules, AddResult } from './file-upload/upload-utils';
+
+// Product tour / coachmarks
+export { ProductTour, useTourAnchor } from './product-tour/product-tour';
+export type { ProductTourProps } from './product-tour/product-tour';
+export {
+  arrowOffset, cardPosition, firstStep as firstTourStep, isStepEnabled,
+  nextStep as nextTourStep, previousStep as previousTourStep, resolvePlacement,
+  spotlightRect, stepPosition, tourStorageKey,
+} from './product-tour/tour-utils';
+export type { TourStep, TourPlacement, Rect, Size } from './product-tour/tour-utils';
+
+// Rich text editor
+export { RichTextEditor, MarkdownPreview } from './rich-text/rich-text-editor';
+export type { RichTextEditorProps, ToolId } from './rich-text/rich-text-editor';
+export {
+  blockTypeAt, continueList, hasInlineMark, insertImage, insertLink, lineEnd, lineStart,
+  markerFor, parseInline, parseMarkdown, plainTextLength, selectedLines, stripMarkdown,
+  toggleBlock, toggleInline, wordCount,
+} from './rich-text/rich-text-utils';
+export type {
+  Selection, EditResult, InlineMark, BlockType, InlineToken, MarkdownBlock,
+} from './rich-text/rich-text-utils';

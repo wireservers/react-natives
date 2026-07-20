@@ -164,7 +164,7 @@ npm run lint
 - [Expo Router docs](https://docs.expo.dev/router/introduction/)
 - [React Native docs](https://reactnative.dev/)
 - [NativeWind docs](https://www.nativewind.dev/)
-- [React-Natives docs](https://reactnatives.com)
+- [React-Natives docs](https://www.reactnatives.dev)
 
 ---
 

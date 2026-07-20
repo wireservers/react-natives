@@ -17,6 +17,7 @@ import {
   type DateRange,
   type SchedulerEvent,
 } from "@wireservers-ui/react-natives-pro";
+import { ProPanelTwo } from "./ProPanelTwo";
 
 // Genuine key minted with the real signing key, for verifying the licensed path.
 const VALID_KEY =
@@ -86,6 +87,9 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState<DataGridSort | null>(null);
   const [endReachedCount, setEndReachedCount] = useState(0);
+  // Default is the original layout, so the existing e2e suites keep passing without
+  // having to navigate anywhere first.
+  const [panel, setPanel] = useState<"one" | "two">("one");
 
   // Server-side sort simulation: when `manual` is on the grid must NOT reorder rows itself,
   // so we sort the source data here instead and hand back an already-ordered page.
@@ -120,11 +124,23 @@ export default function App() {
     [data],
   );
 
+  if (panel === "two") {
+    return <ProPanelTwo onBack={() => setPanel("one")} />;
+  }
+
   return (
     <View className="flex-1 bg-background-0 px-4 pt-16">
       <Text className="mb-1 text-xl font-bold text-typography-900">
         DataGrid v2.1.0 verification
       </Text>
+      <Pressable
+        onPress={() => setPanel("two")}
+        accessibilityRole="button"
+        accessibilityLabel="Show panel two"
+        className="mb-2 self-start rounded-md bg-primary-500 px-3 py-1.5"
+      >
+        <Text className="text-xs font-medium text-typography-0">Panel 2 →</Text>
+      </Pressable>
       <Text className="mb-3 text-xs text-typography-500">
         rows {rows.length}/{TOTAL_AVAILABLE} · onEndReached fired {endReachedCount}× ·{" "}
         {loading ? "loading" : "idle"} · sort{" "}

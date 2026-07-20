@@ -36,9 +36,11 @@ export function LicenseWatermark({ label }: LicenseWatermarkProps) {
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
     >
-      {/* Bottom-right: the top-right corner is where toolbars and action buttons live, and the
-          badge would sit directly on top of them. */}
-      <View style={{ position: 'absolute', bottom: 8, right: 8 }}>
+      {/* Bottom-left. Both right-hand corners are occupied across this library — toolbars and
+          export buttons sit top-right, and form/wizard actions are bottom-right — so a badge in
+          either one lands on top of a control. The nag is meant to be seen, not to make the
+          component look broken to someone evaluating it. */}
+      <View style={{ position: 'absolute', bottom: 8, left: 8 }}>
         <View className="rounded-md border border-warning-400 bg-warning-50 px-2 py-1">
           <Text className="text-[10px] font-semibold text-warning-700">
             {label ?? 'react-natives-pro — unlicensed'}

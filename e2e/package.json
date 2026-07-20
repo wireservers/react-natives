@@ -5,9 +5,10 @@
   "description": "Headless-browser verification for @wireservers-ui/react-natives and \u2026-pro",
   "scripts": {
     "build:demo": "cd ../demos/react-natives/wsui && npx expo export --platform web",
-    "test": "node verify.js && node verify-scheduler.js && node verify-pricing.js",
+    "test": "node verify.js && node verify-scheduler.js && node verify-pricing.js && node verify-pro-docs.js && node verify-routes.js",
     "verify": "npm run build:demo && npm run build:site && npm test",
-    "build:site": "cd ../site && npx expo export --platform web"
+    "build:site": "cd ../site && npx expo export --platform web",
+    "test:panel2": "node verify-panel-two.js"
   },
   "dependencies": {
     "puppeteer": "^24.0.0"
