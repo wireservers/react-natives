@@ -14,9 +14,15 @@ working. The only persistence needed is webhook idempotency (below), not key loo
 
 | Route | Purpose |
 |---|---|
+| `GET /plans` | Public plan catalogue for the pricing page |
+| `POST /checkout` | `{ plan }` → Stripe Checkout session URL |
 | `POST /webhook` | Stripe `checkout.session.completed` → mint key → send order email |
 | `GET /license?session_id=…` | Mint/return the key inline for the `/thanks` page |
 | `GET /health` | Liveness probe |
+
+The buyer's email is collected by Stripe Checkout, never taken from the client — it becomes the
+license holder, so it must not be spoofable. Entitlements (`edition`, `seats`) ride on the
+session as metadata and are read back by the webhook.
 
 Both delivery paths exist deliberately: email is the durable copy, the `/thanks` page covers the
 case where mail is slow or lands in spam.
@@ -28,7 +34,26 @@ case where mail is slow or lands in spam.
 | `STRIPE_SECRET_KEY` | Stripe API key |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` from the webhook endpoint |
 | `WSUI_LICENSE_PRIVATE_KEY` | Ed25519 signing key, hex. **Key Vault only** — never commit it |
+| `STRIPE_PRICE_PRO` | Price id for the 1-seat plan |
+| `STRIPE_PRICE_TEAM` | Price id for the 5-seat plan |
+| `STRIPE_PRICE_ENTERPRISE` | Price id for the 25-seat plan |
+| `PUBLIC_SITE_URL` | Base URL used to build `success_url` / `cancel_url` |
+| `AZURE_TABLES_CONNECTION_STRING` | Idempotency store. Falls back to memory when unset |
+| `AZURE_TABLES_NAME` | Defaults to `wsuiLicenseEvents` |
+| `ACS_CONNECTION_STRING` | Order email. Falls back to memory when unset |
+| `ACS_SENDER_ADDRESS` | Verified sender address |
+| `NODE_ENV` | `production` activates the startup guard below |
 | `PORT` | Defaults to 8080 |
+
+A plan whose price env is missing returns 500 rather than falling back to another price — it
+fails closed instead of selling at the wrong amount.
+
+### Startup guard
+
+With `NODE_ENV=production`, the service **refuses to boot** on in-memory adapters. An in-memory
+store looks healthy right up until a redeploy drops the idempotency records and the next Stripe
+retry issues a duplicate key to a customer. Failing loudly at startup is far cheaper than
+finding out from a buyer.
 
 In production these come from `wireservers-dev-kv`. The signing key's public half is embedded in
 `@wireservers-ui/react-natives-pro/src/licensing/license.ts`; **rotating the private key

@@ -14,7 +14,9 @@
 const express = require('express');
 const Stripe = require('stripe');
 const { mintLicenseKey } = require('./license-key');
-const { fulfillCheckout, createMemoryStore, createMemoryMailer } = require('./fulfillment');
+const { fulfillCheckout } = require('./fulfillment');
+const { createAdapters, assertProductionReady } = require('./adapters');
+const { PLANS, getPlan, resolvePriceId, buildCheckoutMetadata } = require('./pricing');
 
 function requireEnv(name) {
   const value = process.env[name];
@@ -22,10 +24,57 @@ function requireEnv(name) {
   return value;
 }
 
-function createApp({ stripe, store, mailer, privateKeyHex, webhookSecret }) {
+function createApp({ stripe, store, mailer, privateKeyHex, webhookSecret, env = process.env }) {
   const app = express();
 
   app.get('/health', (_req, res) => res.json({ ok: true }));
+
+  // Public plan catalogue for the pricing page. Prices themselves live in Stripe.
+  app.get('/plans', (_req, res) => {
+    res.json({
+      plans: Object.values(PLANS).map(({ id, name, edition, seats, perpetual }) => ({
+        id,
+        name,
+        edition,
+        seats,
+        perpetual,
+      })),
+    });
+  });
+
+  // Start a purchase. The pricing page POSTs a plan id; entitlement metadata is attached here
+  // so the webhook can mint the right edition/seats without trusting anything from the client.
+  app.post('/checkout', express.json(), async (req, res) => {
+    const planId = req.body && req.body.plan;
+    const plan = getPlan(planId);
+    if (!plan) {
+      return res.status(400).json({ error: `unknown plan: ${planId}` });
+    }
+
+    let priceId;
+    try {
+      priceId = resolvePriceId(plan, env);
+    } catch (error) {
+      console.error('[checkout] price not configured:', error.message);
+      return res.status(500).json({ error: 'plan is not available' });
+    }
+
+    try {
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: [{ price: priceId, quantity: 1 }],
+        // Stripe collects the email; it becomes the license holder, so we never take it
+        // from the client where it could be spoofed.
+        success_url: `${env.PUBLIC_SITE_URL || ''}/thanks?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${env.PUBLIC_SITE_URL || ''}/pro`,
+        metadata: buildCheckoutMetadata(plan),
+      });
+      return res.json({ url: session.url, id: session.id });
+    } catch (error) {
+      console.error('[checkout] session creation failed:', error.message);
+      return res.status(502).json({ error: 'could not start checkout' });
+    }
+  });
 
   // Stripe signature verification needs the RAW body — express.json() would reparse it and the
   // computed HMAC would never match. This route must stay ahead of any JSON body parser.
@@ -90,15 +139,24 @@ function createApp({ stripe, store, mailer, privateKeyHex, webhookSecret }) {
 }
 
 function main() {
+  const adapters = createAdapters(process.env);
+  // Throws rather than booting with in-memory adapters in production.
+  assertProductionReady(adapters, process.env);
+
   const app = createApp({
     stripe: new Stripe(requireEnv('STRIPE_SECRET_KEY')),
-    store: createMemoryStore(), // TODO: swap for Table Storage before launch — see README
-    mailer: createMemoryMailer(), // TODO: wire Azure Communication Services / SendGrid
+    store: adapters.store,
+    mailer: adapters.mailer,
     privateKeyHex: requireEnv('WSUI_LICENSE_PRIVATE_KEY'),
     webhookSecret: requireEnv('STRIPE_WEBHOOK_SECRET'),
   });
+
   const port = process.env.PORT || 8080;
-  app.listen(port, () => console.log(`wsui-license listening on :${port}`));
+  app.listen(port, () => {
+    console.log(`wsui-license listening on :${port}`);
+    console.log(`  store:  ${adapters.storeKind}`);
+    console.log(`  mailer: ${adapters.mailerKind}`);
+  });
 }
 
 if (require.main === module) main();

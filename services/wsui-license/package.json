@@ -6,12 +6,14 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "node test/run.js && node test/http.js"
+    "test": "node test/run.js && node test/http.js && node test/checkout.js"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@azure/communication-email": "^1.1.0",
+    "@azure/data-tables": "^13.3.2",
     "@noble/curves": "^1.9.7",
     "express": "^4.21.2",
     "stripe": "^17.5.0"
