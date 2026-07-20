@@ -89,6 +89,26 @@ Two stubs in `src/server.js` are wired to in-memory implementations and must be 
 
 Kudu zip deploy, matching the other services in this org (not a GitHub Actions deploy workflow).
 
+```bash
+APP_NAME=wsui-license RESOURCE_GROUP=<rg> ./scripts/deploy.sh
+```
+
+The zip ships **source only** — `node_modules`, `test/`, and any `.env`/key files are excluded,
+and Oryx installs dependencies on the server (`SCM_DO_BUILD_DURING_DEPLOYMENT=true`). All deps
+are pure JS today, but building on the target platform avoids ever shipping a macOS-built
+artifact to a Linux host.
+
+### Verify before pointing Stripe at it
+
+```bash
+BASE_URL=https://wsui-license.azurewebsites.net node scripts/smoke.js
+```
+
+Read-only and safe against production — it never completes a purchase. It asserts the deployment
+rejects unsigned and forged webhooks, refuses unknown/`__proto__` plans, and leaks no secrets in
+error bodies. **A 200 on the unsigned-webhook check means anyone who finds the URL can mint
+licenses**, so treat a failure there as launch-blocking.
+
 ## Tests
 
 ```bash

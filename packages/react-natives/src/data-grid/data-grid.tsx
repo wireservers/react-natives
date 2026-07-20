@@ -750,7 +750,10 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
           onScroll={syncHorizontal('header')}
-          style={{ flex: 1 }}
+          // Size to content, shrinking (and scrolling) only when it exceeds the space.
+          // `flex: 1` would stretch the pane past its columns and leave a dead gap before the
+          // right-pinned edge whenever the middle columns are narrower than the viewport.
+          style={{ flexGrow: 0, flexShrink: 1, flexBasis: middleWidth }}
         >
           <View style={{ width: middleWidth }}>{buildHeaderBlock(middleColumns)}</View>
         </ScrollView>
@@ -780,7 +783,8 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
               bounces={false}
               scrollEventThrottle={16}
               onScroll={syncHorizontal('body')}
-              style={{ flex: 1 }}
+              // Must match the header pane's sizing exactly or the two drift out of alignment.
+              style={{ flexGrow: 0, flexShrink: 1, flexBasis: middleWidth }}
             >
               <View style={{ width: middleWidth }}>{buildRowStack(middleColumns)}</View>
             </ScrollView>

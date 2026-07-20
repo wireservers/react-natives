@@ -7,6 +7,7 @@ import {
 } from '@wireservers-ui/react-natives';
 import { WithLicenseWatermark } from '../licensing/watermark';
 import { buildCsv } from './to-csv';
+import { buildXlsx } from './to-xlsx';
 
 export interface DataGridProProps extends DataGridProps {
   /** Show the Pro toolbar (export controls). Defaults to true. */
@@ -22,16 +23,23 @@ export interface DataGridProProps extends DataGridProps {
    * file-system layer.
    */
   onExportCsv?: (csv: string, fileName: string) => void;
-  /** Field separator for the export. Defaults to a comma. */
+  /**
+   * Receives the generated .xlsx as bytes. Same platform story as `onExportCsv`: web downloads
+   * by default, native callers hand the bytes to their own file-system layer (base64-encode
+   * them for `expo-file-system`).
+   */
+  onExportXlsx?: (bytes: Uint8Array, fileName: string) => void;
+  /** Field separator for the CSV export. Defaults to a comma. */
   exportDelimiter?: string;
+  /** Show the XLSX button alongside CSV. Defaults to true. */
+  showXlsxExport?: boolean;
+  /** Worksheet name for the XLSX export. Sanitised to Excel's rules. */
+  exportSheetName?: string;
 }
 
 /** Browser-only download. Returns false when there's no DOM to drive. */
-function downloadOnWeb(csv: string, fileName: string): boolean {
+function downloadBlobOnWeb(blob: Blob, fileName: string): boolean {
   if (Platform.OS !== 'web' || typeof document === 'undefined') return false;
-  // ﻿ (BOM) makes Excel read the file as UTF-8 rather than the local ANSI codepage,
-  // which otherwise mangles accented and non-Latin characters.
-  const blob = new Blob([`﻿${csv}`], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
   anchor.href = url;
@@ -42,6 +50,10 @@ function downloadOnWeb(csv: string, fileName: string): boolean {
   URL.revokeObjectURL(url);
   return true;
 }
+
+// ﻿ (BOM) makes Excel read CSV as UTF-8 rather than the local ANSI codepage, which
+// otherwise mangles accented and non-Latin characters.
+const CSV_BOM = '﻿';
 
 /**
  * DataGrid with the Pro feature set: export toolbar, column pinning, and server-side data
@@ -57,7 +69,10 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
       showToolbar = true,
       exportFileName = 'export',
       onExportCsv,
+      onExportXlsx,
       exportDelimiter,
+      showXlsxExport = true,
+      exportSheetName,
       sort,
       defaultSort = null,
       onSortChange,
@@ -110,7 +125,8 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
         onExportCsv(csv, fileName);
         return;
       }
-      if (!downloadOnWeb(csv, fileName)) {
+      const blob = new Blob([`${CSV_BOM}${csv}`], { type: 'text/csv;charset=utf-8;' });
+      if (!downloadBlobOnWeb(blob, fileName)) {
         // eslint-disable-next-line no-console
         console.warn(
           '[@wireservers-ui/react-natives-pro] No `onExportCsv` handler was supplied and this ' +
@@ -131,6 +147,50 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
       onExportCsv,
     ]);
 
+    const exportXlsx = React.useCallback(() => {
+      const bytes = buildXlsx({
+        columns: gridProps.columns,
+        rowCount: gridProps.rowCount,
+        getCellContent: gridProps.getCellContent,
+        getSortValue: gridProps.getSortValue,
+        sort: activeSort,
+        filters: activeFilters,
+        manualSort: gridProps.manualSort,
+        manualFilter: gridProps.manualFilter,
+        sheetName: exportSheetName ?? exportFileName,
+      });
+      const fileName = `${exportFileName}.xlsx`;
+      if (onExportXlsx) {
+        onExportXlsx(bytes, fileName);
+        return;
+      }
+      // Copy into a fresh ArrayBuffer: the typed array may be a view over a larger buffer,
+      // and Blob would otherwise capture the whole thing.
+      const buffer = bytes.slice().buffer;
+      const blob = new Blob([buffer], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      if (!downloadBlobOnWeb(blob, fileName)) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[@wireservers-ui/react-natives-pro] No `onExportXlsx` handler was supplied and this ' +
+            'platform has no default download. Pass `onExportXlsx` to receive the file bytes.',
+        );
+      }
+    }, [
+      activeFilters,
+      activeSort,
+      exportFileName,
+      exportSheetName,
+      gridProps.columns,
+      gridProps.getCellContent,
+      gridProps.getSortValue,
+      gridProps.manualFilter,
+      gridProps.manualSort,
+      gridProps.rowCount,
+      onExportXlsx,
+    ]);
+
     return (
       <WithLicenseWatermark>
         <View style={{ flex: 1 }}>
@@ -144,6 +204,16 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
               >
                 <Text className="text-xs font-medium text-typography-900">Export CSV</Text>
               </Pressable>
+              {showXlsxExport ? (
+                <Pressable
+                  onPress={exportXlsx}
+                  accessibilityRole="button"
+                  accessibilityLabel="Export grid as Excel workbook"
+                  className="rounded-md border border-outline-300 bg-background-0 px-3 py-1.5 active:bg-background-50"
+                >
+                  <Text className="text-xs font-medium text-typography-900">Export Excel</Text>
+                </Pressable>
+              ) : null}
             </View>
           ) : null}
           <DataGrid

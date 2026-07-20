@@ -25,6 +25,8 @@ export { DataGridPro } from './data-grid-pro/data-grid-pro';
 export type { DataGridProProps } from './data-grid-pro/data-grid-pro';
 export { buildCsv, escapeCsvField } from './data-grid-pro/to-csv';
 export type { BuildCsvOptions } from './data-grid-pro/to-csv';
+export { buildXlsx, columnLetter, escapeXml, sanitizeSheetName } from './data-grid-pro/to-xlsx';
+export type { BuildXlsxOptions } from './data-grid-pro/to-xlsx';
 
 // Date range picker
 export { DateRangePicker } from './date-range-picker/date-range-picker';

@@ -88,7 +88,10 @@ import { DataGridPro } from '@wireservers-ui/react-natives-pro';
 | `showToolbar` | Show the export toolbar. Default `true` |
 | `exportFileName` | Base name for the export, without extension |
 | `onExportCsv` | `(csv, fileName) => void`. Required on native — see below |
-| `exportDelimiter` | Field separator. `'\t'` for TSV |
+| `onExportXlsx` | `(bytes, fileName) => void`. Required on native |
+| `exportDelimiter` | CSV field separator. `'\t'` for TSV |
+| `showXlsxExport` | Show the Excel button. Default `true` |
+| `exportSheetName` | Worksheet name, sanitised to Excel's rules |
 
 Plus every `DataGrid` prop.
 
@@ -112,7 +115,22 @@ import * as Sharing from 'expo-sharing';
 />
 ```
 
-The export always reflects **what the user is currently looking at** — active sort and filters included.
+### Excel (.xlsx)
+
+`Export Excel` writes a real `.xlsx` workbook. Numbers are written as numeric cells, so totals
+and formulas work in Excel rather than arriving as text.
+
+The writer is **dependency-free** — an `.xlsx` is a ZIP of XML parts, and we build the container
+directly rather than adding a spreadsheet library (roughly a megabyte) to your mobile bundle.
+
+```ts
+import { buildXlsx } from '@wireservers-ui/react-natives-pro';
+
+const bytes = buildXlsx({ columns, rowCount, getCellContent });  // Uint8Array
+```
+
+Both exports always reflect **what the user is currently looking at** — active sort and filters
+included.
 
 Fields beginning `=`, `+`, `-`, or `@` are prefixed with `'` to defuse [CSV injection](https://owasp.org/www-community/attacks/CSV_Injection); without that, a hostile cell value can execute when the file is opened in Excel.
 

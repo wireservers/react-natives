@@ -36,7 +36,9 @@ export function LicenseWatermark({ label }: LicenseWatermarkProps) {
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
     >
-      <View style={{ position: 'absolute', top: 8, right: 8 }}>
+      {/* Bottom-right: the top-right corner is where toolbars and action buttons live, and the
+          badge would sit directly on top of them. */}
+      <View style={{ position: 'absolute', bottom: 8, right: 8 }}>
         <View className="rounded-md border border-warning-400 bg-warning-50 px-2 py-1">
           <Text className="text-[10px] font-semibold text-warning-700">
             {label ?? 'react-natives-pro — unlicensed'}
