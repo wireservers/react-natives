@@ -9,6 +9,10 @@ import {
   DataGridPro,
   DateRangePicker,
   Scheduler,
+  LineChart,
+  BarChart,
+  DonutChart,
+  StatTile,
   setLicenseKey,
   type DateRange,
   type SchedulerEvent,
@@ -198,6 +202,33 @@ export default function App() {
           {range.end ? range.end.toDateString() : "no end"}
         </Text>
         <DateRangePicker value={range} onChange={setRange} numberOfMonths={2} />
+      </View>
+
+      <View className="border-t border-outline-100 pt-3 pb-3">
+        <Text className="mb-2 text-xs font-semibold text-typography-900">Charts</Text>
+        <View className="flex-row flex-wrap gap-3">
+          <LineChart
+            series={[{ id: "a", data: [3, 7, 4, 9, 6, 11, 8].map((y, x) => ({ x, y })) }]}
+            width={260}
+            height={140}
+          />
+          <BarChart
+            series={[{ id: "b", data: [12, 19, 7, 15].map((y, x) => ({ x, y })) }]}
+            labels={["Q1", "Q2", "Q3", "Q4"]}
+            width={220}
+            height={140}
+          />
+          <DonutChart
+            slices={[
+              { id: "pro", value: 40 },
+              { id: "team", value: 35 },
+              { id: "ent", value: 25 },
+            ]}
+            size={140}
+            centerLabel="100"
+          />
+          <StatTile label="MRR" value="$4,280" delta={12.4} sparkline={[3, 5, 4, 7, 6, 9, 11]} />
+        </View>
       </View>
 
       <View className="border-t border-outline-100 pt-2" style={{ height: 420 }}>

@@ -25,6 +25,7 @@ only the images show *how*.
 |---|---|
 | `verify.js` | Grid render, license watermark on/off, CSV + XLSX export, column pinning, sticky header, DateRangePicker, console errors |
 | `verify-scheduler.js` | Real mouse drags: drag-to-create, drag-to-move, edge resize |
+| `verify-pricing.js` | `/pro` tiers + prices (incl. guards against stale prices), `/thanks` incl. its failure path |
 
 ## Bugs this caught that nothing else did
 
@@ -36,7 +37,10 @@ Worth stating plainly, because each one passed every unit test:
 2. **Recreating a PanResponder mid-gesture dropped it.** Granting triggers a state update; the
    re-render swapped in fresh handlers and React Native Web lost the active responder. Responder
    instances are now cached per target.
-3. **A dead gap beside pinned columns**, from `flex: 1` stretching the middle pane past its
+3. **Misaligned pricing cards** — the three Buy buttons sat at three different heights because
+   blurb lengths differed and the "MOST POPULAR" badge pushed one card down. Every text
+   assertion passed; only the screenshot showed it.
+4. **A dead gap beside pinned columns**, from `flex: 1` stretching the middle pane past its
    content — and **the unlicensed watermark sat on top of the export buttons**. Both were only
    visible in a screenshot; the DOM assertions were perfectly happy.
 

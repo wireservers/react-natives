@@ -30,14 +30,14 @@ const PLANS: Plan[] = [
     id: "pro",
     name: "Pro",
     seats: 1,
-    price: "$149",
+    price: "$49",
     blurb: "One developer. Perpetual license, one year of updates.",
   },
   {
     id: "team",
     name: "Team",
     seats: 5,
-    price: "$499",
+    price: "$199",
     blurb: "Up to five developers. Perpetual license, one year of updates.",
     featured: true,
   },
@@ -45,13 +45,14 @@ const PLANS: Plan[] = [
     id: "enterprise",
     name: "Enterprise",
     seats: 25,
-    price: "$1,499",
+    price: "$799",
     blurb: "Up to 25 developers, priority support.",
   },
 ];
 
 const INCLUDED = [
-  "DataGrid Pro — CSV export, column pinning, server-side data",
+  "DataGridPro — CSV + Excel export, column pinning, server-side data",
+  "Scheduler — week/day grid with drag to create, move and resize",
   "DateRangePicker — dual-month range selection with presets",
   "Works on iOS, Android and web from one codebase",
   "Perpetual license — your build keeps working forever",
@@ -79,11 +80,19 @@ function PlanCard({
         backgroundColor: "#ffffff",
       }}
     >
-      {plan.featured ? (
-        <Text style={{ color: BRAND_COLOR_DARK, fontSize: 11, fontWeight: "700", marginBottom: 4 }}>
-          MOST POPULAR
-        </Text>
-      ) : null}
+      {/* Rendered on every card (empty when not featured) so the tier names align across
+          cards rather than the featured one sitting a row lower. */}
+      <Text
+        style={{
+          color: BRAND_COLOR_DARK,
+          fontSize: 11,
+          fontWeight: "700",
+          marginBottom: 4,
+          height: 14,
+        }}
+      >
+        {plan.featured ? "MOST POPULAR" : " "}
+      </Text>
       <Text style={{ fontSize: 18, fontWeight: "700", color: "#0f172a" }}>{plan.name}</Text>
       <Text style={{ fontSize: 32, fontWeight: "800", color: "#0f172a", marginTop: 8 }}>
         {plan.price}
@@ -91,7 +100,11 @@ function PlanCard({
       <Text style={{ fontSize: 12, color: "#64748b", marginBottom: 12 }}>
         one-time · {plan.seats} {plan.seats === 1 ? "seat" : "seats"}
       </Text>
-      <Text style={{ fontSize: 13, color: "#475569", marginBottom: 16 }}>{plan.blurb}</Text>
+      {/* flexGrow pushes the button to the bottom, so buttons align even when blurbs differ
+          in length. */}
+      <Text style={{ fontSize: 13, color: "#475569", marginBottom: 16, flexGrow: 1 }}>
+        {plan.blurb}
+      </Text>
       <Pressable
         onPress={() => onBuy(plan.id)}
         disabled={busy}
@@ -144,7 +157,7 @@ export default function ProPricingScreen() {
     <>
       <SeoHead
         title="react-natives Pro — premium React Native components"
-        description="DataGrid Pro and DateRangePicker for React Native. One codebase for iOS, Android and web. Perpetual license."
+        description="Premium React Native components: DataGridPro with Excel export, a drag-and-drop Scheduler, and a date-range picker. One codebase for iOS, Android and web. Perpetual license."
         path="/pro"
       />
       <ScrollView style={{ flex: 1, backgroundColor: "#f8fafc" }}>
@@ -153,8 +166,9 @@ export default function ProPricingScreen() {
             react-natives Pro
           </Text>
           <Text style={{ fontSize: 16, color: "#475569", marginBottom: 4, maxWidth: 640 }}>
-            The premium components — a real data grid and a proper range picker — that work
-            natively on iOS and Android as well as the web, from a single codebase.
+            The premium components — a real data grid, a drag-and-drop scheduler, and a proper
+            range picker — that work natively on iOS and Android as well as the web, from a
+            single codebase.
           </Text>
           <Text style={{ fontSize: 13, color: "#64748b", marginBottom: 24, maxWidth: 640 }}>
             The core library stays free and MIT licensed.

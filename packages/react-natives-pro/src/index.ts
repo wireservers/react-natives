@@ -67,3 +67,37 @@ export {
   yToMinutes,
 } from './scheduler/scheduler-utils';
 export type { SchedulerEvent, SchedulerGeometry, LaidOutEvent } from './scheduler/scheduler-utils';
+
+// Charts — require the optional peer `react-native-svg`
+export { LineChart, AreaChart, BarChart, DonutChart, Sparkline, StatTile } from './charts/charts';
+export type {
+  CartesianChartProps,
+  BarChartProps,
+  DonutChartProps,
+  SparklineProps,
+  StatTileProps,
+} from './charts/charts';
+export {
+  DEFAULT_PALETTE,
+  DEFAULT_PADDING,
+  areaPath,
+  bandX,
+  donutArcs,
+  linePath,
+  nearestIndex,
+  plotArea,
+  scaleX,
+  scaleY,
+  seriesColor,
+  yExtent,
+  yTicks,
+} from './charts/chart-utils';
+export type { ChartPoint, ChartSeries, ChartLayout, ChartPadding, DonutSlice, DonutArc, Extent } from './charts/chart-utils';
+
+// Combobox + Command palette
+export { Combobox } from './search/combobox';
+export type { ComboboxProps, ComboboxOption } from './search/combobox';
+export { CommandPalette } from './search/command-palette';
+export type { CommandPaletteProps, Command } from './search/command-palette';
+export { fuzzyMatch, rankItems, highlightSegments, moveActiveIndex } from './search/fuzzy';
+export type { FuzzyMatch, RankableItem, RankedItem } from './search/fuzzy';

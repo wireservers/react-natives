@@ -88,6 +88,7 @@ export function Footer() {
             <FooterLink label="Getting Started" route="/components/getting-started" />
             <FooterLink label="Components" route="/components" />
             <FooterLink label="Theming" route="/theming" />
+            <FooterLink label="Pro" route="/pro" />
           </View>
           <View style={{ flex: 1, minWidth: 120 }}>
             <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700', marginBottom: 6 }}>

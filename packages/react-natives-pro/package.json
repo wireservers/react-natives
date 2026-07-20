@@ -1,7 +1,7 @@
 {
   "name": "@wireservers-ui/react-natives-pro",
   "version": "0.1.0",
-  "description": "Premium components for @wireservers-ui/react-natives — DataGrid Pro, Scheduler, and date-range tooling",
+  "description": "Premium components for @wireservers-ui/react-natives \u2014 DataGrid Pro, Scheduler, and date-range tooling",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "files": [
@@ -36,6 +36,12 @@
     "nativewind": ">=4.0.0",
     "react": ">=18.0.0",
     "react-native": ">=0.72.0",
-    "tailwind-variants": ">=0.1.0"
+    "tailwind-variants": ">=0.1.0",
+    "react-native-svg": ">=13.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-svg": {
+      "optional": true
+    }
   }
 }
