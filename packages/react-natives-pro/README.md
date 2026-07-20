@@ -185,6 +185,37 @@ const [range, setRange] = useState<DateRange>({ start: null, end: null });
 
 Tapping backwards swaps the ends rather than rejecting the input. The date helpers (`addMonths`, `buildMonthGrid`, `daysBetween`, …) are exported too — they handle month-end clamping (`Jan 31 + 1 month`), leap years, and DST boundaries.
 
+## Scheduler
+
+Week/day time grid with **drag-to-create, drag-to-move, and edge resize**. The free `Calendar`
+already covers month/week/day *display*; this adds direct manipulation, which is the hard part.
+
+```tsx
+import { Scheduler, type SchedulerEvent } from '@wireservers-ui/react-natives-pro';
+
+<Scheduler
+  events={events}
+  onEventCreate={(draft) => addEvent({ id: uid(), title: 'New', ...draft })}
+  onEventChange={(next) => updateEvent(next)}
+  onEventPress={(e) => openDetails(e)}
+/>
+```
+
+| Prop | Purpose |
+|---|---|
+| `events` | `{ id, title, start, end }[]` |
+| `date` | Anchor date; the week containing it is shown |
+| `view` | `'week'` (default) or `'day'` |
+| `geometry` | `{ startHour, endHour, hourHeight, snapMinutes }` |
+| `onEventCreate` | Drag on empty space. Omit to disable creation |
+| `onEventChange` | Fires after a move or resize |
+| `onEventPress` | Tap (distinguished from a drag by distance) |
+| `minDurationMinutes` | Floor for resize/create. Default `15` |
+
+Drags snap to `snapMinutes` (15 by default), events stay inside the visible window, and
+overlapping events are laid out side by side. Gestures preview live and only commit on release,
+so a cancelled drag leaves your data untouched.
+
 ## Support
 
 todd@wireservers.com — including if you need a license key resent.

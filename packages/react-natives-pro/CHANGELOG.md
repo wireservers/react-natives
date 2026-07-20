@@ -17,6 +17,7 @@ Initial release.
 - **`DataGridPro`** — the base `DataGrid` plus a CSV export toolbar, column pinning, and server-side data pass-through. Owns sort/filter state so an export always matches what the user is looking at.
 - **Excel export** — `buildXlsx` writes a real `.xlsx` workbook with numeric cells, so totals and formulas work in Excel rather than arriving as text. The writer is dependency-free: an `.xlsx` is a ZIP of XML parts, built directly rather than adding a ~1 MB spreadsheet library to a mobile bundle. Verified against the system `unzip` and an independent XML parser.
 - **CSV export** — `buildCsv` / `escapeCsvField`, RFC 4180 quoting with a CSV-injection guard on fields starting `=`, `+`, `-`, or `@`. Web downloads carry a UTF-8 BOM so Excel renders non-ASCII correctly; native callers supply `onExportCsv`.
+- **`Scheduler`** — week/day time grid with drag-to-create, drag-to-move, and edge resize, with 15-minute snapping, window clamping, and side-by-side layout for overlapping events. Verified with real mouse drags in a headless browser.
 - **`DateRangePicker`** — dual-month range calendar with preset shortcuts, min/max bounds, and configurable week start. Selecting backwards swaps the ends rather than rejecting the tap.
 - **Date utilities** — `addMonths`, `buildMonthGrid`, `daysBetween`, `selectDate`, and friends, exported for reuse. Month-end clamping, leap years, and DST boundaries are covered by tests.
 

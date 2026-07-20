@@ -49,3 +49,21 @@ export {
   startOfMonth,
 } from './date-range-picker/range-utils';
 export type { DateRange, DateRangePreset } from './date-range-picker/range-utils';
+
+// Scheduler
+export { Scheduler } from './scheduler/scheduler';
+export type { SchedulerProps } from './scheduler/scheduler';
+export {
+  DEFAULT_GEOMETRY,
+  createEventFromDrag,
+  formatTimeRange,
+  hourLabels,
+  layoutDayEvents,
+  minutesToY,
+  moveEvent,
+  resizeEvent,
+  snapToGrid,
+  weekDays,
+  yToMinutes,
+} from './scheduler/scheduler-utils';
+export type { SchedulerEvent, SchedulerGeometry, LaidOutEvent } from './scheduler/scheduler-utils';

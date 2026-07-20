@@ -8,8 +8,10 @@ import {
 import {
   DataGridPro,
   DateRangePicker,
+  Scheduler,
   setLicenseKey,
   type DateRange,
+  type SchedulerEvent,
 } from "@wireservers-ui/react-natives-pro";
 
 // Genuine key minted with the real signing key, for verifying the licensed path.
@@ -62,6 +64,20 @@ export default function App() {
   const [licensed, setLicensed] = useState(false);
   const [lastExport, setLastExport] = useState<string | null>(null);
   const [range, setRange] = useState<DateRange>({ start: null, end: null });
+  const [schedEvents, setSchedEvents] = useState<SchedulerEvent[]>(() => {
+    const d = new Date();
+    const on = (dayOffset: number, h: number, dur: number): SchedulerEvent => {
+      const start = new Date(d.getFullYear(), d.getMonth(), d.getDate() + dayOffset, h, 0);
+      return {
+        id: `e${dayOffset}-${h}`,
+        title: `Event ${dayOffset}/${h}`,
+        start,
+        end: new Date(start.getTime() + dur * 60000),
+      };
+    };
+    return [on(0, 9, 60), on(0, 10, 90), on(1, 13, 60)];
+  });
+  const [schedLog, setSchedLog] = useState<string>("none");
   const [rows, setRows] = useState<Row[]>(() => makeRows(0, PAGE_SIZE));
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState<DataGridSort | null>(null);
@@ -182,6 +198,27 @@ export default function App() {
           {range.end ? range.end.toDateString() : "no end"}
         </Text>
         <DateRangePicker value={range} onChange={setRange} numberOfMonths={2} />
+      </View>
+
+      <View className="border-t border-outline-100 pt-2" style={{ height: 420 }}>
+        <Text className="mb-1 text-xs font-semibold text-typography-900">
+          Scheduler — {schedEvents.length} events · last: {schedLog}
+        </Text>
+        <Scheduler
+          events={schedEvents}
+          onEventCreate={(draft) => {
+            setSchedEvents((prev) => [
+              ...prev,
+              { id: `new-${prev.length}`, title: "New", start: draft.start, end: draft.end },
+            ]);
+            setSchedLog(`created ${draft.start.getHours()}:00`);
+          }}
+          onEventChange={(next) => {
+            setSchedEvents((prev) => prev.map((e) => (e.id === next.id ? next : e)));
+            setSchedLog(`changed ${next.id} -> ${next.start.getHours()}:${String(next.start.getMinutes()).padStart(2, "0")}`);
+          }}
+          onEventPress={(e) => setSchedLog(`pressed ${e.id}`)}
+        />
       </View>
     </View>
   );
