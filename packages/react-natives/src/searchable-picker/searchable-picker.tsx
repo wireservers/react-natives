@@ -96,10 +96,19 @@ export const SearchablePicker = React.forwardRef<
         ) : null}
         <Input className="rounded-lg border-outline-200 bg-background-0">
           <InputField
+            // While open, the input is the search query—not the selected value.
+            // This lets a selected category be cleared immediately to search for another.
             value={open ? query : selectedLabel}
             onFocus={() => {
+              // A select-style picker should keep its selected label visible when
+              // it opens, while an empty query still exposes the full option list.
               setQuery(freeText ? selectedLabel : '');
               setOpen(true);
+            }}
+            onBlur={() => {
+              // Let an option press land before closing; on web this also closes
+              // the menu when the user clicks anywhere outside the picker.
+              setTimeout(() => setOpen(false), 120);
             }}
             onChangeText={(next) => {
               setQuery(next);

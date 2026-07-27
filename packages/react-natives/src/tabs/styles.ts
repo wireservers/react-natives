@@ -12,7 +12,7 @@ export const tabListStyle = tv({
       vertical: 'flex-col',
     },
     variant: {
-      underlined: 'border-b border-outline-200',
+      underlined: 'gap-5 border-b border-outline-200 bg-background-50 px-8 pt-3',
       outline: 'gap-1',
       rounded: 'bg-background-100 rounded-lg p-0.5 gap-0.5',
     },
@@ -27,9 +27,9 @@ export const tabStyle = tv({
   base: 'items-center justify-center',
   variants: {
     size: {
-      sm: 'px-3 py-1.5',
-      md: 'px-4 py-2',
-      lg: 'px-5 py-2.5',
+      sm: 'px-4 py-3',
+      md: 'px-5 py-4',
+      lg: 'px-6 py-5',
     },
     variant: {
       underlined: '',
@@ -49,12 +49,12 @@ export const tabStyle = tv({
     {
       variant: 'underlined',
       active: true,
-      class: 'border-b-2 border-primary-500',
+      class: 'rounded-t-lg border-b-[3px] border-primary-600 bg-primary-50',
     },
     {
       variant: 'underlined',
       active: false,
-      class: 'border-b-2 border-transparent',
+      class: 'rounded-t-lg border-b-[3px] border-transparent',
     },
     {
       variant: 'outline',
