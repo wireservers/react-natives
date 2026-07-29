@@ -333,6 +333,7 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
     const [editingValue, setEditingValue] = React.useState<unknown>('');
     const [scrollOffset, setScrollOffset] = React.useState(0);
     const [viewportHeight, setViewportHeight] = React.useState(0);
+    const [gridWidth, setGridWidth] = React.useState(0);
     const inputRef = React.useRef<TextInput | null>(null);
     // Row count at the moment `onEndReached` last fired; re-arms once more rows arrive so a
     // single page request isn't issued repeatedly while the user sits at the bottom.
@@ -699,11 +700,28 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
 
     // --- Unpinned layout (the original single-scroller path, unchanged) ---------------------
     if (!hasPinned) {
-      const headerBlock = buildHeaderBlock(orderedColumns);
+      // When the columns are narrower than the available space, grow the last column to soak up
+      // the slack instead of leaving a blank gap after the table (measured via onLayout below).
+      const extraWidth = Math.max(0, gridWidth - totalWidth);
+      const stretchedColumns =
+        extraWidth > 0 && orderedColumns.length > 0
+          ? orderedColumns.map((column, index) =>
+              index === orderedColumns.length - 1
+                ? { ...column, width: getCellWidth(column, columnWidths) + extraWidth }
+                : column,
+            )
+          : orderedColumns;
+      const stretchedTotalWidth = totalWidth + extraWidth;
+      const headerBlock = buildHeaderBlock(stretchedColumns);
       return (
-        <View ref={ref} className={dataGridStyle({ class: className })} {...props}>
+        <View
+          ref={ref}
+          className={dataGridStyle({ class: className })}
+          onLayout={(event) => setGridWidth(event.nativeEvent.layout.width)}
+          {...props}
+        >
           <ScrollView horizontal bounces={false} style={{ flex: 1 }}>
-            <View style={{ width: totalWidth, flex: 1 }}>
+            <View style={{ width: stretchedTotalWidth, flex: 1 }}>
               {stickyHeader ? headerBlock : null}
               <ScrollView
                 onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
@@ -714,7 +732,7 @@ export const DataGrid = React.forwardRef<React.ElementRef<typeof View>, DataGrid
                 style={{ flex: 1 }}
               >
                 {stickyHeader ? null : headerBlock}
-                {buildRowStack(orderedColumns)}
+                {buildRowStack(stretchedColumns)}
                 {loadingFooter}
               </ScrollView>
             </View>

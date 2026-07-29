@@ -2,17 +2,18 @@
 
 **A comprehensive React Native component library built with NativeWind and Tailwind Variants.**
 
-> **Note:** This project is in active development (v2.1.0). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
+> **Note:** This project is in active development (v2.1.2). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
 
 ---
 
-## Release Notes (v2.1.0)
+## Release Notes (v2.1.2)
 
 ### What was updated
 
+- `DataGrid`'s unpinned layout no longer leaves a blank gap after the table when columns are narrower than the container — the last column now grows to fill the measured width.
 - `DataGrid` gained column pinning — set `pinned: 'left' | 'right'` on a column to freeze it to that edge while the rest scroll horizontally.
 - `DataGrid` gained a server-side data mode: `manualSort` and `manualFilter` hand sorting and filtering to your data source while `onSortChange`/`onFiltersChange` keep reporting intent.
 - `DataGrid` gained infinite scroll via `onEndReached`/`onEndReachedThreshold`, plus a `loading` footer indicator.

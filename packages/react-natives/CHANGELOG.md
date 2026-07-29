@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.1.2] - 2026-07-29
+
+### Fixed
+
+- `DataGrid`'s unpinned layout sized its content to the sum of column pixel widths, leaving a blank gap after the table whenever the columns were narrower than the container. The last column now grows to fill the remaining measured width.
+
+---
+
 ## [2.1.0] - 2026-07-19
 
 ### Added
