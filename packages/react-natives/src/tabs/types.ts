@@ -32,6 +32,12 @@ export interface TabListProps
 export interface TabProps
   extends React.ComponentPropsWithoutRef<typeof Pressable> {
   className?: string;
+  /** Extra classes applied only when this tab is selected. */
+  activeClassName?: string;
+  /** Extra classes applied only when this tab is not selected. */
+  inactiveClassName?: string;
+  /** Extra hover classes applied when this tab is not selected (web only). */
+  hoverClassName?: string;
   /** @internal Injected by TabList */
   _index?: number;
 }
