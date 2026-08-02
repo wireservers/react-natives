@@ -12,7 +12,7 @@ import {
   type FieldSchema,
   type KanbanColumn,
   type UploadFile,
-} from "@wireservers-ui/react-natives-pro";
+} from "@wireservers/react-natives-pro";
 
 const FORM_SCHEMA: FieldSchema[] = [
   { name: "email", label: "Email", type: "email", step: 0, rules: { required: true } },

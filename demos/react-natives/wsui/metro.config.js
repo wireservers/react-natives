@@ -20,7 +20,7 @@ config.resolver.sourceExts = (config.resolver.sourceExts || []).filter(ext => ex
 // their real directories — it will not follow a symlink outside the project root otherwise.
 for (const pkg of [
   "@wireservers/react-natives",
-  "@wireservers-ui/react-natives-pro",
+  "@wireservers/react-natives-pro",
 ]) {
   try {
     const packagePath = path.dirname(require.resolve(`${pkg}/package.json`));

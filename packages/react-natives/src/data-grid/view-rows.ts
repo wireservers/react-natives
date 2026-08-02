@@ -56,7 +56,7 @@ export interface ComputeViewRowsOptions {
  * Returns `null` for the identity case (nothing to sort or filter) so the common path stays
  * zero-cost. Callers treat `null` as "display position === data row".
  *
- * Exported so consumers — notably the export routines in `@wireservers-ui/react-natives-pro` —
+ * Exported so consumers — notably the export routines in `@wireservers/react-natives-pro` —
  * can reproduce exactly the rows the grid is showing without duplicating these rules.
  */
 export function computeViewRows(options: ComputeViewRowsOptions): number[] | null {

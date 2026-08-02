@@ -1,6 +1,6 @@
 # wsui-license
 
-License issuing service for `@wireservers-ui/react-natives-pro`. Verifies Stripe checkout
+License issuing service for `@wireservers/react-natives-pro`. Verifies Stripe checkout
 webhooks, mints Ed25519-signed license keys, and sends the order/onboarding email.
 
 ## Why keys are signed, not stored
@@ -56,7 +56,7 @@ retry issues a duplicate key to a customer. Failing loudly at startup is far che
 finding out from a buyer.
 
 In production these come from `wireservers-dev-kv`. The signing key's public half is embedded in
-`@wireservers-ui/react-natives-pro/src/licensing/license.ts`; **rotating the private key
+`@wireservers/react-natives-pro/src/licensing/license.ts`; **rotating the private key
 invalidates every key already sold**, so treat it as permanent.
 
 ## Webhook security

@@ -1,4 +1,4 @@
-# @wireservers-ui/react-natives-pro
+# @wireservers/react-natives-pro
 
 The ten components teams actually end up buying — data grid, charts, scheduler, command palette, form builder, kanban, upload, rich text, and more — working natively on iOS and Android as well as the web, from one codebase.
 
@@ -26,7 +26,7 @@ Install it and evaluate it with no key at all. Everything is **fully functional*
 ## Install
 
 ```bash
-npm i @wireservers/react-natives @wireservers-ui/react-natives-pro
+npm i @wireservers/react-natives @wireservers/react-natives-pro
 ```
 
 Fresh Expo app? Scaffold the base config first:
@@ -45,7 +45,7 @@ module.exports = {
   content: [
     './App.{js,jsx,ts,tsx}',
     './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',
-    './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}', // <- add this
+    './node_modules/@wireservers/react-natives-pro/src/**/*.{js,jsx,ts,tsx}', // <- add this
   ],
   presets: [require('@wireservers/react-natives/tailwind-preset')],
 };
@@ -56,7 +56,7 @@ module.exports = {
 Call `setLicenseKey` **once at startup**, before rendering any Pro component:
 
 ```tsx
-import { setLicenseKey } from '@wireservers-ui/react-natives-pro';
+import { setLicenseKey } from '@wireservers/react-natives-pro';
 
 setLicenseKey('WSUI1.…');
 ```
@@ -66,7 +66,7 @@ A missing or invalid key **never breaks your app**. Components stay fully functi
 Verification is fully **offline** — no network call, ever. Your app has no runtime dependency on our servers.
 
 ```ts
-import { getLicenseStatus, isLicensed } from '@wireservers-ui/react-natives-pro';
+import { getLicenseStatus, isLicensed } from '@wireservers/react-natives-pro';
 
 isLicensed();        // boolean
 getLicenseStatus();  // { valid: true, license } | { valid: false, reason }
@@ -79,7 +79,7 @@ getLicenseStatus();  // { valid: true, license } | { valid: false, reason }
 Everything `DataGrid` does, plus CSV export, column pinning, and server-side data.
 
 ```tsx
-import { DataGridPro } from '@wireservers-ui/react-natives-pro';
+import { DataGridPro } from '@wireservers/react-natives-pro';
 
 <DataGridPro
   columns={[
@@ -137,7 +137,7 @@ The writer is **dependency-free** — an `.xlsx` is a ZIP of XML parts, and we b
 directly rather than adding a spreadsheet library (roughly a megabyte) to your mobile bundle.
 
 ```ts
-import { buildXlsx } from '@wireservers-ui/react-natives-pro';
+import { buildXlsx } from '@wireservers/react-natives-pro';
 
 const bytes = buildXlsx({ columns, rowCount, getCellContent });  // Uint8Array
 ```
@@ -173,7 +173,7 @@ Hand sorting/filtering to your backend with `manualSort` / `manualFilter`; the g
 Two-month range calendar with presets. The base library's `date-picker` handles a single date; this covers ranges, including the in-progress state where a start is chosen but no end yet.
 
 ```tsx
-import { DateRangePicker, type DateRange } from '@wireservers-ui/react-natives-pro';
+import { DateRangePicker, type DateRange } from '@wireservers/react-natives-pro';
 
 const [range, setRange] = useState<DateRange>({ start: null, end: null });
 
@@ -204,7 +204,7 @@ Week/day time grid with **drag-to-create, drag-to-move, and edge resize**. The f
 already covers month/week/day *display*; this adds direct manipulation, which is the hard part.
 
 ```tsx
-import { Scheduler, type SchedulerEvent } from '@wireservers-ui/react-natives-pro';
+import { Scheduler, type SchedulerEvent } from '@wireservers/react-natives-pro';
 
 <Scheduler
   events={events}
@@ -239,7 +239,7 @@ npx expo install react-native-svg
 ```
 
 ```tsx
-import { LineChart, BarChart, DonutChart, StatTile } from '@wireservers-ui/react-natives-pro';
+import { LineChart, BarChart, DonutChart, StatTile } from '@wireservers/react-natives-pro';
 
 <LineChart
   series={[{ id: 'rev', name: 'Revenue', data: [{ x: 0, y: 12 }, { x: 1, y: 19 }] }]}
@@ -261,7 +261,7 @@ rather than the ugly fractional ticks a naive `range / count` produces.
 Markdown-backed editor with a formatting toolbar and live preview.
 
 ```tsx
-import { RichTextEditor } from '@wireservers-ui/react-natives-pro';
+import { RichTextEditor } from '@wireservers/react-natives-pro';
 
 <RichTextEditor
   defaultValue="# Hello\n\nSome **bold** text."
@@ -294,7 +294,7 @@ ends the list.
 Schema-driven forms with validation, conditional fields, and an optional multi-step wizard.
 
 ```tsx
-import { FormBuilder } from '@wireservers-ui/react-natives-pro';
+import { FormBuilder } from '@wireservers/react-natives-pro';
 
 <FormBuilder
   wizard
@@ -401,7 +401,7 @@ column freezes permanently.
 Spotlight onboarding coachmarks. Wrap the screen, tag the targets:
 
 ```tsx
-import { ProductTour, useTourAnchor } from '@wireservers-ui/react-natives-pro';
+import { ProductTour, useTourAnchor } from '@wireservers/react-natives-pro';
 
 function Toolbar() {
   const exportAnchor = useTourAnchor('export');

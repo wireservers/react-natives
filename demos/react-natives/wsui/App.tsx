@@ -16,7 +16,7 @@ import {
   setLicenseKey,
   type DateRange,
   type SchedulerEvent,
-} from "@wireservers-ui/react-natives-pro";
+} from "@wireservers/react-natives-pro";
 import { ProPanelTwo } from "./ProPanelTwo";
 
 // Genuine key minted with the real signing key, for verifying the licensed path.

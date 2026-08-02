@@ -4,7 +4,7 @@
  * License key minting.
  *
  * Must stay byte-compatible with the verifier in
- * `@wireservers-ui/react-natives-pro/src/licensing/license.ts` — the signature covers the exact
+ * `@wireservers/react-natives-pro/src/licensing/license.ts` — the signature covers the exact
  * payload bytes, so any change to the key order or JSON shape here invalidates every key the
  * client can read. The round-trip is covered by test/run.js.
  */

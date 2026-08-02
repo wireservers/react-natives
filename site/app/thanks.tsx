@@ -169,7 +169,7 @@ export default function ThanksScreen() {
           <Text style={{ fontSize: 18, fontWeight: "700", color: "#0f172a", marginBottom: 8 }}>
             1. Install
           </Text>
-          <CodeBlock>npm i @wireservers/react-natives @wireservers-ui/react-natives-pro</CodeBlock>
+          <CodeBlock>npm i @wireservers/react-natives @wireservers/react-natives-pro</CodeBlock>
 
           <Text style={{ fontSize: 18, fontWeight: "700", color: "#0f172a", marginBottom: 8 }}>
             2. Activate
@@ -178,7 +178,7 @@ export default function ThanksScreen() {
             Call this once at startup, before rendering any Pro component:
           </Text>
           <CodeBlock>
-            {`import { setLicenseKey } from '@wireservers-ui/react-natives-pro';\n\nsetLicenseKey('${
+            {`import { setLicenseKey } from '@wireservers/react-natives-pro';\n\nsetLicenseKey('${
               state.status === "ready" ? state.licenseKey.slice(0, 24) + "…" : "YOUR_KEY"
             }');`}
           </CodeBlock>
@@ -201,7 +201,7 @@ export default function ThanksScreen() {
               unstyled with no error:
             </Text>
             <CodeBlock>
-              {`content: [\n  './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',\n  './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}',\n],`}
+              {`content: [\n  './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',\n  './node_modules/@wireservers/react-natives-pro/src/**/*.{js,jsx,ts,tsx}',\n],`}
             </CodeBlock>
           </View>
 

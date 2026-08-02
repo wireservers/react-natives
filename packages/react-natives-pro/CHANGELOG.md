@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `@wireservers-ui/react-natives-pro` are documented here.
+All notable changes to `@wireservers/react-natives-pro` are documented here.
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)  
 Versioning: [Semantic Versioning](https://semver.org/)
