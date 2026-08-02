@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wireservers/wireservers-ui.git",
+    "url": "git+https://github.com/wireservers/react-natives.git",
     "directory": "packages/react-natives-pro"
   },
   "license": "SEE LICENSE IN LICENSE",
