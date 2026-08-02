@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Image } from '@wireservers-ui/react-natives';
+import { Image } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] as const;
@@ -12,7 +12,7 @@ export default function ImageExamples() {
   const [size, setSize] = useState<string>('md');
   const [borderRadius, setBorderRadius] = useState<string>('none');
 
-  useExampleCode(`import { Image } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Image } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -59,7 +59,7 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Image sizes range from xs (24px) through 2xl (128px) and full width."
-        code={`import { Image } from '@wireservers-ui/react-natives';
+        code={`import { Image } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -91,7 +91,7 @@ export default function Example() {
       <ExampleSection
         title="Border Radius"
         description="Control the roundedness of images with the borderRadius prop."
-        code={`import { Image } from '@wireservers-ui/react-natives';
+        code={`import { Image } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -123,7 +123,7 @@ export default function Example() {
       <ExampleSection
         title="Full Width"
         description="Use size='full' to make the image span its container width."
-        code={`import { Image } from '@wireservers-ui/react-natives';
+        code={`import { Image } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

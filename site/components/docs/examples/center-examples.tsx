@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Center, Text, Box } from '@wireservers-ui/react-natives';
+import { Center, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function CenterExamples() {
-  useExampleCode(`import { Center, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Center, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -18,7 +18,7 @@ export default function Example() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Basic Center" description="Centers content both horizontally and vertically."
-        code={`import { Center, Text } from '@wireservers-ui/react-natives';
+        code={`import { Center, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -34,7 +34,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="With Sized Content" description="Center with a fixed-size child element."
-        code={`import { Center, Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Center, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

@@ -48,8 +48,8 @@ export const componentRegistry: ComponentMeta[] = [
       'A typographic component for rendering text with built-in size, weight, and decoration variants.',
     whenToUse: 'Use Text for any body copy, labels, or inline text that needs consistent typography.',
     category: 'Core Primitives',
-    importCode: "import { Text } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Text } from '@wireservers-ui/react-natives';
+    importCode: "import { Text } from '@wireservers/react-natives';",
+    exampleCode: `import { Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function TextExample() {
@@ -152,8 +152,8 @@ export default function TextExample() {
       'A semantic heading component for section titles, with size variants that map to appropriate typographic scales.',
     whenToUse: 'Use Heading for page titles, section headers, and any hierarchical text headings.',
     category: 'Core Primitives',
-    importCode: "import { Heading } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Heading } from '@wireservers-ui/react-natives';
+    importCode: "import { Heading } from '@wireservers/react-natives';",
+    exampleCode: `import { Heading } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function HeadingExample() {
@@ -198,8 +198,8 @@ export default function HeadingExample() {
       'A wrapper component for rendering icon elements from any icon library via the `as` prop.',
     whenToUse: 'Use Icon to render SVG or font icons with consistent sizing and color theming.',
     category: 'Core Primitives',
-    importCode: "import { Icon } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Icon } from '@wireservers-ui/react-natives';
+    importCode: "import { Icon } from '@wireservers/react-natives';",
+    exampleCode: `import { Icon } from '@wireservers/react-natives';
 import { View } from 'react-native';
 import { Star, Heart, Settings } from 'lucide-react-native';
 
@@ -249,8 +249,8 @@ export default function IconExample() {
       'A visual separator that divides content into distinct sections, supporting horizontal and vertical orientations.',
     whenToUse: 'Use Divider to separate groups of content within a layout.',
     category: 'Core Primitives',
-    importCode: "import { Divider } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Divider } from '@wireservers-ui/react-natives';
+    importCode: "import { Divider } from '@wireservers/react-natives';",
+    exampleCode: `import { Divider } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function DividerExample() {
@@ -296,8 +296,8 @@ export default function DividerExample() {
     whenToUse: 'Use Badge to annotate elements with a small status indicator, count, or label.',
     category: 'Core Primitives',
     importCode:
-      "import { Badge, BadgeText, BadgeIcon } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+      "import { Badge, BadgeText, BadgeIcon } from '@wireservers/react-natives';",
+    exampleCode: `import { Badge, BadgeText } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function BadgeExample() {
@@ -386,8 +386,8 @@ export default function BadgeExample() {
       'An animated loading indicator to communicate that an operation is in progress.',
     whenToUse: 'Use Spinner when content is loading or an async action is being processed.',
     category: 'Core Primitives',
-    importCode: "import { Spinner } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Spinner } from '@wireservers-ui/react-natives';
+    importCode: "import { Spinner } from '@wireservers/react-natives';",
+    exampleCode: `import { Spinner } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function SpinnerExample() {
@@ -433,8 +433,8 @@ export default function SpinnerExample() {
       'A styled image component with built-in size presets and border-radius options, requiring an accessible alt label.',
     whenToUse: 'Use Image when you need to display raster images with consistent sizing and rounding.',
     category: 'Core Primitives',
-    importCode: "import { Image } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Image } from '@wireservers-ui/react-natives';
+    importCode: "import { Image } from '@wireservers/react-natives';",
+    exampleCode: `import { Image } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function ImageExample() {
@@ -506,8 +506,8 @@ export default function ImageExample() {
       'Use Avatar to represent a user or entity with a profile photo or initials fallback.',
     category: 'Core Primitives',
     importCode:
-      "import { Avatar, AvatarImage, AvatarFallbackText, AvatarBadge, AvatarGroup } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Avatar, AvatarImage, AvatarFallbackText, AvatarBadge, AvatarGroup } from '@wireservers-ui/react-natives';
+      "import { Avatar, AvatarImage, AvatarFallbackText, AvatarBadge, AvatarGroup } from '@wireservers/react-natives';",
+    exampleCode: `import { Avatar, AvatarImage, AvatarFallbackText, AvatarBadge, AvatarGroup } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function AvatarExample() {
@@ -627,8 +627,8 @@ export default function AvatarExample() {
     whenToUse: 'Use Card to present grouped content like articles, product details, or dashboard widgets.',
     category: 'Core Primitives',
     importCode:
-      "import { Card, CardHeader, CardBody, CardFooter } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Card, CardHeader, CardBody, CardFooter } from '@wireservers-ui/react-natives';
+      "import { Card, CardHeader, CardBody, CardFooter } from '@wireservers/react-natives';",
+    exampleCode: `import { Card, CardHeader, CardBody, CardFooter } from '@wireservers/react-natives';
 import { Text, View } from 'react-native';
 
 export default function CardExample() {
@@ -718,8 +718,8 @@ export default function CardExample() {
       'Use Button for primary user actions like form submission, navigation triggers, or confirmations.',
     category: 'Core Primitives',
     importCode:
-      "import { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Button, ButtonText, ButtonIcon, ButtonGroup } from '@wireservers-ui/react-natives';
+      "import { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup } from '@wireservers/react-natives';",
+    exampleCode: `import { Button, ButtonText, ButtonIcon, ButtonGroup } from '@wireservers/react-natives';
 import { View } from 'react-native';
 import { Plus } from 'lucide-react-native';
 
@@ -888,9 +888,9 @@ export default function ButtonExample() {
       'Use FormControl to wrap any form field that needs a label, validation messages, or helper text.',
     category: 'Form Controls',
     importCode:
-      "import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, FormControlErrorMessage, FormControlErrorIcon } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, FormControlErrorMessage } from '@wireservers-ui/react-natives';
-import { Input, InputField } from '@wireservers-ui/react-natives';
+      "import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, FormControlErrorMessage, FormControlErrorIcon } from '@wireservers/react-natives';",
+    exampleCode: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, FormControlErrorMessage } from '@wireservers/react-natives';
+import { Input, InputField } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -1039,8 +1039,8 @@ export default function FormControlExample() {
     whenToUse: 'Use Input for single-line text entry fields within forms.',
     category: 'Form Controls',
     importCode:
-      "import { Input, InputField, InputSlot, InputIcon } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Input, InputField, InputSlot, InputIcon } from '@wireservers-ui/react-natives';
+      "import { Input, InputField, InputSlot, InputIcon } from '@wireservers/react-natives';",
+    exampleCode: `import { Input, InputField, InputSlot, InputIcon } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { Search, Eye, EyeOff } from 'lucide-react-native';
@@ -1164,8 +1164,8 @@ export default function InputExample() {
       'A multi-line text input with variant and size options, built on top of React Native TextInput.',
     whenToUse: 'Use Textarea for multi-line text entry such as comments, descriptions, or notes.',
     category: 'Form Controls',
-    importCode: "import { Textarea } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Textarea } from '@wireservers-ui/react-natives';
+    importCode: "import { Textarea } from '@wireservers/react-natives';",
+    exampleCode: `import { Textarea } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 
@@ -1238,8 +1238,8 @@ export default function TextareaExample() {
     whenToUse:
       'Use Switch for toggling settings or preferences that take immediate effect.',
     category: 'Form Controls',
-    importCode: "import { Switch } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Switch } from '@wireservers-ui/react-natives';
+    importCode: "import { Switch } from '@wireservers/react-natives';",
+    exampleCode: `import { Switch } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 
@@ -1330,8 +1330,8 @@ export default function SwitchExample() {
       'Use Checkbox when users need to select one or more items from a list of options.',
     category: 'Form Controls',
     importCode:
-      "import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+      "import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers/react-natives';",
+    exampleCode: `import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 
@@ -1515,8 +1515,8 @@ export default function CheckboxExample() {
       'Use Radio when users must select exactly one option from a list of mutually exclusive choices.',
     category: 'Form Controls',
     importCode:
-      "import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Radio, RadioGroup } from '@wireservers-ui/react-natives';
+      "import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers/react-natives';",
+    exampleCode: `import { Radio, RadioGroup } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function RadioExample() {
@@ -1666,8 +1666,8 @@ export default function RadioExample() {
       'Use Slider when users need to select a value from a continuous or stepped numeric range.',
     category: 'Form Controls',
     importCode:
-      "import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+      "import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';",
+    exampleCode: `import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 
@@ -1821,7 +1821,7 @@ export default function SliderExample() {
       'Use Select for picking one or more options from a list that is too long for radio buttons or checkboxes.',
     category: 'Form Controls',
     importCode:
-      "import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem, SelectSearchInput, SelectSelectedBadges } from '@wireservers-ui/react-natives';",
+      "import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem, SelectSearchInput, SelectSelectedBadges } from '@wireservers/react-natives';",
     exampleCode: `import {
   Select,
   SelectTrigger,
@@ -1833,7 +1833,7 @@ export default function SliderExample() {
   SelectItem,
   SelectSearchInput,
   SelectSelectedBadges,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { ChevronDown } from 'lucide-react-native';
@@ -2153,8 +2153,8 @@ export default function SelectExample() {
       'Use Alert to display important messages like success confirmations, warnings, or error notices.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Alert, AlertIcon, AlertBody, AlertText, AlertCloseButton } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+      "import { Alert, AlertIcon, AlertBody, AlertText, AlertCloseButton } from '@wireservers/react-natives';",
+    exampleCode: `import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers/react-natives';
 import { View } from 'react-native';
 import { Info, CheckCircle, AlertTriangle, XCircle } from 'lucide-react-native';
 
@@ -2271,8 +2271,8 @@ export default function AlertExample() {
       'Use Progress to show determinate progress for operations like file uploads, form completion, or loading.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+      "import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';",
+    exampleCode: `import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function ProgressExample() {
@@ -2366,8 +2366,8 @@ export default function ProgressExample() {
       'Use Link for navigating to another screen or opening an external URL.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Link, LinkText } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Link, LinkText } from '@wireservers-ui/react-natives';
+      "import { Link, LinkText } from '@wireservers/react-natives';",
+    exampleCode: `import { Link, LinkText } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function LinkExample() {
@@ -2438,9 +2438,9 @@ export default function LinkExample() {
       'Use Modal for focused interactions like confirmations, forms, or detail views that require user attention.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers-ui/react-natives';
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+      "import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers/react-natives';",
+    exampleCode: `import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 
@@ -2589,9 +2589,9 @@ export default function ModalExample() {
       'Use Toast for non-blocking success, info, or error notifications that disappear automatically.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Toast, ToastTitle, ToastDescription, ToastProvider, useToast } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Toast, ToastTitle, ToastDescription, useToast } from '@wireservers-ui/react-natives';
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+      "import { Toast, ToastTitle, ToastDescription, ToastProvider, useToast } from '@wireservers/react-natives';",
+    exampleCode: `import { Toast, ToastTitle, ToastDescription, useToast } from '@wireservers/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function ToastExample() {
@@ -2680,9 +2680,9 @@ export default function ToastExample() {
       'Use Tooltip to provide additional context or descriptions for UI elements on hover or press.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Tooltip, TooltipContent, TooltipText } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Tooltip, TooltipContent, TooltipText } from '@wireservers-ui/react-natives';
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+      "import { Tooltip, TooltipContent, TooltipText } from '@wireservers/react-natives';",
+    exampleCode: `import { Tooltip, TooltipContent, TooltipText } from '@wireservers/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function TooltipExample() {
@@ -2787,9 +2787,9 @@ export default function TooltipExample() {
       'Use Drawer for supplementary panels like navigation menus, settings, or detail views that slide in from the screen edge.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers-ui/react-natives';
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+      "import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers/react-natives';",
+    exampleCode: `import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 
@@ -2936,9 +2936,9 @@ export default function DrawerExample() {
       'Use ActionSheet for presenting a set of actions or options from the bottom of the screen on mobile.',
     category: 'Feedback & Overlay',
     importCode:
-      "import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers-ui/react-natives';
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+      "import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers/react-natives';",
+    exampleCode: `import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -3068,8 +3068,8 @@ export default function ActionSheetExample() {
       'Use Tabs to organize related content into separate views that users can switch between.',
     category: 'Navigation',
     importCode:
-      "import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers-ui/react-natives';
+      "import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers/react-natives';",
+    exampleCode: `import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers/react-natives';
 import { Text, View } from 'react-native';
 
 export default function TabsExample() {
@@ -3225,8 +3225,8 @@ export default function TabsExample() {
       'Use Accordion to show and hide sections of content, such as FAQs or collapsible settings groups.',
     category: 'Navigation',
     importCode:
-      "import { Accordion, AccordionItem, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Accordion, AccordionItem, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent } from '@wireservers-ui/react-natives';
+      "import { Accordion, AccordionItem, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent } from '@wireservers/react-natives';",
+    exampleCode: `import { Accordion, AccordionItem, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent } from '@wireservers/react-natives';
 import { Text } from 'react-native';
 
 export default function AccordionExample() {
@@ -3257,7 +3257,7 @@ export default function AccordionExample() {
         </AccordionTrigger>
         <AccordionContent>
           <Text>
-            Run npm install @wireservers-ui/react-natives
+            Run npm install @wireservers/react-natives
             and follow the setup guide.
           </Text>
         </AccordionContent>
@@ -3398,8 +3398,8 @@ export default function AccordionExample() {
       'Use Breadcrumb to show hierarchical navigation context and allow users to navigate back to parent pages.',
     category: 'Navigation',
     importCode:
-      "import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+      "import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';",
+    exampleCode: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';
 
 export default function BreadcrumbExample() {
   return (
@@ -3495,8 +3495,8 @@ export default function BreadcrumbExample() {
       'Use Fab for the primary or most common action on a screen, like creating a new item.',
     category: 'Navigation',
     importCode:
-      "import { Fab, FabIcon, FabLabel } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Fab, FabIcon, FabLabel } from '@wireservers-ui/react-natives';
+      "import { Fab, FabIcon, FabLabel } from '@wireservers/react-natives';",
+    exampleCode: `import { Fab, FabIcon, FabLabel } from '@wireservers/react-natives';
 import { View } from 'react-native';
 import { Plus, Edit } from 'lucide-react-native';
 
@@ -3594,8 +3594,8 @@ export default function FabExample() {
       'Use Calendar to display schedules, appointments, or time-based events. It supports multiple views (day/week/month), horizontal timeline and vertical list layouts, and team member grouping.',
     category: 'Data Display',
     importCode:
-      "import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarVerticalView, CalendarMonthView, CalendarWeekView, CalendarDayView, CalendarLegend, CalendarDayCell, CalendarEvent } from '@wireservers-ui/react-natives';",
-    exampleCode: `import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarLegend } from '@wireservers-ui/react-natives';
+      "import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarVerticalView, CalendarMonthView, CalendarWeekView, CalendarDayView, CalendarLegend, CalendarDayCell, CalendarEvent } from '@wireservers/react-natives';",
+    exampleCode: `import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarLegend } from '@wireservers/react-natives';
 
 export default function CalendarExample() {
   const events = [
@@ -3777,7 +3777,7 @@ export default function CalendarExample() {
       'A styled View wrapper that accepts className for NativeWind utility classes.',
     whenToUse: 'Use Box as a generic layout primitive when you need a styled container with NativeWind classes.',
     category: 'Layout',
-    importCode: "import { Box } from '@wireservers-ui/react-natives';",
+    importCode: "import { Box } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -3801,7 +3801,7 @@ export default function CalendarExample() {
       'Flex layout components for arranging children vertically (VStack), horizontally (HStack), or in a configurable direction (Stack).',
     whenToUse: 'Use Stack, VStack, or HStack to arrange children with consistent spacing along a single axis.',
     category: 'Layout',
-    importCode: "import { Stack, VStack, HStack } from '@wireservers-ui/react-natives';",
+    importCode: "import { Stack, VStack, HStack } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -3889,7 +3889,7 @@ export default function CalendarExample() {
       'A layout component that centers its children both horizontally and vertically.',
     whenToUse: 'Use Center when you need to center content within a container along both axes.',
     category: 'Layout',
-    importCode: "import { Center } from '@wireservers-ui/react-natives';",
+    importCode: "import { Center } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -3913,7 +3913,7 @@ export default function CalendarExample() {
       'Maintains a consistent width-to-height ratio for its child content.',
     whenToUse: 'Use AspectRatio to enforce a fixed aspect ratio on images, videos, or card previews.',
     category: 'Layout',
-    importCode: "import { AspectRatio } from '@wireservers-ui/react-natives';",
+    importCode: "import { AspectRatio } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -3943,7 +3943,7 @@ export default function CalendarExample() {
       'A styled pressable wrapper with built-in press and hover state styles.',
     whenToUse: 'Use Pressable for custom interactive areas that need press feedback but are not standard buttons.',
     category: 'Layout',
-    importCode: "import { Pressable } from '@wireservers-ui/react-natives';",
+    importCode: "import { Pressable } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -3978,7 +3978,7 @@ export default function CalendarExample() {
       'A centered, max-width constrained container for page-level content.',
     whenToUse: 'Use Container to constrain page content to a maximum width and center it horizontally.',
     category: 'Layout',
-    importCode: "import { Container } from '@wireservers-ui/react-natives';",
+    importCode: "import { Container } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4012,7 +4012,7 @@ export default function CalendarExample() {
       'Renders children into a separate native view outside the parent component tree.',
     whenToUse: 'Use Portal to render modals, tooltips, or overlays that need to escape parent clipping or z-index stacking.',
     category: 'Utility',
-    importCode: "import { Portal } from '@wireservers-ui/react-natives';",
+    importCode: "import { Portal } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4036,7 +4036,7 @@ export default function CalendarExample() {
       'Hides content visually while keeping it accessible to screen readers.',
     whenToUse: 'Use VisuallyHidden to provide screen-reader-only labels, descriptions, or context.',
     category: 'Utility',
-    importCode: "import { VisuallyHidden } from '@wireservers-ui/react-natives';",
+    importCode: "import { VisuallyHidden } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4063,7 +4063,7 @@ export default function CalendarExample() {
     description: 'A compound component for displaying categorized labels with optional icons and close buttons.',
     whenToUse: 'Use Tag to categorize, label, or filter content with small interactive chips.',
     category: 'Data Display',
-    importCode: "import { Tag, TagText, TagIcon, TagCloseButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { Tag, TagText, TagIcon, TagCloseButton } from '@wireservers/react-natives';",
     props: [
       { name: 'className', type: 'string', description: 'NativeWind utility classes for the tag container.' },
       { name: 'action', type: "'info' | 'success' | 'warning' | 'error'", default: "'info'", description: 'Semantic color action of the tag.' },
@@ -4086,7 +4086,7 @@ export default function CalendarExample() {
     description: 'An animated placeholder that mimics the shape of content while it loads.',
     whenToUse: 'Use Skeleton as a loading placeholder to improve perceived performance while content is being fetched.',
     category: 'Data Display',
-    importCode: "import { Skeleton } from '@wireservers-ui/react-natives';",
+    importCode: "import { Skeleton } from '@wireservers/react-natives';",
     props: [
       { name: 'className', type: 'string', description: 'NativeWind utility classes for the skeleton.' },
       { name: 'variant', type: "'text' | 'circular' | 'rectangular'", default: "'rectangular'", description: 'Shape variant of the skeleton.' },
@@ -4102,7 +4102,7 @@ export default function CalendarExample() {
     description: 'A compound component for displaying empty state messages with optional icon, title, description, and action.',
     whenToUse: 'Use Empty when a list, table, or view has no data to display.',
     category: 'Data Display',
-    importCode: "import { Empty, EmptyIcon, EmptyTitle, EmptyDescription, EmptyAction } from '@wireservers-ui/react-natives';",
+    importCode: "import { Empty, EmptyIcon, EmptyTitle, EmptyDescription, EmptyAction } from '@wireservers/react-natives';",
     props: [
       { name: 'className', type: 'string', description: 'NativeWind utility classes for the empty container.' },
     ],
@@ -4123,7 +4123,7 @@ export default function CalendarExample() {
     description: 'A compound component for displaying statistics with a label, number, help text, and trend arrow.',
     whenToUse: 'Use Stat to display key metrics, KPIs, or summary numbers in dashboards.',
     category: 'Data Display',
-    importCode: "import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers-ui/react-natives';",
+    importCode: "import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers/react-natives';",
     props: [
       { name: 'className', type: 'string', description: 'NativeWind utility classes for the stat container.' },
     ],
@@ -4145,7 +4145,7 @@ export default function CalendarExample() {
       'Displays a keyboard shortcut or key combination.',
     whenToUse: 'Use Kbd to render keyboard shortcuts, hotkeys, or key combinations in documentation or help text.',
     category: 'Data Display',
-    importCode: "import { Kbd } from '@wireservers-ui/react-natives';",
+    importCode: "import { Kbd } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4169,7 +4169,7 @@ export default function CalendarExample() {
       'Displays inline code snippets or multi-line code blocks.',
     whenToUse: 'Use Code for inline code references and CodeBlock for multi-line code examples.',
     category: 'Data Display',
-    importCode: "import { Code, CodeBlock } from '@wireservers-ui/react-natives';",
+    importCode: "import { Code, CodeBlock } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4217,7 +4217,7 @@ export default function CalendarExample() {
       'A styled quotation block with a left border accent.',
     whenToUse: 'Use Blockquote to highlight quoted text, testimonials, or callout content.',
     category: 'Data Display',
-    importCode: "import { Blockquote } from '@wireservers-ui/react-natives';",
+    importCode: "import { Blockquote } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4241,7 +4241,7 @@ export default function CalendarExample() {
       'A circular progress indicator showing completion percentage.',
     whenToUse: 'Use CircularProgress to display a visual percentage or completion state in a compact circular form.',
     category: 'Data Display',
-    importCode: "import { CircularProgress, CircularProgressLabel } from '@wireservers-ui/react-natives';",
+    importCode: "import { CircularProgress, CircularProgressLabel } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4289,7 +4289,7 @@ export default function CalendarExample() {
       'Displays a chronological sequence of events with dots and connectors.',
     whenToUse: 'Use Timeline to show a chronological or sequential list of events, activities, or steps.',
     category: 'Data Display',
-    importCode: "import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent } from '@wireservers-ui/react-natives';",
+    importCode: "import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4361,7 +4361,7 @@ export default function CalendarExample() {
       'A compound table component for displaying structured tabular data.',
     whenToUse: 'Use Table to present structured data in rows and columns, such as reports, comparisons, or data grids.',
     category: 'Data Display',
-    importCode: "import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers-ui/react-natives';",
+    importCode: "import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4457,7 +4457,7 @@ export default function CalendarExample() {
       'A virtualized spreadsheet-style grid for lazy, editable, selectable, and customizable data sets.',
     whenToUse: 'Use DataGrid for large interactive data sets that need native scrolling, lazy cell rendering, editing, selection, column resizing, column reordering, merged cells, and custom typed cell rendering.',
     category: 'Data Display',
-    importCode: "import { DataGrid, type DataGridColumn } from '@wireservers-ui/react-natives';",
+    importCode: "import { DataGrid, type DataGridColumn } from '@wireservers/react-natives';",
     props: [
       {
         name: 'columns',
@@ -4543,7 +4543,7 @@ export default function CalendarExample() {
       'A compound list component for displaying ordered or unordered items.',
     whenToUse: 'Use List to display a series of related items in a structured vertical format.',
     category: 'Data Display',
-    importCode: "import { List, ListItem, ListItemText, ListItemDescription, ListItemIcon } from '@wireservers-ui/react-natives';",
+    importCode: "import { List, ListItem, ListItemText, ListItemDescription, ListItemIcon } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4621,7 +4621,7 @@ export default function CalendarExample() {
       'A swipeable content carousel with navigation controls and indicator dots.',
     whenToUse: 'Use Carousel to showcase multiple pieces of content in a horizontally swipeable container.',
     category: 'Data Display',
-    importCode: "import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from '@wireservers-ui/react-natives';",
+    importCode: "import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4741,7 +4741,7 @@ export default function CalendarExample() {
       'A button designed for icon-only actions without text.',
     whenToUse: 'Use IconButton for toolbar actions, close buttons, or any icon-only interactive element.',
     category: 'Core Primitives',
-    importCode: "import { IconButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { IconButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4800,7 +4800,7 @@ export default function CalendarExample() {
       'A pressable button that toggles between on and off states.',
     whenToUse: 'Use Toggle for binary state controls like bold/italic formatting, mute/unmute, or any on/off action.',
     category: 'Core Primitives',
-    importCode: "import { Toggle } from '@wireservers-ui/react-natives';",
+    importCode: "import { Toggle } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4852,7 +4852,7 @@ export default function CalendarExample() {
       'A group of toggle buttons where one or multiple can be selected.',
     whenToUse: 'Use ToggleGroup for mutually exclusive or multi-select toggle options like text alignment or view modes.',
     category: 'Core Primitives',
-    importCode: "import { ToggleGroup, ToggleGroupItem } from '@wireservers-ui/react-natives';",
+    importCode: "import { ToggleGroup, ToggleGroupItem } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4932,7 +4932,7 @@ export default function CalendarExample() {
       'A disclosure component that shows/hides content with a trigger.',
     whenToUse: 'Use Collapsible for toggling visibility of a single section of content, like FAQ answers or expandable details.',
     category: 'Disclosure',
-    importCode: "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@wireservers-ui/react-natives';",
+    importCode: "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -4998,7 +4998,7 @@ export default function CalendarExample() {
       'A full-screen semi-transparent backdrop for overlaying content.',
     whenToUse: 'Use Overlay as a backdrop behind modals, drawers, or action sheets to focus user attention.',
     category: 'Feedback & Overlay',
-    importCode: "import { Overlay } from '@wireservers-ui/react-natives';",
+    importCode: "import { Overlay } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5033,7 +5033,7 @@ export default function CalendarExample() {
       'A modal dialog for important confirmations that requires explicit user action.',
     whenToUse: 'Use AlertDialog for destructive action confirmations, important decisions, or critical information that must be acknowledged.',
     category: 'Feedback & Overlay',
-    importCode: "import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'isOpen',
@@ -5132,7 +5132,7 @@ export default function CalendarExample() {
       'A positioned overlay that appears relative to a trigger element.',
     whenToUse: 'Use Popover for contextual information, mini-forms, or secondary actions that appear near a trigger element.',
     category: 'Feedback & Overlay',
-    importCode: "import { Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverHeader, PopoverBody, PopoverFooter, PopoverCloseButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverHeader, PopoverBody, PopoverFooter, PopoverCloseButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'isOpen',
@@ -5239,7 +5239,7 @@ export default function CalendarExample() {
       'A brief notification bar with an optional action button.',
     whenToUse: 'Use Snackbar for brief, non-intrusive messages with an optional undo or retry action.',
     category: 'Feedback & Overlay',
-    importCode: "import { Snackbar, SnackbarText, SnackbarActionButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { Snackbar, SnackbarText, SnackbarActionButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5306,7 +5306,7 @@ export default function CalendarExample() {
       'A dropdown menu triggered by a button or other element.',
     whenToUse: 'Use Menu for contextual actions, navigation options, or command lists triggered by a button or icon.',
     category: 'Navigation',
-    importCode: "import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator } from '@wireservers-ui/react-natives';",
+    importCode: "import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5439,7 +5439,7 @@ export default function CalendarExample() {
       'Navigation controls for paging through content.',
     whenToUse: 'Use Pagination for navigating between pages of content such as search results, tables, or lists.',
     category: 'Navigation',
-    importCode: "import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@wireservers-ui/react-natives';",
+    importCode: "import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5544,7 +5544,7 @@ export default function CalendarExample() {
       'A multi-step progress indicator showing completion through sequential steps.',
     whenToUse: 'Use Stepper for multi-step workflows like forms, onboarding wizards, or checkout flows.',
     category: 'Navigation',
-    importCode: "import { Stepper, Step, StepIndicator, StepSeparator, StepTitle, StepDescription } from '@wireservers-ui/react-natives';",
+    importCode: "import { Stepper, Step, StepIndicator, StepSeparator, StepTitle, StepDescription } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5632,7 +5632,7 @@ export default function CalendarExample() {
       'A horizontal set of two or more segments for switching between views.',
     whenToUse: 'Use SegmentedControl for switching between related views or filtering content within the same context.',
     category: 'Navigation',
-    importCode: "import { SegmentedControl, SegmentedControlItem } from '@wireservers-ui/react-natives';",
+    importCode: "import { SegmentedControl, SegmentedControlItem } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5695,7 +5695,7 @@ export default function CalendarExample() {
       'A numeric input with increment and decrement buttons.',
     whenToUse: 'Use NumberInput for numeric values that benefit from step buttons, like quantities, prices, or settings.',
     category: 'Form Controls',
-    importCode: "import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5804,7 +5804,7 @@ export default function CalendarExample() {
       'A text input with a visibility toggle for password entry.',
     whenToUse: 'Use PasswordInput for password fields where users need the option to reveal what they typed.',
     category: 'Form Controls',
-    importCode: "import { PasswordInput, PasswordInputField, PasswordInputToggle } from '@wireservers-ui/react-natives';",
+    importCode: "import { PasswordInput, PasswordInputField, PasswordInputToggle } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5867,7 +5867,7 @@ export default function CalendarExample() {
       'A text input with a search icon and clear button for search functionality.',
     whenToUse: 'Use SearchInput for search fields where users need a clear visual indicator of the search action.',
     category: 'Form Controls',
-    importCode: "import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -5960,7 +5960,7 @@ export default function CalendarExample() {
       'An interactive star rating component for collecting user feedback.',
     whenToUse: 'Use Rating for collecting user reviews, feedback scores, or satisfaction ratings.',
     category: 'Form Controls',
-    importCode: "import { Rating, RatingIcon } from '@wireservers-ui/react-natives';",
+    importCode: "import { Rating, RatingIcon } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -6034,7 +6034,7 @@ export default function CalendarExample() {
       'A text input that produces tag chips, useful for entering multiple values.',
     whenToUse: 'Use TagsInput for entering multiple values like tags, categories, or email addresses.',
     category: 'Form Controls',
-    importCode: "import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers-ui/react-natives';",
+    importCode: "import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -6133,7 +6133,7 @@ export default function CalendarExample() {
       'A date selection component with a trigger input and calendar content.',
     whenToUse: 'Use DatePicker for selecting specific dates in forms, filters, or scheduling interfaces.',
     category: 'Form Controls',
-    importCode: "import { DatePicker, DatePickerTrigger, DatePickerInput, DatePickerContent } from '@wireservers-ui/react-natives';",
+    importCode: "import { DatePicker, DatePickerTrigger, DatePickerInput, DatePickerContent } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -6219,7 +6219,7 @@ export default function CalendarExample() {
       'A multi-field input for entering PIN codes or OTP verification codes.',
     whenToUse: 'Use PinInput for OTP verification, PIN entry, or any fixed-length code input.',
     category: 'Form Controls',
-    importCode: "import { PinInput, PinInputField } from '@wireservers-ui/react-natives';",
+    importCode: "import { PinInput, PinInputField } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -6289,7 +6289,7 @@ export default function CalendarExample() {
       'A color selection component with swatches, preview, and hex input.',
     whenToUse: 'Use ColorPicker for selecting colors in theme editors, design tools, or customization interfaces.',
     category: 'Form Controls',
-    importCode: "import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput } from '@wireservers-ui/react-natives';",
+    importCode: "import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput } from '@wireservers/react-natives';",
     props: [
       {
         name: 'className',
@@ -6411,7 +6411,7 @@ export default function CalendarExample() {
       'A compact searchable option picker with grouped rows, free-text creation, and selected-value display.',
     whenToUse: 'Use SearchablePicker for budget categories, accounts, tags, and other long option lists that need filtering.',
     category: 'Form Controls',
-    importCode: "import { SearchablePicker } from '@wireservers-ui/react-natives';",
+    importCode: "import { SearchablePicker } from '@wireservers/react-natives';",
     props: [
       { name: 'value', type: 'string', required: true, description: 'The selected option value.' },
       { name: 'options', type: 'Array<string | SearchablePickerOption>', required: true, description: 'Options to display and search.' },
@@ -6427,7 +6427,7 @@ export default function CalendarExample() {
     description: 'A small selectable emoji grid for visual labels and category icons.',
     whenToUse: 'Use EmojiPicker when users need to choose a compact visual marker without opening a large icon browser.',
     category: 'Form Controls',
-    importCode: "import { EmojiPicker } from '@wireservers-ui/react-natives';",
+    importCode: "import { EmojiPicker } from '@wireservers/react-natives';",
     props: [
       { name: 'value', type: 'string', required: true, description: 'The selected emoji value.' },
       { name: 'options', type: 'readonly string[]', required: true, description: 'Emoji choices to render.' },
@@ -6443,7 +6443,7 @@ export default function CalendarExample() {
     description: 'A bottom action bar for bulk-selection workflows.',
     whenToUse: 'Use SelectionBar when selected rows or cards need persistent compare, clear, or batch actions.',
     category: 'Feedback & Overlay',
-    importCode: "import { SelectionBar } from '@wireservers-ui/react-natives';",
+    importCode: "import { SelectionBar } from '@wireservers/react-natives';",
     props: [
       { name: 'count', type: 'number', required: true, description: 'The selected item count.' },
       { name: 'summary', type: 'string', required: true, description: 'Short summary text for the current selection.' },
@@ -6460,7 +6460,7 @@ export default function CalendarExample() {
     description: 'A right-side drawer shell with header, scroll body, and save/cancel footer actions.',
     whenToUse: 'Use FormDrawer for edit forms that should keep users in the current list or dashboard context.',
     category: 'Feedback & Overlay',
-    importCode: "import { FormDrawer, DrawerCard, DrawerSectionLabel } from '@wireservers-ui/react-natives';",
+    importCode: "import { FormDrawer, DrawerCard, DrawerSectionLabel } from '@wireservers/react-natives';",
     props: [
       { name: 'eyebrow', type: 'string', required: true, description: 'Small label shown above the drawer title.' },
       { name: 'title', type: 'string', required: true, description: 'Primary drawer title.' },
@@ -6482,7 +6482,7 @@ export default function CalendarExample() {
     description: 'A multi-step form wrapper with progress, navigation, save-exit, and completion actions.',
     whenToUse: 'Use FormWizard for guided setup or multi-screen forms with a known sequence of steps.',
     category: 'Navigation',
-    importCode: "import { FormWizard, useFormWizardState } from '@wireservers-ui/react-natives';",
+    importCode: "import { FormWizard, useFormWizardState } from '@wireservers/react-natives';",
     props: [
       { name: 'steps', type: 'WizardStep[]', required: true, description: 'Wizard steps and render functions.' },
       { name: 'onSaveExit', type: '() => void | Promise<void>', required: true, description: 'Saves progress and exits.' },
@@ -6498,7 +6498,7 @@ export default function CalendarExample() {
     description: 'A confirmation dialog and promise-based hook for destructive or important actions.',
     whenToUse: 'Use ConfirmDialog when an action should be confirmed before it mutates or removes data.',
     category: 'Feedback & Overlay',
-    importCode: "import { ConfirmDialog, useConfirm } from '@wireservers-ui/react-natives';",
+    importCode: "import { ConfirmDialog, useConfirm } from '@wireservers/react-natives';",
     props: [
       { name: 'options', type: 'ConfirmOptions | null', required: true, description: 'Dialog copy, labels, and tone.' },
       { name: 'onCancel', type: '() => void', required: true, description: 'Called when the user cancels.' },
@@ -6513,7 +6513,7 @@ export default function CalendarExample() {
     description: 'A field-by-field reconciliation surface for choosing from competing detected values.',
     whenToUse: 'Use FieldReconciler for review screens where imported or extracted values need human confirmation.',
     category: 'Form Controls',
-    importCode: "import { FieldReconciler } from '@wireservers-ui/react-natives';",
+    importCode: "import { FieldReconciler } from '@wireservers/react-natives';",
     props: [
       { name: 'fields', type: 'ReconcileField[]', required: true, description: 'Field definitions and candidate values.' },
       { name: 'values', type: 'Record<string, string>', required: true, description: 'Current resolved values keyed by field.' },
@@ -6528,7 +6528,7 @@ export default function CalendarExample() {
     description: 'An icon-friendly segmented control for switching between display modes.',
     whenToUse: 'Use ViewToggle for list, card, chart, calendar, or compact display-mode switches.',
     category: 'Navigation',
-    importCode: "import { ViewToggle } from '@wireservers-ui/react-natives';",
+    importCode: "import { ViewToggle } from '@wireservers/react-natives';",
     props: [
       { name: 'value', type: 'string', required: true, description: 'The active mode.' },
       { name: 'onChange', type: '(mode: string) => void', required: true, description: 'Called when the active mode changes.' },

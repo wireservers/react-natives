@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Code, CodeBlock, Text } from '@wireservers-ui/react-natives';
+import { Code, CodeBlock, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['subtle', 'outline', 'solid'] as const;
@@ -10,7 +10,7 @@ const variants = ['subtle', 'outline', 'solid'] as const;
 export default function CodeExamples() {
   const [variant, setVariant] = useState<string>('subtle');
 
-  useExampleCode(`import { Code, CodeBlock } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Code, CodeBlock } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Code variant="${variant}">console.log('hello')</Code>;
@@ -26,7 +26,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="Code Block" description="Multi-line code display."
-        code={`import { CodeBlock } from '@wireservers-ui/react-natives';
+        code={`import { CodeBlock } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

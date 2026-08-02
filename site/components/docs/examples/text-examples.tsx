@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker, BooleanPicker } from '../variant-picker';
-import { Text } from '@wireservers-ui/react-natives';
+import { Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -16,7 +16,7 @@ export default function TextExamples() {
   const [isTruncated, setIsTruncated] = useState(false);
 
   const boolProps = [bold && 'bold', italic && 'italic', isTruncated && 'isTruncated'].filter(Boolean);
-  useExampleCode(`import { Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -70,7 +70,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Text renders at various predefined sizes from 2xs through 2xl."
-        code={`import { Text } from '@wireservers-ui/react-natives';
+        code={`import { Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Text size="lg">The quick brown fox</Text>;
@@ -92,7 +92,7 @@ export default function Example() {
       <ExampleSection
         title="Weights"
         description="Font weight can be set via the weight prop."
-        code={`import { Text } from '@wireservers-ui/react-natives';
+        code={`import { Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Text weight="semibold">The quick brown fox</Text>;
@@ -114,7 +114,7 @@ export default function Example() {
       <ExampleSection
         title="Modifiers"
         description="Boolean props control bold, italic, underline, strikethrough, and highlight."
-        code={`import { Text } from '@wireservers-ui/react-natives';
+        code={`import { Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -141,7 +141,7 @@ export default function Example() {
       <ExampleSection
         title="Truncation"
         description="Use isTruncated to clip overflowing text with an ellipsis."
-        code={`import { Text } from '@wireservers-ui/react-natives';
+        code={`import { Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Icon } from '@wireservers-ui/react-natives';
+import { Icon } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -51,7 +51,7 @@ const CogIcon = createIcon('cog');
 export default function IconExamples() {
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { Icon } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Icon } from '@wireservers/react-natives';
 import { Star } from 'lucide-react-native';
 
 export default function Example() {
@@ -81,7 +81,7 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Icons scale from xs (16px) through 2xl (48px)."
-        code={`import { Icon } from '@wireservers-ui/react-natives';
+        code={`import { Icon } from '@wireservers/react-natives';
 import { Star } from 'lucide-react-native';
 
 export default function Example() {
@@ -102,7 +102,7 @@ export default function Example() {
       <ExampleSection
         title="Custom Numeric Size"
         description="Pass a number to the size prop for pixel-exact sizing."
-        code={`import { Icon } from '@wireservers-ui/react-natives';
+        code={`import { Icon } from '@wireservers/react-natives';
 import { Star } from 'lucide-react-native';
 
 export default function Example() {

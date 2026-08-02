@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['xs', 'sm', 'md', 'lg'] as const;
@@ -12,7 +12,7 @@ export default function ProgressExamples() {
   const [size, setSize] = useState<string>('md');
   const [value, setValue] = useState<string>('50');
 
-  useExampleCode(`import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -54,7 +54,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Progress bars are available in xs, sm, md, and lg sizes."
-        code={`import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+        code={`import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -80,7 +80,7 @@ export default function Example() {
       <ExampleSection
         title="Values"
         description="Progress displays a filled track proportional to its value (0-100)."
-        code={`import { Progress, ProgressFilledTrack } from '@wireservers-ui/react-natives';
+        code={`import { Progress, ProgressFilledTrack } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

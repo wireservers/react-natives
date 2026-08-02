@@ -13,8 +13,8 @@ import {
   SelectItem,
   SelectSearchInput,
   SelectSelectedBadges,
-} from '@wireservers-ui/react-natives';
-import type { SelectVariant } from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
+import type { SelectVariant } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const countryLabels = {
@@ -65,7 +65,7 @@ export default function SelectExamples() {
   SelectItem,
   SelectSearchInput,
   SelectSelectedBadges,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -161,7 +161,7 @@ export default function Example() {
   SelectContent,
   SelectItem,
   SelectSearchInput,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -234,7 +234,7 @@ export default function Example() {
   SelectItem,
   SelectSearchInput,
   SelectSelectedBadges,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 const valueLabels = {
   css: 'CSS',
@@ -311,7 +311,7 @@ export default function Example() {
       <ExampleSection
         title="Language Select"
         description="Select with a pre-defined set of language options."
-        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -364,7 +364,7 @@ export default function Example() {
       <ExampleSection
         title="Select with Disabled Items"
         description="Some options in the select are disabled."
-        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -410,7 +410,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled Select"
         description="Select with isDisabled prevents the dropdown from opening."
-        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers-ui/react-natives';
+        code={`import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectItem } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

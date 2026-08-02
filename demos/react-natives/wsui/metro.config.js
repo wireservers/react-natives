@@ -19,7 +19,7 @@ config.resolver.sourceExts = (config.resolver.sourceExts || []).filter(ext => ex
 // Both libraries are consumed as symlinks to local source, so Metro has to be told to watch
 // their real directories — it will not follow a symlink outside the project root otherwise.
 for (const pkg of [
-  "@wireservers-ui/react-natives",
+  "@wireservers/react-natives",
   "@wireservers-ui/react-natives-pro",
 ]) {
   try {

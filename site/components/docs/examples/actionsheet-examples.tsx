@@ -12,7 +12,7 @@ import {
   ActionSheetItemText,
   Button,
   ButtonText,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function ActionSheetExamples() {
@@ -22,7 +22,7 @@ export default function ActionSheetExamples() {
 
   const handleClose = () => setShowActionSheet(false);
 
-  useExampleCode(`import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -95,7 +95,7 @@ export default function Example() {
       <ExampleSection
         title="Non-Modal (isModal={false})"
         description="The action sheet renders inline — no RNModal — so content outside the panel stays interactive."
-        code={`import { ActionSheet, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText, Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { ActionSheet, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText, Button, ButtonText } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -159,7 +159,7 @@ export default function Example() {
       <ExampleSection
         title="Anatomy"
         description="An ActionSheet is composed of a backdrop, content area with a drag indicator, and action items."
-        code={`import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers-ui/react-natives';
+        code={`import { ActionSheet, ActionSheetBackdrop, ActionSheetContent, ActionSheetDragIndicatorWrapper, ActionSheetDragIndicator, ActionSheetItem, ActionSheetItemText } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

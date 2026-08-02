@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Skeleton, Text } from '@wireservers-ui/react-natives';
+import { Skeleton, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['rectangular', 'circular', 'text'] as const;
@@ -10,7 +10,7 @@ const variants = ['rectangular', 'circular', 'text'] as const;
 export default function SkeletonExamples() {
   const [variant, setVariant] = useState<string>('rectangular');
 
-  useExampleCode(`import { Skeleton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Skeleton } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Skeleton variant="${variant}" className="h-12 w-full" />;
@@ -28,7 +28,7 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="Loading Card" description="Multiple skeletons composing a loading state." code={`import { Skeleton } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Loading Card" description="Multiple skeletons composing a loading state." code={`import { Skeleton } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+import { Badge, BadgeText } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const actions = [
@@ -22,7 +22,7 @@ export default function BadgeExamples() {
   const [variant, setVariant] = useState<string>('subtle');
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Badge, BadgeText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -73,7 +73,7 @@ export default function Example() {
       <ExampleSection
         title="Actions"
         description="Seven semantic action colours available in each variant."
-        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+        code={`import { Badge, BadgeText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -96,7 +96,7 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Solid, outline, and subtle variants with the primary action."
-        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+        code={`import { Badge, BadgeText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -119,7 +119,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Small, medium, and large badges."
-        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+        code={`import { Badge, BadgeText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -142,7 +142,7 @@ export default function Example() {
       <ExampleSection
         title="Variant + Action Matrix"
         description="All combinations of variant and action displayed together."
-        code={`import { Badge, BadgeText } from '@wireservers-ui/react-natives';
+        code={`import { Badge, BadgeText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

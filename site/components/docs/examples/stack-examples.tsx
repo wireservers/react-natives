@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Stack, VStack, HStack, Box, Text } from '@wireservers-ui/react-natives';
+import { Stack, VStack, HStack, Box, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const spaces = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -10,7 +10,7 @@ const spaces = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 export default function StackExamples() {
   const [space, setSpace] = useState<string>('md');
 
-  useExampleCode(`import { VStack, HStack, Box, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { VStack, HStack, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -33,7 +33,7 @@ export default function Example() {
         </VStack>
       </ExampleSection>
 
-      <ExampleSection title="VStack (Vertical)" description="Stack children vertically." code={`import { VStack, Box, Text } from '@wireservers-ui/react-natives';
+      <ExampleSection title="VStack (Vertical)" description="Stack children vertically." code={`import { VStack, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -51,7 +51,7 @@ export default function Example() {
         </VStack>
       </ExampleSection>
 
-      <ExampleSection title="HStack (Horizontal)" description="Stack children horizontally." code={`import { HStack, Box, Text } from '@wireservers-ui/react-natives';
+      <ExampleSection title="HStack (Horizontal)" description="Stack children horizontally." code={`import { HStack, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

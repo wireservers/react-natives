@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis, Text } from '@wireservers-ui/react-natives';
+import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -12,7 +12,7 @@ export default function PaginationExamples() {
   const [page, setPage] = useState(1);
   const totalPages = 10;
 
-  useExampleCode(`import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Pagination, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@wireservers/react-natives';
 
 export default function Example() {
   const [page, setPage] = useState(1);

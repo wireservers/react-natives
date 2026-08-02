@@ -7,8 +7,8 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '@wireservers-ui/react-natives';
-import type { SliderSize } from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
+import type { SliderSize } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function SliderExamples() {
@@ -17,7 +17,7 @@ export default function SliderExamples() {
   const [brightness, setBrightness] = useState(75);
   const [price, setPrice] = useState(25);
 
-  useExampleCode(`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -70,7 +70,7 @@ export default function Example() {
       <ExampleSection
         title="Slider with Steps"
         description="Slider with step increments of 5."
-        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -112,7 +112,7 @@ export default function Example() {
       <ExampleSection
         title="Custom Range"
         description="Slider with a custom min/max range for price filtering."
-        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -160,7 +160,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled Slider"
         description="Slider with isDisabled prevents user interaction."
-        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers-ui/react-natives';
+        code={`import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

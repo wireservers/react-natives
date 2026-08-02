@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Blockquote, Text } from '@wireservers-ui/react-natives';
+import { Blockquote, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function BlockquoteExamples() {
   useExampleCode(`import { View } from 'react-native';
-import { Blockquote, Text } from '@wireservers-ui/react-natives';
+import { Blockquote, Text } from '@wireservers/react-natives';
 
 // Basic Blockquote
 export function BasicExample() {
@@ -32,7 +32,7 @@ export function AttributionExample() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Basic Blockquote" description="A styled quotation with left border accent."
-        code={`import { Blockquote } from '@wireservers-ui/react-natives';
+        code={`import { Blockquote } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -44,7 +44,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="With Attribution" description="Blockquote with source attribution."
-        code={`import { Blockquote, Text } from '@wireservers-ui/react-natives';
+        code={`import { Blockquote, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

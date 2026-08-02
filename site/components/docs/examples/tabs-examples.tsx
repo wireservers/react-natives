@@ -9,7 +9,7 @@ import {
   TabText,
   TabPanels,
   TabPanel,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['underlined', 'outline', 'rounded'] as const;
@@ -18,7 +18,7 @@ export default function TabsExamples() {
   const [variant, setVariant] = useState<string>('underlined');
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useExampleCode(`import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -105,7 +105,7 @@ export default function Example() {
       <ExampleSection
         title="All Variants"
         description="Side-by-side comparison of the underlined, outline, and rounded tab styles."
-        code={`import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers-ui/react-natives';
+        code={`import { Tabs, TabList, Tab, TabText, TabPanels, TabPanel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

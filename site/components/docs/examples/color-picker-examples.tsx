@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput, Text } from '@wireservers-ui/react-natives';
+import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const presetColors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#6B7280', '#000000'];
@@ -9,7 +9,7 @@ const presetColors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#E
 export default function ColorPickerExamples() {
   const [color, setColor] = useState('#3B82F6');
 
-  useExampleCode(`import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   const [color, setColor] = useState('#3B82F6');
@@ -41,7 +41,7 @@ export default function Example() {
       <ExampleSection title="Color Picker" description="Select a color from swatches or enter a hex value."
         code={`import { useState } from 'react';
 import { View } from 'react-native';
-import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput } from '@wireservers-ui/react-natives';
+import { ColorPicker, ColorPickerTrigger, ColorPickerContent, ColorPickerBox, ColorPickerSlider, ColorPickerSwatch, ColorPickerInput } from '@wireservers/react-natives';
 
 export default function Example() {
   const [color, setColor] = useState('#3B82F6');

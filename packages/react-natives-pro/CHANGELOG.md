@@ -36,4 +36,4 @@ Initial release.
 
 ### Requires
 
-- `@wireservers-ui/react-natives` >= 2.1.0, which adds the `computeViewRows` helper this package's export builds on, plus column pinning and server-side support in the base grid.
+- `@wireservers/react-natives` >= 2.1.0, which adds the `computeViewRows` helper this package's export builds on, plus column pinning and server-side support in the base grid.

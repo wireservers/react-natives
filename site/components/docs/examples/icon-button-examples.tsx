@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { IconButton, Text } from '@wireservers-ui/react-natives';
+import { IconButton, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const actions = ['primary', 'secondary', 'positive', 'negative'] as const;
@@ -18,7 +18,7 @@ export default function IconButtonExamples() {
   const [variant, setVariant] = useState<string>('solid');
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { IconButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { IconButton } from '@wireservers/react-natives';
 import { Trash } from 'lucide-react-native';
 
 export default function Example() {
@@ -47,7 +47,7 @@ export default function Example() {
       <ExampleSection
         title="All Actions"
         description="Icon buttons in each action color."
-        code={`import { IconButton } from '@wireservers-ui/react-natives';
+        code={`import { IconButton } from '@wireservers/react-natives';
 import { Trash } from 'lucide-react-native';
 
 export default function Example() {

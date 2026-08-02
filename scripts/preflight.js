@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Pre-publish preflight for @wireservers-ui/react-natives and …-pro.
+ * Pre-publish preflight for @wireservers/react-natives and …-pro.
  *
  * Publishing is irreversible — npm forbids republishing a version, and an unpublish window is
  * 72 hours at best. These are the checks worth running while a mistake still costs nothing.
@@ -60,7 +60,7 @@ check(`pro CHANGELOG documents ${proPkg.version}`, proChangelog.includes(`[${pro
 
 // ---------------------------------------------------------------- publish ORDER
 console.log('\npublish order (pro depends on base)');
-const peerRange = (proPkg.peerDependencies || {})['@wireservers-ui/react-natives'];
+const peerRange = (proPkg.peerDependencies || {})['@wireservers/react-natives'];
 check('pro declares a peer dep on the base package', Boolean(peerRange));
 if (peerRange) {
   const required = peerRange.replace(/[^0-9.]/g, '');

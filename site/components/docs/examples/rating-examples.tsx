@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Rating, RatingIcon, Text } from '@wireservers-ui/react-natives';
+import { Rating, RatingIcon, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg', 'xl'] as const;
@@ -11,7 +11,7 @@ export default function RatingExamples() {
   const [size, setSize] = useState<string>('md');
   const [value, setValue] = useState(3);
 
-  useExampleCode(`import { Rating, RatingIcon } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Rating, RatingIcon } from '@wireservers/react-natives';
 
 export default function Example() {
   const [value, setValue] = useState(3);
@@ -38,7 +38,7 @@ export default function Example() {
         <Text className="text-sm text-typography-500 mt-1">Rating: {value} / 5</Text>
       </ExampleSection>
 
-      <ExampleSection title="Read Only" description="Display a rating without interaction." code={`import { Rating, RatingIcon } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Read Only" description="Display a rating without interaction." code={`import { Rating, RatingIcon } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

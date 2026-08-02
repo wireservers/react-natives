@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Portal, Text, Box } from '@wireservers-ui/react-natives';
+import { Portal, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function PortalExamples() {
-  useExampleCode(`import { Portal, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Portal, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -24,7 +24,7 @@ export default function Example() {
       <ExampleSection
         title="Portal"
         description="Renders children outside the parent component tree. Commonly used internally by Modal, Popover, and Menu components."
-        code={`import { Portal, Text } from '@wireservers-ui/react-natives';
+        code={`import { Portal, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

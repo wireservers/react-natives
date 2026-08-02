@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Link, LinkText } from '@wireservers-ui/react-natives';
+import { Link, LinkText } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function LinkExamples() {
-  useExampleCode(`import { Link, LinkText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Link, LinkText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -21,7 +21,7 @@ export default function Example() {
       <ExampleSection
         title="Default Link"
         description="A basic link with styled text."
-        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+        code={`import { Link, LinkText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -40,7 +40,7 @@ export default function Example() {
       <ExampleSection
         title="External Link"
         description="A link with an href that navigates to an external URL. The isExternal prop indicates external navigation."
-        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+        code={`import { Link, LinkText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -59,7 +59,7 @@ export default function Example() {
       <ExampleSection
         title="Inline Usage"
         description="Links can be placed inline with other text content."
-        code={`import { Link, LinkText } from '@wireservers-ui/react-natives';
+        code={`import { Link, LinkText } from '@wireservers/react-natives';
 import { Text } from 'react-native';
 
 export default function Example() {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Button, ButtonText, SelectionBar, Text } from '@wireservers-ui/react-natives';
+import { Button, ButtonText, SelectionBar, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function SelectionBarExamples() {
   const [count, setCount] = React.useState(2);
 
-  useExampleCode(`import { SelectionBar } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { SelectionBar } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

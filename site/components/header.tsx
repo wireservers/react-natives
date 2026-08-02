@@ -40,7 +40,7 @@ const NAV_LINKS = [
 ];
 
 const RAW_REACT_NATIVES_VERSION = require("../package.json").dependencies?.[
-  "@wireservers-ui/react-natives"
+  "@wireservers/react-natives"
 ] as string | undefined;
 const REACT_NATIVES_NPM_VERSION = (
   RAW_REACT_NATIVES_VERSION ?? "unknown"

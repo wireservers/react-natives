@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function AlertDialogExamples() {
   const [isOpen, setIsOpen] = useState(false);
 
-  useExampleCode(`import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function Example() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Confirmation Dialog" description="A modal dialog requiring explicit user action."
-        code={`import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+        code={`import { AlertDialog, AlertDialogBackdrop, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, AlertDialogCloseButton, Button, ButtonText, Heading, Text } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

@@ -23,7 +23,7 @@ This template combines:
 - `expo` / `react-native`
 - `expo-router`
 - `nativewind` + `tailwindcss`
-- `@wireservers-ui/react-natives`
+- `@wireservers/react-natives`
 - `typescript`
 
 ## Project structure

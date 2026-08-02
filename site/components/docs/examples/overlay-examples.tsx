@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Overlay, Text, Box } from '@wireservers-ui/react-natives';
+import { Overlay, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function OverlayExamples() {
-  useExampleCode(`import { Overlay } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Overlay } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Overlay isVisible />;
@@ -16,7 +16,7 @@ export default function Example() {
       <ExampleSection
         title="Overlay"
         description="A full-screen semi-transparent backdrop. Used internally by Modal, Drawer, ActionSheet, and other overlay components."
-        code={`import { Overlay } from '@wireservers-ui/react-natives';
+        code={`import { Overlay } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Overlay isVisible />;

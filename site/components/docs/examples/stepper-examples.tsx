@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Stepper, Step, StepIndicator, StepSeparator, StepTitle, StepDescription, Button, ButtonText, Text } from '@wireservers-ui/react-natives';
+import { Stepper, Step, StepIndicator, StepSeparator, StepTitle, StepDescription, Button, ButtonText, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const orientations = ['horizontal', 'vertical'] as const;
@@ -11,7 +11,7 @@ export default function StepperExamples() {
   const [orientation, setOrientation] = useState<string>('horizontal');
   const [activeStep, setActiveStep] = useState(1);
 
-  useExampleCode(`import { Stepper, Step, StepIndicator, StepSeparator, StepTitle } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Stepper, Step, StepIndicator, StepSeparator, StepTitle } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

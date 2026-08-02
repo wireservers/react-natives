@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { SegmentedControl, SegmentedControlItem, Text } from '@wireservers-ui/react-natives';
+import { SegmentedControl, SegmentedControlItem, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -11,7 +11,7 @@ export default function SegmentedControlExamples() {
   const [size, setSize] = useState<string>('md');
   const [value, setValue] = useState('all');
 
-  useExampleCode(`import { SegmentedControl, SegmentedControlItem, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { SegmentedControl, SegmentedControlItem, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   const [value, setValue] = useState('all');

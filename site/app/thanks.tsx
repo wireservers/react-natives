@@ -169,7 +169,7 @@ export default function ThanksScreen() {
           <Text style={{ fontSize: 18, fontWeight: "700", color: "#0f172a", marginBottom: 8 }}>
             1. Install
           </Text>
-          <CodeBlock>npm i @wireservers-ui/react-natives @wireservers-ui/react-natives-pro</CodeBlock>
+          <CodeBlock>npm i @wireservers/react-natives @wireservers-ui/react-natives-pro</CodeBlock>
 
           <Text style={{ fontSize: 18, fontWeight: "700", color: "#0f172a", marginBottom: 8 }}>
             2. Activate
@@ -201,7 +201,7 @@ export default function ThanksScreen() {
               unstyled with no error:
             </Text>
             <CodeBlock>
-              {`content: [\n  './node_modules/@wireservers-ui/react-natives/src/**/*.{js,jsx,ts,tsx}',\n  './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}',\n],`}
+              {`content: [\n  './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',\n  './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}',\n],`}
             </CodeBlock>
           </View>
 

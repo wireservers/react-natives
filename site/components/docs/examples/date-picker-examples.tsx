@@ -6,7 +6,7 @@ import {
   useDatePickerContext,
   Calendar, CalendarHeader, CalendarMonthView,
   Text,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 /** Bridges the Calendar's onDateSelect to the DatePicker context. */
@@ -27,7 +27,7 @@ export default function DatePickerExamples() {
   DatePicker, DatePickerTrigger, DatePickerInput, DatePickerContent,
   useDatePickerContext,
   Calendar, CalendarHeader, CalendarMonthView,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 // You can place any content or calendar inside DatePickerContent.
 // Below shows how to use our Calendar component with the DatePicker.
@@ -67,7 +67,7 @@ import {
   DatePicker, DatePickerTrigger, DatePickerInput, DatePickerContent,
   useDatePickerContext,
   Calendar, CalendarHeader, CalendarMonthView,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 function DatePickerCalendar() {
   const { onDateSelect } = useDatePickerContext();

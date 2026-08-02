@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Button, ButtonText, Text, useConfirm } from '@wireservers-ui/react-natives';
+import { Button, ButtonText, Text, useConfirm } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function ConfirmDialogExamples() {
   const { confirm, dialog } = useConfirm();
   const [result, setResult] = React.useState('No decision yet');
 
-  useExampleCode(`import { Button, ButtonText, useConfirm } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Button, ButtonText, useConfirm } from '@wireservers/react-natives';
 
 export default function Example() {
   const { confirm, dialog } = useConfirm();

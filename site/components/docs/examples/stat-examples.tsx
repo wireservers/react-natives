@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow, Text } from '@wireservers-ui/react-natives';
+import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function StatExamples() {
   useExampleCode(`import { View } from 'react-native';
-import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers-ui/react-natives';
+import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -41,7 +41,7 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Stat" description="Display key metrics with trend indicators." code={`import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Basic Stat" description="Display key metrics with trend indicators." code={`import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

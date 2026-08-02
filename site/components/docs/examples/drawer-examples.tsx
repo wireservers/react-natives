@@ -14,7 +14,7 @@ import {
   ButtonText,
   Heading,
   Text,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const placements = ['left', 'right', 'top', 'bottom'] as const;
@@ -31,7 +31,7 @@ export default function DrawerExamples() {
 
   const resolvedSlideFrom = slideFrom === 'none' ? undefined : slideFrom;
 
-  useExampleCode(`import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -131,7 +131,7 @@ export default function Example() {
         title="Non-Modal (isModal={false})"
         description="The drawer renders inline — no RNModal — so content outside the drawer panel stays interactive."
         code={`import { useState } from 'react';
-import { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+import { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerCloseButton, Button, ButtonText, Heading, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

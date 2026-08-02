@@ -4,7 +4,7 @@ import { Pressable, Text, View } from "react-native";
 import {
   type DataGridColumn,
   type DataGridSort,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 import {
   DataGridPro,
   DateRangePicker,

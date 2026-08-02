@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { ToggleGroup, ToggleGroupItem, Text } from '@wireservers-ui/react-natives';
+import { ToggleGroup, ToggleGroupItem, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const types = ['single', 'multiple'] as const;
@@ -15,7 +15,7 @@ export default function ToggleGroupExamples() {
     ? `"${value}"`
     : `[${(value as string[]).map(v => `"${v}"`).join(', ')}]`;
 
-  useExampleCode(`import { ToggleGroup, ToggleGroupItem, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { ToggleGroup, ToggleGroupItem, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

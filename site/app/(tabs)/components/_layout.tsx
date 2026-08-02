@@ -4,7 +4,7 @@ import { View, Pressable, Text, Platform, useWindowDimensions } from 'react-nati
 import { Sidebar } from '@/components/docs/sidebar';
 import { BRAND_COLOR } from '@/constants/brand';
 import { usePageColors } from '@/context/custom-theme-context';
-import { ToastProvider } from '@wireservers-ui/react-natives';
+import { ToastProvider } from '@wireservers/react-natives';
 
 const WIDE_BREAKPOINT = 768;
 const HEADER_HEIGHT = 75; // 72px header + 3px gradient bar

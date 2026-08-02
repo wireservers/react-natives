@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Timeline, TimelineItem, TimelineDot, TimelineSeparator, TimelineConnector, TimelineContent, Text } from '@wireservers-ui/react-natives';
+import { Timeline, TimelineItem, TimelineDot, TimelineSeparator, TimelineConnector, TimelineContent, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['solid', 'outline'] as const;
@@ -10,7 +10,7 @@ const variants = ['solid', 'outline'] as const;
 export default function TimelineExamples() {
   const [variant, setVariant] = useState<string>('solid');
 
-  useExampleCode(`import { Timeline, TimelineItem, TimelineDot, TimelineSeparator, TimelineConnector, TimelineContent, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Timeline, TimelineItem, TimelineDot, TimelineSeparator, TimelineConnector, TimelineContent, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

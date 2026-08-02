@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker, BooleanPicker } from '../variant-picker';
-import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+import { Fab, FabLabel } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -20,7 +20,7 @@ export default function FabExamples() {
   const [isExtended, setIsExtended] = useState(false);
   const [placement, setPlacement] = useState<string>('bottom-right');
 
-  useExampleCode(`import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Fab, FabLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -75,7 +75,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Fab is available in sm, md, and lg sizes."
-        code={`import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+        code={`import { Fab, FabLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -103,7 +103,7 @@ export default function Example() {
       <ExampleSection
         title="Extended Fab"
         description="When isExtended is true, the Fab expands to show its label text alongside the icon."
-        code={`import { Fab, FabLabel } from '@wireservers-ui/react-natives';
+        code={`import { Fab, FabLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

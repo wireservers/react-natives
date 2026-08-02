@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { CircularProgress, CircularProgressLabel, Text } from '@wireservers-ui/react-natives';
+import { CircularProgress, CircularProgressLabel, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg', 'xl'] as const;
@@ -10,7 +10,7 @@ const sizes = ['sm', 'md', 'lg', 'xl'] as const;
 export default function CircularProgressExamples() {
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { CircularProgress, CircularProgressLabel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { CircularProgress, CircularProgressLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -32,7 +32,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="Various Values" description="Circular progress at different completion levels."
-        code={`import { CircularProgress, CircularProgressLabel } from '@wireservers-ui/react-natives';
+        code={`import { CircularProgress, CircularProgressLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

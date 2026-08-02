@@ -2,7 +2,7 @@
   "name": "react-natives-e2e",
   "version": "0.1.0",
   "private": true,
-  "description": "Headless-browser verification for @wireservers-ui/react-natives and \u2026-pro",
+  "description": "Headless-browser verification for @wireservers/react-natives and \u2026-pro",
   "scripts": {
     "build:demo": "cd ../demos/react-natives/wsui && npx expo export --platform web",
     "test": "node verify.js && node verify-scheduler.js && node verify-pricing.js && node verify-pro-docs.js && node verify-routes.js",

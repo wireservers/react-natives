@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers-ui/react-natives';
+import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -11,7 +11,7 @@ export default function SearchInputExamples() {
   const [size, setSize] = useState<string>('md');
   const [query, setQuery] = useState('');
 
-  useExampleCode(`import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { SearchInput, SearchInputField, SearchInputIcon, SearchInputClearButton } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

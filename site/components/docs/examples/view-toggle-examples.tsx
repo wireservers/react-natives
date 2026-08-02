@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Text, ViewToggle } from '@wireservers-ui/react-natives';
+import { Text, ViewToggle } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const modes = [
@@ -13,7 +13,7 @@ const modes = [
 export default function ViewToggleExamples() {
   const [value, setValue] = React.useState<'cards' | 'list' | 'compact'>('cards');
 
-  useExampleCode(`import { ViewToggle } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { ViewToggle } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

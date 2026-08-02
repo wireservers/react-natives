@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { AspectRatio, Box, Text } from '@wireservers-ui/react-natives';
+import { AspectRatio, Box, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const ratios = ['1', '4/3', '16/9', '21/9'] as const;
@@ -11,7 +11,7 @@ const ratioValues: Record<string, number> = { '1': 1, '4/3': 4/3, '16/9': 16/9, 
 export default function AspectRatioExamples() {
   const [ratio, setRatio] = useState<string>('16/9');
 
-  useExampleCode(`import { AspectRatio, Box, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { AspectRatio, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

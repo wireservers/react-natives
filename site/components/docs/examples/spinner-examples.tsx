@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Spinner } from '@wireservers-ui/react-natives';
+import { Spinner } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -10,7 +10,7 @@ const sizes = ['sm', 'md', 'lg'] as const;
 export default function SpinnerExamples() {
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { Spinner } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Spinner } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Spinner size="${size}" />;
@@ -39,7 +39,7 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Spinners render at small (16px), medium (32px), and large (48px)."
-        code={`import { Spinner } from '@wireservers-ui/react-natives';
+        code={`import { Spinner } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function Example() {
@@ -75,7 +75,7 @@ export default function Example() {
       <ExampleSection
         title="Custom Color"
         description="Pass a color prop to tint the spinner."
-        code={`import { Spinner } from '@wireservers-ui/react-natives';
+        code={`import { Spinner } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

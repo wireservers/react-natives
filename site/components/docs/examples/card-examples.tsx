@@ -17,7 +17,7 @@ import {
   PopoverHeader,
   PopoverBody,
   PopoverFooter,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['elevated', 'outline', 'ghost', 'filled'] as const;
@@ -30,7 +30,7 @@ export default function CardExamples() {
   const [cancelOpen, setCancelOpen] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
 
-  useExampleCode(`import { Card, CardHeader, CardBody, CardFooter } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Card, CardHeader, CardBody, CardFooter } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -114,7 +114,7 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Elevated, outline, ghost, and filled card styles."
-        code={`import { Card, CardHeader, CardBody, Heading, Text } from '@wireservers-ui/react-natives';
+        code={`import { Card, CardHeader, CardBody, Heading, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -149,7 +149,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Small, medium, and large control the internal padding."
-        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@wireservers-ui/react-natives';
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -192,7 +192,7 @@ export default function Example() {
       <ExampleSection
         title="Rich Content"
         description="Cards compose well with Heading, Text, and Button components."
-        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

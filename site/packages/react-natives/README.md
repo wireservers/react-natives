@@ -1,4 +1,4 @@
-# @wireservers-ui/react-natives
+# @wireservers/react-natives
 
 70+ production-ready React Native components — TypeScript-first, themeable, accessible.
 
@@ -7,7 +7,7 @@ Built with [NativeWind](https://www.nativewind.dev/) and [Tailwind Variants](htt
 ## Installation
 
 ```bash
-npm install @wireservers-ui/react-natives
+npm install @wireservers/react-natives
 ```
 
 ## Quick Start (New Expo App)
@@ -20,7 +20,7 @@ npm install @wireservers-ui/react-natives
 ```bash
 npx create-expo-app@latest wsui --template blank-typescript
 cd wsui
-npm install @wireservers-ui/react-natives
+npm install @wireservers/react-natives
 npx react-natives init
 npx expo start --web --clear
 ```
@@ -46,7 +46,7 @@ module.exports = {
     "./app/**/*.{js,jsx,ts,tsx}",
     // ...your other content paths
   ],
-  presets: [require("@wireservers-ui/react-natives/tailwind-preset")],
+  presets: [require("@wireservers/react-natives/tailwind-preset")],
 };
 ```
 
@@ -79,7 +79,7 @@ Components use CSS variables for theming. Define them in your global CSS to cust
 ## Usage
 
 ```tsx
-import { Button, ButtonText } from "@wireservers-ui/react-natives";
+import { Button, ButtonText } from "@wireservers/react-natives";
 
 export function MyComponent() {
   return (

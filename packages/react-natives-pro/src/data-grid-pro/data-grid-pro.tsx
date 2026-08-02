@@ -4,7 +4,7 @@ import {
   DataGrid,
   type DataGridProps,
   type DataGridSort,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { WithLicenseWatermark } from '../licensing/watermark';
 import { buildCsv } from './to-csv';
 import { buildXlsx } from './to-xlsx';

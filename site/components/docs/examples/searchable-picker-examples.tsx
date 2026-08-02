@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { SearchablePicker, Text } from '@wireservers-ui/react-natives';
+import { SearchablePicker, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const options = [
@@ -14,7 +14,7 @@ const options = [
 export default function SearchablePickerExamples() {
   const [value, setValue] = React.useState('checking');
 
-  useExampleCode(`import { SearchablePicker } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { SearchablePicker } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

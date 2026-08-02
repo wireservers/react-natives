@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Textarea } from '@wireservers-ui/react-natives';
-import type { TextareaVariant, TextareaSize } from '@wireservers-ui/react-natives';
+import { Textarea } from '@wireservers/react-natives';
+import type { TextareaVariant, TextareaSize } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function TextareaExamples() {
@@ -11,7 +11,7 @@ export default function TextareaExamples() {
   const [size, setSize] = useState<TextareaSize>('md');
   const [value, setValue] = useState('');
 
-  useExampleCode(`import { Textarea } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Textarea } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -26,7 +26,7 @@ export default function Example() {
       <ExampleSection
         title="Basic Textarea"
         description="A multi-line text input with configurable variant and size."
-        code={`import { Textarea } from '@wireservers-ui/react-natives';
+        code={`import { Textarea } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -62,7 +62,7 @@ export default function Example() {
       <ExampleSection
         title="Textarea with Default Value"
         description="Textarea pre-filled with content."
-        code={`import { Textarea } from '@wireservers-ui/react-natives';
+        code={`import { Textarea } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -88,7 +88,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled Textarea"
         description="Textarea with isDisabled prevents user interaction."
-        code={`import { Textarea } from '@wireservers-ui/react-natives';
+        code={`import { Textarea } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -112,7 +112,7 @@ export default function Example() {
       <ExampleSection
         title="Invalid Textarea"
         description="Textarea with isInvalid indicates a validation error."
-        code={`import { Textarea } from '@wireservers-ui/react-natives';
+        code={`import { Textarea } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

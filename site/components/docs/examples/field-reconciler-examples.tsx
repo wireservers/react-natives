@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { FieldReconciler, Text, type ReconcileField } from '@wireservers-ui/react-natives';
+import { FieldReconciler, Text, type ReconcileField } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const fields: ReconcileField[] = [
@@ -18,7 +18,7 @@ const fields: ReconcileField[] = [
 export default function FieldReconcilerExamples() {
   const [values, setValues] = React.useState({ name: 'Checking' });
 
-  useExampleCode(`import { FieldReconciler } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { FieldReconciler } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

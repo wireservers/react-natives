@@ -10,7 +10,7 @@ import {
   FormControlErrorMessage,
   Input,
   InputField,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function FormControlExamples() {
@@ -21,8 +21,8 @@ export default function FormControlExamples() {
   const [password, setPassword] = useState('');
 
   const boolProps = [isDisabled && 'isDisabled', isInvalid && 'isInvalid', isRequired && 'isRequired'].filter(Boolean);
-  useExampleCode(`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText } from '@wireservers-ui/react-natives';
-import { Input, InputField } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText } from '@wireservers/react-natives';
+import { Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -83,7 +83,7 @@ export default function Example() {
       <ExampleSection
         title="Error State"
         description="FormControl with isInvalid set to true shows the error message."
-        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlErrorMessage, Input, InputField } from '@wireservers-ui/react-natives';
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlErrorMessage, Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -125,7 +125,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled State"
         description="FormControl with isDisabled prevents user interaction."
-        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers-ui/react-natives';
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -162,7 +162,7 @@ export default function Example() {
       <ExampleSection
         title="With Helper Text"
         description="FormControl with helper text to guide the user."
-        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers-ui/react-natives';
+        code={`import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelperText, Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

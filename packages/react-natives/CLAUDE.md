@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Standalone React Native component library published to npm as `@wireservers-ui/react-natives`. Ships TypeScript source directly — there is no build step and `package.json` has no scripts. 70+ components styled with NativeWind v4 and Tailwind Variants.
+Standalone React Native component library published to npm as `@wireservers/react-natives`. Ships TypeScript source directly — there is no build step and `package.json` has no scripts. 70+ components styled with NativeWind v4 and Tailwind Variants.
 
 Repo layout context (the library lives two levels deep):
 
@@ -35,7 +35,7 @@ When editing the CLI, note that the `global.css` template is **duplicated** in t
 - **NativeWind v4** + **Tailwind CSS 3** (not v4 — the preset and `@tailwind` directives target v3).
 - **Tailwind Variants (`tv`)** from `tailwind-variants` for variant styling; variants live in each component's `styles.ts`.
 - Theming is CSS variables (`--color-{group}-{shade}`) with groups `primary`, `secondary`, `tertiary`, `error`, `success`, `warning`, `info`, `typography`, `outline`, `background`, `indicator`. Shades 0–950. `.dark` class inverts.
-- `tailwind-preset.js` extends `nativewind/preset` and wires the CSS-variable → Tailwind color mapping. Consumers must list it under `presets` and include `./node_modules/@wireservers-ui/react-natives/src/**/*` in `content` so Tailwind scans library source.
+- `tailwind-preset.js` extends `nativewind/preset` and wires the CSS-variable → Tailwind color mapping. Consumers must list it under `presets` and include `./node_modules/@wireservers/react-natives/src/**/*` in `content` so Tailwind scans library source.
 
 ## Component Patterns
 

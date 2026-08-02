@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { VisuallyHidden, Text, Box } from '@wireservers-ui/react-natives';
+import { VisuallyHidden, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function VisuallyHiddenExamples() {
-  useExampleCode(`import { VisuallyHidden, Text, Box } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { VisuallyHidden, Text, Box } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -24,7 +24,7 @@ export default function Example() {
       <ExampleSection
         title="VisuallyHidden"
         description="Hides content visually while keeping it accessible to screen readers and assistive technology."
-        code={`import { VisuallyHidden, Text, Box } from '@wireservers-ui/react-natives';
+        code={`import { VisuallyHidden, Text, Box } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

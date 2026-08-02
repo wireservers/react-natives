@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText, Text } from '@wireservers-ui/react-natives';
+import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function EmptyExamples() {
-  useExampleCode(`import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -22,7 +22,7 @@ export default function Example() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Empty State" description="Display when no content is available."
-        code={`import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Empty, EmptyTitle, EmptyDescription, EmptyAction, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -46,7 +46,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="Minimal Empty" description="Simple empty state with just a message."
-        code={`import { Empty, EmptyTitle, EmptyDescription } from '@wireservers-ui/react-natives';
+        code={`import { Empty, EmptyTitle, EmptyDescription } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

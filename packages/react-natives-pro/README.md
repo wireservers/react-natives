@@ -26,7 +26,7 @@ Install it and evaluate it with no key at all. Everything is **fully functional*
 ## Install
 
 ```bash
-npm i @wireservers-ui/react-natives @wireservers-ui/react-natives-pro
+npm i @wireservers/react-natives @wireservers-ui/react-natives-pro
 ```
 
 Fresh Expo app? Scaffold the base config first:
@@ -44,10 +44,10 @@ Add the Pro package to your Tailwind `content` globs. **If you miss this, Pro co
 module.exports = {
   content: [
     './App.{js,jsx,ts,tsx}',
-    './node_modules/@wireservers-ui/react-natives/src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',
     './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}', // <- add this
   ],
-  presets: [require('@wireservers-ui/react-natives/tailwind-preset')],
+  presets: [require('@wireservers/react-natives/tailwind-preset')],
 };
 ```
 

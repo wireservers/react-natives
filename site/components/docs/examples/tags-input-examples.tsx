@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers-ui/react-natives';
+import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -11,7 +11,7 @@ export default function TagsInputExamples() {
   const [size, setSize] = useState<string>('md');
   const [tags, setTags] = useState<string[]>(['React', 'TypeScript']);
 
-  useExampleCode(`import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { TagsInput, TagsInputField, TagsInputTag, TagsInputTagText, TagsInputTagCloseButton } from '@wireservers/react-natives';
 
 export default function Example() {
   const [tags, setTags] = useState(${JSON.stringify(tags)});

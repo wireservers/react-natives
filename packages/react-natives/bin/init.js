@@ -76,11 +76,11 @@ const tailwindContent = hasExpoRouter
 
 // ─── Generated file contents ──────────────────────────────────────────────────
 
-const TAILWIND_CONFIG = `const wirePreset = require("@wireservers-ui/react-natives/tailwind-preset");
+const TAILWIND_CONFIG = `const wirePreset = require("@wireservers/react-natives/tailwind-preset");
 module.exports = {
   content: [
 ${tailwindContent.join(",\n")},
-    "./node_modules/@wireservers-ui/react-natives/src/**/*.{ts,tsx}",
+    "./node_modules/@wireservers/react-natives/src/**/*.{ts,tsx}",
   ],
   presets: [wirePreset],
 };
@@ -242,7 +242,7 @@ config.resolver.nodeModulesPaths = [path.resolve(__dirname, "node_modules")];
 
 try {
   const wsuiPackagePath = path.dirname(
-    require.resolve("@wireservers-ui/react-natives/package.json"),
+    require.resolve("@wireservers/react-natives/package.json"),
   );
   config.watchFolders = [...new Set([...(config.watchFolders || []), wsuiPackagePath])];
 } catch {
@@ -299,18 +299,18 @@ import {
   StatLabel,
   StatNumber,
   Switch,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 import type {
   DataGridCell,
   DataGridColumn,
   DataGridRenderCellInfo,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 
 const links = [
   { label: "Open docs", url: "https://www.reactnatives.dev" },
   {
     label: "View package",
-    url: "https://www.npmjs.com/package/@wireservers-ui/react-natives",
+    url: "https://www.npmjs.com/package/@wireservers/react-natives",
   },
   {
     label: "GitHub",
@@ -837,18 +837,18 @@ import {
   StatLabel,
   StatNumber,
   Switch,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 import type {
   DataGridCell,
   DataGridColumn,
   DataGridRenderCellInfo,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 
 const links = [
   { label: "Open docs", url: "https://www.reactnatives.dev" },
   {
     label: "View package",
-    url: "https://www.npmjs.com/package/@wireservers-ui/react-natives",
+    url: "https://www.npmjs.com/package/@wireservers/react-natives",
   },
   {
     label: "GitHub",
@@ -1439,7 +1439,7 @@ function installDeps() {
   console.log(cyan("\n  Installing required setup dependencies...\n"));
   try {
     execSync(
-      `npm install @wireservers-ui/react-natives@${packageVersion} nativewind@4 tailwindcss@3 babel-preset-expo tailwind-variants tailwind-merge`,
+      `npm install @wireservers/react-natives@${packageVersion} nativewind@4 tailwindcss@3 babel-preset-expo tailwind-variants tailwind-merge`,
       {
         cwd,
         stdio: "inherit",
@@ -1462,7 +1462,7 @@ function installDeps() {
 
 // ─── Run ─────────────────────────────────────────────────────────────────────
 
-console.log(bold("\n@wireservers-ui/react-natives init\n"));
+console.log(bold("\n@wireservers/react-natives init\n"));
 
 if (hasExpoRouter) {
   console.log(cyan("  Detected Expo Router") + "\n");

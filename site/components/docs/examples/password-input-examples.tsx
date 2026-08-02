@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { PasswordInput, PasswordInputField, PasswordInputToggle, Text } from '@wireservers-ui/react-natives';
+import { PasswordInput, PasswordInputField, PasswordInputToggle, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -10,7 +10,7 @@ const sizes = ['sm', 'md', 'lg'] as const;
 export default function PasswordInputExamples() {
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { PasswordInput, PasswordInputField, PasswordInputToggle } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { PasswordInput, PasswordInputField, PasswordInputToggle } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

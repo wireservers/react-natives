@@ -9,7 +9,7 @@ import {
   AccordionContent,
   AccordionIcon,
   AccordionTitleText,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const types = ['single', 'multiple'] as const;
@@ -18,7 +18,7 @@ export default function AccordionExamples() {
   const [type, setType] = useState<string>('single');
   const [isCollapsible, setIsCollapsible] = useState(true);
 
-  useExampleCode(`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -114,7 +114,7 @@ export default function Example() {
       <ExampleSection
         title="Multiple Expansion"
         description="With type='multiple', several accordion items can be expanded simultaneously."
-        code={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers-ui/react-natives';
+        code={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, AccordionIcon, AccordionTitleText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

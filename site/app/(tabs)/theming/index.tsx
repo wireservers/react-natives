@@ -58,7 +58,7 @@ export const darkTokens = {
     tagColor: '#0284C7',
     title: 'Per-Component Overrides with Tailwind Classes',
     body: `Need a one-off style? Pass a \`className\` prop directly on any component to override with NativeWind utility classes. No wrapper views, no style merging — just Tailwind classes applied directly to the component root.`,
-    code: `import { Button, ButtonText, Card } from '@wireservers-ui/react-natives';
+    code: `import { Button, ButtonText, Card } from '@wireservers/react-natives';
 
 // Override background, padding, and border radius in one line
 <Button

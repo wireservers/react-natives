@@ -1,6 +1,6 @@
 // @wireservers/react-natives-pro
 //
-// Premium components for @wireservers-ui/react-natives. Requires a license key; see
+// Premium components for @wireservers/react-natives. Requires a license key; see
 // `setLicenseKey`. Unlicensed use is watermarked, never disabled.
 
 // Licensing

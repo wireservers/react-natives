@@ -68,7 +68,7 @@ function buildOrderEmail(order) {
   const subject = `Your react-natives Pro license — order ${orderId}`;
 
   const installCmd =
-    'npm i @wireservers-ui/react-natives @wireservers-ui/react-natives-pro';
+    'npm i @wireservers/react-natives @wireservers-ui/react-natives-pro';
   const activateSnippet = [
     "import { setLicenseKey } from '@wireservers-ui/react-natives-pro';",
     '',
@@ -77,7 +77,7 @@ function buildOrderEmail(order) {
   const tailwindSnippet = [
     '// tailwind.config.js',
     'content: [',
-    "  './node_modules/@wireservers-ui/react-natives/src/**/*.{js,jsx,ts,tsx}',",
+    "  './node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}',",
     "  './node_modules/@wireservers-ui/react-natives-pro/src/**/*.{js,jsx,ts,tsx}', // <- add this",
     '],',
   ].join('\n');

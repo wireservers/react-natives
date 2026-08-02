@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton, Text } from '@wireservers-ui/react-natives';
+import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -11,7 +11,7 @@ export default function NumberInputExamples() {
   const [size, setSize] = useState<string>('md');
   const [value, setValue] = useState(0);
 
-  useExampleCode(`import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { NumberInput, NumberInputField, NumberInputStepper, NumberInputIncrementButton, NumberInputDecrementButton } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

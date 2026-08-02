@@ -5,7 +5,7 @@ import {
   type DataGridColumn,
   type DataGridProps,
   type DataGridSort,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 export interface BuildCsvOptions {
   columns: DataGridColumn[];

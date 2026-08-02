@@ -9,13 +9,13 @@ import {
   FormDrawer,
   Input,
   InputField,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function FormDrawerExamples() {
   const [open, setOpen] = React.useState(false);
 
-  useExampleCode(`import { FormDrawer, DrawerCard, DrawerSectionLabel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { FormDrawer, DrawerCard, DrawerSectionLabel } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText, Text } from '@wireservers-ui/react-natives';
+import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function MenuExamples() {
-  useExampleCode(`import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -25,7 +25,7 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Menu" description="A dropdown menu with items and separators." code={`import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Basic Menu" description="A dropdown menu with items and separators." code={`import { Menu, MenuTrigger, MenuContent, MenuItem, MenuItemText, MenuSeparator, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

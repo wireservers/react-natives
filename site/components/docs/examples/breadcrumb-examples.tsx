@@ -6,11 +6,11 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbText,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function BreadcrumbExamples() {
-  useExampleCode(`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -35,7 +35,7 @@ export default function Example() {
       <ExampleSection
         title="Basic Breadcrumb"
         description="A standard 3-level breadcrumb path. The last item uses isCurrent to indicate the active page."
-        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -82,7 +82,7 @@ export default function Example() {
       <ExampleSection
         title="With Navigation"
         description="Breadcrumb items can include href for navigation. The current page link is typically non-interactive."
-        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -129,7 +129,7 @@ export default function Example() {
       <ExampleSection
         title="Custom Separator"
         description="Pass a custom separator string or element to change the divider between breadcrumb items."
-        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers-ui/react-natives';
+        code={`import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

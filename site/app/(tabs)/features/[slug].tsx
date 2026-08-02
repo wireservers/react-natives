@@ -42,7 +42,7 @@ const FEATURES: Record<string, FeatureContent> = {
       { icon: '📦', title: 'Exported Type Interfaces', desc: 'Re-export all prop interfaces and variant unions for use in your own components and wrappers.', link: 'form-control' },
       { icon: '🔄', title: 'Refactor with Confidence', desc: "Rename a component or change a variant — TypeScript's compiler catches every callsite automatically.", link: 'select' },
     ],
-    code: `import { Button, type ButtonVariant, type ButtonAction } from '@wireservers-ui/react-natives';
+    code: `import { Button, type ButtonVariant, type ButtonAction } from '@wireservers/react-natives';
 
 // Variant unions prevent silent typos
 const variant: ButtonVariant = 'solid';     // ✓
@@ -199,7 +199,7 @@ import {
   // Navigation
   Tabs, Breadcrumb, Pagination, Stepper,
   // ...and 30+ more
-} from '@wireservers-ui/react-natives';`,
+} from '@wireservers/react-natives';`,
     stat: '70+',
     statLabel: 'Production-ready components',
   },
@@ -222,7 +222,7 @@ import {
       { icon: '⚡', title: 'Expo & Bare CLI', desc: 'Works with Expo SDK managed workflow and bare React Native CLI projects out of the box.', link: 'card' },
     ],
     code: `// One component. Three platforms. Zero platform-specific code.
-import { Button, ButtonText } from '@wireservers-ui/react-natives';
+import { Button, ButtonText } from '@wireservers/react-natives';
 
 export function SaveButton({ onPress }: { onPress: () => void }) {
   return (

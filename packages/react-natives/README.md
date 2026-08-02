@@ -5,7 +5,7 @@
 > **Note:** This project is in active development (v2.1.2). We're building out components, documentation, and tooling. Contributions and feedback are welcome!
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![npm version](https://img.shields.io/npm/v/@wireservers-ui/react-natives.svg)](https://www.npmjs.com/package/@wireservers-ui/react-natives)
+[![npm version](https://img.shields.io/npm/v/@wireservers/react-natives.svg)](https://www.npmjs.com/package/@wireservers/react-natives)
 
 ---
 
@@ -53,14 +53,14 @@ Use this for the fastest first-time setup in a new Expo app.
 
 1. Create a new Expo app.
 2. Enter the app folder.
-3. Install `@wireservers-ui/react-natives`.
+3. Install `@wireservers/react-natives`.
 4. Run `init`.
 5. Start Expo web.
 
 ```bash
 npx create-expo-app@latest wsui --template blank-typescript
 cd wsui
-npm install @wireservers-ui/react-natives
+npm install @wireservers/react-natives
 npx react-natives init
 npm exec expo -- start --clear --web
 ```
@@ -113,7 +113,7 @@ Use this path if you want full control over every file.
 #### Step A: Install packages
 
 ```bash
-npm install @wireservers-ui/react-natives
+npm install @wireservers/react-natives
 npm install nativewind babel-preset-expo tailwindcss tailwind-variants tailwind-merge react-native-reanimated react-native-worklets react-native-svg react-native-web react-dom
 ```
 
@@ -131,9 +131,9 @@ module.exports = {
     "./App.{js,jsx,ts,tsx}",
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@wireservers-ui/react-natives/src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}",
   ],
-  presets: [require("@wireservers-ui/react-natives/tailwind-preset")],
+  presets: [require("@wireservers/react-natives/tailwind-preset")],
 };
 ```
 
@@ -523,7 +523,7 @@ npx expo start --clear --web
 ## Example Usage
 
 ```tsx
-import { Button, ButtonText, Card, CardHeader, CardBody } from "@wireservers-ui/react-natives";
+import { Button, ButtonText, Card, CardHeader, CardBody } from "@wireservers/react-natives";
 
 export default function App() {
   return (

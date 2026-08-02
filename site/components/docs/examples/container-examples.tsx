@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Container, Text } from '@wireservers-ui/react-natives';
+import { Container, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg', 'xl', 'full'] as const;
@@ -18,7 +18,7 @@ const sizeWidths: Record<string, string> = {
 export default function ContainerExamples() {
   const [size, setSize] = useState<string>('lg');
 
-  useExampleCode(`import { Container, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Container, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

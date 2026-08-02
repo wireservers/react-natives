@@ -10,13 +10,13 @@ import {
   CalendarVerticalView,
   CalendarLegend,
   useCalendarContext,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import type {
   CalendarEventType,
   CalendarTeamMember,
   CalendarLegendItem,
   CalendarLayout,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const today = new Date();
@@ -90,7 +90,7 @@ function CalendarBody() {
 export default function CalendarExamples() {
   const [layout, setLayout] = useState<string>('horizontal');
 
-  useExampleCode(`import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarVerticalView, CalendarLegend } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Calendar, CalendarHeader, CalendarViewSwitcher, CalendarHorizontalView, CalendarVerticalView, CalendarLegend } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -141,7 +141,7 @@ export default function Example() {
       <ExampleSection
         title="Minimal Calendar"
         description="A simpler setup with just the header and a single layout view, no legend or view switchers."
-        code={`import { Calendar, CalendarHeader, CalendarHorizontalView } from '@wireservers-ui/react-natives';
+        code={`import { Calendar, CalendarHeader, CalendarHorizontalView } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

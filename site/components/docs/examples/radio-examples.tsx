@@ -8,7 +8,7 @@ import {
   RadioIndicator,
   RadioIcon,
   RadioLabel,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function RadioExamples() {
@@ -17,7 +17,7 @@ export default function RadioExamples() {
   const [shipping, setShipping] = useState('standard');
   const [theme, setTheme] = useState('system');
 
-  useExampleCode(`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -87,7 +87,7 @@ export default function Example() {
       <ExampleSection
         title="Shipping Options"
         description="Radio group for selecting a shipping method."
-        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';
+        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -150,7 +150,7 @@ export default function Example() {
       <ExampleSection
         title="Theme Selection"
         description="Radio group for selecting a UI theme preference."
-        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers-ui/react-natives';
+        code={`import { RadioGroup, Radio, RadioIndicator, RadioIcon, RadioLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

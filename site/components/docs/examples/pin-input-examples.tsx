@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { PinInput, PinInputField, Text } from '@wireservers-ui/react-natives';
+import { PinInput, PinInputField, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['sm', 'md', 'lg'] as const;
@@ -11,7 +11,7 @@ export default function PinInputExamples() {
   const [size, setSize] = useState<string>('md');
   const [value, setValue] = useState('');
 
-  useExampleCode(`import { PinInput, PinInputField } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { PinInput, PinInputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -39,7 +39,7 @@ export default function Example() {
         {value.length === 4 && <Text className="text-sm text-success-500 mt-1">PIN entered: {value}</Text>}
       </ExampleSection>
 
-      <ExampleSection title="6-Digit Code" description="A longer PIN input for verification codes." code={`import { PinInput, PinInputField } from '@wireservers-ui/react-natives';
+      <ExampleSection title="6-Digit Code" description="A longer PIN input for verification codes." code={`import { PinInput, PinInputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

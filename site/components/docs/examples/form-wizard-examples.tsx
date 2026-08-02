@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { FormWizard, Text, type WizardStep } from '@wireservers-ui/react-natives';
+import { FormWizard, Text, type WizardStep } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function FormWizardExamples() {
@@ -10,7 +10,7 @@ export default function FormWizardExamples() {
     { id: 'review', label: 'Review', render: () => <Text>Review before completion.</Text> },
   ];
 
-  useExampleCode(`import { FormWizard } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { FormWizard } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

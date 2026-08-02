@@ -8,7 +8,7 @@ import {
   ColorPickerSlider,
   ColorPickerSwatch,
   ColorPickerInput,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useCustomTheme, type CustomTheme } from '@/context/custom-theme-context';
 import { useTheme } from '@/context/theme-context';
 import { PageColors } from '@/constants/theme';

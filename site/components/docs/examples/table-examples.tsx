@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption, Text } from '@wireservers-ui/react-natives';
+import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function TableExamples() {
-  useExampleCode(`import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -41,7 +41,7 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Table" description="A structured data table with header and body rows." code={`import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Basic Table" description="A structured data table with header and body rows." code={`import { Table, TableHead, TableBody, TableRow, TableCell, TableHeaderCell, TableCaption } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

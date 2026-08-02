@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker, BooleanPicker } from '../variant-picker';
-import { Switch } from '@wireservers-ui/react-natives';
-import type { SwitchSize } from '@wireservers-ui/react-natives';
+import { Switch } from '@wireservers/react-natives';
+import type { SwitchSize } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function SwitchExamples() {
@@ -13,7 +13,7 @@ export default function SwitchExamples() {
   const [darkMode, setDarkMode] = useState(false);
   const [autoSave, setAutoSave] = useState(true);
 
-  useExampleCode(`import { Switch } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Switch } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 import { useState } from 'react';
 
@@ -67,7 +67,7 @@ export default function Example() {
       <ExampleSection
         title="Multiple Switches"
         description="A group of switches for different settings."
-        code={`import { Switch } from '@wireservers-ui/react-natives';
+        code={`import { Switch } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 import { useState } from 'react';
 
@@ -130,7 +130,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled Switch"
         description="Switch with isDisabled prevents user interaction."
-        code={`import { Switch } from '@wireservers-ui/react-natives';
+        code={`import { Switch } from '@wireservers/react-natives';
 import { View, Text } from 'react-native';
 
 export default function Example() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text as RNText } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Divider, Text } from '@wireservers-ui/react-natives';
+import { Divider, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const orientations = ['horizontal', 'vertical'] as const;
@@ -10,7 +10,7 @@ const orientations = ['horizontal', 'vertical'] as const;
 export default function DividerExamples() {
   const [orientation, setOrientation] = useState<string>('horizontal');
 
-  useExampleCode(`import { Divider, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Divider, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -61,7 +61,7 @@ export default function Example() {
       <ExampleSection
         title="Horizontal Divider"
         description="The default orientation. Renders a full-width 1px line."
-        code={`import { Divider, Text } from '@wireservers-ui/react-natives';
+        code={`import { Divider, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -87,7 +87,7 @@ export default function Example() {
       <ExampleSection
         title="Vertical Divider"
         description="Use orientation='vertical' to separate inline items. The parent must have a defined height."
-        code={`import { Divider, Text } from '@wireservers-ui/react-natives';
+        code={`import { Divider, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {

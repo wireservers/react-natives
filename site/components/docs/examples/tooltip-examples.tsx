@@ -8,7 +8,7 @@ import {
   TooltipText,
   Button,
   ButtonText,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const placements = ['top', 'bottom', 'left', 'right'] as const;
@@ -16,7 +16,7 @@ const placements = ['top', 'bottom', 'left', 'right'] as const;
 export default function TooltipExamples() {
   const [placement, setPlacement] = useState<string>('top');
 
-  useExampleCode(`import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -69,7 +69,7 @@ export default function Example() {
       <ExampleSection
         title="Placements"
         description="Tooltips can be placed on top, bottom, left, or right of the trigger element."
-        code={`import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

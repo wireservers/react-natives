@@ -1,5 +1,5 @@
 {
-  "name": "@wireservers-ui/react-natives",
+  "name": "@wireservers/react-natives",
   "version": "2.0.14",
   "description": "A comprehensive React Native component library built with NativeWind and Tailwind Variants",
   "main": "src/index.ts",

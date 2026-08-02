@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { DataGrid, type DataGridCell, type DataGridColumn } from '@wireservers-ui/react-natives';
+import { DataGrid, type DataGridCell, type DataGridColumn } from '@wireservers/react-natives';
 import { ExampleSection } from '../example-section';
 import { useExampleCode } from '../example-code-context';
 
@@ -99,7 +99,7 @@ function PerformanceCell({ row }: { row: number }) {
 }
 
 export default function DataGridExamples() {
-  useExampleCode(`import { DataGrid, type DataGridColumn } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { DataGrid, type DataGridColumn } from '@wireservers/react-natives';
 
 const columns: DataGridColumn[] = [
   { id: 'firstName', title: 'First name', group: 'Name', kind: 'text', width: 164, editable: true },
@@ -137,7 +137,7 @@ export default function Example() {
       <ExampleSection
         title="Virtualized Data Grid"
         description="A lazy grid with typed cells, editing, grouped headers, selection, resizing, reordering, variable row heights, and merged cells."
-        code={`import { DataGrid, type DataGridColumn } from '@wireservers-ui/react-natives';
+        code={`import { DataGrid, type DataGridColumn } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

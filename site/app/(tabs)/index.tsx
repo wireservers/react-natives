@@ -267,7 +267,7 @@ export default function HomeScreen() {
               >{`import {
   Button, Card, CardHeader,
   CardBody, CardFooter, Text,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 
 export default function App() {
   return (
@@ -581,7 +581,7 @@ export default function App() {
             <View style={{ gap: 16 }}>
               <ChecklistItem
                 title="Easy Installation"
-                subtitle="npx create-expo-app@latest my-app && npm install @wireservers-ui/react-natives"
+                subtitle="npx create-expo-app@latest my-app && npm install @wireservers/react-natives"
               />
               <ChecklistItem
                 title="Zero Configuration"
@@ -651,7 +651,7 @@ export default function App() {
                     padding: 16,
                     lineHeight: 22,
                   }}
-                >{`import { Button, Card } from '@wireservers-ui/react-natives';
+                >{`import { Button, Card } from '@wireservers/react-natives';
 
 export default function App() {
   return (

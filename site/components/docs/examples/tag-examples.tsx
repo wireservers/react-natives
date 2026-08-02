@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Tag, TagText, TagCloseButton, Text } from '@wireservers-ui/react-natives';
+import { Tag, TagText, TagCloseButton, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const actions = ['info', 'success', 'warning', 'error'] as const;
@@ -14,7 +14,7 @@ export default function TagExamples() {
   const [variant, setVariant] = useState<string>('subtle');
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { Tag, TagText, TagCloseButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Tag, TagText, TagCloseButton } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -39,7 +39,7 @@ export default function Example() {
         </View>
       </ExampleSection>
 
-      <ExampleSection title="All Actions" description="Tags in each action color." code={`import { Tag, TagText } from '@wireservers-ui/react-natives';
+      <ExampleSection title="All Actions" description="Tags in each action color." code={`import { Tag, TagText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

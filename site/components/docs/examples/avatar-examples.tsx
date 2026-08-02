@@ -8,7 +8,7 @@ import {
   AvatarImage,
   AvatarBadge,
   AvatarGroup,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -16,7 +16,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 export default function AvatarExamples() {
   const [size, setSize] = useState<string>('md');
 
-  useExampleCode(`import { Avatar, AvatarImage, AvatarFallbackText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Avatar, AvatarImage, AvatarFallbackText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -58,7 +58,7 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Avatars scale from xs (24px) through 2xl (64px)."
-        code={`import { Avatar, AvatarFallbackText } from '@wireservers-ui/react-natives';
+        code={`import { Avatar, AvatarFallbackText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -84,7 +84,7 @@ export default function Example() {
       <ExampleSection
         title="With Image"
         description="Display a photo using AvatarImage. Falls back to AvatarFallbackText on error."
-        code={`import { Avatar, AvatarFallbackText, AvatarImage } from '@wireservers-ui/react-natives';
+        code={`import { Avatar, AvatarFallbackText, AvatarImage } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -124,7 +124,7 @@ export default function Example() {
       <ExampleSection
         title="With Badge"
         description="Add an AvatarBadge to indicate online status."
-        code={`import { Avatar, AvatarFallbackText, AvatarBadge } from '@wireservers-ui/react-natives';
+        code={`import { Avatar, AvatarFallbackText, AvatarBadge } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -149,7 +149,7 @@ export default function Example() {
       <ExampleSection
         title="Avatar Group"
         description="AvatarGroup stacks avatars with an overflow indicator via the max prop."
-        code={`import { Avatar, AvatarFallbackText, AvatarGroup } from '@wireservers-ui/react-natives';
+        code={`import { Avatar, AvatarFallbackText, AvatarGroup } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

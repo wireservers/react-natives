@@ -14,7 +14,7 @@ import {
   ButtonText,
   Heading,
   Text,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'full'] as const;
@@ -23,7 +23,7 @@ export default function ModalExamples() {
   const [size, setSize] = useState<string>('md');
   const [showModal, setShowModal] = useState(false);
 
-  useExampleCode(`import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -105,7 +105,7 @@ export default function Example() {
       <ExampleSection
         title="Available Sizes"
         description="Modals support xs, sm, md, lg, and full sizes. Use the interactive example above to preview each size."
-        code={`import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Button, ButtonText, Heading, Text } from '@wireservers-ui/react-natives';
+        code={`import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Button, ButtonText, Heading, Text } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

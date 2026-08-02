@@ -11,6 +11,6 @@ module.exports = {
     "../packages/react-natives/src/**/*.{ts,tsx}",
     "../packages/react-natives-pro/src/**/*.{ts,tsx}",
   ],
-  presets: [require("@wireservers-ui/react-natives/tailwind-preset")],
+  presets: [require("@wireservers/react-natives/tailwind-preset")],
   important: "html",
 };

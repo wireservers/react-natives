@@ -8,7 +8,7 @@ import {
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function CheckboxExamples() {
@@ -17,7 +17,7 @@ export default function CheckboxExamples() {
   const [toppings, setToppings] = useState<string[]>([]);
   const [singleChecked, setSingleChecked] = useState(false);
 
-  useExampleCode(`import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -88,7 +88,7 @@ export default function Example() {
       <ExampleSection
         title="Individual Checkbox"
         description="A standalone checkbox for a single boolean option."
-        code={`import { Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+        code={`import { Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {
@@ -120,7 +120,7 @@ export default function Example() {
       <ExampleSection
         title="Multi-Select Group"
         description="Checkbox group for selecting pizza toppings."
-        code={`import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers-ui/react-natives';
+        code={`import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

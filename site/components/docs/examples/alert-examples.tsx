@@ -7,7 +7,7 @@ import {
   AlertIcon,
   AlertBody,
   AlertText,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const statuses = ['info', 'success', 'warning', 'error'] as const;
@@ -24,7 +24,7 @@ export default function AlertExamples() {
   const [status, setStatus] = useState<string>('info');
   const [variant, setVariant] = useState<string>('solid');
 
-  useExampleCode(`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -71,7 +71,7 @@ export default function Example() {
       <ExampleSection
         title="Statuses"
         description="Alert supports four status types to convey different levels of feedback."
-        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -100,7 +100,7 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Alerts come in solid, subtle, and outline variants."
-        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers-ui/react-natives';
+        code={`import { Alert, AlertIcon, AlertBody, AlertText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

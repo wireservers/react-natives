@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text, Box } from '@wireservers-ui/react-natives';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function CollapsibleExamples() {
-  useExampleCode(`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -23,7 +23,7 @@ export default function Example() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Basic Collapsible" description="Toggle content visibility with a trigger."
-        code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers-ui/react-natives';
+        code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -53,7 +53,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="Default Open" description="Start with the content visible."
-        code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers-ui/react-natives';
+        code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

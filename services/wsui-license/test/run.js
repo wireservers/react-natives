@@ -106,7 +106,7 @@ checkThat('subject names the product', mail.subject.includes('react-natives Pro'
 checkThat('subject carries the order id', mail.subject.includes('cs_test_1234'));
 for (const part of ['text', 'html']) {
   checkThat(`${part}: contains the license key`, mail[part].includes(key));
-  checkThat(`${part}: contains the install command`, mail[part].includes('npm i @wireservers-ui/react-natives'));
+  checkThat(`${part}: contains the install command`, mail[part].includes('npm i @wireservers/react-natives'));
   checkThat(`${part}: contains setLicenseKey`, mail[part].includes('setLicenseKey'));
   checkThat(`${part}: contains the Tailwind glob`, mail[part].includes('react-natives-pro/src/**/*'));
   checkThat(`${part}: names DataGridPro`, mail[part].includes('DataGridPro'));

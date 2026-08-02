@@ -6,8 +6,8 @@ import {
   Input,
   InputField,
   InputSlot,
-} from '@wireservers-ui/react-natives';
-import type { InputVariant, InputSize } from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
+import type { InputVariant, InputSize } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function InputExamples() {
@@ -15,7 +15,7 @@ export default function InputExamples() {
   const [size, setSize] = useState<InputSize>('md');
   const [text, setText] = useState('');
 
-  useExampleCode(`import { Input, InputField } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -60,7 +60,7 @@ export default function Example() {
       <ExampleSection
         title="Input with Slots"
         description="Input with leading and trailing slot content."
-        code={`import { Input, InputField, InputSlot } from '@wireservers-ui/react-natives';
+        code={`import { Input, InputField, InputSlot } from '@wireservers/react-natives';
 import { Text } from 'react-native';
 
 export default function Example() {
@@ -93,7 +93,7 @@ export default function Example() {
       <ExampleSection
         title="Input with Leading Slot"
         description="Input with a search prefix in the leading slot."
-        code={`import { Input, InputField, InputSlot } from '@wireservers-ui/react-natives';
+        code={`import { Input, InputField, InputSlot } from '@wireservers/react-natives';
 import { Text } from 'react-native';
 
 export default function Example() {
@@ -120,7 +120,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled Input"
         description="Input with isDisabled set to true prevents user interaction."
-        code={`import { Input, InputField } from '@wireservers-ui/react-natives';
+        code={`import { Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -140,7 +140,7 @@ export default function Example() {
       <ExampleSection
         title="Invalid Input"
         description="Input with isInvalid set to true indicates an error state."
-        code={`import { Input, InputField } from '@wireservers-ui/react-natives';
+        code={`import { Input, InputField } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

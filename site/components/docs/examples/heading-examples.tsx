@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Heading } from '@wireservers-ui/react-natives';
+import { Heading } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] as const;
@@ -10,7 +10,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] as cons
 export default function HeadingExamples() {
   const [size, setSize] = useState<string>('lg');
 
-  useExampleCode(`import { Heading } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Heading } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -41,7 +41,7 @@ export default function Example() {
       <ExampleSection
         title="All Sizes"
         description="Headings render from xs through 5xl, defaulting to lg."
-        code={`import { Heading } from '@wireservers-ui/react-natives';
+        code={`import { Heading } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Heading size="xl">The quick brown fox</Heading>;
@@ -63,7 +63,7 @@ export default function Example() {
       <ExampleSection
         title="Truncation"
         description="Use isTruncated to clip overflowing heading text."
-        code={`import { Heading } from '@wireservers-ui/react-natives';
+        code={`import { Heading } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

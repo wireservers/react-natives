@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Pressable, Text, Box } from '@wireservers-ui/react-natives';
+import { Pressable, Text, Box } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function PressableExamples() {
   const [count, setCount] = useState(0);
 
-  useExampleCode(`import { Pressable, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Pressable, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -22,7 +22,7 @@ export default function Example() {
 
   return (
     <View style={{ gap: 24 }}>
-      <ExampleSection title="Basic Pressable" description="A styled pressable with press states." code={`import { Pressable, Text } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Basic Pressable" description="A styled pressable with press states." code={`import { Pressable, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -42,7 +42,7 @@ export default function Example() {
         </Pressable>
       </ExampleSection>
 
-      <ExampleSection title="Disabled" description="Pressable with disabled state." code={`import { Pressable, Text } from '@wireservers-ui/react-natives';
+      <ExampleSection title="Disabled" description="Pressable with disabled state." code={`import { Pressable, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

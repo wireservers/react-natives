@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { List, ListItem, ListItemText, ListItemDescription, Text } from '@wireservers-ui/react-natives';
+import { List, ListItem, ListItemText, ListItemDescription, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['unordered', 'ordered'] as const;
@@ -10,7 +10,7 @@ const variants = ['unordered', 'ordered'] as const;
 export default function ListExamples() {
   const [variant, setVariant] = useState<string>('unordered');
 
-  useExampleCode(`import { List, ListItem, ListItemText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { List, ListItem, ListItemText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -33,7 +33,7 @@ export default function Example() {
         </List>
       </ExampleSection>
 
-      <ExampleSection title="With Descriptions" description="List items with secondary text." code={`import { List, ListItem, ListItemText, ListItemDescription } from '@wireservers-ui/react-natives';
+      <ExampleSection title="With Descriptions" description="List items with secondary text." code={`import { List, ListItem, ListItemText, ListItemDescription } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

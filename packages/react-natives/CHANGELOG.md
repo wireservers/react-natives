@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `@wireservers-ui/react-natives` are documented here.
+All notable changes to `@wireservers/react-natives` are documented here.
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)  
 Versioning: [Semantic Versioning](https://semver.org/)
@@ -80,8 +80,8 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ### Fixed
 
-- Updated the generated starter landing page to render actual `@wireservers-ui/react-natives` components, including buttons, badges, cards, form controls, stats, a slider, and a sortable `DataGrid`.
-- Updated `init` to install `@wireservers-ui/react-natives` into the target project at the running CLI version so `npx`-based fresh installs have the component package saved locally.
+- Updated the generated starter landing page to render actual `@wireservers/react-natives` components, including buttons, badges, cards, form controls, stats, a slider, and a sortable `DataGrid`.
+- Updated `init` to install `@wireservers/react-natives` into the target project at the running CLI version so `npx`-based fresh installs have the component package saved locally.
 
 ---
 
@@ -229,7 +229,7 @@ Versioning: [Semantic Versioning](https://semver.org/)
 - `bin/init.js` is now included in the published npm package (packaging parity with local source)
 
 ### Fixed
-- Published `@wireservers-ui/react-natives@2.0.0` artifact missed `bin/init.js`; this patch release includes it so CLI initialization helpers are available in installed package contents
+- Published `@wireservers/react-natives@2.0.0` artifact missed `bin/init.js`; this patch release includes it so CLI initialization helpers are available in installed package contents
 
 ### Changed
 - README now includes a release note section and direct changelog navigation guidance for npm/GitHub users
@@ -245,7 +245,7 @@ Versioning: [Semantic Versioning](https://semver.org/)
 - Collapsible light/dark theme reference blocks in README
 
 ### Fixed
-- **[Breaking on Unix/macOS/Linux]** `bin/cli.js` had CRLF line endings causing `env: 'bash\r': No such file or directory` and `node\r: No such file or directory` when consumers ran `npx @wireservers-ui/react-natives init` on non-Windows systems
+- **[Breaking on Unix/macOS/Linux]** `bin/cli.js` had CRLF line endings causing `env: 'bash\r': No such file or directory` and `node\r: No such file or directory` when consumers ran `npx @wireservers/react-natives init` on non-Windows systems
 
 ### Changed
 - README restructured: easy setup is now the primary path; manual setup is a detailed step-by-step with full file examples
@@ -257,11 +257,11 @@ Versioning: [Semantic Versioning](https://semver.org/)
 ## [1.0.1] - 2026-03-14
 
 ### Added
-- `bin/cli.js` — CLI init command runnable via `npx @wireservers-ui/react-natives init`
+- `bin/cli.js` — CLI init command runnable via `npx @wireservers/react-natives init`
 - Automatic peer-dependency installation by `init` (`nativewind`, `tailwindcss`, `tailwind-variants`, `tailwind-merge`, `react-native-reanimated`, `react-native-worklets`, `react-native-svg`, `react-dom`, `react-native-web`)
 - `react-dom` version is matched exactly to the consumer's installed `react` version to prevent React/DOM mismatch on web
 - pnpm compatibility: `init` creates/updates `.npmrc` with `node-linker=hoisted` when pnpm is detected and triggers a reinstall pass
-- Tailwind content path for library source added to generated `tailwind.config.js` (`node_modules/@wireservers-ui/react-natives/src/**`)
+- Tailwind content path for library source added to generated `tailwind.config.js` (`node_modules/@wireservers/react-natives/src/**`)
 - Non-destructive init: all file creation follows skip-if-exists semantics — no consumer file is ever overwritten
 
 ### Fixed
@@ -278,7 +278,7 @@ Versioning: [Semantic Versioning](https://semver.org/)
 ## [1.0.0] - 2026-03-01
 
 ### Added
-- Initial release of `@wireservers-ui/react-natives`
+- Initial release of `@wireservers/react-natives`
 - 70+ React Native components: Accordion, ActionSheet, Alert, AlertDialog, Avatar, Badge, Button, Calendar, Card, Carousel, Checkbox, CircularProgress, ColorPicker, Collapsible, DatePicker, Drawer, Empty, Fab, FormControl, Heading, Icon, IconButton, Image, Input, Kbd, Link, List, Menu, Modal, NumberInput, Overlay, Pagination, PasswordInput, PinInput, Popover, Portal, Pressable, Progress, Radio, Rating, SearchInput, SegmentedControl, Select, Skeleton, Slider, Snackbar, Spinner, Stack, Stat, Stepper, Switch, Table, Tabs, Tag, TagsInput, Text, Textarea, Timeline, Toast, Toggle, ToggleGroup, Tooltip, VisuallyHidden
 - NativeWind v4 + Tailwind CSS 3 styling with `tailwind-variants` for type-safe variant APIs
 - CSS variable token system for light/dark theming

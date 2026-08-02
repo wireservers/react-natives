@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { EmojiPicker, Text } from '@wireservers-ui/react-natives';
+import { EmojiPicker, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function EmojiPickerExamples() {
   const [emoji, setEmoji] = React.useState('💡');
 
-  useExampleCode(`import { EmojiPicker } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { EmojiPicker } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

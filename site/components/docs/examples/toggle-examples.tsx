@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
 import { VariantPicker } from '../variant-picker';
-import { Toggle, Text } from '@wireservers-ui/react-natives';
+import { Toggle, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const variants = ['outline', 'solid'] as const;
@@ -13,7 +13,7 @@ export default function ToggleExamples() {
   const [size, setSize] = useState<string>('md');
   const [pressed, setPressed] = useState(false);
 
-  useExampleCode(`import { Toggle, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Toggle, Text } from '@wireservers/react-natives';
 import { useState } from 'react';
 
 export default function Example() {

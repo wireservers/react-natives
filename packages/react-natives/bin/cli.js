@@ -12,7 +12,7 @@ const force = args.includes("--force");
 
 if (command !== "init") {
   console.error(`Unknown command: ${command}`);
-  console.error("Usage: npx @wireservers-ui/react-natives init");
+  console.error("Usage: npx @wireservers/react-natives init");
   process.exit(1);
 }
 
@@ -37,7 +37,7 @@ function isExpoProject(dir) {
 
 if (!isExpoProject(cwd)) {
   console.error(
-    "\n❌ @wireservers-ui/react-natives init must be run inside an Expo project folder.",
+    "\n❌ @wireservers/react-natives init must be run inside an Expo project folder.",
   );
   console.error("   Example:");
   console.error("   mkdir -p demos/react-natives");
@@ -45,7 +45,7 @@ if (!isExpoProject(cwd)) {
     "   npx create-expo-app@latest demos/react-natives/project --template blank-typescript",
   );
   console.error("   cd demos/react-natives/project");
-  console.error("   npx @wireservers-ui/react-natives@2.0.2 init\n");
+  console.error("   npx @wireservers/react-natives@2.0.2 init\n");
   process.exit(1);
 }
 
@@ -69,7 +69,7 @@ const expoInstallCmd =
         : "npx expo install";
 let needsReinstall = false;
 
-console.log(`\n🚀 Initializing @wireservers-ui/react-natives...\n`);
+console.log(`\n🚀 Initializing @wireservers/react-natives...\n`);
 console.log(`   Package manager: ${pm}`);
 
 // ── 0. Create .npmrc for pnpm (Metro needs hoisted modules) ────────────────
@@ -107,7 +107,7 @@ if (needsReinstall) {
 // ── 2. Install peer dependencies ───────────────────────────────────────────
 console.log("\n📦 Installing peer dependencies...\n");
 const jsPeers = [
-  `@wireservers-ui/react-natives@${packageVersion}`,
+  `@wireservers/react-natives@${packageVersion}`,
   "nativewind@^4",
   "babel-preset-expo",
   "tailwindcss@^3",
@@ -143,9 +143,9 @@ module.exports = {
     "./App.{js,jsx,ts,tsx}",
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@wireservers-ui/react-natives/src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@wireservers/react-natives/src/**/*.{js,jsx,ts,tsx}",
   ],
-  presets: [require("@wireservers-ui/react-natives/tailwind-preset")],
+  presets: [require("@wireservers/react-natives/tailwind-preset")],
 };
 `;
 
@@ -318,7 +318,7 @@ config.resolver.nodeModulesPaths = [path.resolve(__dirname, "node_modules")];
 
 try {
   const wsuiPackagePath = path.dirname(
-    require.resolve("@wireservers-ui/react-natives/package.json"),
+    require.resolve("@wireservers/react-natives/package.json"),
   );
   config.watchFolders = [...new Set([...(config.watchFolders || []), wsuiPackagePath])];
 } catch {
@@ -379,18 +379,18 @@ import {
   StatLabel,
   StatNumber,
   Switch,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 import type {
   DataGridCell,
   DataGridColumn,
   DataGridRenderCellInfo,
-} from "@wireservers-ui/react-natives";
+} from "@wireservers/react-natives";
 
 const links = [
   { label: "Open docs", url: "https://www.reactnatives.dev" },
   {
     label: "View package",
-    url: "https://www.npmjs.com/package/@wireservers-ui/react-natives",
+    url: "https://www.npmjs.com/package/@wireservers/react-natives",
   },
   {
     label: "GitHub",

@@ -7,7 +7,7 @@ import {
   ToastTitle,
   ToastDescription,
   useToast,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const statuses = ['info', 'success', 'warning', 'error'] as const;
@@ -52,7 +52,7 @@ function ToastInteractive() {
     fireToast(status, val);
   };
 
-  useExampleCode(`import { ToastProvider, useToast } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { ToastProvider, useToast } from '@wireservers/react-natives';
 
 // Wrap your app with ToastProvider once at the root:
 // <ToastProvider><App /></ToastProvider>
@@ -108,7 +108,7 @@ export default function ToastExamples() {
       <ExampleSection
         title="Statuses"
         description="Toast supports info, success, warning, and error statuses."
-        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers-ui/react-natives';
+        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -132,7 +132,7 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Toasts come in solid, subtle, and outline variants."
-        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers-ui/react-natives';
+        code={`import { Toast, ToastTitle, ToastDescription } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

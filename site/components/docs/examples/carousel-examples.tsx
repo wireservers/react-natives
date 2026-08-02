@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots, Box, Text } from '@wireservers-ui/react-natives';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots, Box, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const colors = ['bg-primary-100', 'bg-success-100', 'bg-warning-100', 'bg-error-100'];
@@ -19,7 +19,7 @@ const categories = [
 ];
 
 export default function CarouselExamples() {
-  useExampleCode(`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Box, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Box, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -51,7 +51,7 @@ export default function Example() {
       <ExampleSection
         title="Basic Carousel"
         description="Full-width slides with navigation and indicator dots."
-        code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots, Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots, Box, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -100,7 +100,7 @@ export default function Example() {
       <ExampleSection
         title="Multi-Item Infinite Scroll"
         description="Use itemWidth and gap for a multi-item view. Combined with loop and autoPlay for seamless endless scrolling."
-        code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Box, Text } from '@wireservers/react-natives';
 import { View } from 'react-native';
 
 export default function Example() {
@@ -162,7 +162,7 @@ export default function Example() {
       <ExampleSection
         title="Auto-Play"
         description="Slides advance automatically every 2 seconds."
-        code={`import { Carousel, CarouselContent, CarouselItem, CarouselDots, Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Carousel, CarouselContent, CarouselItem, CarouselDots, Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

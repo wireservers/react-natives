@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Kbd, Text, HStack } from '@wireservers-ui/react-natives';
+import { Kbd, Text, HStack } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function KbdExamples() {
-  useExampleCode(`import { Kbd, Text, HStack } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Kbd, Text, HStack } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -22,7 +22,7 @@ export default function Example() {
       <ExampleSection
         title="Keyboard Shortcuts"
         description="Display keyboard key combinations."
-        code={`import { Kbd, Text, HStack } from '@wireservers-ui/react-natives';
+        code={`import { Kbd, Text, HStack } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -50,7 +50,7 @@ export default function Example() {
       <ExampleSection
         title="Single Keys"
         description="Individual key display."
-        code={`import { Kbd } from '@wireservers-ui/react-natives';
+        code={`import { Kbd } from '@wireservers/react-natives';
 
 export default function Example() {
   return <Kbd>Enter</Kbd>;

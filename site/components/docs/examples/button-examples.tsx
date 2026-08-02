@@ -6,7 +6,7 @@ import {
   Button,
   ButtonText,
   ButtonSpinner,
-} from '@wireservers-ui/react-natives';
+} from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 const actions = ['primary', 'secondary', 'positive', 'negative', 'default'] as const;
@@ -19,7 +19,7 @@ export default function ButtonExamples() {
   const [size, setSize] = useState<string>('md');
   const [isLoading, setIsLoading] = useState(false);
 
-  useExampleCode(`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -70,7 +70,7 @@ export default function Example() {
       <ExampleSection
         title="Actions"
         description="Semantic actions with the solid variant."
-        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -93,7 +93,7 @@ export default function Example() {
       <ExampleSection
         title="Variants"
         description="Solid, outline, and link styles with the primary action."
-        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -116,7 +116,7 @@ export default function Example() {
       <ExampleSection
         title="Sizes"
         description="Buttons scale from xs through xl."
-        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -139,7 +139,7 @@ export default function Example() {
       <ExampleSection
         title="Disabled"
         description="Use isDisabled to visually and functionally disable a button."
-        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -166,7 +166,7 @@ export default function Example() {
       <ExampleSection
         title="Loading State"
         description="Use ButtonSpinner to indicate a loading state. Tap the button to toggle."
-        code={`import { Button, ButtonText, ButtonSpinner } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText, ButtonSpinner } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -204,7 +204,7 @@ export default function Example() {
       <ExampleSection
         title="Variant + Action Matrix"
         description="All combinations of variant and action."
-        code={`import { Button, ButtonText } from '@wireservers-ui/react-natives';
+        code={`import { Button, ButtonText } from '@wireservers/react-natives';
 
 export default function Example() {
   return (

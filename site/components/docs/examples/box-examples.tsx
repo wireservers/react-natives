@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { ExampleSection } from '../example-section';
-import { Box, Text } from '@wireservers-ui/react-natives';
+import { Box, Text } from '@wireservers/react-natives';
 import { useExampleCode } from '../example-code-context';
 
 export default function BoxExamples() {
-  useExampleCode(`import { Box, Text } from '@wireservers-ui/react-natives';
+  useExampleCode(`import { Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -18,7 +18,7 @@ export default function Example() {
   return (
     <View style={{ gap: 24 }}>
       <ExampleSection title="Basic Box" description="A styled View wrapper that accepts className."
-        code={`import { Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
@@ -34,7 +34,7 @@ export default function Example() {
       </ExampleSection>
 
       <ExampleSection title="Nested Boxes" description="Boxes can be nested for complex layouts."
-        code={`import { Box, Text } from '@wireservers-ui/react-natives';
+        code={`import { Box, Text } from '@wireservers/react-natives';
 
 export default function Example() {
   return (
