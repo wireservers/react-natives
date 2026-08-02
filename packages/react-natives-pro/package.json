@@ -1,7 +1,7 @@
 {
-  "name": "@wireservers-ui/react-natives-pro",
+  "name": "@wireservers/react-natives-pro",
   "version": "0.1.0",
-  "description": "Premium components for @wireservers-ui/react-natives \u2014 DataGrid Pro, Scheduler, and date-range tooling",
+  "description": "Premium components for @wireservers/react-natives \u2014 DataGrid Pro, Scheduler, and date-range tooling",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "files": [
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wireservers/react-natives.git",
+    "url": "git+https://github.com/wireservers/wireservers-ui.git",
     "directory": "packages/react-natives-pro"
   },
   "license": "SEE LICENSE IN LICENSE",
@@ -32,7 +32,7 @@
     "@noble/hashes": "^1.8.0"
   },
   "peerDependencies": {
-    "@wireservers-ui/react-natives": ">=2.1.0",
+    "@wireservers/react-natives": ">=2.1.0",
     "nativewind": ">=4.0.0",
     "react": ">=18.0.0",
     "react-native": ">=0.72.0",

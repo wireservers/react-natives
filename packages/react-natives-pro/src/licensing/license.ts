@@ -148,7 +148,7 @@ export function warnOnce(reason: LicenseInvalidReason): void {
   hasWarned = true;
   // eslint-disable-next-line no-console
   console.warn(
-    `[@wireservers-ui/react-natives-pro] ${REASON_MESSAGE[reason]} ` +
+    `[@wireservers/react-natives-pro] ${REASON_MESSAGE[reason]} ` +
       'Pro components will render with an "unlicensed" watermark. ' +
       'Purchase or retrieve a key at https://www.reactnatives.dev/pro and pass it to setLicenseKey().',
   );

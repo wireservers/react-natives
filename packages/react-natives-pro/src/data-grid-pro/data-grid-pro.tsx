@@ -129,7 +129,7 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
       if (!downloadBlobOnWeb(blob, fileName)) {
         // eslint-disable-next-line no-console
         console.warn(
-          '[@wireservers-ui/react-natives-pro] No `onExportCsv` handler was supplied and this ' +
+          '[@wireservers/react-natives-pro] No `onExportCsv` handler was supplied and this ' +
             'platform has no default download. Pass `onExportCsv` to receive the CSV text.',
         );
       }
@@ -173,7 +173,7 @@ export const DataGridPro = React.forwardRef<React.ElementRef<typeof View>, DataG
       if (!downloadBlobOnWeb(blob, fileName)) {
         // eslint-disable-next-line no-console
         console.warn(
-          '[@wireservers-ui/react-natives-pro] No `onExportXlsx` handler was supplied and this ' +
+          '[@wireservers/react-natives-pro] No `onExportXlsx` handler was supplied and this ' +
             'platform has no default download. Pass `onExportXlsx` to receive the file bytes.',
         );
       }
