@@ -15,6 +15,7 @@ import {
   BRAND_COLOR,
   BRAND_COLOR_DARK,
   BRAND_GRADIENT,
+  PRO_ENABLED,
 } from "@/constants/brand";
 import { useTheme } from "@/context/theme-context";
 import { useCustomTheme } from "@/context/custom-theme-context";
@@ -36,7 +37,7 @@ function WithTooltip({
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Components", path: "/components" },
-  { label: "Pro", path: "/pro" },
+  ...(PRO_ENABLED ? [{ label: "Pro", path: "/pro" }] : []),
 ];
 
 const RAW_REACT_NATIVES_VERSION = require("../package.json").dependencies?.[

@@ -14,6 +14,7 @@ import {
   BRAND_COLOR_DARK,
   BRAND_COLOR_LIGHT,
   BRAND_GRADIENT,
+  PRO_ENABLED,
 } from "@/constants/brand";
 import { Footer } from "@/components/footer";
 import { SeoHead } from "@/components/seo/seo-head";
@@ -185,25 +186,25 @@ export default function HomeScreen() {
                   Learn More
                 </Text>
               </Pressable>
-              {/* Pro is the only revenue path on this site; without a hero CTA it is reachable
-                  only from the footer. */}
-              <Pressable
-                onPress={() => router.navigate("/pro" as any)}
-                accessibilityRole="button"
-                accessibilityLabel="See react-natives Pro pricing"
-                style={{
-                  backgroundColor: "transparent",
-                  borderWidth: 1,
-                  borderColor: "rgba(255,255,255,0.6)",
-                  paddingHorizontal: 20,
-                  paddingVertical: 12,
-                  borderRadius: 8,
-                }}
-              >
-                <Text style={{ color: "#fff", fontWeight: "600", fontSize: 14 }}>
-                  Pro →
-                </Text>
-              </Pressable>
+              {PRO_ENABLED && (
+                <Pressable
+                  onPress={() => router.navigate("/pro" as any)}
+                  accessibilityRole="button"
+                  accessibilityLabel="See react-natives Pro pricing"
+                  style={{
+                    backgroundColor: "transparent",
+                    borderWidth: 1,
+                    borderColor: "rgba(255,255,255,0.6)",
+                    paddingHorizontal: 20,
+                    paddingVertical: 12,
+                    borderRadius: 8,
+                  }}
+                >
+                  <Text style={{ color: "#fff", fontWeight: "600", fontSize: 14 }}>
+                    Pro →
+                  </Text>
+                </Pressable>
+              )}
             </View>
           </View>
 

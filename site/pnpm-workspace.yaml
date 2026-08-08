@@ -1,5 +1,5 @@
 overrides:
-  '@babel/core': '>=7.29.6'
+  '@babel/core': '>=7.29.6 <8.0.0'
   '@xmldom/xmldom': '>=0.8.13'
   brace-expansion@1: '>=1.1.17'
   brace-expansion@2: '>=2.1.3'
