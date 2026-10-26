@@ -150,6 +150,21 @@ Update:
 - For production app delivery, use EAS Build/Submit and set up environment-specific configs.
 - Keep secrets out of source; use secure runtime config patterns.
 
+### Website deployment (GitHub Actions → Azure App Service)
+
+The web export is deployed to Azure App Service (Linux, Node 24) by GitHub Actions:
+
+| Workflow | App Service | Trigger |
+| --- | --- | --- |
+| `.github/workflows/prod_reactnatives.yml` | `reactnatives` | Push to `main`, or run manually |
+| `.github/workflows/dev_reactnatives.yml` | `dev-reactnatives` | Run manually (Actions → "Build and deploy - dev-reactnatives") |
+
+Each run installs with pnpm, runs `pnpm run build`, packages `dist/` together with `server.js`, and deploys with `azure/webapps-deploy`. The startup command is `node /home/site/wwwroot/server.js`. Don't use `pm2 serve`, which can't serve directory routes such as `/components`.
+
+Azure sign-in uses OIDC (`azure/login`) with the `AZUREAPPSERVICE_*` repository secrets, so no publish profile is stored in the repo.
+
+Publishing the npm packages is a separate manual workflow: `.github/workflows/publish_npm.yml`.
+
 ## Linting and quality
 
 Run:

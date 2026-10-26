@@ -606,7 +606,7 @@ react-natives/
 ```bash
 # Clone the repository
 git clone https://github.com/wireservers/react-natives.git
-cd wireservers-ui/packages/react-natives
+cd react-natives/packages/react-natives
 
 # Install dependencies
 npm install

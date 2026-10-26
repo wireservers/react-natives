@@ -4,6 +4,9 @@
 name: Build and deploy - reactnatives
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -88,4 +91,3 @@ jobs:
           slot-name: 'Production'
           package: ./site
           startup-command: 'node /home/site/wwwroot/server.js'
-          

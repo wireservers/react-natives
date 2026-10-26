@@ -8,7 +8,7 @@ Thanks for your interest in contributing! Here's how to get started.
 
    ```bash
    git clone https://github.com/wireservers/react-natives.git
-   cd wireservers-ui/packages/react-natives
+   cd react-natives/packages/react-natives
    ```
 
 2. Install dependencies:

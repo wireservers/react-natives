@@ -23,7 +23,7 @@ npm run reset-project  # Reset to blank template (destructive)
 
 - **Routing:** Expo Router with file-based routes. Tabs live under `app/(tabs)/`. Root layout is `app/_layout.tsx`.
 - **Theming:** Custom `ThemeProvider` in `context/` wraps the app; `useTheme()` hook exposes light/dark mode. Theme provider is set up in `app/_layout.tsx`.
-- **Styling:** NativeWind v4 + Tailwind CSS 3. Config extends `wireservers-ui/packages/react-natives/tailwind-preset.js` — this preset must remain referenced to get the full color token system.
+- **Styling:** NativeWind v4 + Tailwind CSS 3. Config uses `@wireservers/react-natives/tailwind-preset` (`packages/react-natives/tailwind-preset.js`) — this preset must remain referenced to get the full color token system.
 - **Components:** UI comes from `@wireservers/react-natives` (local workspace package). See that package's CLAUDE.md for component patterns and styling details.
 
 ## Key Files
