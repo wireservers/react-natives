@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
+import { ThemeScopeBridge } from '@wireservers/react-natives';
 import { WithLicenseWatermark } from '../licensing/watermark';
 import {
   arrowOffset,
@@ -225,86 +226,88 @@ export function ProductTour({
 
     return (
       <Modal visible transparent animationType="fade" onRequestClose={skip}>
-        <View style={{ flex: 1 }}>
-          {/* Four panes around the spotlight rather than one dimmed sheet with a hole:
-              React Native has no cut-out, and this keeps the target genuinely visible. */}
-          {spot ? (
-            <>
-              <Backdrop onPress={skip} style={{ top: 0, left: 0, right: 0, height: spot.y }} />
-              <Backdrop onPress={skip} style={{ top: spot.y + spot.height, left: 0, right: 0, bottom: 0 }} />
-              <Backdrop onPress={skip} style={{ top: spot.y, left: 0, width: spot.x, height: spot.height }} />
-              <Backdrop onPress={skip} style={{ top: spot.y, left: spot.x + spot.width, right: 0, height: spot.height }} />
+        <ThemeScopeBridge>
+          <View style={{ flex: 1 }}>
+            {/* Four panes around the spotlight rather than one dimmed sheet with a hole:
+                React Native has no cut-out, and this keeps the target genuinely visible. */}
+            {spot ? (
+              <>
+                <Backdrop onPress={skip} style={{ top: 0, left: 0, right: 0, height: spot.y }} />
+                <Backdrop onPress={skip} style={{ top: spot.y + spot.height, left: 0, right: 0, bottom: 0 }} />
+                <Backdrop onPress={skip} style={{ top: spot.y, left: 0, width: spot.x, height: spot.height }} />
+                <Backdrop onPress={skip} style={{ top: spot.y, left: spot.x + spot.width, right: 0, height: spot.height }} />
+                <View
+                  pointerEvents={advanceOnTargetPress ? 'auto' : 'none'}
+                  style={{
+                    position: 'absolute',
+                    left: spot.x, top: spot.y, width: spot.width, height: spot.height,
+                    borderRadius: 8, borderWidth: 2, borderColor: '#6366f1',
+                  }}
+                >
+                  {advanceOnTargetPress ? (
+                    <Pressable
+                      onPress={goNext}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${step.title} — continue`}
+                      style={{ flex: 1 }}
+                    />
+                  ) : null}
+                </View>
+              </>
+            ) : (
+              <Backdrop onPress={skip} style={{ top: 0, left: 0, right: 0, bottom: 0 }} />
+            )}
+
+            <WithLicenseWatermark>
               <View
-                pointerEvents={advanceOnTargetPress ? 'auto' : 'none'}
+                accessibilityViewIsModal
+                accessibilityLabel={`${step.title}. Step ${current} of ${total}`}
                 style={{
                   position: 'absolute',
-                  left: spot.x, top: spot.y, width: spot.width, height: spot.height,
-                  borderRadius: 8, borderWidth: 2, borderColor: '#6366f1',
+                  left: position.x, top: position.y, width: CARD.width,
+                  borderRadius: 12, padding: 16,
+                  backgroundColor: '#ffffff',
+                  shadowColor: '#0f172a', shadowOpacity: 0.18, shadowRadius: 16,
+                  shadowOffset: { width: 0, height: 6 }, elevation: 8,
                 }}
               >
-                {advanceOnTargetPress ? (
-                  <Pressable
-                    onPress={goNext}
-                    accessibilityRole="button"
-                    accessibilityLabel={`${step.title} — continue`}
-                    style={{ flex: 1 }}
-                  />
-                ) : null}
-              </View>
-            </>
-          ) : (
-            <Backdrop onPress={skip} style={{ top: 0, left: 0, right: 0, bottom: 0 }} />
-          )}
+                {arrow != null ? <Arrow placement={placement} offset={arrow} /> : null}
 
-          <WithLicenseWatermark>
-            <View
-              accessibilityViewIsModal
-              accessibilityLabel={`${step.title}. Step ${current} of ${total}`}
-              style={{
-                position: 'absolute',
-                left: position.x, top: position.y, width: CARD.width,
-                borderRadius: 12, padding: 16,
-                backgroundColor: '#ffffff',
-                shadowColor: '#0f172a', shadowOpacity: 0.18, shadowRadius: 16,
-                shadowOffset: { width: 0, height: 6 }, elevation: 8,
-              }}
-            >
-              {arrow != null ? <Arrow placement={placement} offset={arrow} /> : null}
+                <Text className="text-sm font-semibold text-typography-900">{step.title}</Text>
+                <Text className="mt-1 text-xs leading-5 text-typography-600">{step.body}</Text>
 
-              <Text className="text-sm font-semibold text-typography-900">{step.title}</Text>
-              <Text className="mt-1 text-xs leading-5 text-typography-600">{step.body}</Text>
-
-              <View className="mt-4 flex-row items-center justify-between">
-                <Text className="text-[11px] text-typography-400">{current} of {total}</Text>
-                <View className="flex-row items-center gap-2">
-                  <Pressable onPress={skip} accessibilityRole="button" accessibilityLabel={skipLabel} className="px-2 py-1">
-                    <Text className="text-[11px] text-typography-500">{skipLabel}</Text>
-                  </Pressable>
-                  {previousStep(steps, index) !== index ? (
-                    <Pressable
-                      onPress={goBack}
-                      accessibilityRole="button"
-                      accessibilityLabel={backLabel}
-                      className="rounded-md border border-outline-300 px-3 py-1.5"
-                    >
-                      <Text className="text-xs text-typography-700">{backLabel}</Text>
+                <View className="mt-4 flex-row items-center justify-between">
+                  <Text className="text-[11px] text-typography-400">{current} of {total}</Text>
+                  <View className="flex-row items-center gap-2">
+                    <Pressable onPress={skip} accessibilityRole="button" accessibilityLabel={skipLabel} className="px-2 py-1">
+                      <Text className="text-[11px] text-typography-500">{skipLabel}</Text>
                     </Pressable>
-                  ) : null}
-                  <Pressable
-                    onPress={goNext}
-                    accessibilityRole="button"
-                    accessibilityLabel={isLast ? finishLabel : nextLabel}
-                    className="rounded-md bg-primary-500 px-3 py-1.5"
-                  >
-                    <Text className="text-xs font-medium text-typography-0">
-                      {isLast ? finishLabel : nextLabel}
-                    </Text>
-                  </Pressable>
+                    {previousStep(steps, index) !== index ? (
+                      <Pressable
+                        onPress={goBack}
+                        accessibilityRole="button"
+                        accessibilityLabel={backLabel}
+                        className="rounded-md border border-outline-300 px-3 py-1.5"
+                      >
+                        <Text className="text-xs text-typography-700">{backLabel}</Text>
+                      </Pressable>
+                    ) : null}
+                    <Pressable
+                      onPress={goNext}
+                      accessibilityRole="button"
+                      accessibilityLabel={isLast ? finishLabel : nextLabel}
+                      className="rounded-md bg-primary-500 px-3 py-1.5"
+                    >
+                      <Text className="text-xs font-medium text-typography-0">
+                        {isLast ? finishLabel : nextLabel}
+                      </Text>
+                    </Pressable>
+                  </View>
                 </View>
               </View>
-            </View>
-          </WithLicenseWatermark>
-        </View>
+            </WithLicenseWatermark>
+          </View>
+        </ThemeScopeBridge>
       </Modal>
     );
   };

@@ -7,6 +7,15 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [0.1.1] - 2026-10-25
+
+### Fixed
+
+- `CommandPalette` and `ProductTour` lost theme variables set on an ancestor `View` on web, because RN `Modal` portals into `document.body`. They now re-apply the enclosing `ThemeScope`'s variables. Requires `@wireservers/react-natives` >= 2.2.0.
+- `buildXlsx` imported from the retired `@wireservers-ui/react-natives` package name, so it failed to resolve in apps that only install `@wireservers/react-natives`.
+
+---
+
 ## [0.1.0] - 2026-07-19
 
 Initial release.

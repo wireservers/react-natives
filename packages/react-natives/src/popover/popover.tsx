@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Pressable, Modal, Platform } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { PopoverProps, PopoverTriggerProps, PopoverContentProps, PopoverArrowProps, PopoverHeaderProps, PopoverBodyProps, PopoverFooterProps, PopoverCloseButtonProps, PopoverContextValue } from './types';
 import { popoverContentStyle, popoverArrowStyle, popoverHeaderStyle, popoverBodyStyle, popoverFooterStyle, popoverCloseButtonStyle } from './styles';
@@ -59,13 +60,15 @@ export const PopoverContent = React.forwardRef<React.ElementRef<typeof View>, Po
   if (!isOpen) return null;
   return (
     <Modal visible={isOpen} transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={onClose}>
-        <Pressable onPress={(e) => e.stopPropagation()}>
-          <View ref={ref} className={popoverContentStyle({ class: className })} {...props}>
-            {children}
-          </View>
+      <ThemeScopeBridge>
+        <Pressable style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={onClose}>
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View ref={ref} className={popoverContentStyle({ class: className })} {...props}>
+              {children}
+            </View>
+          </Pressable>
         </Pressable>
-      </Pressable>
+      </ThemeScopeBridge>
     </Modal>
   );
 });

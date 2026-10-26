@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal as RNModal, View } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { DrawerProps, DrawerContextValue } from './types';
 
@@ -31,7 +32,9 @@ export const Drawer: React.FC<DrawerProps> = ({
           onRequestClose={onClose}
           statusBarTranslucent
         >
-          <View style={{ flex: 1 }} pointerEvents="box-none">{children}</View>
+          <ThemeScopeBridge>
+            <View style={{ flex: 1 }} pointerEvents="box-none">{children}</View>
+          </ThemeScopeBridge>
         </RNModal>
       </DrawerProvider>
     );

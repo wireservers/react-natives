@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { useSelectContext } from './select';
 import type { SelectPortalProps } from './types';
 
@@ -14,7 +15,9 @@ export const SelectPortal: React.FC<SelectPortalProps> = ({ children }) => {
       onRequestClose={onClose}
       statusBarTranslucent
     >
-      {children}
+      <ThemeScopeBridge>
+        {children}
+      </ThemeScopeBridge>
     </Modal>
   );
 };

@@ -819,6 +819,10 @@ export type { ContainerProps, ContainerSize } from './container';
 export { Portal } from './portal';
 export type { PortalProps } from './portal';
 
+// ThemeScope
+export { ThemeScope, ThemeScopeBridge, useThemeScopeVars } from './theme-scope';
+export type { ThemeScopeProps, ThemeScopeBridgeProps } from './theme-scope';
+
 // VisuallyHidden
 export { VisuallyHidden } from './visually-hidden';
 export type { VisuallyHiddenProps } from './visually-hidden';

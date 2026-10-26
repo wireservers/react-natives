@@ -7,6 +7,27 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.2.0] - 2026-10-25
+
+### Added
+
+- `ThemeScope` applies theme variables (e.g. `vars({...})`) to a subtree and carries them into modal-based components. `ThemeScopeBridge` and `useThemeScopeVars` are exported for custom overlays built on RN `Modal`.
+
+### Fixed
+
+- `Drawer`, `FormDrawer`, `Modal`, `ActionSheet`, `AlertDialog`, `Popover`, `Menu`, `SelectPortal`, `DatePicker`, and `ColorPicker` ignored theme variables set on an ancestor `View` on web, because RN `Modal` portals into `document.body`. They now re-apply the enclosing `ThemeScope`'s variables.
+- `FormDrawer`/`DrawerShell` hardcoded a dark header (`#111827`, white text) and a fixed border color, so they never followed light/dark or custom themes. They now use `background`, `typography`, `primary`, and `outline` tokens.
+
+---
+
+## [2.1.3]
+
+### Fixed
+
+- `Select` scrolls its dropdown to the selected item when opened.
+
+---
+
 ## [2.1.2] - 2026-07-29
 
 ### Fixed

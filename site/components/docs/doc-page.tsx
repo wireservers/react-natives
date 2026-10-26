@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { useRouter } from 'expo-router';
+import { ThemeScope } from '@wireservers/react-natives';
 import { Footer } from '@/components/footer';
 import { CodeBlock } from './code-block';
 import { PropsTable } from './props-table';
@@ -82,6 +83,7 @@ export function DocPage({
   const c = usePageColors();
   const { colorScheme } = useTheme();
   const customVars = useThemeVarsOverride();
+  const previewVars = useMemo(() => [config[colorScheme], customVars], [colorScheme, customVars]);
   const [footerH, setFooterH] = useState(180);
 
   return (
@@ -146,11 +148,14 @@ export function DocPage({
 
           {/* Content */}
           {activeTab === 'preview' ? (
-            <View style={[{ padding: isSmall ? 12 : isMedium ? 16 : 24, backgroundColor: c.cardBg }, config[colorScheme], customVars]}>
+            <ThemeScope
+              vars={previewVars}
+              style={{ padding: isSmall ? 12 : isMedium ? 16 : 24, backgroundColor: c.cardBg }}
+            >
               <ExampleCodeContext.Provider value={{ setCode: setDynamicCode }}>
                 {children}
               </ExampleCodeContext.Provider>
-            </View>
+            </ThemeScope>
           ) : (
             <CodeBlock code={codeToShow} showLineNumbers showHeader={false} />
           )}

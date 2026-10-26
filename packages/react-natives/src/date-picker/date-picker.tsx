@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, Pressable, Text, Modal, useWindowDimensions } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type {
   DatePickerProps,
@@ -114,22 +115,24 @@ export const DatePickerContent = React.forwardRef<
 
   return (
     <Modal visible transparent animationType="none" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1 }} onPress={onClose}>
-        <Pressable onPress={(e) => e.stopPropagation()}>
-          <View
-            ref={ref}
-            style={{
-              position: 'absolute',
-              top: triggerRect.pageY + triggerRect.height + 4,
-              right: rightOffset,
-            }}
-            className={datePickerContentStyle({ class: className })}
-            {...props}
-          >
-            {children}
-          </View>
+      <ThemeScopeBridge>
+        <Pressable style={{ flex: 1 }} onPress={onClose}>
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View
+              ref={ref}
+              style={{
+                position: 'absolute',
+                top: triggerRect.pageY + triggerRect.height + 4,
+                right: rightOffset,
+              }}
+              className={datePickerContentStyle({ class: className })}
+              {...props}
+            >
+              {children}
+            </View>
+          </Pressable>
         </Pressable>
-      </Pressable>
+      </ThemeScopeBridge>
     </Modal>
   );
 });

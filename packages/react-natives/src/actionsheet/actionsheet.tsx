@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal as RNModal, View } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { ActionSheetProps, ActionSheetContextValue } from './types';
 
@@ -22,7 +23,9 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
           onRequestClose={onClose}
           statusBarTranslucent
         >
-          <View style={{ flex: 1, justifyContent: 'flex-end' }} pointerEvents="box-none">{children}</View>
+          <ThemeScopeBridge>
+            <View style={{ flex: 1, justifyContent: 'flex-end' }} pointerEvents="box-none">{children}</View>
+          </ThemeScopeBridge>
         </RNModal>
       </ActionSheetProvider>
     );

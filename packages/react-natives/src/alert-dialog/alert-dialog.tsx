@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Pressable, Modal } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { AlertDialogProps, AlertDialogBackdropProps, AlertDialogContentProps, AlertDialogHeaderProps, AlertDialogBodyProps, AlertDialogFooterProps, AlertDialogCloseButtonProps, AlertDialogContextValue } from './types';
 import { alertDialogContentStyle, alertDialogBackdropStyle, alertDialogHeaderStyle, alertDialogBodyStyle, alertDialogFooterStyle, alertDialogCloseButtonStyle } from './styles';
@@ -11,9 +12,11 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({ isOpen, onClose, size 
   return (
     <AlertDialogProvider value={{ isOpen, onClose, size }}>
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={onClose}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          {children}
-        </View>
+        <ThemeScopeBridge>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            {children}
+          </View>
+        </ThemeScopeBridge>
       </Modal>
     </AlertDialogProvider>
   );

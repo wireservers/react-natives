@@ -9,17 +9,12 @@
 
 ---
 
-## Release Notes (v2.1.2)
+## Release Notes (v2.2.0)
 
 ### What was updated
 
-- `DataGrid`'s unpinned layout no longer leaves a blank gap after the table when columns are narrower than the container — the last column now grows to fill the measured width.
-- `DataGrid` gained column pinning — set `pinned: 'left' | 'right'` on a column to freeze it to that edge while the rest scroll horizontally.
-- `DataGrid` gained a server-side data mode: `manualSort` and `manualFilter` hand sorting and filtering to your data source while `onSortChange`/`onFiltersChange` keep reporting intent.
-- `DataGrid` gained infinite scroll via `onEndReached`/`onEndReachedThreshold`, plus a `loading` footer indicator.
-- `DataGrid`'s `stickyHeader` prop now works — the header was previously always pinned regardless of the prop.
-- Exported `computeViewRows` and the cell-formatting helpers so downstream packages can reproduce the grid's displayed rows without re-implementing its sort/filter rules.
-- Deprecated `DataGrid`'s `windowSize` prop, which never had any effect; it still compiles and will be removed in the next major.
+- New `ThemeScope` component: wrap a subtree with `<ThemeScope vars={vars({...})}>` and the theme also reaches portaled overlays (`Drawer`, `FormDrawer`, `Modal`, `ActionSheet`, `AlertDialog`, `Popover`, `Menu`, `Select`, `DatePicker`, `ColorPicker`), which previously lost ancestor theme variables on web.
+- `FormDrawer`/`DrawerShell` now use theme tokens instead of a hardcoded dark header and border, so they follow light/dark and custom themes.
 
 ### Changelog
 

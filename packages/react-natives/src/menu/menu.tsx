@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, Pressable, Text, Modal } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { MenuProps, MenuTriggerProps, MenuContentProps, MenuItemProps, MenuItemTextProps, MenuItemIconProps, MenuSeparatorProps, MenuGroupProps, MenuGroupTitleProps, MenuContextValue, MenuTriggerRect } from './types';
 import { menuContentStyle, menuItemStyle, menuItemTextStyle, menuItemIconStyle, menuSeparatorStyle, menuGroupStyle, menuGroupTitleStyle } from './styles';
@@ -46,18 +47,20 @@ export const MenuContent = React.forwardRef<React.ElementRef<typeof View>, MenuC
 
   return (
     <Modal visible transparent animationType="none" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1 }} onPress={onClose}>
-        <Pressable onPress={(e) => e.stopPropagation()}>
-          <View
-            ref={ref}
-            className={menuContentStyle({ class: className })}
-            style={[{ position: 'absolute', top: triggerRect.pageY + triggerRect.height + 4, left: triggerRect.pageX }, style]}
-            {...props}
-          >
-            {children}
-          </View>
+      <ThemeScopeBridge>
+        <Pressable style={{ flex: 1 }} onPress={onClose}>
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View
+              ref={ref}
+              className={menuContentStyle({ class: className })}
+              style={[{ position: 'absolute', top: triggerRect.pageY + triggerRect.height + 4, left: triggerRect.pageX }, style]}
+              {...props}
+            >
+              {children}
+            </View>
+          </Pressable>
         </Pressable>
-      </Pressable>
+      </ThemeScopeBridge>
     </Modal>
   );
 });

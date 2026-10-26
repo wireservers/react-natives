@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type { ModalProps, ModalContextValue } from './types';
 
@@ -32,16 +33,18 @@ export const Modal: React.FC<ModalProps> = ({
         onRequestClose={onClose}
         statusBarTranslucent
       >
-        {avoidKeyboard ? (
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            className="flex-1"
-          >
-            {content}
-          </KeyboardAvoidingView>
-        ) : (
-          content
-        )}
+        <ThemeScopeBridge>
+          {avoidKeyboard ? (
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              className="flex-1"
+            >
+              {content}
+            </KeyboardAvoidingView>
+          ) : (
+            content
+          )}
+        </ThemeScopeBridge>
       </RNModal>
     </ModalProvider>
   );

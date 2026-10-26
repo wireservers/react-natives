@@ -50,30 +50,30 @@ export const DrawerShell = React.forwardRef<
           <View
             ref={ref}
             style={[styles.drawerPanel, { maxWidth }, style]}
-            className={`bg-background-0 ${className ?? ''}`}
+            className={`border-l border-outline-200 bg-background-0 ${className ?? ''}`}
             {...props}
           >
             <View
-              className="border-b border-outline-200 bg-[#111827] px-5 py-4"
+              className="border-b border-outline-200 bg-background-0 px-5 py-4"
               style={{ paddingTop: topInset + 16 }}
             >
               <View className="flex-row items-start justify-between gap-3">
                 <View className="shrink gap-1">
-                  <Text size="xs" weight="bold" className="uppercase text-primary-300">
+                  <Text size="xs" weight="bold" className="uppercase text-primary-600">
                     {eyebrow}
                   </Text>
-                  <Heading size="xl" className="text-white">
+                  <Heading size="xl" className="text-typography-900">
                     {title}
                   </Heading>
-                  {subtitle ? <Text className="text-slate-300">{subtitle}</Text> : null}
+                  {subtitle ? <Text className="text-typography-500">{subtitle}</Text> : null}
                 </View>
                 <Pressable
                   accessibilityRole="button"
                   accessibilityLabel="Close"
                   onPress={onClose}
-                  className="h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/10"
+                  className="h-9 w-9 items-center justify-center rounded-lg border border-outline-200 bg-background-50"
                 >
-                  <Text size="xl" className="text-white">
+                  <Text size="xl" className="text-typography-700">
                     x
                   </Text>
                 </Pressable>
@@ -195,8 +195,6 @@ const styles = StyleSheet.create({
   drawerPanel: {
     height: '100%',
     width: '92%',
-    borderLeftWidth: 1,
-    borderLeftColor: '#e2e8f0',
     shadowColor: '#0f172a',
     shadowOpacity: 0.18,
     shadowRadius: 24,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Pressable, Text, TextInput, Modal } from 'react-native';
+import { ThemeScopeBridge } from '../theme-scope';
 import { createComponentContext } from '../utils/create-context';
 import type {
   ColorPickerProps,
@@ -104,20 +105,22 @@ export const ColorPickerContent = React.forwardRef<
       animationType="fade"
       onRequestClose={onClose}
     >
-      <Pressable
-        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        onPress={onClose}
-      >
-        <Pressable onPress={(e) => e.stopPropagation()}>
-          <View
-            ref={ref}
-            className={colorPickerContentStyle({ class: className })}
-            {...props}
-          >
-            {children}
-          </View>
+      <ThemeScopeBridge>
+        <Pressable
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          onPress={onClose}
+        >
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View
+              ref={ref}
+              className={colorPickerContentStyle({ class: className })}
+              {...props}
+            >
+              {children}
+            </View>
+          </Pressable>
         </Pressable>
-      </Pressable>
+      </ThemeScopeBridge>
     </Modal>
   );
 });
