@@ -34,4 +34,4 @@ npm run reset-project  # Reset to blank template (destructive)
 
 ## Auth
 
-The public docs site does not expose sign-in or account routes. Do not add a login button, account menu, or MSAL provider unless the product requirement explicitly brings authentication back.
+The public docs site does not expose sign-in or account routes. The header has an outbound **Account** link to `account.wireservers.com` (the shared WireServers account page, `ACCOUNT_URL` in `components/header.tsx`); that is not sign-in. Do not add a login button, account menu, or MSAL provider unless the product requirement explicitly brings authentication back.
