@@ -34,6 +34,10 @@ function WithTooltip({
   return <>{children}</>;
 }
 
+// WireServers account page, shared by every WireServers/BringThe app. The docs site itself has
+// no sign-in; this is only an outbound link.
+const ACCOUNT_URL = process.env.EXPO_PUBLIC_ACCOUNT_URL ?? "https://account.wireservers.com";
+
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Components", path: "/components" },
@@ -82,6 +86,15 @@ function GithubIcon({ color, size = 20 }: { color: string; size?: number }) {
         d="M12 2.2A9.8 9.8 0 0 0 2.2 12c0 4.1 2.7 7.6 6.4 8.8.5.1.7-.2.7-.5v-1.8c-2.6.6-3.1-1.1-3.1-1.1-.4-1-.9-1.3-.9-1.3-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.8.9-2.5 0-.2-.4-1.2.1-2.5 0 0 .8-.2 2.6.9a9.4 9.4 0 0 1 4.8 0c1.8-1.2 2.6-.9 2.6-.9.5 1.3.2 2.3.1 2.5.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5A9.8 9.8 0 0 0 21.8 12 9.8 9.8 0 0 0 12 2.2Z"
         fill={color}
       />
+    </Svg>
+  );
+}
+
+function AccountIcon({ color, size = 20 }: { color: string; size?: number }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <Path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />
     </Svg>
   );
 }
@@ -352,6 +365,17 @@ export function Header() {
                 accessibilityLabel="GitHub repository"
               >
                 <GithubIcon color={textColor} />
+              </Pressable>
+            </WithTooltip>
+
+            {/* WireServers account (managed on account.wireservers.com) */}
+            <WithTooltip label="Account">
+              <Pressable
+                onPress={() => Linking.openURL(ACCOUNT_URL)}
+                accessibilityRole="link"
+                accessibilityLabel="Account"
+              >
+                <AccountIcon color={textColor} />
               </Pressable>
             </WithTooltip>
 
